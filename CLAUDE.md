@@ -33,15 +33,9 @@ Consult `docs/STED-RW_Lean.md` or `docs/prompt_maestro_STED_RW.md` only when:
 
 ## Session bootstrap
 
-If the repository provides:
+If the project provides a session-bootstrap script (for example under `ops/checks/`), run it before substantial work and use its output as derived project state.
 
-```text
-ops/checks/session_boot.py
-```
-
-run it before substantial work and use its output as derived project state.
-
-If the script does not exist, do not create it automatically. Derive the required state from `plan_maestro.md` and the task-relevant artifacts.
+If no such script exists, do not create one automatically. Derive the required state from `plan_maestro.md` and the task-relevant artifacts.
 
 ## Working model
 
@@ -118,13 +112,7 @@ Do not report `BLOCKED` merely because an optional artifact such as a gap matrix
 
 Use project-provided checks when they exist.
 
-Do not assume that a specific command such as:
-
-```text
-python ops/checks/check_required_files.py
-```
-
-exists in every project.
+Do not assume that a specific validation command exists in every project.
 
 Run only validations relevant to the files or behavior changed by the current task.
 

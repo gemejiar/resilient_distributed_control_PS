@@ -1,16 +1,15 @@
 """PostToolUse hook: advisory checks after an Edit/Write/MultiEdit.
 
 Reads the hook payload from stdin to see which file was touched. If it is a
-governed artifact (the same set session_close.py reconciles), it emits a
-targeted, edit-time reminder to register a decision-log entry -- this is the
-actionable moment, while the agent is still working. For any other file it
-falls back to the generic advisory checks. Always non-blocking.
+governed artifact, it emits a targeted, edit-time reminder to register a
+decision-log entry -- this is the actionable moment, while the agent is still
+working. For any other file it falls back to the generic advisory checks.
+Always non-blocking.
 """
 
 import json
 import sys
 
-# Keep in sync with GOVERNED_PREFIXES in ops/checks/session_close.py.
 GOVERNED_PREFIXES = (
     "plan_maestro.md",
     "paper/main.tex",
@@ -34,8 +33,12 @@ def _file_path(payload: dict) -> str:
 
 
 def _repo_tail(path: str) -> str:
-    """Repo-relative path, whether the hook passed an absolute or relative one."""
-    return path.split("Paper_Wide_Area_Control/", 1)[-1]
+    """Best-effort repo-relative path for the governed-prefix match below."""
+    for marker in ("plan_maestro.md", "paper/", "ops/", "research/"):
+        idx = path.find(marker)
+        if idx != -1:
+            return path[idx:]
+    return path
 
 
 def _is_governed(path: str) -> bool:
@@ -55,8 +58,8 @@ def main() -> int:
         context = (
             f"post_edit_check (advisory): '{tail}' is a GOVERNED artifact. "
             "Per AGENTS.md/CLAUDE.md, a nontrivial change here needs a DEC "
-            "entry in ops/sted/decision_log.md before the session closes "
-            "(session_close.py will flag it otherwise). Also confirm the edit "
+            "entry in ops/sted/decision_log.md before the session closes. "
+            "Also confirm the edit "
             "does not assert a claim beyond its evidence status in "
             "ops/sted/traceability_matrix.csv, and preserve LaTeX "
             "labels/cites/refs."
