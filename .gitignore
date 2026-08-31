@@ -58,4 +58,4 @@ data/raw/
 data/interim/
 
 # Large model checkpoints are kept local (too heavy for the repository)
-Paper_2/artifacts/models/
+Paper_manuscript/artifacts/models/

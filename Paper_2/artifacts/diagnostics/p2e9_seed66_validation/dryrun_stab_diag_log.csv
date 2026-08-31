@@ -1,4 +1,0 @@
-seed,episode,step,actor_loss,critic_loss,episode_return_mean,replay_buffer_pos,numerical_failures_cumulative,saturation_fraction_mean,n_stable_of_6,all_stable,unstable_scenarios
-999,1,1200,0.26003125309944153,0.21168838441371918,,1199,0,0.0,6,True,
-999,2,2400,0.5396926999092102,0.15541614592075348,,2399,0,0.0,6,True,
-999,3,3600,0.9049356579780579,0.18027183413505554,,3599,0,0.0,6,True,

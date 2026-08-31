@@ -1,3 +1,0 @@
-variant,df_nadir_hz,RoCoF_max_hz_s,Ppeak_MW,saturation_fraction,classification,TDS_success,I_f_vs_NoFFC,I_r_vs_NoFFC
-A_local,-0.2083094810780466,2.933356509159679,138.25528131987562,0.0,STABLE,True,0.0,0.0
-B_global,-0.2083094810780466,2.933356509159679,114.3450767962103,0.0,STABLE,True,0.0,0.0
