@@ -26,10 +26,7 @@ description: Run work under the STED-RW Lean template using minimum artifacts, t
 
 ## Minimum active artifacts
 - `ops/sted/traceability_matrix.csv`
-- `ops/sted/test_plan.md`
 - `ops/sted/decision_log.md`
-- `ops/sted/final_quality_report.md`
-- `ops/sted/agents_catalog.md`
 
 ## Stop conditions
 - Missing source-of-truth contracts

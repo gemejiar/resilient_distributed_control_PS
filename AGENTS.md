@@ -27,7 +27,7 @@ Read additional operational artifacts only when needed:
 
 Do **not** load the full repository, historical material, examples, or STED-RW documentation unless the task requires them.
 
-If `docs/STED-RW_Lean.md` or `docs/prompt_maestro_STED_RW.md` exist, consult them only when:
+If `zPLantilla_STED_RW/STED-RW_Lean.md` or `zPLantilla_STED_RW/prompt_maestro_STED_RW.md` exist, consult them only when:
 
 - initializing a project;
 - creating or substantially restructuring `plan_maestro.md`;

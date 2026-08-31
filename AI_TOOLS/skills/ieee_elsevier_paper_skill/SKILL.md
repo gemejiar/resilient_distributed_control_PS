@@ -67,9 +67,7 @@ each group:
 ### Project governance
 - `plan_maestro.md`
 - `ops/sted/traceability_matrix.csv`
-- `ops/sted/test_plan.md`
 - `ops/sted/decision_log.md`
-- `ops/sted/final_quality_report.md`, if it exists
 
 ### Manuscript evidence
 - `paper/main.tex` or the actual single main LaTeX file

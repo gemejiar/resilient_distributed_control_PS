@@ -21,8 +21,9 @@ Plantilla mínima para proyectos científicos y técnicos asistidos por agentes 
 
 ## Documentación
 
-- `docs/STED-RW_Lean.md`
-- `docs/prompt_maestro_STED_RW.md`
+- `zPLantilla_STED_RW/STED-RW_Lean.md`
+- `zPLantilla_STED_RW/prompt_maestro_STED_RW.md`
+- `zPLantilla_STED_RW/plan_maestro_ejemplo.md` (ejemplo de referencia)
 
 No cree archivos o carpetas que no aporten directamente a ejecución,
 reproducibilidad, trazabilidad o al producto final.

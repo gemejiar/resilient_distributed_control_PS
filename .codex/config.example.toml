@@ -1,6 +1,5 @@
 # Project-local Codex configuration example for this workspace.
 # Copy to .codex/config.toml for local use and replace placeholders as needed.
-# Local skills live in .codex/skills and agent presets in .codex/agents.
 
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"

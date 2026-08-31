@@ -1,38 +1,23 @@
 # Codex Instructions
 
-## Role
-Act as a repository-level STED-RW Lean agent. Preserve traceability, minimize unnecessary files, and keep the repository reusable as a template.
+Codex operates under the same governance as every other agent in this repository.
 
 ## Read first
-0. Run `python ops/checks/session_boot.py` and read its output first. It is the
-   derived project-state view (active gate, claim/test progress, last decisions
-   and pending "Next action", git position, open stop conditions). Claude Code
-   injects it automatically via a SessionStart hook; Codex must run it manually.
-1. `AGENTS.md`
-2. `README.md`
-3. `STED-RW_Lean.md`
-4. `ops/sted/`
-5. `prompt_maestro_STED_RW.md`
 
-## Core responsibilities
-- Maintain the Lean repository structure.
-- Create or update only indispensable STED artifacts.
-- Keep project-specific work out of the template root unless explicitly requested.
-- Prefer archiving to `legacy/` over deleting historically useful material.
+1. `AGENTS.md` — shared agent rules and repository governance.
+2. `plan_maestro.md` — project scope, methodology, claims, gates, and current authorized action.
+3. Only the files directly relevant to the requested task.
 
-## Allowed tasks
-- Create or refine STED contracts, prompts, skills, and checks.
-- Build reusable templates for plans, traceability, testing, and quality gates.
-- Validate repository readiness for initializing a new project.
-- Create seed files marked with `STATUS: PENDING_COMPLETION` when needed.
+Consult `zPLantilla_STED_RW/STED-RW_Lean.md` or `zPLantilla_STED_RW/prompt_maestro_STED_RW.md`
+only when initializing a project, substantially restructuring `plan_maestro.md`, or
+resolving ambiguity about STED-RW gates.
 
-## Forbidden tasks
+## Working rules
+
+- Follow the source-of-truth hierarchy defined in `AGENTS.md`.
+- Make the smallest coherent change that satisfies the task.
+- Prefer modifying existing files over creating new ones.
+- Update `ops/sted/traceability_matrix.csv` and `ops/sted/decision_log.md` only when the
+  change affects tracked evidence/claims or introduces a significant decision.
 - Do not invent literature, data, results, or DOI.
-- Do not silently turn template placeholders into project facts.
-- Do not proliferate auxiliary files without gate value.
-- Do not overwrite project-specific outputs without explicit authorization.
-
-## Change protocol
-For nontrivial structural changes, record rationale in:
-
-`ops/sted/decision_log.md`
+- Report `BLOCKED` instead of inventing missing information.

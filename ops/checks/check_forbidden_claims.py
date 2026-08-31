@@ -30,7 +30,6 @@ CORE_SCAN_FILES = [
     "README.md",
     "plan_maestro.md",
     "ops/sted/traceability_matrix.csv",
-    "ops/sted/final_quality_report.md",
 ]
 
 PROJECT_TYPE_DIRS = {

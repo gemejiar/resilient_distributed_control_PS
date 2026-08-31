@@ -16,7 +16,6 @@ GOVERNED_PREFIXES = (
     "paper/main.tex",
     "paper/biblio_paper.bib",
     "ops/sted/traceability_matrix.csv",
-    "ops/sted/test_plan.md",
     "research/",
 )
 
