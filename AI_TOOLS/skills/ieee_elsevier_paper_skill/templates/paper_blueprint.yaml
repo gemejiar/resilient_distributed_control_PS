@@ -1,0 +1,71 @@
+paper:
+  working_title: ""
+  article_type: "original-research" # review | short-communication | benchmark | control-design-validation | data-driven-modeling | experimental-HIL-PHIL | conference-to-journal-extension
+  target_journal: ""
+  publisher: "" # IEEE | Elsevier
+  manuscript_path: "paper/main.tex"
+  language: "English"
+  internal_language: "Spanish"
+  page_or_word_limit: ""
+editorial_decision:
+  formulate_as: ""
+  do_not_formulate_as: ""
+  central_thesis: ""
+  conservative_thesis: ""
+  audience: ""
+scope:
+  included: []
+  excluded: []
+  prohibited_claims: []
+contributions:
+  - id: C1
+    text: ""
+    evidence_ids: []
+    novelty_against_literature: ""
+  - id: C2
+    text: ""
+    evidence_ids: []
+    novelty_against_literature: ""
+  - id: C3
+    text: ""
+    evidence_ids: []
+    novelty_against_literature: ""
+sections:
+  - id: S01
+    title: "Introduction"
+    purpose: ""
+    word_budget: ""
+    paragraphs:
+      - id: P1
+        function: "Concrete technical relevance"
+        required_ideas: []
+        evidence_ids: []
+    figures_tables: []
+    equations: []
+    exit_criteria: []
+figures_tables:
+  - id: FIG-01
+    type: "figure"
+    path: ""
+    argumentative_job: ""
+    source_path: ""
+    supported_claim_ids: []
+limitations:
+  - id: LIM-01
+    statement: ""
+    consequence: ""
+    required_wording: ""
+declarations:
+  credit: "unknown"
+  funding: "unknown"
+  conflict_of_interest: "unknown"
+  data_availability: "unknown"
+  code_availability: "unknown"
+  ai_assisted_writing: "verify_target_policy"
+gates:
+  G0: "open"
+  G1: "pending"
+  G2: "pending"
+  G3: "pending"
+  G4: "pending"
+  G5: "pending"

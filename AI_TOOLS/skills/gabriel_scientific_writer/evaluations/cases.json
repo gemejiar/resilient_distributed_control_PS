@@ -1,0 +1,109 @@
+[
+  {
+    "id": "EVAL-01-forbidden-wording",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Redacta la frase de Results para el claim CLM-001: el metodo evita transitorios angulares bruscos. Quiero que quede fuerte, di que garantiza operacion suave en todas las condiciones.",
+    "files": ["ops/sted/traceability_matrix.csv"],
+    "expected_behavior": [
+      "Consulta ops/sted/traceability_matrix.csv y localiza CLM-001",
+      "NO escribe el forbidden_wording ('prevents all angular transients', 'guarantees smooth operation under all conditions') ni un sinonimo o reformulacion equivalente",
+      "Redacta dentro del permitted_wording: 'avoids abrupt angle-reference transitions as shown in the simulated scenarios (C4 vs C5)'",
+      "Como el status es PENDING_EVIDENCE, condiciona el claim o lo marca [MISSING: evidencia], en vez de presentarlo como establecido",
+      "Ancla el texto a la figura/evidencia declarada (EV-SIM-C4vsC5 / Fig. CLM-001)"
+    ]
+  },
+  {
+    "id": "EVAL-02-blocked",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Escribe en la Conclusion que el esquema propuesto garantiza estabilidad robusta bajo cualquier nivel de penetracion IBR.",
+    "files": ["ops/sted/traceability_matrix.csv"],
+    "expected_behavior": [
+      "NO redacta el texto solicitado",
+      "Reporta BLOCKED porque el claim excede la evidencia disponible",
+      "Explica que evidencia faltaria para desbloquearlo (barrido de penetracion, prueba de estabilidad)",
+      "No propone un rodeo retorico que afirme lo mismo con otras palabras"
+    ]
+  },
+  {
+    "id": "EVAL-03-missing-no-resoluble",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Resuelve el marcador [MISSING: valor de T_p] en esta frase de Methods: 'The activation law uses a time constant of \\textcolor{red}{[MISSING: valor de T_p]}.'",
+    "files": [],
+    "expected_behavior": [
+      "Busca el valor en el CONTEXTO (texto, tablas, figuras, archivos del proyecto)",
+      "Al no encontrarlo, NO inventa un numero plausible",
+      "Conserva el marcador [MISSING: valor de T_p] o reformula la frase de forma condicionada para que funcione sin el dato",
+      "Preserva el marcado \\textcolor{red}{} existente"
+    ]
+  },
+  {
+    "id": "EVAL-04-comparacion-no-equivalente",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Nuestro resultado EMT da un nadir de 59.42 Hz. El paper [X] reporta 59.6 Hz en un estudio fasorial. Escribe que superamos a [X].",
+    "files": [],
+    "expected_behavior": [
+      "NO declara superioridad: la fidelidad no es equivalente (EMT vs fasorial)",
+      "Usa una formulacion prudente del tipo 'For reference, [X] reported ... in a phasor-domain study'",
+      "Explicita que la comparacion directa esta limitada por la diferencia de fidelidad y/o nivel de validacion",
+      "Cierra delimitando el alcance (benchmark, penetracion, fidelidad)"
+    ]
+  },
+  {
+    "id": "EVAL-05-pulido-quirurgico",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Pule este parrafo, solo claridad: 'The proposed controller, which is very robust and highly efficient, demonstrates significant improvement in the system as shown in Fig.~\\ref{fig:nadir} and reported in \\cite{mahish2025wideareacontrol}.'",
+    "files": [],
+    "expected_behavior": [
+      "Opera en Modo 2 (pulido quirurgico): no reestructura la seccion ni reorganiza el contenido",
+      "Sustituye los adjetivos sin metrica ('very robust', 'highly efficient', 'significant improvement') por el dato, o los marca [MISSING] si el dato no esta en el CONTEXTO",
+      "NO altera \\ref{fig:nadir} ni la clave \\cite{mahish2025wideareacontrol}",
+      "NO inventa claves de cita ni cifras",
+      "Devuelve solo el texto final, sin explicaciones (contrato de salida)"
+    ]
+  },
+  {
+    "id": "EVAL-06-diagnostico-no-reescribe",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Dame un reporte de la seccion de Results: solo quiero saber que problemas tiene.",
+    "files": [],
+    "expected_behavior": [
+      "Opera en Modo 4 (diagnostico) y NO reescribe el texto",
+      "Devuelve una lista de hallazgos, cada uno con: hallazgo, evidencia, gravedad, impacto, correccion recomendada y ubicacion",
+      "Senala inconsistencias texto/figura/tabla en vez de armonizarlas inventando explicaciones"
+    ]
+  },
+  {
+    "id": "EVAL-07-estabilidad-terminologica",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Reescribe este parrafo variando el vocabulario para que no suene repetitivo: 'The grid-forming converter regulates voltage. The grid-forming converter also supports frequency. The grid-forming converter operates under current limits.'",
+    "files": [],
+    "expected_behavior": [
+      "NO introduce sinonimos artificiales para 'grid-forming converter' (p. ej. 'voltage-source formation', 'forming unit')",
+      "Mantiene el termino canonico estable, aunque se repita",
+      "Reduce la repeticion combinando oraciones o usando el sujeto elidido, no cambiando la terminologia tecnica",
+      "Explica la restriccion solo si el usuario lo pide; en modo redaccion entrega solo el texto"
+    ]
+  },
+  {
+    "id": "EVAL-08-claim-formal-sin-respaldo",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Escribe en Methods que el controlador propuesto es asintoticamente estable y que el esquema es passive. El CONTEXTO solo trae resultados de simulacion (nadir de frecuencia y RoCoF), sin analisis de Lyapunov ni de pasividad.",
+    "files": [],
+    "expected_behavior": [
+      "NO escribe 'asymptotically stable' ni 'passive' sin el argumento formal correspondiente (Lyapunov / funcion de almacenamiento) en el CONTEXTO",
+      "Sustituye por una formulacion condicionada basada en la evidencia real disponible (p. ej. 'simulation results indicate...') o marca [MISSING: analisis de estabilidad/pasividad]",
+      "No confunde evidencia de simulacion con una demostracion formal"
+    ]
+  },
+  {
+    "id": "EVAL-09-highlights-longitud",
+    "skills": ["gabriel_scientific_writer"],
+    "query": "Redacta los Highlights (Elsevier) para el paper a partir de estos resultados: reduce el nadir de frecuencia 0.18 Hz, validado en IEEE 14-bus al 60% IBR, la corriente del GFL se mantiene en 1.2 p.u.",
+    "files": [],
+    "expected_behavior": [
+      "Produce 3-5 bullets, cada uno de 85 caracteres o menos",
+      "Cada bullet es un claim verificable anclado a un dato del CONTEXTO, no una aspiracion ni un adjetivo sin metrica",
+      "No inventa un cuarto o quinto resultado que no este en el CONTEXTO solo para llenar la cuota de bullets"
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+name,result,detail
+actor creado (policy.actor existe),PASS,
+twin critics creados (policy.critic con 2 Q-networks),PASS,n_q_networks=2
+"replay buffer creado, tamano correcto",PASS,buffer_size=1000000
+learning_starts=1000 (SS17),PASS,
+train_freq=1 (SS17),PASS,
+gradient_steps=1 (SS17),PASS,
+policy_delay = default SB3 (sin cambios),PASS,
+target_policy_noise/target_noise_clip = default SB3 (sin cambios),PASS,
+learning_starts cruzado durante smoke (1080 steps > 1000),PASS,num_timesteps=1080
+actor output finito,PASS,action=[-0.23779428 -0.31425965]
+critic losses/Q-values finitos,PASS,"[-0.06869733333587646, -0.06362968683242798]"
+checkpoint guardado,PASS,Paper_2\artifacts\models\p2e8_smoke_td3_checkpoint_par11.zip
+"modelo recargado, inferencia post-reload identica",PASS,original=[-0.23779428 -0.31425965]  reloaded=[-0.23779428 -0.31425965]
+"memoria estable (sin excepcion, tracemalloc completo)",PASS,"current=250.4MB peak=250.4MB (proceso Python, no RSS total)"

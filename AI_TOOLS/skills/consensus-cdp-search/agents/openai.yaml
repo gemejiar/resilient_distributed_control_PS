@@ -1,0 +1,2 @@
+name: consensus-cdp-search
+description: Consensus search and PDF download workflow through a logged-in debug browser session, raw CDP control, explicit blue-button click, and download logging.

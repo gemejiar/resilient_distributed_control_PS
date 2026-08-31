@@ -1,0 +1,4 @@
+interface:
+  display_name: "Find Publishable Gaps"
+  short_description: "Detecta y prioriza gaps cientificos publicables en un corpus."
+  default_prompt: "Analiza este topico y los papers de referencia para identificar gaps remanentes reales, contribuciones defendibles y una agenda de investigacion priorizada."

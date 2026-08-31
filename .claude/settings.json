@@ -1,0 +1,73 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:/Users/ASUS/AppData/Local/Temp/apply_tex_edits.py\")",
+      "Bash(powershell -Command '\\(Get-Content '\\\\''biblio_paper.bib'\\\\''\\) | Where-Object { $_ -notmatch '\\\\''^\\\\s+note\\\\s*=\\\\s*\\\\{VERIFIED'\\\\'' } | Set-Content '\\\\''biblio_paper.bib'\\\\'' -Encoding UTF8')",
+      "Edit(/.claude/skills/ieee_elsevier_paper_skill/**)",
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(./venv/Scripts/python.exe --version)",
+      "Bash(./venv/Scripts/pip.exe list *)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(C:/Users/Gabriel/AppData/Local/Programs/Python/Python312/python.exe -m venv venv)",
+      "Bash(python -c \"import andes, stable_baselines3; print\\('andes', andes.__version__\\); print\\('sb3', stable_baselines3.__version__\\)\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\ASUS\\AppData\\Local\\Temp"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ops/checks/session_boot.py",
+            "timeout": 15,
+            "statusMessage": "session_boot"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/hooks/pre_edit_check.py",
+            "timeout": 10,
+            "statusMessage": "pre_edit_check"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/hooks/post_edit_check.py",
+            "timeout": 10,
+            "statusMessage": "post_edit_check"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ops/checks/session_close.py",
+            "timeout": 10,
+            "statusMessage": "session_close"
+          }
+        ]
+      }
+    ]
+  }
+}

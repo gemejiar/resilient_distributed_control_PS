@@ -1,0 +1,37 @@
+# Project-local Codex configuration example for this workspace.
+# Copy to .codex/config.toml for local use and replace placeholders as needed.
+# Local skills live in .codex/skills and agent presets in .codex/agents.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+project_root_markers = ["AGENTS.md", ".codex", ".claude"]
+
+[agents]
+max_threads = 4
+max_depth = 1
+
+[mcp_servers.library_access]
+command = "<PATH_TO_LOCAL_PYTHON>"
+args = ["<PATH_TO_LIBRARY_ACCESS_MCP_SERVER>"]
+enabled = false
+
+[mcp_servers.library_access.tools.download_pdf_with_user_session]
+approval_mode = "approve"
+
+[mcp_servers.library_access.tools.open_url_in_managed_browser]
+approval_mode = "approve"
+
+[mcp_servers.library_access.tools.search_openalex]
+approval_mode = "approve"
+
+[mcp_servers.library_access.tools.check_managed_browser_session]
+approval_mode = "approve"
+
+[mcp_servers.library_access.tools.resolve_doi]
+approval_mode = "approve"
+
+[mcp_servers.library_access.tools.search_crossref]
+approval_mode = "approve"
+
+[mcp_servers.library_access.tools.start_managed_browser_session]
+approval_mode = "approve"

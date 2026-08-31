@@ -1,0 +1,4 @@
+seed,episode,step,J_val_P2,df_peak_mean_hz,rocof_peak_mean_hz_s,checkpoint_path,improved,evals_since_improvement,wall_time_s
+999,1,1200,0.569901107553009,0.051972446217089185,0.4351319075555715,c:\tmp\seed66_dryrun\dryrun_seed66_stab_ckpt\seed999_ep1,True,0,57.539814900024794
+999,2,2400,0.5648910083644769,0.05144613630379524,0.4313343521700635,c:\tmp\seed66_dryrun\dryrun_seed66_stab_ckpt\seed999_ep2,True,0,120.67008950002491
+999,3,3600,0.5624039362414508,0.05136250015232472,0.42937814893223075,c:\tmp\seed66_dryrun\dryrun_seed66_stab_ckpt\seed999_ep3,True,0,179.79949569999008

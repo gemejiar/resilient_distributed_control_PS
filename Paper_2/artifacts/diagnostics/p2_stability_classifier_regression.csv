@@ -1,0 +1,5 @@
+case_id,description,expected,frequency_final_slope,detrended_frequency_p2p,persistence_ratio,sign_reversals_final_window,classification_v2,pass
+A,load_severe NoFFC (existing trace),NOT LIMIT_CYCLE,0.012520525019665257,0.0004022798254439408,0.8276160179117964,0,STABLE,True
+B,"load_severe R-only Kr=0.05x (existing trace, prev. MARGINAL)",NOT LIMIT_CYCLE,0.012425354424286396,0.0004230515414178626,0.8275279793551389,0,STABLE,True
+C,gen_severe Tc=50ms sustained bang-bang (existing trace),LIMIT_CYCLE,0.0035379523297610046,0.15477190096993354,1.0041700236815416,19,LIMIT_CYCLE,True
+D,"load_severe F+R aggressive Kf=Kr=1.0x, Tc=100ms (1 NEW sim @ tstep=5ms frozen; DEC-P2-013 independently confirmed STABLE here)",NOT LIMIT_CYCLE,0.005839243256611855,0.0014372907402417923,0.736842710725122,0,STABLE,True

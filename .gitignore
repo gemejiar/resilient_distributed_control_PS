@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+.env
+.env.*
+.envrc
+
+# Local editor or OS noise
+.DS_Store
+Thumbs.db
+.vscode/
+.codex/config.toml
+
+# Claude local runtime state
+.claude/scheduled_tasks.lock
+.claude/settings.local.json
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.spl
+*.synctex.gz
+*.abs
+texput.log
+
+# Local logs and temporary artifacts
+artifacts_*.txt
+*.tmp
+*.temp
+
+# Secrets, certificates, and credentials
+*.crt
+*.key
+*.p12
+*.pem
+credentials/
+secrets/
+token*
+*token*
+
+# Local databases and stateful caches
+*.db
+*.sqlite
+
+# Raw and intermediate data are local. Reproducible result outputs are versioned.
+data/raw/
+data/interim/
+
+# Large model checkpoints are kept local (too heavy for the repository)
+Paper_2/artifacts/models/

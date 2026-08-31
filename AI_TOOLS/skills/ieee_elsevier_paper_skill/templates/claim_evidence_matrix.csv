@@ -1,0 +1,2 @@
+claim_id,claim_text,claim_class,section,evidence_id,source_path,figure_or_table,allowed_wording,forbidden_wording,scope_condition,status,owner
+CLM-001,"","result","","","","","shows; reports; quantifies","proves; guarantees; universally outperforms","","pending",""
