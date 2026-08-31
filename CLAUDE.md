@@ -25,7 +25,7 @@ Read additional artifacts only when required by the task, for example:
 
 Do not load the full STED-RW specification during normal work.
 
-Consult `docs/STED-RW_Lean.md` or `docs/prompt_maestro_STED_RW.md` only when:
+Consult `zPLantilla_STED_RW/STED-RW_Lean.md` or `zPLantilla_STED_RW/prompt_maestro_STED_RW.md` only when:
 
 - initializing a project;
 - creating or substantially restructuring `plan_maestro.md`;

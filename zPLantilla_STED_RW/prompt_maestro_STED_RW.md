@@ -268,7 +268,7 @@ Usa este núcleo mínimo por defecto:
    - Catálogo compacto de agentes.
    - No crear archivos separados por agente, salvo el integrador si el entorno lo requiere.
 
-7. `.claude/agents/sted_integrator.md`
+7. `.AI_TOOLS\agents\sted_integrator.md`
    - Solo si se usa Claude Code o un sistema con subagentes.
    - Debe definir al agente integrador.
 
