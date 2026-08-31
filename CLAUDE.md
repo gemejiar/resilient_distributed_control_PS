@@ -126,3 +126,16 @@ For substantial work, summarize concisely:
 - evidence or traceability affected;
 - unresolved blockers, if any;
 - the next relevant action when it follows directly from the project plan.
+
+## Project-local AI tools
+
+Follow the reusable-tool policy defined in `AGENTS.md`.
+
+When a task materially matches a capability under `AI_TOOLS/`, use the
+smallest relevant skill, agent, command, or procedure instead of recreating
+that workflow.
+
+Do not preload or scan the entire `AI_TOOLS/` tree. Discover first, then load
+only the capability required for the current task.
+
+Claude-specific hooks and runtime configuration are defined in `.claude/`.

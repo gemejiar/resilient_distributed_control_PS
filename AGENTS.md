@@ -452,3 +452,48 @@ Before considering a scientific or editorial task complete, verify as applicable
 - no unnecessary files or reports were created.
 
 If any critical item fails, do not declare the task complete.
+
+## Reusable AI tools
+
+For capability discovery, consult `AI_TOOLS/README.md` (layout, routing table,
+and discovery discipline) and `AI_TOOLS/skills/README.md` (authoritative skill
+inventory).
+
+This repository may provide reusable agent capabilities under `AI_TOOLS/`.
+
+`AI_TOOLS/` is the canonical project-local library for reusable skills,
+agents, commands, hooks, and supporting procedures. It is not part of the
+project's scientific source of truth.
+
+Before performing a substantial task, determine whether an available
+`AI_TOOLS` capability materially matches the requested work.
+
+When a relevant capability exists:
+
+1. Prefer using the most specific applicable skill or tool rather than
+   recreating its workflow from scratch.
+2. Inspect the `AI_TOOLS` index or relevant directory only as needed to
+   identify the appropriate capability.
+3. Load only the selected skill/tool and the files it explicitly requires.
+4. Do not load all skills, agents, commands, or reference files.
+5. Combine multiple skills only when the task genuinely requires distinct
+   capabilities.
+6. Project-specific evidence, `plan_maestro.md`, and `AGENTS.md` always
+   override generic guidance inside a reusable skill when they conflict.
+7. A reusable skill must not silently create optional project artifacts,
+   change scope, strengthen claims, or override evidence.
+8. If no appropriate reusable capability exists, perform the task directly
+   under `AGENTS.md` and `plan_maestro.md`.
+
+Typical routing examples:
+
+- scientific methodology or experiment design → `scientific-methodology`
+- scientific code generation, debugging, or code review → `scientific-coding`
+- manuscript peer review → `paper-review`
+- scientific writing or rewriting → `gabriel_scientific_writer`
+- citation verification or bibliography work → `citation-management`
+
+Do not assume that the physical presence of a capability under `AI_TOOLS/`
+means that the current agent runtime has natively registered it. When native
+skill discovery is unavailable, read and follow the relevant capability
+directly from `AI_TOOLS/`.

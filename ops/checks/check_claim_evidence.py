@@ -32,7 +32,9 @@ ALLOWED_TYPES = {
 }
 
 # Canonical status vocabulary (see AGENTS.md and STED-RW_Lean.md section 13.3).
-# Compared case-insensitively so legacy lowercase matrices still validate.
+# Compared case-insensitively (pending_evidence == PENDING_EVIDENCE); the
+# canonical written form is upper-case. Legacy short tokens (pending, blocked,
+# verified) are intentionally no longer accepted.
 ALLOWED_STATUSES = {
     "VERIFIED",
     "PARTIALLY_VERIFIED",

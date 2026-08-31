@@ -436,13 +436,14 @@ Organiza así:
 | Evidencia | Uso | Estado | Riesgo | Acción |
 |---|---|---|---|---|
 
-Estados permitidos:
-- `verified`
-- `partially_verified`
-- `pending`
-- `blocked`
-- `obsolete`
-- `out_of_scope`
+Estados permitidos (vocabulario canónico único, igual en AGENTS.md, el CSV, `check_claim_evidence.py` y las skills):
+- `VERIFIED`
+- `PARTIALLY_VERIFIED`
+- `PENDING_EVIDENCE`
+- `BLOCKED_BY_EVIDENCE`
+- `REFERENCE_NOT_VERIFIED`
+- `OBSOLETE`
+- `OUT_OF_SCOPE`
 
 ### 7. Matriz única de trazabilidad
 

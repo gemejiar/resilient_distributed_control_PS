@@ -21,7 +21,7 @@ description: Run work under the STED-RW Lean template using minimum artifacts, t
 - Keep the active structure minimal.
 - Prefer updating an existing core artifact over creating a new file.
 - Use `STATUS: PENDING_COMPLETION` for empty but required templates.
-- Use `PENDING_EVIDENCE` when a claim or field lacks verification.
+- For claim/evidence/reference status, use only the canonical vocabulary (`VERIFIED`, `PARTIALLY_VERIFIED`, `PENDING_EVIDENCE`, `BLOCKED_BY_EVIDENCE`, `REFERENCE_NOT_VERIFIED`, `OBSOLETE`, `OUT_OF_SCOPE`), both in prose and in the `status` column of the traceability matrix.
 - Escalate to the integrator when scope or project type changes.
 
 ## Minimum active artifacts

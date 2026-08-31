@@ -164,8 +164,8 @@ Use `claim_class` values:
 `background`, `literature`, `method`, `result`, `interpretation`, `limitation`,
 `operational_implication`, `editorial`.
 
-Use `status` values:
-`verified`, `partially_verified`, `pending`, `blocked`, `obsolete`, `out_of_scope`.
+Use `status` values (canonical vocabulary, same as AGENTS.md and the STED-RW traceability matrix):
+`VERIFIED`, `PARTIALLY_VERIFIED`, `PENDING_EVIDENCE`, `BLOCKED_BY_EVIDENCE`, `REFERENCE_NOT_VERIFIED`, `OBSOLETE`, `OUT_OF_SCOPE`.
 
 ### 5.3 `section_blueprints.md`
 For every section/subsection, include:
@@ -218,7 +218,7 @@ Required:
 - available figures/tables registered;
 - each central figure/table linked to source data and a claim;
 - literature claims verified;
-- missing evidence marked `blocked` or `partially_verified`;
+- missing evidence marked `BLOCKED_BY_EVIDENCE` or `PARTIALLY_VERIFIED`;
 - results storyline ordered before prose drafting.
 
 ### G3 — Section architecture

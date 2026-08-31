@@ -21,3 +21,14 @@ resolving ambiguity about STED-RW gates.
   change affects tracked evidence/claims or introduces a significant decision.
 - Do not invent literature, data, results, or DOI.
 - Report `BLOCKED` instead of inventing missing information.
+
+
+## Project-local AI tools
+
+Follow the reusable-tool policy in `AGENTS.md`.
+
+When the current task materially matches a capability under `AI_TOOLS/`,
+prefer the most specific relevant capability and load only the files required
+by it.
+
+Do not scan or load the complete `AI_TOOLS/` tree.
