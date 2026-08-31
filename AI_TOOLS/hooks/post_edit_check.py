@@ -12,8 +12,8 @@ import sys
 
 GOVERNED_PREFIXES = (
     "plan_maestro.md",
-    "paper/main.tex",
-    "paper/biblio_paper.bib",
+    "Paper_manuscript/main.tex",
+    "Paper_manuscript/references.bib",
     "ops/sted/traceability_matrix.csv",
     "research/",
 )
@@ -34,7 +34,7 @@ def _file_path(payload: dict) -> str:
 
 def _repo_tail(path: str) -> str:
     """Best-effort repo-relative path for the governed-prefix match below."""
-    for marker in ("plan_maestro.md", "paper/", "ops/", "research/"):
+    for marker in ("plan_maestro.md", "Paper_manuscript/", "ops/", "research/"):
         idx = path.find(marker)
         if idx != -1:
             return path[idx:]

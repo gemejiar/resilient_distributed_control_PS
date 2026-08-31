@@ -31,13 +31,16 @@ ALLOWED_TYPES = {
     "test",
 }
 
+# Canonical status vocabulary (see AGENTS.md and STED-RW_Lean.md section 13.3).
+# Compared case-insensitively so legacy lowercase matrices still validate.
 ALLOWED_STATUSES = {
-    "verified",
-    "partially_verified",
-    "pending",
-    "blocked",
-    "obsolete",
-    "out_of_scope",
+    "VERIFIED",
+    "PARTIALLY_VERIFIED",
+    "PENDING_EVIDENCE",
+    "BLOCKED_BY_EVIDENCE",
+    "REFERENCE_NOT_VERIFIED",
+    "OBSOLETE",
+    "OUT_OF_SCOPE",
 }
 
 TEMPLATE_IDS = {"TEMPLATE_CORE"}
@@ -90,7 +93,7 @@ def main() -> int:
             row.get("status", "").strip()
             for row in rows
             if row.get("status", "").strip()
-            and row.get("status", "").strip() not in ALLOWED_STATUSES
+            and row.get("status", "").strip().upper() not in ALLOWED_STATUSES
         }
     )
     if invalid_statuses:

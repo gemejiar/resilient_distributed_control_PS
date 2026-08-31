@@ -62,7 +62,7 @@ If a figure or table contradicts its source data, verify the generation pipeline
 - Do not strengthen claims beyond the available evidence.
 - Do not modify evidence to fit a desired narrative.
 - Distinguish verified facts, assumptions, interpretations, hypotheses, pending evidence, and blocked claims.
-- Use explicit states such as `PENDING_EVIDENCE`, `BLOCKED_BY_EVIDENCE`, or `REFERENCE_NOT_VERIFIED` when applicable.
+- Use the canonical status vocabulary for claims, evidence, and references, in both prose markers and the `status` column of `ops/sted/traceability_matrix.csv`: `VERIFIED`, `PARTIALLY_VERIFIED`, `PENDING_EVIDENCE`, `BLOCKED_BY_EVIDENCE`, `REFERENCE_NOT_VERIFIED`, `OBSOLETE`, `OUT_OF_SCOPE`. Do not introduce other status labels.
 - Keep project scope consistent with `plan_maestro.md`.
 - Register significant methodological, scientific, technical, or editorial decisions in `ops/sted/decision_log.md`.
 - Update traceability when tracked claims or evidence materially change.

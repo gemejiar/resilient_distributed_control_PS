@@ -11,7 +11,7 @@ Read first:
 8. `research/metrics_matrix.md`
 
 Task:
-Draft the `\section{Methodology}` block directly inside `paper/main.tex`.
+Draft the `\section{Methodology}` block directly inside `Paper_manuscript/main.tex`.
 
 Rules:
 - Do not include results.

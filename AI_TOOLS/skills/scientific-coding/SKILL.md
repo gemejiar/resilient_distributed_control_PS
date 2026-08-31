@@ -1,6 +1,19 @@
-Scientific Coding Skill
+---
+name: scientific-coding
+description: "Produce, modify, review, debug, and reproducibility-audit scientific code (Python, MATLAB/Simulink) that is part of the evidence chain: configuration -> code -> execution -> result -> metric -> figure/table -> claim. Five modes: (A) code generation, (B) behavior-preserving modification, (C) scientific code review with severity classification, (D) systematic root-cause debugging, (E) reproducibility audit. Covers correctness, units and dimensional integrity, seeds and solver settings, ML/RL data-leakage and test-set-integrity safeguards, baseline fairness, numerical-simulation validity checks, metric definitions, figure/table reproducibility, and testing strategy. Triggers on: scientific code, experiment pipeline, simulation script, data preprocessing, metric computation, figure generation, code review, debugging, reproducibility audit, ML/RL training or evaluation code, power-systems/converter/BESS simulation."
+metadata:
+  version: "1.0"
+  status: active
+  related_skills:
+    - review-code
+    - scientific_methodology
+    - statistical-analysis
+    - matlab
+---
 
-Purpose
+# Scientific Coding
+
+## Purpose
 
 Produce scientific code that is:
 
@@ -30,7 +43,7 @@ configuration -> code -> execution -> result -> metric -> figure/table -> claim
 
 Breaking that chain weakens the scientific result even if the code runs.
 
-When to use
+## When to use
 
 Use this skill for:
 
@@ -62,36 +75,36 @@ reproducibility audits.
 
 Do not apply full software architecture ceremony to tiny exploratory snippets unless they become part of the evidence pipeline.
 
-Operating modes
+## Operating modes
 
 Use the narrowest mode that matches the task.
 
-Mode A — Code generation
+### Mode A — Code generation
 
 Use when creating new scientific code, experiment scripts, modules, simulation logic,
 metrics, preprocessing, or figure/table generators.
 
-Mode B — Code modification
+### Mode B — Code modification
 
 Use when changing existing evidence-producing code while preserving behavior outside
 the requested scope.
 
-Mode C — Code review
+### Mode C — Code review
 
 Use when evaluating whether nontrivial code is scientifically trustworthy enough to
 produce or support evidence.
 
-Mode D — Systematic debugging
+### Mode D — Systematic debugging
 
 Use when simulation, training, analysis, HIL/PHIL, metrics, or pipelines fail or
 produce inconsistent or nonphysical results.
 
-Mode E — Reproducibility audit
+### Mode E — Reproducibility audit
 
 Use when determining whether another researcher could reconstruct the central
 computational result from code, configuration, data, and environment information.
 
-Code-generation workflow
+## Code-generation workflow
 
 For nontrivial scientific code:
 
@@ -118,7 +131,7 @@ Do not require a separate architecture proposal or user confirmation merely beca
 the code exceeds an arbitrary line count. Ask only when a design choice is materially
 ambiguous or changes scientific meaning.
 
-Minimum requirements for evidence-producing code
+## Minimum requirements for evidence-producing code
 
 When applicable, code should make explicit:
 
@@ -146,7 +159,7 @@ A standalone example is useful when it protects reproducibility, but do not forc
 demo boilerplate into modules where tests or documented experiment entry points are
 the more appropriate executable specification.
 
-Core engineering principles
+## Core engineering principles
 
 1. Single responsibility
 
@@ -252,7 +265,7 @@ figures/tables;
 
 manuscript text.
 
-Scientific correctness before optimization
+## Scientific correctness before optimization
 
 Priority order:
 
@@ -268,7 +281,7 @@ performance optimization.
 
 Do not optimize code before confirming that the scientific computation is correct.
 
-Recommended project structure
+## Recommended project structure
 
 Use only when justified by project complexity.
 
@@ -290,7 +303,7 @@ Do not create one script per figure or one module per trivial function.
 
 Prefer reusable modules plus explicit experiment entry points.
 
-Python standards
+## Python standards
 
 Use where appropriate:
 
@@ -328,13 +341,13 @@ hard-coded absolute paths;
 
 undocumented unit conversions.
 
-Imports
+### Imports
 
 Prefer stable, minimal dependencies.
 
 Do not add a dependency for functionality already available reliably in the standard library or existing stack unless it materially improves the project.
 
-MATLAB standards
+## MATLAB standards
 
 Use:
 
@@ -380,9 +393,9 @@ variant configuration;
 
 data extraction logic.
 
-Domain-specific generation safeguards
+## Domain-specific generation safeguards
 
-Power systems, converters, microgrids, and BESS
+### Power systems, converters, microgrids, and BESS
 
 When applicable, declare or trace:
 
@@ -410,7 +423,7 @@ Do not silently clip a physical state merely to make a simulation continue.
 If clipping is physically part of the model, make the saturation explicit and
 distinguish commanded from applied values.
 
-Reinforcement learning
+### Reinforcement learning
 
 When applicable:
 
@@ -432,7 +445,7 @@ log domain metrics in addition to reward;
 
 avoid evaluation information that would be unavailable at deployment.
 
-Forecasting and supervised ML
+### Forecasting and supervised ML
 
 When applicable:
 
@@ -448,7 +461,7 @@ report final metrics on unseen test data;
 
 preserve preprocessing objects used for the reported model.
 
-Data-processing pipelines
+### Data-processing pipelines
 
 When applicable:
 
@@ -462,7 +475,7 @@ preserve transformations that materially affect evidence;
 
 do not silently drop failed or invalid rows without an auditable rule.
 
-Units and dimensional integrity
+## Units and dimensional integrity
 
 Scientific code must make units explicit whenever ambiguity is possible.
 
@@ -492,7 +505,7 @@ Hz and rad/s;
 
 without explicit conversion.
 
-Configuration discipline
+## Configuration discipline
 
 Scientific parameters should not be scattered across scripts.
 
@@ -530,7 +543,7 @@ output path.
 
 Save the actual configuration used for evidence-producing runs.
 
-Reproducibility protocol
+## Reproducibility protocol
 
 For every evidence-producing execution, preserve enough information to reconstruct:
 
@@ -554,15 +567,15 @@ figure/table generation.
 
 If exact reproduction is impossible, document why and what is still reproducible.
 
-ML/RL safeguards
+## ML/RL safeguards
 
-Data leakage
+### Data leakage
 
 Split train/validation/test before any learned preprocessing that could leak information.
 
 Fit transformations only on allowed training data.
 
-Temporal leakage
+### Temporal leakage
 
 For time series:
 
@@ -572,7 +585,7 @@ avoid future information in features;
 
 avoid random splits that invalidate the forecasting/control problem.
 
-Test-set integrity
+### Test-set integrity
 
 Never use final test data for:
 
@@ -584,7 +597,7 @@ early stopping;
 
 normalization fitting.
 
-Baseline fairness
+### Baseline fairness
 
 Use, when applicable:
 
@@ -602,7 +615,7 @@ same constraints;
 
 same test scenarios.
 
-Randomness
+### Randomness
 
 Preserve all relevant seeds:
 
@@ -618,7 +631,7 @@ simulator when applicable.
 
 Document nondeterministic operations that cannot be fully controlled.
 
-Reporting
+### Reporting
 
 Report:
 
@@ -634,7 +647,7 @@ computational cost when relevant.
 
 Do not report only the best seed.
 
-RL-specific checks
+### RL-specific checks
 
 Verify:
 
@@ -670,7 +683,7 @@ fairness against classical baselines.
 
 A policy that trains successfully is not automatically scientifically valid.
 
-Numerical simulation checks
+## Numerical simulation checks
 
 Before trusting simulation outputs, verify:
 
@@ -698,7 +711,7 @@ repeatability.
 
 Do not interpret failed or nonconverged simulations as valid scientific evidence.
 
-Metrics
+## Metrics
 
 Each metric should define:
 
@@ -720,7 +733,7 @@ Avoid metric definitions embedded only inside plotting code.
 
 Metrics should be independently testable.
 
-Figures and tables
+## Figures and tables
 
 Generate publication-facing figures/tables from reproducible source data whenever possible.
 
@@ -744,11 +757,11 @@ no manual value editing.
 
 Plotting code must not silently recompute a scientifically different metric from the one used in analysis.
 
-Testing strategy
+## Testing strategy
 
 Use the smallest test set that protects scientific validity.
 
-Unit tests
+### Unit tests
 
 For:
 
@@ -766,7 +779,7 @@ parsing;
 
 deterministic domain logic.
 
-Integration tests
+### Integration tests
 
 For:
 
@@ -780,7 +793,7 @@ model inference;
 
 result serialization.
 
-Regression tests
+### Regression tests
 
 For:
 
@@ -792,7 +805,7 @@ critical metrics;
 
 figure/table source consistency.
 
-Smoke tests
+### Smoke tests
 
 For:
 
@@ -806,12 +819,12 @@ minimal pipeline execution.
 
 Do not create tests merely to increase test count.
 
-Systematic debugging protocol
+## Systematic debugging protocol
 
 Scientific debugging must diagnose the cause of invalid evidence, not merely make
 the symptom disappear.
 
-Phase 1 — Characterize and reproduce
+### Phase 1 — Characterize and reproduce
 
 Before changing model parameters or code:
 
@@ -830,7 +843,7 @@ compare against the last known working case when available.
 If the failure cannot yet be reproduced, collect more evidence before proposing a
 scientific interpretation of the cause.
 
-Phase 2 — Trace the data/state path
+### Phase 2 — Trace the data/state path
 
 Start from the symptom and trace backward:
 
@@ -854,7 +867,7 @@ inspect the boundaries between layers rather than guessing from the final sympto
 
 Use temporary logging or instrumentation when the origin is not observable.
 
-Phase 3 — Form an explicit causal hypothesis
+### Phase 3 — Form an explicit causal hypothesis
 
 State the hypothesis in a falsifiable form:
 
@@ -872,7 +885,7 @@ do not treat correlation with the failure as proof of cause;
 
 revise the hypothesis if the test fails.
 
-Phase 4 — Implement the smallest root-cause fix
+### Phase 4 — Implement the smallest root-cause fix
 
 After the hypothesis is supported:
 
@@ -886,7 +899,7 @@ add a regression test when recurrence is plausible;
 
 rerun the scientifically relevant validation, not just the failing unit test.
 
-Root-cause tracing
+### Root-cause tracing
 
 Use root-cause tracing when the symptom appears far from the source.
 
@@ -916,7 +929,7 @@ train/test contamination;
 
 state reset logic.
 
-Targeted defense-in-depth
+### Targeted defense-in-depth
 
 Do not mechanically duplicate the same validation in every layer.
 
@@ -942,7 +955,7 @@ metric computation.
 Use multiple checks only when distinct code paths could otherwise bypass a critical
 invariant.
 
-Debugging anti-patterns
+### Debugging anti-patterns
 
 Do not:
 
@@ -961,7 +974,7 @@ continue accumulating fixes when each one reveals a different structural defect.
 If repeated small fixes reveal cross-cutting inconsistencies, reassess the model,
 data flow, or architecture before continuing.
 
-Code review workflow
+## Code review workflow
 
 Review nontrivial scientific code before it becomes part of frozen or
 publication-facing evidence, especially when it changes:
@@ -984,7 +997,7 @@ figure/table generation.
 
 A review is not required for every trivial edit.
 
-Inputs for review
+### Inputs for review
 
 Inspect, when available:
 
@@ -1000,7 +1013,7 @@ configuration used;
 
 expected scientific behavior.
 
-Review dimensions
+### Review dimensions
 
 Correctness
 
@@ -1108,7 +1121,7 @@ no manual data alteration is required;
 
 reported evidence is not dependent on an untracked local state.
 
-Issue severity
+### Issue severity
 
 Classify findings by scientific impact.
 
@@ -1166,7 +1179,7 @@ local documentation;
 
 noncritical refactoring opportunity.
 
-Acting on review findings
+### Acting on review findings
 
 For each substantive issue:
 
@@ -1183,7 +1196,7 @@ check for regressions.
 If a reviewer suggestion is technically wrong, preserve evidence and explain the
 counterexample, test, or requirement rather than implementing it mechanically.
 
-Stop conditions
+## Stop conditions
 
 Report BLOCKED when:
 
@@ -1205,7 +1218,7 @@ code review identifies a critical scientific-integrity defect;
 
 the task requires modifying evidence to match a narrative.
 
-Delivery contract
+## Delivery contract
 
 For substantial code work, report:
 
@@ -1223,7 +1236,7 @@ unresolved blockers.
 
 Do not claim that code is correct merely because it executes.
 
-Final quality gate
+## Final quality gate
 
 Before declaring scientific code complete, verify:
 

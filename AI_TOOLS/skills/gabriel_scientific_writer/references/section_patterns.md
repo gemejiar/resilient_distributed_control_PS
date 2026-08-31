@@ -8,7 +8,7 @@ potencia/control; adaptalos al CONTEXTO. Guia flexible, no molde rigido: ajusta 
 - Title, Highlights, keywords
 - Abstract
 - Introduction
-- Methods (los 12 puntos de CLAUDE.md)
+- Methods (elementos de metodologia)
 - Results
 - Discussion
 - Conclusion
@@ -83,9 +83,10 @@ articulo. No es obligatorio en todo venue, formato corto o estructura ya aprobad
 - Cada contribucion: un verbo de accion + un resultado medible o una capacidad verificable.
 - Cierra con: `The remainder of this paper is organized as follows.`
 
-## Methods (los 12 puntos de CLAUDE.md)
+## Methods (elementos de metodologia)
 
-`CLAUDE.md` exige que una seccion de metodologia cubra, cuando aplique, estos 12 elementos. No
+`AGENTS.md` y `plan_maestro.md` definen que una seccion de metodologia cubra, cuando aplique, los
+siguientes elementos (omite los que `plan_maestro.md` marque como no aplicables). No
 todos necesitan un parrafo propio; varios se resuelven en 1-2 frases, pero ninguno debe faltar
 en silencio si el CONTEXTO trae la informacion. Orden sugerido (adaptalo al flujo natural):
 

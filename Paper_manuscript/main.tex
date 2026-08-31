@@ -1,0 +1,27 @@
+% Canonical manuscript entry point for this project.
+% Replace the document class and structure with the TARGET VENUE template.
+% Section names, ordering, and \input{} usage are governed by the venue and
+% plan_maestro.md -- not by ops/checks/check_latex_structure.py.
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{TITLE}
+\author{AUTHORS}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+ABSTRACT.
+\end{abstract}
+
+% Manuscript body. Use inline sections or \input{sections/...} as the venue
+% and plan_maestro.md require.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

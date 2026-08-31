@@ -49,8 +49,10 @@ cualquier claim tecnico, consulta `ops/sted/traceability_matrix.csv` y respeta, 
 - **`status`** — si no esta verificado (p. ej. `PENDING_EVIDENCE`), no presentes el claim como establecido: condicionalo explicitamente o marca `[MISSING: evidencia]`.
 - **`evidence_id` / `figure_or_table`** — el ancla que debe aparecer en el texto.
 
-Fuentes de evidencia adicionales del proyecto (consulta la que aplique): `plan_maestro.md` (contrato
-cientifico central), `research/gap_matrix.md`, `research/contribution_matrix.md`, `research/related_work_map.md`.
+Fuentes de evidencia adicionales del proyecto: `plan_maestro.md` es el contrato cientifico central.
+Ademas puede haber matrices de literatura, archivos de analisis, codigo, resultados, figuras, tablas
+u otros artefactos designados explicitamente como canonicos por `plan_maestro.md`. Consulta solo los
+que `plan_maestro.md` marque como aplicables; ninguno de esos artefactos es obligatorio por defecto.
 
 **Detente y reporta `BLOCKED`** (no redactes) si: el claim solicitado excede la evidencia disponible;
 no hay metricas de validacion definidas; o el usuario pide afirmar algo que coincide con un
@@ -162,7 +164,7 @@ Usa `framework -> method -> verification` ajustado a la seccion. Esqueleto minim
 
 - **Abstract:** problema -> brecha -> contribucion -> metodo -> verificacion (metrica/condicion) -> implicacion prudente
 - **Introduction:** contexto -> limitacion del estado del arte con evidencia -> objetivo/contribucion -> organizacion. Las contribuciones numeradas son el patron preferente en IEEE cuando el usuario pide una introduccion completa; no son obligatorias en todo venue o formato.
-- **Methods:** cubre, cuando aplique, los 12 puntos exigidos por `CLAUDE.md`: sistema bajo estudio, baselines/supuestos de comparacion, capa de datos/medicion, workflow/algoritmo, objetivo/hipotesis, plataforma de implementacion, adquisicion/preprocesamiento, ejecucion/actuacion, escenarios de prueba, metricas, parametros de reproducibilidad y limitaciones. Detalle y plantillas en `references/section_patterns.md`.
+- **Methods:** cubre, cuando aplique, los elementos de metodologia definidos en `AGENTS.md` y `plan_maestro.md`: sistema bajo estudio, baselines/supuestos de comparacion, capa de datos/medicion, workflow/algoritmo, objetivo/hipotesis, plataforma de implementacion, adquisicion/preprocesamiento, ejecucion/actuacion, escenarios de prueba, metricas, parametros de reproducibilidad y limitaciones. Detalle y plantillas en `references/section_patterns.md`.
 - **Results:** escenario -> metrica -> comparacion valida -> interpretacion causal corta
 - **Discussion:** interpretacion -> limites -> generalizacion condicionada -> trabajo futuro
 - **Conclusion:** 2-4 hallazgos verificables + 1 implicacion practica condicionada
@@ -229,7 +231,7 @@ Este es el **unico** checklist de la skill. Antes de entregar, verifica:
 ## Referencias
 
 - `references/domain_conventions.md` — terminologia estable de potencia/control, unidades SI, especificidad de hardware, checklist de equivalencia para comparacion, formulaciones prudentes y formulaciones condicionadas.
-- `references/section_patterns.md` — estructura retorica por seccion (incluye Methods con los 12 puntos, Title/Highlights/keywords y captions), plantillas rellenables y frases tipo (EN/ES).
+- `references/section_patterns.md` — estructura retorica por seccion (incluye Methods con los elementos de metodologia, Title/Highlights/keywords y captions), plantillas rellenables y frases tipo (EN/ES).
 - `references/style_rules.md` — guia funcional de estilo con su justificacion, ejemplos antes/despues del dominio, e interferencia ES->EN.
 - `references/math_writing.md` — disciplina de escritura matematica: definicion de simbolos, claims formales con respaldo, supuestos numerados, checklist matematico.
 - `references/rebuttal_guide.md` — como redactar la respuesta punto por punto a revisores (rebuttal), con el mismo estandar de trazabilidad y sobriedad del resto de la skill.

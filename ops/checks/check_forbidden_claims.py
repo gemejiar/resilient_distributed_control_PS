@@ -33,16 +33,16 @@ CORE_SCAN_FILES = [
 ]
 
 PROJECT_TYPE_DIRS = {
-    "paper": ["paper"],
-    "review": ["paper"],
-    "chapter": ["paper"],
-    "thesis": ["paper"],
-    "proposal": ["paper", "src/docs"],
+    "paper": ["Paper_manuscript"],
+    "review": ["Paper_manuscript"],
+    "chapter": ["Paper_manuscript"],
+    "thesis": ["Paper_manuscript"],
+    "proposal": ["Paper_manuscript", "src/docs"],
     "book": ["book"],
     "software": ["src/docs"],
     "pipeline": ["src/docs"],
     "course": ["src/docs"],
-    "all": ["paper", "book", "src/docs"],
+    "all": ["Paper_manuscript", "book", "src/docs"],
 }
 
 TEXT_SUFFIXES = {
@@ -77,7 +77,7 @@ def parse_args() -> Namespace:
 
 def iter_project_dirs(root: Path, project_type: str) -> list[Path]:
     if project_type == "auto":
-        candidates = ["paper", "book", "src/docs"]
+        candidates = ["Paper_manuscript", "book", "src/docs"]
     else:
         candidates = PROJECT_TYPE_DIRS.get(project_type, [])
     return [root / rel for rel in candidates if (root / rel).exists()]

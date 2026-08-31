@@ -17,23 +17,14 @@ PROJECT_TYPES = (
 
 PAPER_FORMATS = ("auto", "latex", "markdown", "docx", "none")
 
-REQUIRED_SECTIONS = [
-    r"\section{Introduction}",
-    r"\section{Related Work}",
-    r"\section{Methodology}",
-    r"\section{Experimental Setup}",
-    r"\section{Results}",
-    r"\section{Discussion}",
-    r"\section{Limitations}",
-    r"\section{Conclusion}",
-]
-
 
 def parse_args() -> Namespace:
     parser = ArgumentParser(
         description=(
-            "Validate the canonical LaTeX paper structure only when the active "
-            "project context corresponds to a LaTeX paper deliverable."
+            "Presence check for the canonical LaTeX manuscript files. This is "
+            "NOT an editorial gate: section names, ordering, and whether the "
+            r"manuscript uses \input{}/\include{} are governed by the target "
+            "venue and plan_maestro.md, not by this script."
         )
     )
     parser.add_argument(
@@ -50,13 +41,13 @@ def parse_args() -> Namespace:
     )
     parser.add_argument(
         "--main-file",
-        default="paper/main.tex",
-        help="Main LaTeX manuscript file to validate.",
+        default="Paper_manuscript/main.tex",
+        help="Main LaTeX manuscript file.",
     )
     parser.add_argument(
         "--bib-file",
-        default="paper/bibliography/references.bib",
-        help="BibTeX file required by the canonical paper layout.",
+        default="Paper_manuscript/references.bib",
+        help="BibTeX file for the canonical manuscript layout.",
     )
     return parser.parse_args()
 
@@ -94,27 +85,24 @@ def main() -> int:
     if not should_run(args, main_path, bib_path):
         return 0
 
-    required = [main_path, bib_path]
-    missing = [str(path) for path in required if not path.exists()]
-    if missing:
-        print("MISSING LATEX STRUCTURE FILES:")
-        for path in missing:
-            print(path)
+    problems = []
+    for path in (main_path, bib_path):
+        if not path.exists():
+            problems.append(f"missing: {path.as_posix()}")
+        elif not path.read_text(encoding="utf-8", errors="ignore").strip():
+            problems.append(f"empty: {path.as_posix()}")
+
+    if problems:
+        print("CANONICAL MANUSCRIPT FILES NOT READY:")
+        for item in problems:
+            print(item)
         return 1
 
-    main_text = main_path.read_text(encoding="utf-8", errors="ignore")
-    if r"\input{" in main_text or r"\include{" in main_text:
-        print(f"{main_path.as_posix()} must not use \\input{{}} or \\include{{}} for manuscript sections.")
-        return 1
-
-    cursor = 0
-    for section in REQUIRED_SECTIONS:
-        idx = main_text.find(section, cursor)
-        if idx == -1:
-            print(f"Missing or out-of-order section: {section}")
-            return 1
-        cursor = idx + len(section)
-    print("Canonical LaTeX structure is present.")
+    print(
+        "Canonical manuscript files present: "
+        f"{main_path.as_posix()}, {bib_path.as_posix()}. "
+        "Section structure is deferred to the target venue and plan_maestro.md."
+    )
     return 0
 
 

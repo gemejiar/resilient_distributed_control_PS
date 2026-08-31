@@ -504,22 +504,25 @@ id,type,text_or_item,section_or_module,evidence_id,source_path,figure_or_table,p
 
 ### 13.3 Estados permitidos
 
+Vocabulario canónico único. Se usa igual en `AGENTS.md`, `prompt_maestro_STED_RW.md`, la columna `status` del CSV, `ops/checks/check_claim_evidence.py` y las skills. El checker compara sin distinguir mayúsculas/minúsculas, pero la forma canónica es en MAYÚSCULAS.
+
 | Estado | Significado |
 |---|---|
-| `verified` | Verificado y usable. |
-| `partially_verified` | Parcialmente soportado. Requiere condición. |
-| `pending` | Pendiente de revisión. |
-| `blocked` | No puede usarse hasta resolver evidencia. |
-| `obsolete` | Reemplazado por evidencia más reciente. |
-| `out_of_scope` | Fuera del alcance congelado. |
+| `VERIFIED` | Verificado y usable. |
+| `PARTIALLY_VERIFIED` | Parcialmente soportado. Requiere condición explícita. |
+| `PENDING_EVIDENCE` | Pendiente de evidencia o de revisión. |
+| `BLOCKED_BY_EVIDENCE` | No puede usarse hasta resolver la evidencia. |
+| `REFERENCE_NOT_VERIFIED` | Referencia citada aún no verificada contra la fuente. |
+| `OBSOLETE` | Reemplazado por evidencia más reciente. |
+| `OUT_OF_SCOPE` | Fuera del alcance congelado. |
 
 ### 13.4 Ejemplo
 
 ```csv
 id,type,text_or_item,section_or_module,evidence_id,source_path,figure_or_table,permitted_wording,forbidden_wording,test_id,status,action,owner,gate
-CLM-001,claim,"The benchmark shows target-dependent behavior.",Introduction,EV-010,results/summary.csv,Fig.3,"shows target-dependent behavior","proves universal superiority",T-003,verified,keep,integrator,G2
-FIG-001,figure,"performance heatmap",Results,EV-011,scripts/figures/plot_heatmap.py,Fig.4,"shows comparative error patterns","proves best model",T-004,pending,verify,figure-table-auditor,G3
-REF-001,reference,"Foundational paper for method X",Related Work,EV-020,paper/bibliography/references.bib,,"supports background","supports our result",T-006,verified,keep,literature-auditor,G2
+CLM-001,claim,"The benchmark shows target-dependent behavior.",Introduction,EV-010,results/summary.csv,Fig.3,"shows target-dependent behavior","proves universal superiority",T-003,VERIFIED,keep,integrator,G2
+FIG-001,figure,"performance heatmap",Results,EV-011,scripts/figures/plot_heatmap.py,Fig.4,"shows comparative error patterns","proves best model",T-004,PENDING_EVIDENCE,verify,figure-table-auditor,G3
+REF-001,reference,"Foundational paper for method X",Related Work,EV-020,paper/bibliography/references.bib,,"supports background","supports our result",T-006,VERIFIED,keep,literature-auditor,G2
 ```
 
 ---
@@ -690,7 +693,7 @@ Plantilla:
 
 | Test ID | Tipo | Elemento asociado | Descripción | Criterio de aceptación | Estado | Responsable |
 |---|---|---|---|---|---|---|
-| T-001 | claim | CLM-001 | Verificar que el claim tiene evidencia trazada. | Claim con evidencia verified o partially_verified. | pending | integrator |
+| T-001 | claim | CLM-001 | Verificar que el claim tiene evidencia trazada. | Claim con evidencia VERIFIED o PARTIALLY_VERIFIED. | PENDING_EVIDENCE | integrator |
 ```
 
 ### 19.3 Tipos de prueba
@@ -932,7 +935,7 @@ Límites:
 - No aprueba claims sin soporte.
 
 Criterio de éxito:
-Cada evidencia crítica queda clasificada como verified, partially_verified, pending, blocked, obsolete u out_of_scope.
+Cada evidencia crítica queda clasificada con un estado del vocabulario canónico (VERIFIED, PARTIALLY_VERIFIED, PENDING_EVIDENCE, BLOCKED_BY_EVIDENCE, REFERENCE_NOT_VERIFIED, OBSOLETE, OUT_OF_SCOPE).
 ```
 
 ---
