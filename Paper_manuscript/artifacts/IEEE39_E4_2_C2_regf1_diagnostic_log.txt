@@ -1,0 +1,43 @@
+--- baseline
+baseline                     ripple_std_max=0.00754 dom=2.27Hz zeta=0.107 Vmin=0.9861 Vmax=1.0849 df_end=-0.0246Hz
+C:\onedrive\OneDrive - Universidad del Valle\05_Univalle_Investigacion\02_Publicaciones\En_Preparacion\Proyectos_Latex\Resilient_distributed_control_PS\venv\Lib\site-packages\andes\routines\eig.py:283: LinAlgWarning: An ill-conditioned matrix detected: slice 0 has rcond = 2.7798004932573766e-20.
+  WT = solve(N, Weye, overwrite_b=True)
+EIG baseline                 lightly damped (zeta<0.5) modes 8-30 rad/s: ['-1.83+14.35j(f=2.28,z=0.13)', '-1.53+9.38j(f=1.49,z=0.16)', '-1.13+9.08j(f=1.45,z=0.12)', '-1.25+8.47j(f=1.35,z=0.15)']
+--- per-unit (only that GFM modified)
+KPv x2 only GFM32            ripple_std_max=0.00128 dom=1.83Hz zeta=0.420 Vmin=0.9943 Vmax=1.0730 df_end=-0.0246Hz
+Qdrp x2 only GFM32           ripple_std_max=0.00195 dom=2.05Hz zeta=0.326 Vmin=0.9921 Vmax=1.0738 df_end=-0.0246Hz
+KPv x2 only GFM34            ripple_std_max=0.00298 dom=2.17Hz zeta=0.238 Vmin=0.9926 Vmax=1.0778 df_end=-0.0246Hz
+Qdrp x2 only GFM34           ripple_std_max=0.00514 dom=2.24Hz zeta=0.156 Vmin=0.9884 Vmax=1.0820 df_end=-0.0246Hz
+KPv x2 only GFM36            ripple_std_max=0.00171 dom=1.21Hz zeta=0.635 Vmin=0.9937 Vmax=1.0738 df_end=-0.0246Hz
+Qdrp x2 only GFM36           ripple_std_max=0.00287 dom=2.01Hz zeta=0.302 Vmin=0.9907 Vmax=1.0766 df_end=-0.0246Hz
+KPv x2 only GFM37            ripple_std_max=0.00407 dom=2.13Hz zeta=0.208 Vmin=0.9890 Vmax=1.0794 df_end=-0.0246Hz
+Qdrp x2 only GFM37           ripple_std_max=0.00708 dom=2.18Hz zeta=0.128 Vmin=0.9862 Vmax=1.0842 df_end=-0.0246Hz
+--- finer scan, all GFM
+KPv x1.25                    ripple_std_max=0.00092 dom=1.33Hz zeta=0.772 Vmin=0.9951 Vmax=1.0730 df_end=-0.0246Hz
+KPv x1.5                     ripple_std_max=0.00051 dom=0.76Hz zeta=0.154 Vmin=0.9971 Vmax=1.0730 df_end=-0.0246Hz
+KPv x3.0                     ripple_std_max=0.00025 dom=0.76Hz zeta=0.156 Vmin=0.9982 Vmax=1.0730 df_end=-0.0246Hz
+Time step reduced to zero. Convergence is not likely.
+Simulation terminated at t=5.1385 s.
+Qdrp x0.75                   TDS INCOMPLETE (t_end=5.14s)
+Qdrp x1.5                    ripple_std_max=0.00130 dom=1.31Hz zeta=0.591 Vmin=0.9932 Vmax=1.0731 df_end=-0.0246Hz
+Qdrp x3.0                    ripple_std_max=0.00062 dom=0.75Hz zeta=0.156 Vmin=0.9962 Vmax=1.0730 df_end=-0.0246Hz
+Tpm x0.75                    ripple_std_max=0.00930 dom=2.11Hz zeta=0.085 Vmin=0.9868 Vmax=1.0849 df_end=-0.0245Hz
+Tpm x1.5                     ripple_std_max=0.00597 dom=2.51Hz zeta=0.126 Vmin=0.9851 Vmax=1.0854 df_end=-0.0248Hz
+wdrp x0.75                   ripple_std_max=0.00848 dom=2.02Hz zeta=0.092 Vmin=0.9875 Vmax=1.0840 df_end=-0.0242Hz
+wdrp x1.5                    ripple_std_max=0.00663 dom=3.72Hz zeta=0.434 Vmin=0.9823 Vmax=1.0879 df_end=-0.0250Hz
+--- combinations
+KPv x2 + Tpm x0.5            ripple_std_max=0.00039 dom=0.75Hz zeta=0.167 Vmin=0.9983 Vmax=1.0730 df_end=-0.0243Hz
+KPv x2 + Qdrp x2             ripple_std_max=0.00041 dom=0.76Hz zeta=0.154 Vmin=0.9971 Vmax=1.0730 df_end=-0.0246Hz
+C:\onedrive\OneDrive - Universidad del Valle\05_Univalle_Investigacion\02_Publicaciones\En_Preparacion\Proyectos_Latex\Resilient_distributed_control_PS\venv\Lib\site-packages\andes\routines\eig.py:283: LinAlgWarning: An ill-conditioned matrix detected: slice 0 has rcond = 5.099076743720529e-21.
+  WT = solve(N, Weye, overwrite_b=True)
+--- EIG on variants
+EIG Tpm x0.5                 lightly damped (zeta<0.5) modes 8-30 rad/s: ['-0.56+12.43j(f=1.98,z=0.05)', '-1.14+9.14j(f=1.45,z=0.12)', '-1.56+9.36j(f=1.49,z=0.16)', '-1.25+8.45j(f=1.34,z=0.15)']
+C:\onedrive\OneDrive - Universidad del Valle\05_Univalle_Investigacion\02_Publicaciones\En_Preparacion\Proyectos_Latex\Resilient_distributed_control_PS\venv\Lib\site-packages\andes\routines\eig.py:283: LinAlgWarning: An ill-conditioned matrix detected: slice 0 has rcond = 3.7087860711904257e-22.
+  WT = solve(N, Weye, overwrite_b=True)
+EIG KPv x2                   lightly damped (zeta<0.5) modes 8-30 rad/s: ['-1.47+9.43j(f=1.50,z=0.15)', '-1.31+8.96j(f=1.43,z=0.15)', '-1.29+8.57j(f=1.36,z=0.15)']
+C:\onedrive\OneDrive - Universidad del Valle\05_Univalle_Investigacion\02_Publicaciones\En_Preparacion\Proyectos_Latex\Resilient_distributed_control_PS\venv\Lib\site-packages\andes\routines\eig.py:283: LinAlgWarning: An ill-conditioned matrix detected: slice 0 has rcond = 2.9882614523281486e-22.
+  WT = solve(N, Weye, overwrite_b=True)
+EIG Qdrp x2                  lightly damped (zeta<0.5) modes 8-30 rad/s: ['-1.49+9.42j(f=1.50,z=0.16)', '-1.22+8.91j(f=1.42,z=0.14)', '-1.31+8.54j(f=1.36,z=0.15)']
+C:\onedrive\OneDrive - Universidad del Valle\05_Univalle_Investigacion\02_Publicaciones\En_Preparacion\Proyectos_Latex\Resilient_distributed_control_PS\venv\Lib\site-packages\andes\routines\eig.py:283: LinAlgWarning: An ill-conditioned matrix detected: slice 0 has rcond = 5.590221292993e-21.
+  WT = solve(N, Weye, overwrite_b=True)
+EIG wdrp x0.5                lightly damped (zeta<0.5) modes 8-30 rad/s: ['-0.90+10.75j(f=1.71,z=0.08)', '-1.03+9.26j(f=1.47,z=0.11)', '-1.63+9.37j(f=1.49,z=0.17)', '-1.27+8.43j(f=1.34,z=0.15)']

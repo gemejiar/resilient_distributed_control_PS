@@ -5,7 +5,7 @@
 **Repositorio:** `Resilient_distributed_control_PS` · **Manuscrito:** `Paper_manuscript/main.tex`  
 **Origen:** revisión de `plan_maestro_experimentacion_progresiva_ANDES.md` (v1) más el adjunto «IEEE 39 barras en ANDES» y la secuencia E0–E15 solicitada.  
 **Responsable de aprobación:** investigador; ningún experimento posterior se ejecuta hasta recibir aprobación explícita del anterior.  
-**Próxima acción autorizada:** revisión humana de las figuras de E5 (C2, primario P–f y Q–V con escalones del 1 %, `PASS_AUTO_WAIT_HUMAN`); E6 no autorizada hasta su aprobación.
+**Próxima acción autorizada:** E6 aprobada (2026-10-25). Definir el alcance de E7 (secundario P/Q coordinado en C2: mandos de Q/V, pesos, objetivos de voltaje y revisión del grafo) antes de implementar.
 
 > **DECISIÓN DE ALCANCE APROBADA (2026-10-25):** el sistema IEEE de 39 barras es el único banco de pruebas de todo el proceso experimental. Los casos de 10 y 14 buses no forman parte del alcance de validación ni de reproducción. El trabajo de Kavvathas y Konstantopoulos (2025) se conserva como antecedente del controlador RDC y referencia metodológica, sin presentar el IEEE-39 como reproducción de sus casos. Se autoriza la inspección de solo lectura y la etapa E0--C0; ninguna etapa posterior queda autorizada hasta la revisión humana de las gráficas obligatorias de E0.
 

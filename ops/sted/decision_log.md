@@ -228,3 +228,49 @@ Blockers or limitations: Human figure approval pending. The GFM P-f contribution
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator reviews E5 figures. E6 remains unauthorized.
+
+## DEC-019
+Date: 2026-10-25
+Gate: E4.2--C2 (post-approval diagnostic)
+Decision: Accept the frozen C2 with ANDES 2.0.0 default REGF1 parameters, without recalibration, and record the cause of the voltage oscillation as a lightly damped linear small-signal mode of the REGF1 voltage/droop loops.
+Justification: The mode (about 2.28 Hz; EIG -1.83 +/- j14.35, zeta 0.13; TDS 2.27 Hz, zeta 0.107) is present in the constant-power EIG of E4.2 and absent in E4.1 (C1a), so it is not a phasor-formulation artifact and it needs the coupling of four GFM. Diagnostic parameter variations applied only in memory (frozen case file untouched): EIG-predicted shifts match TDS for Tpm x0.5 (1.98 Hz) and wdrp x0.5 (1.71 Hz); KPv x2 and Qdrp x2 remove the lightly damped mode (ripple 0.0075 -> 0.0004-0.0006); all four GFM contribute (GFM32 > GFM36 > GFM34 > GFM37). Qdrp x0.75, KPv x0.5, KIv x0.5 and wdrp x2 did not complete (instability or non-convergence not distinguished), so defaults lie near a boundary on the low-gain side. Final frequency deviation unchanged (-0.0246 Hz). Retuning would require repeating E3--E4.2 and would change the ANDES-defaults policy (DEC-016); it is not adopted. Amplitude check (step scaled by 1, 0.1, 0.01 of the 1 % load step): 2.266, 2.284, 2.284 Hz with sigma -1.53, -1.79, -1.82, i.e. the frequency is amplitude-independent and the damping approaches the EIG value at small amplitude (scratchpad run, not archived).
+Correction: an earlier statement in this session that the C2 EIG lacked the 2.28 Hz mode was wrong; the ad hoc scripts used the ANDES default load model instead of the constant-power configuration (p2p=q2q=1) of the repository runners. Any ad hoc near-zero-mode count, participation or condition-number figures obtained with those scripts are void; the repository summaries (constant-power) are the only valid EIG record.
+Evidence reviewed: Paper_manuscript/src/diagnostics/e4_2_c2_regf1_diagnostic.py, Paper_manuscript/artifacts/IEEE39_E4_2_C2_regf1_diagnostic_log.txt, IEEE39_E4_2_C2_summary.json, IEEE39_E4_1_C1a_summary.json.
+Blockers or limitations: Diagnostic only. Capacity (P^2+Q^2 <= Smax^2), current limits (REGF1 has none) and SG capability curves are not verified; strict Hurwitz stability and nonlinear stability are not established; "Hallazgo 4" wording must not claim more than damped-simulation consistency. Q sharing and limits in the modified variants were not checked.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator reviews E5 figures (DEC-018). E6 remains unauthorized.
+
+## DEC-020
+Date: 2026-10-25
+Gate: E5--C2 human review
+Decision: Investigator approved the E5--C2 figures (frequency, voltage, primary response); E5 status APROBADA. E6 becomes the next eligible stage.
+Justification: Explicit investigator approval given after being informed of the 4.8 % GFM P-f share, the 1 % step amplitudes (S1 amplitudes not admissible on C2, DEC-017) and the DEC-019 caveats.
+Evidence reviewed: IEEE39_E5_C2_frequency.png, _voltage.png, _primary_response.png; DEC-018, DEC-019.
+Blockers or limitations: Approval does not certify stability, capacity or current limits. The weak GFM P-f share remains unexplained and is not tuned.
+Responsible: Investigator
+Status: VERIFIED
+Next action: Define E6 scope (conventional PI/consensus secondary, identical primary) before implementing.
+
+## DEC-021
+Date: 2026-10-25
+Gate: E6--C2 automatic gate
+Decision: Assign `PASS_AUTO_WAIT_HUMAN` to E6--C2 (primary identical to E5 plus conventional consensus secondary on P) and stop before E7. Structure chosen by the investigator: consensus on a communication graph already in E6; actuation by an external loop. Sharing weights chosen by the Integrator: D_P = diag(1/Sn_i), consensus on the secondary increment.
+Justification: (1) Actuators. REGF1.Pref is used only in `v_str` (initialization), so an `Alter` on it has no effect (verified: Pe unchanged). The effective GFM input is REGF1.Paux0, which acts as an integral-type input to PIplim; used as Paux0 = KC (y0 + dPset - PIplim_y) with KC = 0.05 and smooth targets, GFM Pe follows the command 1:1 (a step command or KC >= 1 diverges; a constant Paux0 ramps P until Pmax and the TDS fails). SG: TGOV1N.paux0 in system-base pu, delivered Pe follows it about 1:1; GENROU.Pe is also system-base pu. (2) Graph (design_e6_graph.py): 4 nearest units by network hop count, symmetrized, unit weights, 24 edges, lambda_2 = 1.54, connected, tolerant to any single link or unit loss; k = 2 and 3 were rejected as not tolerant (bridges 31-32, 31-39, 32-33). Bus 30 has degree 9 (hub). (3) Law dPset_i/dt = k_I[(1 - omega_i) - k_P sum_j a_ij (dPset_i/Sn_i - dPset_j/Sn_j)], k_I = 20, k_P = 0.5, local BusFreq, secondary on from t = 5 s; gains fixed a priori, not tuned. (4) Result (+58.564 MW at bus 4, 80 s): final frequency error -5.5e-7 Hz, nadir 59.9730 Hz (E5 59.9692), 2 mHz settling 16.9 s, delivered total 0.599 pu vs event 0.586, per-rating sharing spread 8.4 % (all units increase P), command tracking within tolerance, Vmin 0.9871 pu (E5 0.9861), no limit reached, step-halving differences <= 3e-6 Hz and 2.1e-5 pu. k_I diagnostics: 10 -> settling 35.7 s, 40 -> 10.3 s, both restore f.
+Disclosure: two earlier runs of this stage were discarded as implementation errors, not evidence: (a) the hook stored `dae.t` by reference, so the integrator never updated (FAIL, frequency equal to E5); (b) SG commands were scaled by 100/Sn although paux0 and GENROU.Pe are system-base, so SG delivered about one tenth of the command (FAIL: sharing and balance). Neither changed the case, graph or gains.
+Evidence reviewed: Paper_manuscript/src/run_e6_ieee39.py, design_e6_graph.py, artifacts/IEEE39_E6_C2_summary.json, IEEE39_E6_C2_timeseries.npz, IEEE39_E6_C2_communication_graph.json, figures_main/IEEE39_E6_C2_frequency.png, _voltage.png, _secondary.png.
+Blockers or limitations: Human figure approval pending. Conventional baseline (g_P = 1, no leakage, no capability factors); the frequency spike at the event instant is a numerical step artifact; ideal measurement and zero communication delay; the external hook is a modeling device, not an ANDES controller; no Q/V secondary; no stability or capacity certification. The graph is frozen for E6 only: its use in E7 needs the plan's connectivity/observability review, and the hub at bus 30 should be reported.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator reviews E6 figures. E7 remains unauthorized.
+
+## DEC-022
+Date: 2026-10-25
+Gate: E6--C2 human review
+Decision: Investigator approved the E6--C2 figures (frequency, voltage, secondary); E6 status APROBADA. E7 becomes the next eligible stage; its scope is not yet defined.
+Justification: Explicit investigator approval after being informed of DEC-021 (actuator deviation, graph hub, discarded implementation-error runs, baseline limitations).
+Evidence reviewed: IEEE39_E6_C2_frequency.png, _voltage.png, _secondary.png; DEC-021.
+Blockers or limitations: Approval does not certify stability, capacity or the graph for E7.
+Responsible: Investigator
+Status: VERIFIED
+Next action: Define E7 scope (coordinated P/Q secondary) before implementing.
