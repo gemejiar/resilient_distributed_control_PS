@@ -1,0 +1,69 @@
+{
+  "run_id": "IEEE39_E0_C0_20261025T172224Z",
+  "created_utc": "2026-10-25T17:22:24.305372+00:00",
+  "status_auto": "PASS_AUTO_WAIT_HUMAN",
+  "status_human": "PENDING",
+  "source_case": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\venv\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+  "base_case": "Paper_manuscript\\cases\\ieee39_base_original.xlsx",
+  "instrumented_case": "Paper_manuscript\\cases\\ieee39_E0_C0_instrumented.xlsx",
+  "source_sha256": "9C2048DC94201EE48FFE816DE65D53831FA1F4B0E7FDF32F24C50F1017EDCFE5",
+  "base_sha256": "9C2048DC94201EE48FFE816DE65D53831FA1F4B0E7FDF32F24C50F1017EDCFE5",
+  "variant_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
+  "git_commit": "f5b78fbbcad135612a23360979b61cc111688639",
+  "runner_sha256": "B9DBF4F3995E42716CE9830469D3776CBCC4C93311FD9C62DBF996ADE894EB79",
+  "python_version": "3.12.10",
+  "andes_version": "2.0.0",
+  "counts": {
+    "Bus": 39,
+    "GENROU": 10,
+    "TGOV1N": 10,
+    "IEEEX1": 10,
+    "IEEEST": 10,
+    "BusFreq": 39,
+    "ACEc": 0,
+    "Toggler": 0
+  },
+  "expected_counts": {
+    "Bus": 39,
+    "GENROU": 10,
+    "TGOV1N": 10,
+    "IEEEX1": 10,
+    "IEEEST": 10,
+    "BusFreq": 39,
+    "ACEc": 0,
+    "Toggler": 0
+  },
+  "pflow_ok": true,
+  "tds_ok": true,
+  "reached_final_time": true,
+  "solver": {
+    "method": "trapezoid",
+    "t0_s": 0.0,
+    "tf_s": 10.0,
+    "time_step_s": 0.03125,
+    "fixed_step": true,
+    "tolerance": 0.0001,
+    "maximum_iterations": 15
+  },
+  "metrics": {
+    "pflow_max_abs_algebraic_residual": 4.215672255725167e-09,
+    "final_max_abs_algebraic_residual": 4.215672255725167e-09,
+    "maximum_bus_frequency_drift_hz": 0.0,
+    "maximum_bus_voltage_drift_pu": 0.0,
+    "minimum_bus_frequency_hz": 60.0,
+    "maximum_bus_frequency_hz": 60.0,
+    "minimum_bus_voltage_pu": 1.0018570383987089,
+    "maximum_bus_voltage_pu": 1.0729898322851823
+  },
+  "thresholds": {
+    "maximum_bus_frequency_drift_hz": 0.005,
+    "maximum_bus_voltage_drift_pu": 0.001
+  },
+  "notes": [
+    "No disturbance was applied.",
+    "ACEc and Toggler rows were removed from the instrumented variant.",
+    "BusFreq uses Tf=Tw=0.02 s and fn=60 Hz at buses 1--39.",
+    "The 60 Hz base is verified from the effective case Line, Shunt, GENROU, and BusFreq data.",
+    "No claim of nonlinear certification follows from this E0 run."
+  ]
+}

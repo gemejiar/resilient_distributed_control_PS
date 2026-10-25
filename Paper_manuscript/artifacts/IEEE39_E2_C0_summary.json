@@ -1,0 +1,96 @@
+{
+  "run_id": "IEEE39_E2_C0_20261025T173514Z",
+  "created_utc": "2026-10-25T17:35:18.352730+00:00",
+  "status_auto": "PASS_AUTO_WAIT_HUMAN",
+  "status_human": "PENDING",
+  "source_case": "Paper_manuscript\\cases\\ieee39_E0_C0_instrumented.xlsx",
+  "source_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
+  "variant_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
+  "runner_sha256": "9C9AD232A14E0ECCD4AE94F2D361F86BD25D1E892A927CDA73E6D8A941BEAEFD",
+  "git_commit": "f5b78fbbcad135612a23360979b61cc111688639",
+  "python_version": "3.12.10",
+  "andes_version": "2.0.0",
+  "event": {
+    "time_s": 5.0,
+    "bus": 21,
+    "target_device": "PQ_10",
+    "total_initial_reactive_load_mvar": 1734.5000000000002,
+    "increment_fraction": 0.01,
+    "increment_mvar": 17.345000000000002,
+    "active_increment_mw": 0.0
+  },
+  "solver": {
+    "method": "trapezoid",
+    "t0_s": 0.0,
+    "tf_s": 30.0,
+    "time_step_s": 0.00390625,
+    "refined_time_step_s": 0.001953125,
+    "tolerance": 0.0001,
+    "maximum_iterations": 15
+  },
+  "diagnostics": {
+    "pflow_ok": true,
+    "tds_ok": true,
+    "pflow_residual": 4.215672255725167e-09,
+    "final_residual": 3.2889104772948485e-08,
+    "total_load_q_pu": 17.345000000000002,
+    "increment_q_pu": 0.17345000000000002,
+    "system_mva": 100.0,
+    "target_idx": "PQ_10"
+  },
+  "refined_diagnostics": {
+    "pflow_ok": true,
+    "tds_ok": true,
+    "pflow_residual": 4.215672255725167e-09,
+    "final_residual": 4.052152036138068e-08,
+    "total_load_q_pu": 17.345000000000002,
+    "increment_q_pu": 0.17345000000000002,
+    "system_mva": 100.0,
+    "target_idx": "PQ_10"
+  },
+  "metrics": {
+    "minimum_bus_voltage_pu": 0.9991344870686256,
+    "maximum_bus_voltage_pu": 1.0733429438554198,
+    "minimum_bus21_voltage_pu": 1.039172494220454,
+    "pre_event_bus21_voltage_pu": 1.044210278301311,
+    "final_bus21_voltage_pu": 1.041570437146809,
+    "maximum_abs_frequency_deviation_hz": 0.001492093608717937,
+    "final_mean_bus_frequency_hz": 59.99992815046232,
+    "final_frequency_window_change_hz": 1.6322005080837698e-08,
+    "pre_event_total_sg_reactive_power_pu": 11.805190842671871,
+    "final_total_sg_reactive_power_pu": 12.015339152516447,
+    "pre_event_mean_field_voltage_pu": 2.044454656034789,
+    "final_mean_field_voltage_pu": 2.047878210777257
+  },
+  "refined_metrics": {
+    "minimum_bus_voltage_pu": 0.9991344933415887,
+    "maximum_bus_voltage_pu": 1.0733429411783901,
+    "minimum_bus21_voltage_pu": 1.0391725006833923,
+    "pre_event_bus21_voltage_pu": 1.044210278301311,
+    "final_bus21_voltage_pu": 1.0415703049495166,
+    "maximum_abs_frequency_deviation_hz": 0.0014919057036379968,
+    "final_mean_bus_frequency_hz": 59.9999277515817,
+    "final_frequency_window_change_hz": 4.3296033425122005e-08,
+    "pre_event_total_sg_reactive_power_pu": 11.805190842607438,
+    "final_total_sg_reactive_power_pu": 12.015348596625188,
+    "pre_event_mean_field_voltage_pu": 2.044454656034789,
+    "final_mean_field_voltage_pu": 2.047878547359916
+  },
+  "numerical_step_comparison": {
+    "bus21_voltage_nadir_relative_difference": 6.219312174230674e-09,
+    "minimum_voltage_absolute_difference_pu": 6.272963037901036e-09,
+    "maximum_voltage_absolute_difference_pu": 2.6770297090195072e-09,
+    "frequency_excursion_relative_difference": 0.00012594970277415003
+  },
+  "checks": {
+    "physical_signs": true,
+    "numerical_convergence": true,
+    "voltage_within_case_bounds": true,
+    "final_frequency_settled": true
+  },
+  "limitations": [
+    "The run is a numerical reactive-load response test, not a nonlinear stability certificate.",
+    "ANDES reports original-case GENROU warnings for xl <= xd2.",
+    "Bus frequency uses the BusFreq filter; SG rotor frequency is stored separately."
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "run_id": "IEEE39_E1_C0_20261025T173018Z",
+  "created_utc": "2026-10-25T17:30:21.715755+00:00",
+  "status_auto": "PASS_AUTO_WAIT_HUMAN",
+  "status_human": "PENDING",
+  "source_case": "Paper_manuscript\\cases\\ieee39_E0_C0_instrumented.xlsx",
+  "source_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
+  "variant_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
+  "runner_sha256": "65CCE415227DE308BA4608DA137AE3534EA9BAC8F85470C70B9969124BFB0D19",
+  "git_commit": "f5b78fbbcad135612a23360979b61cc111688639",
+  "python_version": "3.12.10",
+  "andes_version": "2.0.0",
+  "event": {
+    "time_s": 5.0,
+    "bus": 4,
+    "target_device": "PQ_2",
+    "total_initial_active_load_mw": 5856.4,
+    "increment_fraction": 0.01,
+    "increment_mw": 58.56400000000001,
+    "reactive_increment_mvar": 0.0
+  },
+  "solver": {
+    "method": "trapezoid",
+    "t0_s": 0.0,
+    "tf_s": 30.0,
+    "time_step_s": 0.00390625,
+    "refined_time_step_s": 0.001953125,
+    "tolerance": 0.0001,
+    "maximum_iterations": 15
+  },
+  "diagnostics": {
+    "pflow_ok": 1.0,
+    "tds_ok": 1.0,
+    "pflow_residual": 4.215672255725167e-09,
+    "final_residual": 3.5092172723238946e-08,
+    "total_load_pu": 58.564,
+    "increment_pu": 0.58564,
+    "system_mva": 100.0,
+    "target_idx": "PQ_2"
+  },
+  "refined_diagnostics": {
+    "pflow_ok": 1.0,
+    "tds_ok": 1.0,
+    "pflow_residual": 4.215672255725167e-09,
+    "final_residual": 2.2300350011050796e-08,
+    "total_load_pu": 58.564,
+    "increment_pu": 0.58564,
+    "system_mva": 100.0,
+    "target_idx": "PQ_2"
+  },
+  "metrics": {
+    "minimum_bus_frequency_hz": 59.97420570589885,
+    "maximum_abs_bus_rocof_hz_s": 0.09517331274855678,
+    "minimum_bus_voltage_pu": 0.9950489666586404,
+    "maximum_bus_voltage_pu": 1.0729898322851823,
+    "final_mean_bus_frequency_hz": 59.98333802116406,
+    "final_frequency_window_change_hz": 8.065700782822205e-07,
+    "pre_event_mean_mechanical_torque_pu": 59.42582846574749,
+    "final_mean_mechanical_torque_pu": 60.03337231169991,
+    "pre_event_mean_electrical_power_pu": 58.93501516439026,
+    "final_mean_electrical_power_pu": 59.533966839210414
+  },
+  "refined_metrics": {
+    "minimum_bus_frequency_hz": 59.97428803962058,
+    "maximum_abs_bus_rocof_hz_s": 0.09501571267719555,
+    "minimum_bus_voltage_pu": 0.9950489519075172,
+    "maximum_bus_voltage_pu": 1.0729898322851823,
+    "final_mean_bus_frequency_hz": 59.98333789212101,
+    "final_frequency_window_change_hz": 2.8292483733594054e-07,
+    "pre_event_mean_mechanical_torque_pu": 59.425828465747486,
+    "final_mean_mechanical_torque_pu": 60.03338900451138,
+    "pre_event_mean_electrical_power_pu": 58.93501516441179,
+    "final_mean_electrical_power_pu": 59.53396660876427
+  },
+  "numerical_step_comparison": {
+    "nadir_deviation_relative_difference": 0.0032021565264001178,
+    "minimum_voltage_absolute_difference_pu": 1.4751123211809158e-08,
+    "maximum_voltage_absolute_difference_pu": 0.0,
+    "rocof_relative_difference": 0.0016586737805846649
+  },
+  "checks": {
+    "physical_signs": true,
+    "numerical_convergence": true,
+    "voltage_within_case_bounds": true,
+    "final_frequency_settled": true
+  },
+  "limitations": [
+    "The run is a numerical response test, not a nonlinear stability certificate.",
+    "ANDES reports original-case GENROU warnings for xl <= xd2.",
+    "RoCoF is computed from the BusFreq output with Tf=Tw=0.02 s.",
+    "RoCoF excludes the first 0.1 s after the ideal load step because the algebraic angle jump produces a step-size-dependent numerical impulse."
+  ]
+}

@@ -59,3 +59,9 @@ data/interim/
 
 # Large model checkpoints are kept local (too heavy for the repository)
 Paper_manuscript/artifacts/models/
+
+# Third-party paper full-text conversions (copyright) and files >10 MB are kept local
+Paper_manuscript/references/
+Paper_manuscript/artifacts/IEEE39_E4_1_C1a_timeseries.npz
+Paper_manuscript/artifacts/IEEE39_E4_2_C2_timeseries.npz
+Paper_manuscript/artifacts/IEEE39_E4_C1_timeseries.npz

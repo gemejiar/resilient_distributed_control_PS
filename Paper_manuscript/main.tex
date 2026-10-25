@@ -2,11 +2,18 @@
 % Replace the document class and structure with the TARGET VENUE template.
 % Section names, ordering, and \input{} usage are governed by the venue and
 % plan_maestro.md -- not by ops/checks/check_latex_structure.py.
-\documentclass[11pt]{article}
+\documentclass[11pt,twocolumn]{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
 \usepackage{graphicx}
 \usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newenvironment{proof}{\par\noindent\textit{Proof.}\ }{\hfill$\square$\par}
 
 \title{TITLE}
 \author{AUTHORS}
@@ -18,8 +25,487 @@
 ABSTRACT.
 \end{abstract}
 
-% Manuscript body. Use inline sections or \input{sections/...} as the venue
-% and plan_maestro.md require.
+\section{Introduction}
+\label{sec:introduction}
+
+\section{Proposed Methodology: Nonlinear Stability, Dynamic Safety, and Feasible Frequency--Voltage Regulation}
+
+\label{sec:methodology}
+
+\subsection{Objectives, Scope, and Main Design Principles}
+
+\label{subsec:objectives}
+
+The proposed methodology extends the capability-constrained distributed integral controller of \cite{Kavvathas2025Resilient} by addressing three distinct questions: (i) whether the nonlinear closed-loop trajectories converge within a certified, nontrivial region; (ii) whether the actual electrical outputs, rather than only their commanded references, remain within admissible limits during transients; and (iii) under which disturbances frequency restoration remains physically feasible when multiple generating units (GUs) simultaneously reach operating limits. These questions are addressed through an equilibrium-feasibility test, a conditional dynamic safety certificate, and a regional control Lyapunov function (CLF). The safety claim is restricted to controllable trajectories originating in a certified set; it is not a guarantee against arbitrary faults or infeasible contingencies. The nominal secondary layer retains neighbor-to-neighbor exchange, whereas the safety-correction layer is initially implemented through a coordinated quadratic program (QP). Fully distributed execution of this correction is not assumed without a separate convergence and constraint-preservation analysis.
+
+Consider a balanced AC network containing $N_s$ synchronous generators (SGs), $N_f$ grid-forming inverter-interfaced distributed energy resources (GFM-DERs), and $N_b$ buses. Let $N=N_s+N_f$. The operating mode and network topology are fixed between exogenous switching events. Nominal measurements and the reduced model are assumed available to the corrective controller; estimation uncertainty is not covered by the nominal theorems. The treatment of converter currents is valid at the modeling bandwidth of the selected dynamic representation; semiconductor-scale protection cannot be certified using only a fundamental-frequency phasor model. The development below concerns physical contingencies and resource constraints, without relying on any cybersecurity assumptions.
+
+\subsection{Differential--Algebraic Network Model and Input Extension}
+
+\label{subsec:model}
+
+The network and all primary control loops are represented by the nonlinear differential--algebraic equations (DAEs)
+
+\begin{equation}\label{eq:dae}
+\dot x=f(x,y,u,d),\qquad 0=g(x,y,u,d),
+\end{equation}
+
+where $x\in\mathbb R^{n_x}$ denotes the dynamic states, $y\in\mathbb R^{n_y}$ the algebraic bus variables, $u\in\mathbb R^{2N}$ the secondary active/reactive power references, and $d$ the vector of disturbances and slowly varying physical parameters. All quantities are expressed on consistent bases. After fixing the global angular reference in both dynamic and algebraic variables and removing redundant algebraic relations, assume an index-one representation with a nonsingular algebraic Jacobian on the operating domain $\mathcal O$:
+
+\begin{equation}\label{eq:regularity}
+\det g_y(x,y,u,d)\neq 0,\qquad (x,y,u,d)\in\mathcal O.
+\end{equation}
+
+On a consistent local branch, the implicit-function theorem provides a smooth algebraic solution and reduced dynamics,
+
+\begin{equation}\label{eq:reduced}
+\begin{aligned}
+y&=\varphi(x,u,d),\\
+\dot x&=\bar f(x,u,d)\\
+&:=f(x,\varphi(x,u,d),u,d).
+\end{aligned}
+\end{equation}
+
+To accommodate reference rate limits and permit barrier-based intervention, the references are treated as additional states. With $\xi=\operatorname{col}(x,u)$ and $v=\dot u$, the augmented model is input affine:
+
+\begin{equation}\label{eq:augmented}
+\begin{aligned}
+\dot\xi&=F(\xi,d)+Gv,\\
+F(\xi,d)&=\operatorname{col}(\bar f(x,u,d),0),\\
+G&=\operatorname{col}(0,I_{2N}).
+\end{aligned}
+\end{equation}
+
+Actual output quantities are functions of the DAE solution, not of the reference setpoints alone. Only outputs represented with sufficient accuracy and smoothness at the chosen bandwidth are eligible for a barrier guarantee:
+
+\begin{equation}\label{eq:outputs}
+\begin{aligned}
+P_i&=p_i(\xi,d), &Q_i&=q_i(\xi,d),\\
+\bm i_i&=\iota_i(\xi,d), &V_i&=\nu_i(\xi,d).
+\end{aligned}
+\end{equation}
+
+For example, the SG model includes fourth-order machine dynamics, excitation control, and a turbine--governor; its frequency channel contains
+
+\begin{equation}\label{eq:swing}
+2H_i\dot\omega_i=P_{m,i}-P_{e,i}-D_i(\omega_i-1),
+\end{equation}
+
+where $\omega_i$ is the per-unit electrical frequency, nominal frequency is $1$ pu, $H_i$ is in seconds, and all powers and $D_i(\omega_i-1)$ share the chosen power base. Let $\omega_b=2\pi f_b$ be the base angular frequency in rad/s; the physical angular-frequency deviation is $\omega_b(\omega_i-1)$. A reduced GFM model can contain a power-measurement filter and frequency droop,
+
+\begin{equation}\label{eq:gfm}
+\begin{aligned}
+\dot\delta_i&=\omega_b(\omega_i-1),\\
+\tau_{P,i}\dot P_{f,i}&=P_i-P_{f,i},\\
+\omega_i&=1+m_{P,i}(P_{{\rm set},i}-P_{f,i}).
+\end{aligned}
+\end{equation}
+
+The chosen GFM realization must include the voltage, actuator, and current-limiter dynamics needed to evaluate the particular physical constraints claimed. Theorems for a smooth reduced model are not applied across discontinuous protection/limiter modes without a separate hybrid-system analysis. The secondary input and its rate are stacked as
+
+\begin{equation}\label{eq:input}
+u=\operatorname{col}(P_{\rm set},Q_{\rm set}),\qquad
+v=\operatorname{col}(v_P,v_Q)=\dot u.
+\end{equation}
+
+\subsection{Capability-Aware Nominal Distributed Controller}
+
+\label{subsec:nominal}
+
+Let $A=A^T\geq0$ denote the communication adjacency matrix, and let $D_P,D_Q$ be diagonal sharing-coefficient matrices. Following the bounded-integral control structure of \cite{Kavvathas2025Resilient}, a nominal control direction is defined by
+
+\begin{equation}\label{eq:rdc}
+\begin{aligned}
+v_P^{\rm RDC}
+&=k_{IP}\operatorname{diag}(g_P)(\bm1-\omega)\\
+&\quad-k_{IP}k_P L_P D_P P\\
+&\quad-k_\ell(P_{\rm set}-P_{\rm set}^n),\\
+v_Q^{\rm RDC}
+&=k_{IQ}k_V\operatorname{diag}(g_Q)(V_{\rm ref}-V)\\
+&\quad-k_{IQ}k_Q L_Q D_Q Q\\
+&\quad-k_\ell(Q_{\rm set}-Q_{\rm set}^n).
+\end{aligned}
+\end{equation}
+
+where $g_P,g_Q$ are the differentiable, nonnegative capability factors of the original controller, evaluated from its SG and DER reference-capability expressions, and are zero on the corresponding boundaries (see (28)--(31) in \cite{Kavvathas2025Resilient}). Their values must not be inferred from the actual instantaneous output limits. Here $k_\ell>0$ denotes the original small leakage gain, written separately from the integral gains. The weighted communication Laplacians are
+
+\begin{equation}\label{eq:laplacians}
+\begin{aligned}
+L_P&=\operatorname{diag}(g_P)\operatorname{diag}(Ag_P)
+-\operatorname{diag}(g_P)A\operatorname{diag}(g_P),\\
+L_Q&=\operatorname{diag}(g_Q)\operatorname{diag}(Ag_Q)
+-\operatorname{diag}(g_Q)A\operatorname{diag}(g_Q).
+\end{aligned}
+\end{equation}
+
+For a fixed disturbance $d$, an admissible equilibrium $\xi^\star(d)$ is selected as specified in Section~\ref{subsec:feasibility}. To eliminate an equilibrium bias in the subsequent CLF construction, the nominal direction is centered about this equilibrium:
+
+\begin{equation}\label{eq:centered}
+v_{\rm nom}(\xi,d)=v_{\rm RDC}(\xi,d)-v_{\rm RDC}(\xi^\star(d),d).
+\end{equation}
+
+Thus $v_{\rm nom}(\xi^\star,d)=0$ even if the selected admissible plant equilibrium is not a steady state of the unmodified nominal integrator. Centering changes the original controller and does not inherit the original reference-invariance or autonomous distributed-control guarantees. Those guarantees are therefore re-established for the new closed loop through the safety constraints below. The equilibrium and centering offsets must be computed consistently after each disturbance; the nominal law is neighbor-based once these offsets are supplied, but the complete design is not a fully distributed controller.
+
+\subsection{Physical Dynamic Constraints and High-Order Barrier Functions}
+
+\label{subsec:safety}
+
+\subsubsection{Operationally meaningful admissible sets}
+
+For each SG, delivered-power capability must include the actual generator curve (stator-current, field/excitation, and underexcitation limits as appropriate), not only an apparent-power circle. Let $c_{i,\ell}$ denote its validated smooth boundary functions, and let $\mathcal I_i^{\rm cap}$ index the included inequalities. For an inverter with a circular steady-state rating, this reduces to the familiar apparent-power bound:
+
+\begin{equation}\label{eq:hs}
+\begin{aligned}
+h_{\rm cap,i,\ell}&=c_{i,\ell}(P_i,Q_i,V_i,\vartheta_i)\geq0,\\
+h_{S,i}&=S_{i,\max}^2-P_i^2-Q_i^2\geq0.
+\end{aligned}
+\end{equation}
+
+Only limits whose dependence on the modeled state is sufficiently smooth can enter the HOCBF construction. The circular inequality alone must not be presented as a complete SG capability-curve guarantee.
+
+The current constraint, using an explicitly stated RMS or instantaneous current convention consistent with the model, is
+
+\begin{equation}\label{eq:hi}
+h_{I,i}(\xi,d)=I_{i,\max}^2-\|\bm i_i(\xi,d)\|_2^2.
+\end{equation}
+
+Active-power limits are represented as separate smooth one-sided barriers, avoiding the vanishing gradient of a product constraint at intermediate operating points:
+
+\begin{equation}\label{eq:hp}
+h_{P,i}^-=P_i-P_{i,\min},\qquad h_{P,i}^+=P_{i,\max}-P_i.
+\end{equation}
+
+Voltage-security limits at the monitored buses can be added where justified by the network operating requirements:
+
+\begin{equation}\label{eq:hv}
+h_{V,i}^{-}=V_i-V_{i,\min},\qquad
+h_{V,i}^{+}=V_{i,\max}-V_i.
+\end{equation}
+
+If SG field-winding heating is a claimed dynamic constraint, a validated lumped thermal model may be added instead of interpreting long-term field-current ratings as instantaneous limits:
+
+\begin{equation}\label{eq:thermal}
+\dot\vartheta_i=a_i I_{f,i}^2-b_i(\vartheta_i-\vartheta_a),\qquad
+h_{\vartheta,i}=\vartheta_{i,\max}-\vartheta_i.
+\end{equation}
+
+Such thermal states must be included in $x$, their parameters identified, and their interaction with the primary actuators validated; otherwise the thermal constraint is outside the formal claim. In parallel, the commanded references satisfy their own capability-curve inequalities,
+
+\begin{equation}\label{eq:hu}
+h^u_{i,\ell}(\xi,d)\geq0,\qquad \ell\in\mathcal I_i^u,
+\end{equation}
+
+where each inequality represents one smooth facet or arc of the coupled reference-capability region, evaluated at the operating voltage when relevant. Treating each boundary separately avoids masking active constraints in a product. These limits are enforced independently of the delivered-output constraints. Let $\mathcal I_{\rm ph}$ index all selected and validated physical constraints, including the applicable $h_{\rm cap,i,\ell}$, measured-current, active-power, voltage, and optional thermal barriers, without duplicating synonymous current and apparent-power limits unnecessarily. The physical safe set is
+
+\begin{equation}\label{eq:cphys}
+\mathcal C(d)=\{\xi:h_j(\xi,d)\geq0,\ j\in\mathcal I_{\rm ph}\}.
+\end{equation}
+
+\subsubsection{Relative degree and safety enforcement}
+
+Between switching events, $d$ is treated as constant. For any smooth physical constraint,
+
+\begin{equation}\label{eq:hdot}
+\dot h_j=L_Fh_j(\xi,d)+L_Gh_j(\xi,d)v,
+\end{equation}
+
+where $L_F$ and $L_G$ denote Lie derivatives of the reduced, augmented system. Because reference rates affect different physical quantities through different internal dynamics, the relative degree $r_j$ must be determined from the actual model, separately for each constraint. In particular, $L_G L_F^k h_j=0$ for $k=0,\ldots,r_j-2$ and $L_G L_F^{r_j-1}h_j$ must have the required nonzero control sensitivity throughout the chosen certification region. Under this constant-relative-degree assumption for each barrier, the high-order construction follows the established CLF--CBF and HOCBF frameworks \cite{AmesEtAl2017CBF,XiaoBelta2022HOCBF}. Define
+
+\begin{equation}\label{eq:hocbf-recursion}
+\begin{aligned}
+\psi_{j,0}&=h_j,\\
+\psi_{j,k}&=L_F\psi_{j,k-1}
++\alpha_{j,k}(\psi_{j,k-1}),\\
+&\hspace{14mm}1\leq k<r_j,
+\end{aligned}
+\end{equation}
+
+where each $\alpha_{j,k}$ is continuously differentiable and of extended class $\mathcal K$. The high-order control-barrier inequality is
+
+\begin{equation}\label{eq:hocbf-affine}
+\underbrace{L_G\psi_{j,r_j-1}}_{A_j(\xi,d)}v\geq
+\underbrace{-L_F\psi_{j,r_j-1}-\alpha_{j,r_j}(\psi_{j,r_j-1})}_{b_j(\xi,d)}.
+\end{equation}
+
+For each reference inequality having relative degree one with respect to $v$, including its algebraic-voltage dependence where applicable, impose directly
+
+\begin{equation}\label{eq:reference-barrier}
+L_Fh^u_{i,\ell}+L_Gh^u_{i,\ell}v
++\alpha^u_{i,\ell}(h^u_{i,\ell})\geq0.
+\end{equation}
+
+Writing $\mathcal I^u=\{(i,\ell):1\leq i\leq N,\\,\ell\in\mathcal I_i^u\}$, the strengthened admissible set is defined as
+
+\begin{equation}\label{eq:ch}
+\begin{aligned}
+\mathcal C_H(d)
+&=\bigcap_{j\in\mathcal I_{\rm ph}}
+\bigcap_{k=0}^{r_j-1}\{\xi:\psi_{j,k}(\xi,d)\geq0\}\\
+&\quad\cap\bigcap_{(i,\ell)\in\mathcal I^u}
+\{\xi:h^u_{i,\ell}(\xi,d)\geq0\}.
+\end{aligned}
+\end{equation}
+
+If a constraint has no effective relative degree in the relevant region, a reference-rate command cannot guarantee its invariance. If a limiter introduces nonsmooth dynamics or an algebraic-mode change, the present smooth HOCBF theorem does not apply across that change; such cases are excluded from the certified region or handled by independent hardware protection. At a discrete switching event, algebraic variables are recomputed on a regular post-event branch and physical dynamic states are continuous unless a genuine reset is specified. Safe continuation requires
+
+\begin{equation}\label{eq:reset}
+\xi^+=\mathcal R_{d^-\rightarrow d^+}(\xi^-),\qquad
+\xi^+\in\mathcal C_H(d^+).
+\end{equation}
+
+Consequently, the intended guarantee is conditional on post-event consistency and safety; it does not claim to prevent unavoidable instantaneous overcurrents produced by arbitrary faults.
+
+\subsection{Feasible Equilibria and Multiple-Resource Saturation}
+
+\label{subsec:feasibility}
+
+\subsubsection{Existence of an admissible operating point}
+
+For each constant disturbance $d$, define the exact-restoration equilibrium set; the frequency requirement uses the per-unit convention established above:
+
+\begin{equation}\label{eq:equilibria}
+\begin{aligned}
+\mathcal E(d)=\big\{\xi:\\;&F(\xi,d)=0,\quad \omega_i(\xi,d)=1\ \forall i,\\
+&V_{i,\min}\leq V_i(\xi,d)\leq V_{i,\max},\\
+&\xi\in\mathcal C_H(d)\big\}.
+\end{aligned}
+\end{equation}
+
+The corresponding equilibrium-feasible disturbance set is
+
+\begin{equation}\label{eq:deq}
+\mathcal D_{\rm eq}=\{d:\mathcal E(d)\ne\varnothing\}.
+\end{equation}
+
+If $d\notin\mathcal D_{\rm eq}$, exact restoration subject to every stated equilibrium constraint is infeasible in the modeled system, regardless of controller design. This is a model-conditioned feasibility statement, not a claim about unmodeled corrective actions such as load shedding. To investigate multiple binding limits, partition the generators into an active-limit set $\mathcal A$ and the remaining set $\mathcal R$. A necessary (not sufficient) aggregate power-balance condition, for the same solved operating point and its network losses, is
+
+\begin{equation}\label{eq:capacity-necessary}
+\sum_{i\in\mathcal A}P_i^{\rm fix}
++\sum_{i\in\mathcal R}P_{i,\max}^{\rm avail}(Q_i^\star,V_i^\star)
+\geq P_{\rm load}+P_{\rm loss}.
+\end{equation}
+
+This condition is not sufficient: AC power flow, reactive power capability, line limits, voltage bounds, and the admissible dynamic operating states remain decisive. In particular, the effective active-sharing graph may lose connectivity when several $g_{P,i}$ become zero, so preservation of consensus-based sharing cannot be asserted from physical power sufficiency alone.
+
+When $\mathcal E(d)$ contains several admissible operating points, select a reference equilibrium using a specified operating objective:
+
+\begin{equation}\label{eq:eqselection}
+\begin{aligned}
+\xi^\star(d)\in\arg\min_{\xi\in\mathcal E(d)}\big\{&
+\sum_{i=1}^N C_i(P_i,Q_i)\\
+&+\gamma_V\sum_{i=1}^N(V_i-V_{i,\rm ref})^2\big\}.
+\end{aligned}
+\end{equation}
+
+Because of the AC network equations, the equilibrium selection may be nonconvex. A certified feasible equilibrium, rather than an unverified local economic optimum, is sufficient for the stability theorem below.
+
+\subsubsection{Dynamic recoverability}
+
+Existence of an equilibrium alone does not imply that it is reachable along safe trajectories. Let $\mathcal U_{\rm rate}=[v_{\min},v_{\max}]$ denote the prescribed reference-rate box. Define the viability-based recoverable set
+
+\begin{equation}\label{eq:kernel}
+\begin{aligned}
+\mathcal K(d)=\big\{\xi_0\in\mathcal C_H(d):\\;&\exists v(\cdot)\in\mathcal U_{\rm rate}\text{ such that}\\
+&\xi(t)\in\mathcal C_H(d),\ \forall t\geq0,\\
+&\operatorname{dist}(\xi(t),\mathcal E(d))\to0\big\}.
+\end{aligned}
+\end{equation}
+
+In large networks, directly computing $\mathcal K(d)$ is generally intractable. The following CLF--HOCBF synthesis instead produces an explicitly certified inner approximation of its attraction/recovery domain.
+
+\subsection{Regional Nonlinear Lyapunov Certificate}
+
+\label{subsec:lyapunov}
+
+Let $e=\xi-\xi^\star(d)$ for a fixed $d$. After removing any remaining global-angle symmetry from the dynamic coordinates, a continuously differentiable local Lyapunov candidate is selected as
+
+\begin{equation}\label{eq:V}
+e=\xi-\xi^\star,\qquad \mathcal V(e)=e^THe,\qquad H=H^T\succ0.
+\end{equation}
+
+To construct $H$, first linearize the augmented drift at the equilibrium. Only if $(A_\star,G)$ is stabilizable, select a \emph{prescribed} gain $K$ such that $A_\star+GK$ is Hurwitz and solve the following Lyapunov matrix inequality in $H$:
+
+\begin{equation}\label{eq:lyapunov-linear}
+\begin{aligned}
+&(A_\star+GK)^TH+H(A_\star+GK)\\
+&\qquad\preceq-Q_L,\quad H\succ0,\quad Q_L\succ0.
+\end{aligned}
+\end{equation}
+
+where $A_\star=\partial_\xi F(\xi^\star,d)$. For a fixed $K$, the condition is linear in $H$. If $K$ and $H$ must be synthesized jointly, use the usual change of variables $X=H^{-1}$ and $Y=KX$ in an equivalent stabilizing LMI. Either construction generates only a \emph{candidate}; it does not certify nonlinear regional stability. In particular, stabilizability is a necessary local design check, and $K$ is an auxiliary certificate feedback, not an extra control layer. For the full nonlinear reduced system, the exact derivative is
+
+\begin{equation}\label{eq:vdot}
+\dot{\mathcal V}=2e^TH[F(\xi,d)+Gv].
+\end{equation}
+
+Require an exponential CLF decrease with $\lambda>0$:
+
+\begin{equation}\label{eq:clf}
+2e^TH[F(\xi,d)+Gv]\leq-\lambda\mathcal V(e).
+\end{equation}
+
+The candidate certified region, relative to the safe state space, is
+
+\begin{equation}\label{eq:omega}
+\Omega_\rho(d)=\{\xi\in\mathcal C_H(d):\mathcal V(\xi-\xi^\star)\leq\rho\},
+\quad \rho>0.
+\end{equation}
+
+Positive definiteness implies the norm equivalence
+
+\begin{equation}\label{eq:norm}
+\lambda_{\min}(H)\|e\|_2^2\leq\mathcal V(e)
+\leq\lambda_{\max}(H)\|e\|_2^2.
+\end{equation}
+
+The region $\Omega_\rho$ must be validated against the nonlinear network model and simultaneous control constraints; it cannot be inferred from favorable eigenvalues or successful Monte Carlo runs alone. For an equilibrium strictly inside all augmented barrier sets and reference-rate bounds, a stabilizing $K$ with strict local Lyapunov decrease can yield a sufficiently small nonzero certified region by smoothness. At binding capability limits this interior argument fails; direct compatibility verification is indispensable. Verified interval bounds, certified global optimization, or sound polynomial relaxations with approximation-error bounds can be used for this task.
+
+\subsection{CLF--HOCBF Controller and Compatibility Test}
+
+\label{subsec:qp}
+
+The set of available safe reference-rate commands is
+
+\begin{equation}\label{eq:usafe}
+\begin{aligned}
+\mathcal U_{\rm safe}(\xi,d)=\big\{v:\;&A_jv\geq b_j,\quad\forall j,\\
+&L_Fh^u_{i,\ell}+L_Gh^u_{i,\ell}v\\
+&\quad+\alpha^u_{i,\ell}(h^u_{i,\ell})\geq0,\\
+&\hspace{16mm}\forall(i,\ell)\in\mathcal I^u,\\
+&v_{\min}\leq v\leq v_{\max}\big\}.
+\end{aligned}
+\end{equation}
+
+Combining physical safety with the regional CLF condition gives
+
+\begin{equation}\label{eq:ucert}
+\begin{aligned}
+\mathcal U_{\rm cert}(\xi,d)=\big\{v:\;&v\in\mathcal U_{\rm safe},\\
+&2e^TH(F+Gv)\\
+&\qquad\leq-\lambda\mathcal V(e)\big\}.
+\end{aligned}
+\end{equation}
+
+The proposed corrective control is the minimum-deviation projection of the distributed nominal action:
+
+\begin{equation}\label{eq:qp}
+\begin{aligned}
+v^\star(\xi,d)
+&=\arg\min_{v\in\mathcal U_{\rm cert}(\xi,d)}\\
+&\quad\tfrac12(v-v_{\rm nom})^TR(v-v_{\rm nom}),
+\qquad R\succ0.
+\end{aligned}
+\end{equation}
+
+Under the stated affine-in-$v$ barrier and CLF formulations, this is a strictly convex QP whenever its feasible set is nonempty. Feasibility is \emph{not} automatic. Define the maximum over an empty safe-input set as $-\infty$. For a compact candidate region, define the compatibility functional
+
+\begin{equation}\label{eq:margin}
+\begin{aligned}
+\mathcal M(d,\rho)
+&=\inf_{\xi\in\Omega_\rho(d)}
+\max_{v\in\mathcal U_{\rm safe}(\xi,d)}\\
+&\quad\big[-\lambda\mathcal V(e)
+-2e^TH(F(\xi,d)+Gv)\big].
+\end{aligned}
+\end{equation}
+
+Because $\xi^\star\in\Omega_\rho$ and $F(\xi^\star,d)=0$, the inner expression is zero at the equilibrium for every $v$; hence $\mathcal M(d,\rho)\leq0$. Successful certification therefore yields $\mathcal M=0$, never a strictly positive global margin. This equality must not be tested with a naive positive floating-point tolerance: a local analytic feasibility argument around the equilibrium and verified bounds on the remaining compact region are appropriate. A rigorously verified $\mathcal M(d,\rho)\geq0$ certifies $\mathcal U_{\rm cert}(\xi,d)\ne\varnothing$ for every $\xi\in\Omega_\rho(d)$, with the safe-input sets compact because of finite rate bounds. An additional check is required that the resulting QP minimizer defines a well-posed closed-loop trajectory, e.g., by sufficient parametric regularity. If $\mathcal M<0$, at least one state in that candidate region fails the selected sufficient inequalities; it does not prove that the physical disturbance is unrecoverable under a different control law. An inner approximation to the recoverable disturbance set, for a specified pre-event state $\xi_0$, is
+
+\begin{equation}\label{eq:drec}
+\begin{aligned}
+\widehat{\mathcal D}_{\rm rec}(\xi_0)=\big\{d:\;&d\in\mathcal D_{\rm eq},\\
+&\xi_0^+(d)\in\Omega_\rho(d),\\
+&\mathcal M(d,\rho)\geq0\\
+&\text{for some }\rho>0\big\}.
+\end{aligned}
+\end{equation}
+
+This set depends on the chosen safe constraints, candidate $H$, decay rate $\lambda$, and region size $\rho$. It is a sufficient, generally conservative, certificate rather than an exact characterization of the viability kernel.
+
+\subsection{Formal Guarantees and Proof Outlines}
+
+\label{subsec:guarantees}
+
+\begin{theorem}[Physical invariance]
+
+Fix a constant disturbance and topology. Assume regular DAE reduction, unique forward solutions, constant relative degrees, and sufficiently regular class-$\mathcal K$ functions. Suppose the initial state lies in the strengthened safe set and the implemented input satisfies every barrier inequality. Then the strengthened safe set remains invariant for as long as the solution exists. In particular, each modeled physical constraint is preserved.
+
+\end{theorem}
+
+\begin{proof}
+
+For a relative-degree-$r_j$ constraint, the terminal inequality enforces $\dot\psi_{j,r_j-1}+\alpha_{j,r_j}(\psi_{j,r_j-1})\geq0$. By the scalar comparison lemma and nonnegative initial conditions, $\psi_{j,r_j-1}$ remains nonnegative. Repeating the argument backwards through the recursive definitions proves nonnegativity of $\psi_{j,k}$, and finally $h_j=\psi_{j,0}$. The same argument applies directly to degree-one reference constraints. Intersection of the forward-invariant sets yields the claim. At discontinuous events the separate reset condition \eqref{eq:reset} must also hold.
+
+\end{proof}
+
+\begin{theorem}[Regional convergence]
+
+Let the disturbance admit an isolated, admissible equilibrium and let the certified Lyapunov sublevel set be compact and contain that equilibrium. Suppose the invariance theorem applies, the compatibility condition is verified on this sublevel set, and the QP feedback generates well-posed forward solutions satisfying the CLF condition. Then all trajectories originating in this set remain inside it and converge exponentially to the selected equilibrium.
+
+\end{theorem}
+
+\begin{proof}
+
+Barrier feasibility ensures that the safe set is invariant; the CLF constraint implies $\dot{\mathcal V}\leq-\lambda\mathcal V$. By the comparison lemma,
+
+\begin{equation}\label{eq:expV}
+\mathcal V(t)\leq\mathcal V(t_0)e^{-\lambda(t-t_0)}.
+\end{equation}
+
+Thus the Lyapunov sublevel set is invariant, proving invariance of its intersection with the safe set. The quadratic bounds in \eqref{eq:norm} yield
+
+\begin{equation}\label{eq:expnorm}
+\|e(t)\|_2\leq\sqrt{\frac{\lambda_{\max}(H)}{\lambda_{\min}(H)}}
+ e^{-\lambda(t-t_0)/2}\|e(t_0)\|_2.
+\end{equation}
+
+The conclusion is regional and, if the equilibrium lies on a physical constraint boundary, is understood relative to the admissible domain. At the equilibrium, $v_{\rm nom}(\xi^\star,d)=0$ and $v=0$ satisfies the barrier and CLF inequalities (because $F(\xi^\star,d)=0$ and $\xi^\star\in\mathcal C_H$); the strictly convex objective therefore selects $v^\star(\xi^\star,d)=0$.
+
+\end{proof}
+
+\begin{theorem}[Restoration under saturation]
+
+Suppose a post-contingency disturbance belongs to the certified recoverable disturbance set, the selected equilibrium satisfies SG and GFM capability limits, and the computed coordination offsets are available. Under the assumptions of the preceding theorems, the CLF--HOCBF controller converges to that equilibrium without violating its modeled constraints. Nominal frequency and admissible voltage regulation are recovered even with multiple units at their active limits, but only for the nonempty verified compatibility region.
+
+\end{theorem}
+
+\begin{proof}
+
+Membership in $\mathcal D_{\rm eq}$ establishes existence of an admissible exact-frequency equilibrium; membership in $\widehat{\mathcal D}_{\rm rec}$ establishes a safe post-event initial condition and pointwise compatibility on a certified region. The two preceding theorems then imply invariance and regional convergence. The result does not claim restoration when an admissible equilibrium does not exist, nor does it imply exact reactive-power sharing if that objective conflicts with voltage and capability constraints.
+
+\end{proof}
+
+\begin{remark}[Disturbance scope]
+
+The preceding theorems apply to constant disturbances between events. Extending them to input-to-state stability requires a robustly invariant region and a bound of the form
+
+\begin{equation}\label{eq:iss}
+\dot{\mathcal V}\leq-\lambda\mathcal V
++\sigma\big(\|\delta d\|_2^2+\|\dot d\|_2^2\big),\qquad\sigma\geq0.
+\end{equation}
+
+Such a condition yields a practical tracking bound and must not be presented as established by the nominal CLF proof alone.
+
+\end{remark}
+
+\subsection{Certification and Reproducible Numerical Evaluation}
+
+\label{subsec:validation}
+
+The implementation proceeds in two stages. The scope of an analytical guarantee is limited to the nonempty regions for which all stated certificates have actually been verified; the method does not claim that such regions exist for every contingency or saturated equilibrium. \emph{Offline:} identify the network and device models; validate steady-state and dynamic model consistency; determine the relative degree of each physical constraint; compute post-disturbance admissible equilibria; check stabilizability and derive a candidate $H$; and certify a nonzero region $\Omega_\rho$ by verifying \eqref{eq:margin} over the entire set. Eigenvalue checks and Monte Carlo simulations may guide these computations but do not constitute certificates. For nonpolynomial AC equations, interval enclosures or sound approximation-error bounds are necessary for mathematically rigorous verification. An additional contingency screening step applies \eqref{eq:reset} before assigning a post-event state to a recovery region.
+
+\emph{Online:} obtain the current dynamic state or its estimated representation, update physical margins, compute the distributed nominal direction, solve the coordinated QP, and apply reference-rate commands within the prescribed actuator limits. If the safe QP is infeasible, no stability or safety guarantee is claimed from this design; the controller must enter a separately specified operational protection or load-management mode. If only the CLF conflicts with feasible barrier constraints, priority may be given to safety, but exact restoration guarantees are then suspended. Sampled-data implementation, sensing error, model mismatch, and delays require additional certified margins or specific analysis; continuous-time inequalities enforced only at isolated sampling instants are insufficient. These practical extensions are reported as limitations unless separately verified.
+
+Validation is conducted exclusively on a modified IEEE 39-bus system, beginning with the original ten-SG configuration and progressing through mixed SG--GFM and SG--GFM--GFL variants obtained by replacing one generating unit at a time. The 10- and 14-bus systems studied in \cite{Kavvathas2025Resilient} are not reproduced; that work provides the reference distributed integral controller rather than the test network of the present study. The test matrix includes load increments of increasing magnitude, simultaneous capability activations, different initial states relative to $\Omega_\rho$, variation of $X/R$ ratios and primary-loop dynamics, and perturbations near the boundary of $\widehat{\mathcal D}_{\rm rec}$. The original distributed integral controller, a conventional separately saturated integral controller, the nominal controller with a barrier-only filter, and the complete CLF--HOCBF controller are benchmarked under identical disturbances and model assumptions on the same IEEE 39-bus configuration. Reported quantities include bus-level frequency deviations and nadirs, RoCoF, voltage-error statistics, active/reactive sharing errors, instantaneous modeled constraint margins, incidence of QP infeasibility, Lyapunov decreases, certified attraction volume, recovery-domain boundaries, computation times, and numerical tolerances. The accuracy of converter-current conclusions must be cross-checked against a sufficiently detailed converter model; a phasor-domain simulation alone cannot validate sub-cycle semiconductor current protection.
+
+The central evidence of methodological advancement is not merely a lower frequency overshoot, but the simultaneous verification of (a) nonlinear regional convergence, (b) dynamic safety of the actual modeled electrical variables, and (c) a demonstrably nonempty set of recoverable disturbances under concurrent resource limitations. Guarantees at binding limits require at least one explicitly checked compatibility region, not an unverified general assertion.
+
+The central evidence of methodological advancement is not merely lower frequency overshoot, but the simultaneous verification of (a) nonlinear regional convergence, (b) dynamic safety of actual modeled electrical variables, and (c) a nonempty, explicitly certified set of disturbances that remain recoverable under concurrent resource limitations.
+\section{Simulation Results and Discussion}
+\label{sec:results}
+
+\section{Conclusions}
+\label{sec:conclusions}
 
 \bibliographystyle{plain}
 \bibliography{references}
