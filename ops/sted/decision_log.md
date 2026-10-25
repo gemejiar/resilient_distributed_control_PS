@@ -274,3 +274,26 @@ Blockers or limitations: Approval does not certify stability, capacity or the gr
 Responsible: Investigator
 Status: VERIFIED
 Next action: Define E7 scope (coordinated P/Q secondary) before implementing.
+
+## DEC-023
+Date: 2026-10-25
+Gate: C2 capacity and dispatch audit (pre-E7)
+Decision: Record the C2 audit as PARTIALLY_VERIFIED. C2 stays frozen (no change to the case or to E4.2--E6 results); the audit adds a capability definition and three findings that constrain E7.
+Justification: Capability is defined from the case's own plant data (static pmax/qmin/qmax) intersected with S <= Sn/100 (script Paper_manuscript/src/audit_c2_capacity.py, artifact IEEE39_C2_capacity_audit.json). (1) Static dispatch: no violation of P, Q or S for any of the 10 units (S/Sn <= 0.89); tight P headroom at SG31 (0.040 pu), SG35 (0.100), GFM36 (0.150), GFM32 (0.250), SG33 (0.300). (2) Voltage target: holding all ten unit buses at 1.0 pu is steady-state feasible (PFlow, with and without +1 % P/Q), all units inside Q limits, all-bus voltage 0.979--1.045 pu; SG31 would sit at 89 % of its Q range (0.59 pu up-headroom), the binding unit; base unit-bus voltages are 1.013--1.060 pu. (3) Dynamic envelope: REGF1's internal limits (Pmax = Qmax = Sn/100) are 1.1--2.0x (P) and 1.8--2.2x (Q) looser than the case data, so "no limit reached" in E3--E6 did not imply capability compliance. SG31 exceeds the case pmax by 0.074 pu (7.4 MW) in E5 P+ under primary control alone and in E6 (secondary sharing by Sn does not use headroom); SG35 by 0.008 pu in E5 P+. Maximum S/Sn is 0.89, so the apparent-power rating is not binding.
+Evidence reviewed: Paper_manuscript/artifacts/IEEE39_C2_capacity_audit.json; IEEE39_E5_C2 and IEEE39_E6_C2 time series.
+Blockers or limitations: Case pmax/qmin/qmax are IEEE-39 plant data used as capability proxies, not manufacturer curves; SG rotor/stator/underexcitation limits and REGF1 current limits are not modeled; PFlow puts the active imbalance on the slack; only 1 % events were audited. E3--E6 conclusions on convergence and response remain valid; statements about "no saturation" must read as model limits only.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator reviews the E7 strategy in DEC-024.
+
+## DEC-024
+Date: 2026-10-25
+Gate: E7 scope (proposal, not yet approved)
+Decision: PROPOSED E7 design: capability-aware coordinated P/Q consensus secondary on the E6 graph, voltage target 1.0 pu at the ten unit buses and frequency 60 Hz (investigator's targets), with headroom-based sharing and P-over-Q priority. Implementation is not authorized until the investigator approves this scope.
+Justification: (a) Capability set per unit: P in [0, pmax_case], Q in [qmin_case, qmax_case], S <= Sn (DEC-023). (b) Priority: active power has priority for frequency restoration; Q may use only the apparent power left, Qavail = min(qmax, sqrt(S_n^2 - P^2)) (and symmetric for absorption). Steady-state secondary only; Q-priority during voltage dips (REGF1 Vdip 0.8) and ride-through are out of scope. (c) P sharing: equalize the used fraction of upward headroom, dPset_i / h_i with h_i = pmax_i - P_i0, so no unit exceeds pmax if the total need is below total headroom; this replaces E6's Sn-proportional weights and addresses the SG31 exceedance. (d) Q sharing: consensus on utilization (Q_i - qmin_i)/(qmax_i - qmin_i) with weights from the same range, plus a voltage term k_V (1.0 - V_i) on each unit bus, following the structure of Eq. (rdc)--(laplacians) with g_P, g_Q set by the headroom and zeroed at the capability boundary; the sum of both terms yields a bounded steady voltage residual that must be reported, not hidden. (e) Actuators to prove first: GFM P by REGF1.Paux0 (E6), GFM Q by REGF1.Qaux0 (or vref), SG Q by exciter vref0; Qref/Pref are initialization-only. (f) Acceptance (to be frozen before running): f within 1 mHz; max |V_i - 1.0| <= 0.02 pu and mean |V_i - 1.0| below E6 at the end; no P, Q or S capability violation in the DEC-023 sense with 5 % margin; P sharing spread of dPset/h within 10 %; no unit above 90 % of its Q range; command tracking within 10 %; step-halving convergence. (g) Graph: reuse E6 graph; review connectivity of the effective sharing graph when several g_i approach zero, and report the bus-30 hub.
+Norms: IEEE Std 2800-2022 (reactive capability and voltage control of IBR plants) and IEEE Std 1547-2018 (priority and reactive-power modes) are design references only; their requirements must be read from the standards before any citation or compliance claim; no reference is added to the manuscript here.
+Evidence reviewed: DEC-023, DEC-021, main.tex Eqs. (rdc)--(laplacians).
+Blockers or limitations: Unit-bus voltage and Q-sharing objectives conflict in general (both cannot be exact), so a residual is expected; steady-state PFlow shows 1.0 pu is feasible but not that the dynamic loop will reach it; Q-aux actuators are untested.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator approves or amends the E7 scope; then E7.0 actuator tests for Qaux0 / exciter vref0.
