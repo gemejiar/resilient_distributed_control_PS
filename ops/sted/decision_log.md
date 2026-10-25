@@ -195,3 +195,36 @@ Blockers or limitations: Human figure approval pending. Strict Hurwitz stability
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator reviews E4.2 figures. E5 remains unauthorized.
+
+## DEC-016
+Date: 2026-10-25
+Gate: E4.2--C2 human review
+Decision: Approve E4.2--C2, freeze the case file `ieee39_C2_6SG_4GFM.xlsx` as the scientific C2 base with ANDES 2.0.0 REGF1 default parameters, and make E5 the next eligible stage. The investigator accepted the post-event voltage oscillation at GFM buses as a documented diagnostic result; no REGF1 tuning is applied.
+Justification: Investigator reviewed the E4.2 figures and the oscillation analysis and explicitly accepted the result. The oscillation is damped (about 30x decay within 2 s), the EIG physical subspace shows no new poorly damped mode (electromechanical modes 0.7--1.5 Hz with damping ratio 0.13--0.17, same as C1a), and voltages remain within 0.986--1.085 pu.
+Evidence reviewed: DEC-015, E4.2 summary, raw data, figures, and modal comparison C1a vs C2.
+Blockers or limitations: The roughly 18x larger post-event voltage ripple at GFM buses versus C1a (std 0.0037 vs 0.0002 pu) is unexplained; the REGF1 inner-loop/low-impedance hypothesis is untested. The plan's C2 capacity (P^2+Q^2<=Smax^2) and dispatch audits are still pending and must precede or accompany E5. No nonlinear stability, safety, or strict Hurwitz claim.
+Responsible: Investigator
+Status: VERIFIED
+Next action: Prepare E5 (separate P-f and Q-V primary-control tests on C2, no secondary); stop for human review before E6.
+
+## DEC-017
+Date: 2026-10-25
+Gate: E5--C2 event-amplitude screening
+Decision: The plan S1 amplitudes (+100 MW at bus 4, +50 MVAr at bus 21, constant-power loads) are not admissible on frozen C2; E5 uses the predeclared alternative of 1 % of total P / Q load (+58.564 MW at bus 4, +17.345 MVAr at bus 21), the amplitudes already used in E3--E4.2. The P-balance check tolerance (10 % of the step) was fixed before running the alternative.
+Justification: With the S1 amplitudes, TDS did not converge in either run at t = 5.13 s (bus-32 voltage fell to 0.19 pu); the steps are 22 % of the bus-4 load and 43 % of the bus-21 reactive load. The failed run is preserved as `IEEE39_E5_S1screen_C2_100MW_50MVAr_FAIL_*` and as matrix stage `E5_S1_screening`; its figures were discarded as non-physical. The screening concerns the plant, not a controller, so it does not favor any baseline.
+Evidence reviewed: Paper_manuscript/artifacts/IEEE39_E5_S1screen_C2_100MW_50MVAr_FAIL_summary.json.
+Blockers or limitations: No larger admissible amplitude was searched; S1 as written in plan_maestro.md Section 6 remains unreached. Later stages that need larger disturbances must define an admissible event (bus, load model, amplitude) before comparing controllers.
+Responsible: Integrator
+Status: VERIFIED
+Next action: See DEC-018.
+
+## DEC-018
+Date: 2026-10-25
+Gate: E5--C2 automatic gate
+Decision: Assign `PASS_AUTO_WAIT_HUMAN` to E5--C2 (native primary control only) and stop before E6.
+Justification: Both runs converged; step-size nadir difference <= 1.2e-5 Hz; P+ lowers frequency with every SG and GFM increasing P (total generation change 0.599 pu vs 0.586 pu step); Q+ lowers the local voltage and every GFM raises Q; no GFM P/Q limit or governor VMAX was reached. SG primary droop matches nominal (effective/nominal about 1 for SG30, 33, 35, 38, 39; SG31 shows 1.05). Q-V: GFM delta-Q equals delta-V_terminal / Qdrp (0.045) within about 5 %, i.e. Qdrp acts on system-base pu. P-f finding: all four GFM deliver the same delta-P (0.0072 pu) regardless of Sn, giving an effective droop of 0.0578 pu (system base) versus 0.0031--0.0039 pu if wdrp = 0.033 were scaled to Sn; GFM share of the 58.564 MW step is 4.8 %. Steady-state delta-f = -0.0248 Hz, nadir 59.969 Hz (mean bus frequency), settling 6.1 s, SG-COI max |RoCoF| 0.019 Hz/s.
+Evidence reviewed: Paper_manuscript/src/run_e5_ieee39.py, Paper_manuscript/artifacts/IEEE39_E5_C2_summary.json, IEEE39_E5_C2_timeseries.npz, Paper_manuscript/figures_main/IEEE39_E5_C2_frequency.png, _voltage.png, _primary_response.png.
+Blockers or limitations: Human figure approval pending. The GFM P-f contribution (4.8 % of the step, not proportional to Sn) is a property of the ANDES 2.0.0 REGF1 defaults, unexplained beyond the above scaling; it is not tuned. Measured delta-P is about 0.57 of wdrp-based expectation from mean bus frequency (cause not isolated). The first-sample frequency spike at the event instant is a numerical step artifact. REGF1 has no energy/SoC model. Diagnostic only; no stability or safety claim.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator reviews E5 figures. E6 remains unauthorized.
