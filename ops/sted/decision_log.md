@@ -297,3 +297,25 @@ Blockers or limitations: Unit-bus voltage and Q-sharing objectives conflict in g
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator approves or amends the E7 scope; then E7.0 actuator tests for Qaux0 / exciter vref0.
+
+## DEC-025
+Date: 2026-10-25
+Gate: E7.0 actuator test and E7 scope approval
+Decision: Investigator approved the DEC-024 scope and accepts a bounded unit-bus voltage residual with tolerance 0.02 pu. Refinement by the Integrator: capability acceptance is gated on the final steady state; transient P excess caused by the unchanged primary control (SG31: 0.074 pu in E5) is reported and E7 must not exceed the E5 value, because the secondary cannot remove a primary-only transient.
+Justification: Q actuators tested on C2 with smooth ramps (script Paper_manuscript/src/diagnostics/e7_0_q_actuator_test.py), all converged and acted symmetrically with P and f unchanged: REGF1.Qaux0 tracking (KC 0.05) of the PIqlim reference moved GFM32 Q by +0.088 / -0.088 pu for a +/-0.2 reference ramp (Q reference acts through the Q-V droop); REGF1.vref (+0.01 pu) moved GFM32 Q by +0.113 pu and V by +0.0047 pu; IEEEX1.vref0 at SG31 (+/-0.01 pu) moved Q by +/-0.17 pu and V by +/-0.006 pu. E7 therefore realizes the Q/V secondary as a voltage-setpoint offset per unit (REGF1.vref for GFM, IEEEX1.vref0 for SG), uniform across the ten units; this is a deviation from the manuscript's Q_set input and must be reported as such.
+Evidence reviewed: qact test output (scratchpad) and the diagnostics script above.
+Blockers or limitations: Actuator test on one GFM and one SG only; sensitivities dQ/dvref differ by unit and network; no E7 run yet.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Implement and run E7 with a-priori gains; E7 figures need human review.
+
+## DEC-026
+Date: 2026-10-25
+Gate: E7--C2 automatic gate
+Decision: E7 is BLOCKED. Its voltage target (1.0 pu at the ten unit buses) is statically feasible but dynamically unstable on the frozen C2 with ANDES default REGF1 parameters. No E7 figures are offered for review and the stage is not approved. C2 and the ANDES-defaults policy (DEC-016) are unchanged.
+Justification: (1) Two a-priori runs failed (summaries kept: IEEE39_E7_C2_attempt1_kV0.5_FAIL_summary.json, IEEE39_E7_C2_attempt2_kV0.1_FAIL_summary.json). In S0 (no disturbance, secondary targets only) and in P+/Q+, the TDS diverged between 14 s and 18 s once the unit-bus voltage setpoints had moved about 60 % toward 1.0 pu, with growing oscillation; the 5x slower gains of attempt 2 delayed but did not avoid it, so the cause is not gain speed. (2) Linearization at the shifted operating point (script Paper_manuscript/src/diagnostics/e7_voltage_target_stability.py, constant-power loads): the least-damped oscillatory mode of C2 (about 2.3 Hz, REGF1 voltage/droop loops, DEC-019) has zeta 0.123 at the case setpoints, 0.041 at 25 % of the way to 1.0 pu, becomes unstable at about 40 % (zeta -0.067 at 50 %) and reaches +5.05 +/- j14.19 at 1.0 pu. (3) The 0.02 pu voltage tolerance needs at least about 67 % of the way for the highest-voltage buses (35 and 36 at 1.060 pu), so no stable partial target satisfies the investigator's acceptance. (4) With the same linearization at 1.0 pu, raising REGF1 KPv by 1.25 (or Qdrp by 1.5) restores zeta >= 0.12 (KPv x2: 0.14). This is a diagnostic only; no case was modified. (5) A second finding: simultaneous +1 % P and +1 % Q steps do not converge on C2 even without any secondary (t about 5.17 s), so P and Q channels are tested separately as in E5.
+Evidence reviewed: the two FAIL summaries; the EIG scans above; DEC-019, DEC-023, DEC-025.
+Blockers or limitations: The EIG scan changes only the static-generator voltage setpoints; the dynamic runs support it (divergence near the predicted threshold). Stability at intermediate offsets was not verified by TDS. The instability concerns this model with default REGF1 parameters, not the control law.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator decision required: (A) accept a documented REGF1 retune (for example KPv x1.25 or x1.5) as a new case C2-t, repeating the base C2 checks and E5/E6 on it before E7; (B) change the voltage target to a stable band (stated tolerance would be relaxed to about 0.04 pu); (C) keep C2 and run E7 with voltage regulation limited to what is stable, accepting no 1.0 pu claim. E7 stays unauthorized.
