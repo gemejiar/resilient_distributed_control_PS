@@ -32,12 +32,15 @@ from run_e0_ieee39 import ARTIFACTS_DIR, PROJECT_ROOT, sha256
 from variant import CASE_FILE
 
 CASE = PROJECT_ROOT / "Paper_manuscript" / "cases" / CASE_FILE
-OUT_JSON = ARTIFACTS_DIR / "IEEE39_B3_C2t_equilibrium_selection.json"
-OUT_CSV = ARTIFACTS_DIR / "IEEE39_B3_C2t_equilibrium_selection.csv"
+# Weight sensitivity (prepared, not run): B3_W_P, B3_W_Q, B3_W_V, B3_DV override the frozen B3-A values and B3_TAG
+# names the output files; the defaults reproduce B3-A exactly.
+TAG = os.environ.get("B3_TAG", "")
+OUT_JSON = ARTIFACTS_DIR / f"IEEE39_B3_C2t_equilibrium_selection{TAG}.json"
+OUT_CSV = ARTIFACTS_DIR / f"IEEE39_B3_C2t_equilibrium_selection{TAG}.csv"
 BASE_MVA = 100.0
 # Frozen selection parameters (DEC-037): unit weights 1 on dimensionless terms.
-W_P, W_Q, W_V = 1.0, 1.0, 1.0
-DV_SCALE = 0.05           # pu: half-width of the bus-voltage band; 0.02 acted as an equality in a first trial (DEC-037)
+W_P, W_Q, W_V = (float(os.environ.get(k, 1.0)) for k in ("B3_W_P", "B3_W_Q", "B3_W_V"))
+DV_SCALE = float(os.environ.get("B3_DV", 0.05))           # pu: half-width of the bus-voltage band; 0.02 acted as an equality in a first trial (DEC-037)
 V_REF = 1.0               # reference, not an equality
 V_MIN_BUS, V_MAX_BUS = 0.95, 1.05
 EPS = 0.01                # fraction of each capability range kept as interior margin

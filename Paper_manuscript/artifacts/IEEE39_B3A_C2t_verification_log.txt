@@ -1,0 +1,12 @@
+S0: v_nom(xi*)=0.0e+00 halfway=0.000 vRDC* P/Q=0.0000/0.0133 jump=[0.0, 0.0] W_ok=True init_g=4.2e-09
+P+ frozen[E8_channels_only]: ok=True dP=3.03e-05 dQ=1.85e-05 dV=9.39e-07 df=1.59e-06 drift5s=6.3e-07
+Time step reduced to zero. Convergence is not likely.
+Simulation terminated at t=5.0628 s.
+P+ frozen[E8_channels_plus_GFM_vref]: ok=False dP=5.69e+00 dQ=1.18e+01 dV=9.14e-01 df=-2.12e-01 drift5s=0.0e+00
+P+: v_nom(xi*)=0.0e+00 halfway=0.115 vRDC* P/Q=0.2566/0.0037 jump=[0.2565575586672249, 0.015419785097389197] W_ok=True init_g=5.9e-10
+Q+ frozen[E8_channels_only]: ok=True dP=3.03e-05 dQ=1.84e-05 dV=9.28e-07 df=1.60e-06 drift5s=5.9e-07
+Time step reduced to zero. Convergence is not likely.
+Simulation terminated at t=5.0654 s.
+Q+ frozen[E8_channels_plus_GFM_vref]: ok=False dP=5.99e+00 dQ=1.15e+01 dV=9.21e-01 df=-2.13e-01 drift5s=0.0e+00
+Q+: v_nom(xi*)=0.0e+00 halfway=0.083 vRDC* P/Q=0.1815/0.0037 jump=[0.18149035550583503, 0.01541516996548092] W_ok=True init_g=6.2e-10
+done
