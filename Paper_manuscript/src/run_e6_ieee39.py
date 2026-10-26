@@ -31,18 +31,19 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 import run_e5_ieee39 as e5  # noqa: E402
+from variant import CASE_LABEL, SUFFIX, VARIANT  # noqa: E402
 from run_e0_ieee39 import (  # noqa: E402
     ARTIFACTS_DIR, CRITICAL_BUSES, FIGURES_DIR, MATRIX_FILE,
     NOMINAL_FREQUENCY_HZ, PROJECT_ROOT, extract_time_series, git_commit, sha256,
 )
 
 CASE = e5.CASE
-PREFIX = "IEEE39_E6_C2"
+PREFIX = f"IEEE39_E6_{VARIANT}"
 RAW_FILE = ARTIFACTS_DIR / f"{PREFIX}_timeseries.npz"
 SUMMARY_FILE = ARTIFACTS_DIR / f"{PREFIX}_summary.json"
 GRAPH_FILE = ARTIFACTS_DIR / "IEEE39_E6_C2_communication_graph.json"
-E5_RAW = ARTIFACTS_DIR / "IEEE39_E5_C2_timeseries.npz"
-E5_SUMMARY = ARTIFACTS_DIR / "IEEE39_E5_C2_summary.json"
+E5_RAW = ARTIFACTS_DIR / f"IEEE39_E5_{VARIANT}_timeseries.npz"
+E5_SUMMARY = ARTIFACTS_DIR / f"IEEE39_E5_{VARIANT}_summary.json"
 FREQUENCY_FIGURE = FIGURES_DIR / f"{PREFIX}_frequency.png"
 VOLTAGE_FIGURE = FIGURES_DIR / f"{PREFIX}_voltage.png"
 SECONDARY_FIGURE = FIGURES_DIR / f"{PREFIX}_secondary.png"
@@ -197,7 +198,7 @@ def plot_frequency(run: dict[str, Any], e5_raw: Any) -> None:
         else:
             axis.set_title("+58.564 MW at bus 4, consensus secondary")
     axes[0].set_ylabel("Frequency [Hz]"); axes[0].legend(ncol=3, fontsize=6)
-    fig.suptitle("E6--C2: filtered bus frequency, primary + conventional consensus secondary")
+    fig.suptitle(f"E6--{VARIANT}: filtered bus frequency, primary + conventional consensus secondary")
     fig.tight_layout(); fig.savefig(FREQUENCY_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
@@ -211,7 +212,7 @@ def plot_voltage(run: dict[str, Any], e5_raw: Any) -> None:
     axis.axhline(e5_raw["P+_bus_voltage_pu"].min(), color="k", ls="--", lw=.9, label="E5 minimum")
     axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
     axis.set_xlabel("Time [s]"); axis.set_ylabel("Voltage |V| [pu]"); axis.grid(alpha=.25); axis.legend(ncol=4, fontsize=6)
-    axis.set_title("E6--C2: bus-voltage response (no Q/V secondary)")
+    axis.set_title(f"E6--{VARIANT}: bus-voltage response (no Q/V secondary)")
     fig.tight_layout(); fig.savefig(VOLTAGE_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
@@ -225,19 +226,19 @@ def plot_secondary(run: dict[str, Any]) -> None:
     axes[0].legend(ncol=2, fontsize=6)
     for axis in axes:
         axis.set_xlabel("Time [s]"); axis.grid(alpha=.25); axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
-    fig.suptitle("E6--C2: secondary commands and rating-proportional sharing")
+    fig.suptitle(f"E6--{VARIANT}: secondary commands and rating-proportional sharing")
     fig.tight_layout(); fig.savefig(SECONDARY_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
 def update_matrix(summary: dict[str, Any]) -> None:
     with MATRIX_FILE.open("r", newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream); fields = list(reader.fieldnames or [])
-        rows = [row for row in reader if row.get("stage") != "E6"]
+        rows = [row for row in reader if row.get("stage") != f"E6{SUFFIX}"]
     m = summary["metrics"]["base"]
     row = {key: "" for key in fields}
     row.update({
-        "run_id": summary["run_id"], "stage": "E6", "case": "C2_6SG_4GFM",
-        "scenario": "P+1pct_primary_plus_consensus_secondary", "baseline": "E5_C2",
+        "run_id": summary["run_id"], "stage": f"E6{SUFFIX}", "case": CASE_LABEL,
+        "scenario": "P+1pct_primary_plus_consensus_secondary", "baseline": f"E5{SUFFIX}_{VARIANT}",
         "source_sha256": summary["case_sha256"], "variant_sha256": summary["case_sha256"],
         "andes_version": summary["andes_version"], "git_commit": summary["git_commit"],
         "seed": "not_applicable_deterministic", "simulation_t0": 0.0, "simulation_tf": FINAL_TIME_S,

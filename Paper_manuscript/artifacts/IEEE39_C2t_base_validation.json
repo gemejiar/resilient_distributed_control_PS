@@ -1,0 +1,135 @@
+{
+  "case_sha256": {
+    "C2": "881EAA55902D6C45A576DFD02C5A3FCE043C2E6077702273E86F29E52BA5C875",
+    "C2t": "C8BFA9DACDE751E58499B32DC52C3CD93124F075D576BAB5C362B2AAC066589F"
+  },
+  "pflow_max_abs_voltage_difference_pu": 0.0,
+  "pflow_max_abs_angle_difference_rad": 0.0,
+  "flat_run_C2": {
+    "converged": true,
+    "t_end_s": 20.0,
+    "max_abs_frequency_drift_hz": 0.0,
+    "max_abs_voltage_drift_pu": 1.2690071216070464e-11
+  },
+  "flat_run_C2t": {
+    "converged": true,
+    "t_end_s": 20.0,
+    "max_abs_frequency_drift_hz": 0.0,
+    "max_abs_voltage_drift_pu": 1.2582157538076899e-11
+  },
+  "eigen_scan_toward_1p0pu": {
+    "C2": {
+      "0.00": {
+        "physical_max_real": 1.5518744245733573e-07,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -1.1259976637925895,
+          "imag": 9.079870907421524,
+          "zeta": 0.12306762550159832
+        }
+      },
+      "0.25": {
+        "physical_max_real": 2.2581416866951365e-07,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -0.5873146075041005,
+          "imag": 14.468879791062083,
+          "zeta": 0.04055817458027779
+        }
+      },
+      "0.50": {
+        "physical_max_real": 0.9782190746684447,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [
+          "0.978+14.601j",
+          "0.978-14.601j"
+        ],
+        "least_damped_oscillatory": {
+          "real": 0.9782190746684447,
+          "imag": 14.600588989788957,
+          "zeta": -0.06684873590217492
+        }
+      },
+      "0.75": {
+        "physical_max_real": 2.8665875118251587,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [
+          "2.867+14.567j",
+          "2.867-14.567j"
+        ],
+        "least_damped_oscillatory": {
+          "real": 2.8665875118251587,
+          "imag": 14.566623187515942,
+          "zeta": -0.1930881542259599
+        }
+      },
+      "1.00": {
+        "physical_max_real": 5.047443472986602,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [
+          "5.047+14.189j",
+          "5.047-14.189j"
+        ],
+        "least_damped_oscillatory": {
+          "real": 5.047443472986602,
+          "imag": 14.18884716024945,
+          "zeta": -0.3351582178090477
+        }
+      }
+    },
+    "C2t": {
+      "0.00": {
+        "physical_max_real": 1.640450030027412e-07,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -1.2731063160193692,
+          "imag": 8.923711688070485,
+          "zeta": 0.14123548355280852
+        }
+      },
+      "0.25": {
+        "physical_max_real": 2.5156162052746828e-14,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -1.2701637404684947,
+          "imag": 8.854349032044091,
+          "zeta": 0.14199725270829264
+        }
+      },
+      "0.50": {
+        "physical_max_real": 9.27455921816245e-09,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -1.2699442938602314,
+          "imag": 8.789904995530504,
+          "zeta": 0.14299289747865948
+        }
+      },
+      "0.75": {
+        "physical_max_real": 5.699323982584252e-13,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -1.2141711241562083,
+          "imag": 8.378585358694302,
+          "zeta": 0.14341558202363772
+        }
+      },
+      "1.00": {
+        "physical_max_real": 1.212114543507258e-13,
+        "excluded_degenerate_count": 6,
+        "unstable_physical_modes": [],
+        "least_damped_oscillatory": {
+          "real": -1.1772127131505448,
+          "imag": 8.305467569700307,
+          "zeta": 0.14033680801132928
+        }
+      }
+    }
+  }
+}

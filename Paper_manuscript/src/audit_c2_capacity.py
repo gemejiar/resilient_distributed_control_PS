@@ -22,8 +22,10 @@ import numpy as np
 
 from run_e0_ieee39 import ARTIFACTS_DIR, PROJECT_ROOT, sha256
 
-CASE = PROJECT_ROOT / "Paper_manuscript" / "cases" / "ieee39_C2_6SG_4GFM.xlsx"
-OUT = ARTIFACTS_DIR / "IEEE39_C2_capacity_audit.json"
+from variant import CASE_FILE, VARIANT  # noqa: E402
+
+CASE = PROJECT_ROOT / "Paper_manuscript" / "cases" / CASE_FILE
+OUT = ARTIFACTS_DIR / f"IEEE39_{VARIANT}_capacity_audit.json"
 BASE_MVA = 100.0
 EVENT_P_PU, EVENT_Q_PU = 0.58564, 0.17345
 TOL = 1e-6
@@ -110,7 +112,7 @@ def main() -> int:
         s.PFlow.run()
         voltages[tag] = {"all_bus_min_pu": float(np.min(s.Bus.v.v)), "all_bus_max_pu": float(np.max(s.Bus.v.v)),
                          "unit_bus_voltage_pu": {str(b): float(s.Bus.v.v[list(s.Bus.idx.v).index(b)]) for b in sorted(lim)}}
-    e5, e6 = np.load(ARTIFACTS_DIR / "IEEE39_E5_C2_timeseries.npz"), np.load(ARTIFACTS_DIR / "IEEE39_E6_C2_timeseries.npz")
+    e5, e6 = np.load(ARTIFACTS_DIR / f"IEEE39_E5_{VARIANT}_timeseries.npz"), np.load(ARTIFACTS_DIR / f"IEEE39_E6_{VARIANT}_timeseries.npz")
     sg_sn = [sn_mva[int(b)] for b in e6["sg_bus_ids"]]
     dynamic = {"E5_P+": dynamic_envelope(e5, "P+_", lim, sg_sn), "E5_Q+": dynamic_envelope(e5, "Q+_", lim, sg_sn),
                "E6_P+": dynamic_envelope(e6, "", lim, sg_sn)}

@@ -1,0 +1,408 @@
+{
+  "run_id": "IEEE39_E6_C2t_20261026T001739Z",
+  "created_utc": "2026-10-26T00:17:39.762881+00:00",
+  "status_auto": "PASS_AUTO_WAIT_HUMAN",
+  "status_human": "PENDING",
+  "case": "Paper_manuscript\\cases\\ieee39_C2t_6SG_4GFM_KPv1p5.xlsx",
+  "case_sha256": "C8BFA9DACDE751E58499B32DC52C3CD93124F075D576BAB5C362B2AAC066589F",
+  "runner_sha256": "FBFF7D207FDF330E410ADBFB770D4F76CAF0A56DE5D224E83534693A2E1F571D",
+  "graph_sha256": "D5F565FDE56281FF51F715C0E444AAA204547E90E264BF865DF201EDC6BD2276",
+  "git_commit": "9f9f89593f6ab3ee010cf350a1c2db00efd02bd6",
+  "python_version": "3.12.10",
+  "andes_version": "2.0.0",
+  "controller": {
+    "law": "dPset_i/dt = k_I[(1-omega_i) - k_P sum_j a_ij (dPset_i/Sn_i - dPset_j/Sn_j)]",
+    "k_I": 20.0,
+    "k_P": 0.5,
+    "kc_gfm_paux": 0.05,
+    "secondary_start_s": 5.0,
+    "measurement": "local filtered BusFreq of each unit bus",
+    "sg_actuator": "TGOV1N.paux0 (system-base pu, verified empirically)",
+    "gfm_actuator": "REGF1.Paux0 = KC*(y0 + dPset - PIplim_y); REGF1.Pref is init-only"
+  },
+  "event": "+58.564 MW at bus 4, t = 5.0 s",
+  "solver": {
+    "method": "trapezoid",
+    "tf_s": 80.0,
+    "time_step_s": 0.00390625,
+    "refined_time_step_s": 0.001953125,
+    "tolerance": 0.0001,
+    "maximum_iterations": 15
+  },
+  "diagnostics": {
+    "pflow_ok": true,
+    "tds_ok": true,
+    "pflow_residual": 4.215672255725167e-09,
+    "final_residual": 3.201445686329407e-08,
+    "t_end_s": 80.0
+  },
+  "metrics": {
+    "base": {
+      "frequency_nadir_hz": 59.97315131758192,
+      "frequency_zenith_hz": 60.0,
+      "bus_frequency_min_hz": 59.967619993319346,
+      "bus_frequency_max_hz": 60.0,
+      "max_abs_rocof_coi_hz_per_s": 0.01938058229099757,
+      "steady_state_delta_f_hz": -5.199971297997763e-07,
+      "settling_time_2mHz_s": 16.84775625,
+      "voltage_min_pu": 0.9970378722276508,
+      "voltage_max_pu": 1.0729898322851823,
+      "delta_voltage_gfm_buses_pu": [
+        -0.00147645841902877,
+        -0.0005200682572847892,
+        -0.0005127715329058535,
+        -0.0011903439880442956
+      ],
+      "delta_voltage_event_bus_pu": -0.002368795279411362,
+      "sg_bus_ids": [
+        30,
+        31,
+        33,
+        35,
+        38,
+        39
+      ],
+      "delta_sg_p_pu": [
+        0.05764573676650997,
+        0.043930144546996175,
+        0.06502009182649804,
+        0.05524594685626205,
+        0.09322163226838409,
+        0.06646118351965935
+      ],
+      "delta_gfm_p_pu": [
+        0.04682793501823923,
+        0.05384901836250933,
+        0.05995431541700391,
+        0.05690166825628307
+      ],
+      "delta_sg_q_pu": [
+        0.048183953664605705,
+        0.0023322785296855386,
+        0.061281979292813205,
+        0.02100076871412071,
+        0.03865509997829286,
+        0.05355610529687663
+      ],
+      "delta_gfm_q_pu": [
+        0.0316241280523164,
+        0.011139143206498836,
+        0.010982802316856333,
+        0.02549572355918084
+      ],
+      "delta_gfm_terminal_v_pu": [
+        -0.00147645841902877,
+        -0.0005200682572847892,
+        -0.0005127715329058535,
+        -0.0011903439880442956
+      ],
+      "total_delta_generation_p_pu": 0.5990576728383452,
+      "total_delta_generation_q_pu": 0.3042519826112471,
+      "gfm_share_of_delta_p": 0.3631251996545856,
+      "effective_droop_sg_sysbase": [
+        1.5034275414155614e-07,
+        1.9728181910999134e-07,
+        1.3329139634441906e-07,
+        1.5687338751827225e-07,
+        9.296789402963003e-08,
+        1.3040121121876606e-07
+      ],
+      "nominal_droop_sg_sysbase": [
+        0.004807692307692308,
+        0.005980861244019139,
+        0.004256043581886279,
+        0.004605323754259924,
+        0.0029689448370049287,
+        0.004170141784820684
+      ],
+      "effective_droop_gfm_sysbase": [
+        1.850736921587653e-07,
+        1.6094293068915312e-07,
+        1.44553711767315e-07,
+        1.5230869490437667e-07
+      ],
+      "nominal_droop_gfm_sysbase_from_wdrp": [
+        0.003911342894393742,
+        0.0034013605442176874,
+        0.003054989816700611,
+        0.003218884120171674
+      ],
+      "nominal_wdrp_gfm_raw": [
+        0.033,
+        0.033,
+        0.033,
+        0.033
+      ],
+      "nominal_qdrp_gfm_raw": [
+        0.045,
+        0.045,
+        0.045,
+        0.045
+      ],
+      "gfm_sn_mva": [
+        843.7,
+        970.2,
+        1080.2,
+        1025.2
+      ],
+      "sg_sn_mva": [
+        1040.0,
+        836.0,
+        1174.8,
+        1085.7,
+        1684.1,
+        1199.0
+      ],
+      "gfm_max_p_pu": [
+        7.349080226495824,
+        3.2690625366541015,
+        5.1399544561129975,
+        5.856901797380377
+      ],
+      "gfm_max_abs_q_pu": [
+        1.5771758720664515,
+        0.3092169499411857,
+        1.500086305646104,
+        0.6689704248307526
+      ],
+      "gfm_p_limit_pu": [
+        8.437000000000001,
+        9.702,
+        10.802,
+        10.252
+      ],
+      "gfm_q_limit_pu": [
+        8.437000000000001,
+        9.702,
+        10.802,
+        10.252
+      ],
+      "sg_governor_pout_max_pu": [
+        4.456938699208004,
+        6.697412935101931,
+        6.633399711135806,
+        7.230862978433146,
+        7.807286573585062,
+        5.842525629955076
+      ],
+      "sg_governor_vmax_pu": [
+        10.504000000000001,
+        8.778,
+        12.3354,
+        11.399850000000002,
+        17.683049999999998,
+        12.589500000000001
+      ],
+      "gfm_limit_reached": false,
+      "governor_limit_reached": false
+    },
+    "secondary": {
+      "final_frequency_error_hz": -5.199971297997763e-07,
+      "final_bus_frequency_spread_hz": 2.9264626277836214e-09,
+      "frequency_nadir_hz": 59.97315131758192,
+      "settling_time_2mHz_s": 16.8516625,
+      "unit_bus_ids": [
+        30,
+        31,
+        33,
+        35,
+        38,
+        39,
+        32,
+        37,
+        34,
+        36
+      ],
+      "commanded_dp_pu": [
+        0.0577232126584012,
+        0.046400591878530094,
+        0.06520502428396527,
+        0.060259703368172504,
+        0.09347271346307437,
+        0.06654820017563108,
+        0.046827964657629596,
+        0.05384909762428755,
+        0.05995443637695023,
+        0.05690176809163703
+      ],
+      "delivered_dp_pu": [
+        0.05764573676650997,
+        0.043930144546996175,
+        0.06502009182649804,
+        0.05524594685626205,
+        0.09322163226838409,
+        0.06646118351965935,
+        0.04682793501823923,
+        0.05384901836250933,
+        0.05995431541700391,
+        0.05690166825628307
+      ],
+      "command_tracking_abs_error_pu": [
+        7.7475891891228e-05,
+        0.002470447331533919,
+        0.00018493245746722953,
+        0.005013756511910453,
+        0.000251081194690278,
+        8.701665597173058e-05,
+        2.963939036565444e-08,
+        7.926177822414893e-08,
+        1.2095994631616813e-07,
+        9.983535396301813e-08
+      ],
+      "delivered_dp_per_sn_pu": [
+        0.005542859304472112,
+        0.005254801979305763,
+        0.005534566890236469,
+        0.0050885094276745,
+        0.0055353976764078204,
+        0.005543051169279345,
+        0.005550306390688541,
+        0.005550300800093726,
+        0.005550297668672831,
+        0.0055502992836795806
+      ],
+      "sharing_spread_rel": 0.08442297358917816,
+      "total_delivered_dp_pu": 0.5990576728383452,
+      "event_pu": 0.58564,
+      "max_gfm_paux_abs_pu": 0.0030954275689230484
+    }
+  },
+  "e5_voltage_min_pu": 0.9971249533763541,
+  "refined": {
+    "diagnostics": {
+      "pflow_ok": true,
+      "tds_ok": true,
+      "pflow_residual": 4.215672255725167e-09,
+      "final_residual": 3.1879856976502197e-08,
+      "t_end_s": 80.0
+    },
+    "secondary": {
+      "final_frequency_error_hz": -5.685105222141829e-07,
+      "final_bus_frequency_spread_hz": 2.8981261834815086e-09,
+      "frequency_nadir_hz": 59.97315266344029,
+      "settling_time_2mHz_s": 16.8516625,
+      "unit_bus_ids": [
+        30,
+        31,
+        33,
+        35,
+        38,
+        39,
+        32,
+        37,
+        34,
+        36
+      ],
+      "commanded_dp_pu": [
+        0.057727044630340535,
+        0.0464036729016119,
+        0.06520935274513893,
+        0.060263703693655746,
+        0.09347891538762361,
+        0.06655261754884773,
+        0.04683107409724243,
+        0.05385267248489173,
+        0.0599584166041736,
+        0.05690554571688817
+      ],
+      "delivered_dp_pu": [
+        0.05764750833281429,
+        0.04393197084357592,
+        0.06502294126555874,
+        0.05524802609689505,
+        0.0932251079093156,
+        0.06643508899249895,
+        0.046831041641552495,
+        0.05385258583393249,
+        0.05995828425526639,
+        0.05690543660321623
+      ],
+      "command_tracking_abs_error_pu": [
+        7.95362975262448e-05,
+        0.002471702058035985,
+        0.00018641147958019244,
+        0.005015677596760693,
+        0.000253807478308013,
+        0.00011752855634877823,
+        3.2455689934207665e-08,
+        8.665095924120791e-08,
+        1.3234890720859038e-07,
+        1.0911367193805477e-07
+      ],
+      "delivered_dp_per_sn_pu": [
+        0.005543029647385989,
+        0.005255020435834441,
+        0.005534809436972995,
+        0.0050887009392000596,
+        0.005535604056131798,
+        0.005540874811718011,
+        0.005550674604901326,
+        0.005550668504837404,
+        0.005550665085656952,
+        0.005550666855561473
+      ],
+      "sharing_spread_rel": 0.08445477741061722,
+      "total_delivered_dp_pu": 0.5990579917746262,
+      "event_pu": 0.58564,
+      "max_gfm_paux_abs_pu": 0.00386855557488075
+    }
+  },
+  "numerical_step_comparison": {
+    "frequency_nadir_abs_difference_hz": 1.3458583651981826e-06,
+    "voltage_min_abs_difference_pu": 0.00012360427536561858,
+    "final_frequency_error_difference_hz": 4.851339241440655e-08
+  },
+  "sensitivity_k_I_diagnostic": {
+    "10.0": {
+      "diagnostics": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "pflow_residual": 4.215672255725167e-09,
+        "final_residual": 9.197549217469098e-10,
+        "t_end_s": 80.0
+      },
+      "final_frequency_error_hz": -0.00013227448471297976,
+      "frequency_nadir_hz": 59.97170023588098,
+      "settling_time_2mHz_s": 35.73056875,
+      "sharing_spread_rel": 0.08321649030731411,
+      "voltage_min_pu": 0.9970387881661337
+    },
+    "40.0": {
+      "diagnostics": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "pflow_residual": 4.215672255725167e-09,
+        "final_residual": 3.2974618591197213e-08,
+        "t_end_s": 80.0
+      },
+      "final_frequency_error_hz": -2.0857909532878693e-07,
+      "frequency_nadir_hz": 59.97569691702405,
+      "settling_time_2mHz_s": 10.28525625,
+      "sharing_spread_rel": 0.0844032332159362,
+      "voltage_min_pu": 0.9970361119692447
+    }
+  },
+  "checks": {
+    "graph_connected_and_loss_tolerant": true,
+    "all_runs_converged": true,
+    "structure_6sg_4gfm": true,
+    "frequency_restored_within_1mHz": true,
+    "all_units_increase_P": true,
+    "command_tracking_within_10pct_or_5e-3pu": true,
+    "rating_proportional_sharing_within_10pct": true,
+    "total_generation_matches_event_within_10pct": true,
+    "no_unreported_saturation": true,
+    "voltage_min_not_worse_than_E5_by_5mpu": true,
+    "numerical_convergence": true
+  },
+  "limitations": [
+    "Conventional baseline: g_P = 1, no leakage, no capability factors; not the RDC.",
+    "Gains k_I, k_P, KC were fixed a priori from time-scale estimates and not tuned; k_I sensitivity is diagnostic only.",
+    "The consensus acts on the secondary increment, not on absolute power, so the pre-event dispatch is not redistributed.",
+    "The loop is evaluated at the TDS fixed step by an external hook with zero communication delay and ideal measurement.",
+    "No Q/V secondary; voltage is left to primary control.",
+    "Sharing is by rating (Sn), not by headroom; headroom and capability weights enter in E7/E8.",
+    "The cyber graph hub (bus 30, degree 9) is a structural single point of concentration even though connectivity survives its loss.",
+    "No stability or safety certification; REGF1 has no energy/SoC model."
+  ]
+}

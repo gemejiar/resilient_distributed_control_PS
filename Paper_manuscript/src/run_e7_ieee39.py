@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import platform
 from datetime import datetime, timezone
 from pathlib import Path
@@ -35,19 +36,25 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 import run_e5_ieee39 as e5  # noqa: E402
+from variant import CASE_LABEL, SUFFIX, VARIANT  # noqa: E402
 from run_e0_ieee39 import (  # noqa: E402
     ARTIFACTS_DIR, FIGURES_DIR, MATRIX_FILE, NOMINAL_FREQUENCY_HZ, PROJECT_ROOT,
     extract_time_series, git_commit, sha256,
 )
 
 CASE = e5.CASE
-PREFIX = "IEEE39_E7_C2"
+# E7_MODE=limited (options B/C of DEC-026/027): voltage-setpoint offsets limited to a stable fraction of the
+# way to 1.0 pu on the unmodified C2; stage label E7L, plant variant C2.
+MODE = os.environ.get("E7_MODE", "full")
+LIMITED = MODE == "limited"
+LTAG = "L" if LIMITED else ""
+PREFIX = f"IEEE39_E7{LTAG}_{VARIANT}"
 RAW_FILE = ARTIFACTS_DIR / f"{PREFIX}_timeseries.npz"
 SUMMARY_FILE = ARTIFACTS_DIR / f"{PREFIX}_summary.json"
 GRAPH_FILE = ARTIFACTS_DIR / "IEEE39_E6_C2_communication_graph.json"
-E5_SUMMARY = ARTIFACTS_DIR / "IEEE39_E5_C2_summary.json"
-E6_RAW = ARTIFACTS_DIR / "IEEE39_E6_C2_timeseries.npz"
-AUDIT_FILE = ARTIFACTS_DIR / "IEEE39_C2_capacity_audit.json"
+E5_SUMMARY = ARTIFACTS_DIR / f"IEEE39_E5_{VARIANT}_summary.json"
+E6_RAW = ARTIFACTS_DIR / f"IEEE39_E6_{VARIANT}_timeseries.npz"
+AUDIT_FILE = ARTIFACTS_DIR / f"IEEE39_{VARIANT}_capacity_audit.json"
 FREQUENCY_FIGURE = FIGURES_DIR / f"{PREFIX}_frequency.png"
 VOLTAGE_FIGURE = FIGURES_DIR / f"{PREFIX}_voltage.png"
 SECONDARY_FIGURE = FIGURES_DIR / f"{PREFIX}_secondary.png"
@@ -67,8 +74,9 @@ K_IP, K_P, KC_GFM = 60.0, 0.1, 0.05
 K_V, K_Q = 0.1, 0.001
 RHO_MAX, RHO_MIN, RHO_BAND = 0.90, 0.05, 0.05
 S_CLAMP = 0.08
+ALPHA_MAX = 0.25  # limited mode: fraction of the way to V_TARGET (zeta 0.041 at 25 % on C2, DEC-026)
 V_TARGET = 1.0
-V_TOLERANCE = 0.02
+V_TOLERANCE = 0.05 if LIMITED else 0.02
 
 
 def static_limits(system: Any) -> dict[int, dict[str, float]]:
@@ -137,6 +145,8 @@ def configure(scenario: str, time_step_s: float) -> tuple[Any, dict[str, Any]]:
             ctx["y0"] = np.asarray(y[ctx["a_y"]], float).copy()
             ctx["vref_gfm0"] = np.asarray(sys_.REGF1.vref.v, float).copy()
             ctx["vref_sg0"] = np.asarray(sys_.IEEEX1.vref0.v, float).copy()
+            ctx["s_clamp"] = (ALPHA_MAX * np.abs(np.asarray(y[ctx["a_v"]], float) - V_TARGET)) if LIMITED \
+                else np.full(len(unit_bus), S_CLAMP)
             ctx["init"] = True
         if t <= ctx["last_t"]:
             return
@@ -159,7 +169,7 @@ def configure(scenario: str, time_step_s: float) -> tuple[Any, dict[str, Any]]:
             g_dn = np.clip((rho - RHO_MIN) / RHO_BAND, 0.0, 1.0)
             v_term = K_V * err_v * np.where(err_v > 0, g_up, g_dn)
             q_term = K_Q * (a * (rho[:, None] - rho[None, :])).sum(axis=1)
-            ctx["s"] = np.clip(ctx["s"] + dt * (v_term - q_term), -S_CLAMP, S_CLAMP)
+            ctx["s"] = np.clip(ctx["s"] + dt * (v_term - q_term), -ctx["s_clamp"], ctx["s_clamp"])
             ctx["dp"] = np.minimum(ctx["dp"], 0.95 * ctx["head"])
         n_sg = ctx["n_sg"]
         sys_.TGOV1N.paux0.v[ctx["tg_pos"]] = ctx["dp"][:n_sg]
@@ -270,7 +280,7 @@ def plot_frequency(runs: dict[str, dict[str, Any]]) -> None:
         axis.set_xlabel("Time [s]"); axis.set_title(name); axis.grid(alpha=.25)
         axis.set_ylim(59.97, 60.01); axis.ticklabel_format(axis="y", style="plain", useOffset=False)
     axes[0].set_ylabel("Frequency [Hz]"); axes[0].legend(fontsize=7)
-    fig.suptitle("E7--C2: bus frequency, capability-aware coordinated P/Q secondary")
+    fig.suptitle(f"E7--{VARIANT}: bus frequency, capability-aware coordinated P/Q secondary")
     fig.tight_layout(); fig.savefig(FREQUENCY_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
@@ -286,7 +296,7 @@ def plot_voltage(runs: dict[str, dict[str, Any]]) -> None:
         axis.axhline(V_TARGET, color="black", ls=":", lw=.8); axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
         axis.set_xlabel("Time [s]"); axis.set_title(name); axis.grid(alpha=.25)
     axes[0].set_ylabel("Unit-bus voltage |V| [pu]"); axes[0].legend(ncol=3, fontsize=6)
-    fig.suptitle("E7--C2: voltage at the ten unit buses (target 1.0 pu)")
+    fig.suptitle(f"E7--{VARIANT}: voltage at the ten unit buses (target 1.0 pu)")
     fig.tight_layout(); fig.savefig(VOLTAGE_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
@@ -304,19 +314,19 @@ def plot_secondary(run: dict[str, Any]) -> None:
         axis.set_ylabel(label); axis.grid(alpha=.25); axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
     axes[0, 0].legend(ncol=2, fontsize=6)
     for axis in axes[-1]: axis.set_xlabel("Time [s]")
-    fig.suptitle("E7--C2 (P+): secondary states, headroom-weighted P and utilization-based Q")
+    fig.suptitle(f"E7--{VARIANT} (P+): secondary states, headroom-weighted P and utilization-based Q")
     fig.tight_layout(); fig.savefig(SECONDARY_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
 def update_matrix(summary: dict[str, Any]) -> None:
     with MATRIX_FILE.open("r", newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream); fields = list(reader.fieldnames or [])
-        rows = [row for row in reader if row.get("stage") != "E7"]
+        rows = [row for row in reader if row.get("stage") != f"E7{LTAG}{SUFFIX}"]
     m = summary["metrics"]["P+"]
     row = {key: "" for key in fields}
     row.update({
-        "run_id": summary["run_id"], "stage": "E7", "case": "C2_6SG_4GFM",
-        "scenario": "S0_P+_Q+_1pct_separate_coordinated_PQ_secondary", "baseline": "E6_C2",
+        "run_id": summary["run_id"], "stage": f"E7{LTAG}{SUFFIX}", "case": CASE_LABEL,
+        "scenario": "S0_P+_Q+_1pct_separate_coordinated_PQ_secondary", "baseline": f"E6{SUFFIX}_{VARIANT}",
         "source_sha256": summary["case_sha256"], "variant_sha256": summary["case_sha256"],
         "andes_version": summary["andes_version"], "git_commit": summary["git_commit"],
         "seed": "not_applicable_deterministic", "simulation_t0": 0.0, "simulation_tf": FINAL_TIME_S,
@@ -329,7 +339,7 @@ def update_matrix(summary: dict[str, Any]) -> None:
         "frequency_figure": FREQUENCY_FIGURE.relative_to(PROJECT_ROOT).as_posix(),
         "voltage_figure": VOLTAGE_FIGURE.relative_to(PROJECT_ROOT).as_posix(),
         "raw_file": RAW_FILE.relative_to(PROJECT_ROOT).as_posix(),
-        "decision_note": "E8 remains blocked pending human approval of E7 figures.",
+        "decision_note": f"E8 remains blocked pending human approval of E7{LTAG} figures (mode {MODE}).",
     })
     with MATRIX_FILE.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields); writer.writeheader(); writer.writerows(rows + [row])
@@ -362,7 +372,20 @@ def main() -> int:
                                            "unit_bus_ids": e6["unit_bus_ids"], "sg_p_pu": e6["sg_p_pu"], "sg_q_pu": e6["sg_q_pu"],
                                            "gfm_p_pu": e6["gfm_p_pu"], "gfm_q_pu": e6["gfm_q_pu"]})[2], e6_t[-1] - 2.0, e6_t[-1] + 1e-9)
     e6_mean_err = float(np.abs(e6_v - V_TARGET).mean())
-    track_tol = np.maximum(0.10 * np.abs(m_p["commanded_dp_pu"]), 0.005)
+    # P-channel effect isolated from the voltage re-dispatch: P+ minus S0 (same targets, no event).
+    # The undifferentiated values stay in the summary; the terminal Pe of low-headroom SG also
+    # moves with the voltage setpoints (armature losses), which the P secondary does not command.
+    cmd_diff = np.asarray(m_p["commanded_dp_pu"]) - np.asarray(m["S0"]["commanded_dp_pu"])
+    del_diff = np.asarray(m_p["delivered_dp_pu"]) - np.asarray(m["S0"]["delivered_dp_pu"])
+    head = np.asarray(m_p["p_headroom_pu"])
+    util_cmd = cmd_diff / head
+    differential = {"commanded_dp_diff_pu": cmd_diff.tolist(), "delivered_dp_diff_pu": del_diff.tolist(),
+                    "commanded_dp_over_headroom_diff": util_cmd.tolist(),
+                    "commanded_sharing_spread_rel": float((util_cmd.max() - util_cmd.min()) / util_cmd.mean()),
+                    "tracking_abs_error_diff_pu": np.abs(del_diff - cmd_diff).tolist(),
+                    "total_delivered_dp_diff_pu": float(del_diff.sum())}
+    track_tol = np.maximum(0.10 * np.abs(cmd_diff), 0.005)
+    event_pu = SCENARIOS["P+"]["p_mw"] / BASE_MVA
     every = lambda fn: all(fn(x) for x in m.values())  # noqa: E731
     checks = {
         "graph_connected_and_loss_tolerant": bool(graph["connected"] and graph["all_single_link_losses_ok"] and graph["all_single_unit_losses_ok"]),
@@ -370,10 +393,11 @@ def main() -> int:
                                   and r["diag"]["t_end_s"] >= FINAL_TIME_S - 1e-6 for r in list(runs.values()) + [{"diag": r_diag}]),
         "structure_6sg_4gfm": len(runs["P+"]["system"].GENROU.idx.v) == 6 and len(runs["P+"]["system"].REGF1.idx.v) == 4,
         "frequency_within_1mHz_all": every(lambda x: abs(x["final_frequency_error_hz"]) <= 0.001),
-        "unit_voltage_within_0.02pu_all": every(lambda x: x["max_abs_voltage_error_final_pu"] <= V_TOLERANCE),
+        "unit_voltage_within_tolerance_all": every(lambda x: x["max_abs_voltage_error_final_pu"] <= V_TOLERANCE),
         "mean_voltage_error_below_E6_P+": m_p["mean_abs_voltage_error_final_pu"] < e6_mean_err,
-        "p_sharing_headroom_spread_within_10pct_P+": m_p["p_sharing_spread_rel"] <= 0.10,
-        "p_command_tracking_P+": bool(np.all(np.asarray(m_p["dp_tracking_abs_error_pu"]) <= track_tol)),
+        "p_commanded_sharing_spread_within_10pct_P+_minus_S0": differential["commanded_sharing_spread_rel"] <= 0.10,
+        "p_delivered_tracks_command_P+_minus_S0": bool(np.all(np.asarray(differential["tracking_abs_error_diff_pu"]) <= track_tol)),
+        "total_delivered_dp_matches_event_within_10pct_P+_minus_S0": abs(differential["total_delivered_dp_diff_pu"] - event_pu) <= 0.10 * event_pu,
         "final_p_below_pmax_all": every(lambda x: all(v >= 0.0 for v in x["final_p_margin_to_pmax_pu"])),
         "final_q_utilization_within_5_to_90pct_all": every(lambda x: x["max_final_q_utilization"] <= 0.90 + 1e-3 and x["min_final_q_utilization"] >= 0.05 - 1e-3),
         "final_s_below_0.9_sn_all": every(lambda x: x["max_final_s_over_sn"] <= 0.90),
@@ -388,7 +412,7 @@ def main() -> int:
     system = runs["P+"]["system"]
     summary = {
         "run_id": f"{PREFIX}_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}",
-        "created_utc": datetime.now(timezone.utc).isoformat(), "status_auto": status, "status_human": "PENDING",
+        "created_utc": datetime.now(timezone.utc).isoformat(), "mode": MODE, "voltage_tolerance_pu": V_TOLERANCE, "status_auto": status, "status_human": "PENDING",
         "case": str(CASE.relative_to(PROJECT_ROOT)), "case_sha256": sha256(CASE),
         "runner_sha256": sha256(Path(__file__).resolve()), "graph_sha256": sha256(GRAPH_FILE),
         "audit_sha256": sha256(AUDIT_FILE), "git_commit": git_commit(), "python_version": platform.python_version(),
@@ -404,7 +428,7 @@ def main() -> int:
                    "refined_time_step_s": REFINED_TIME_STEP_S, "tolerance": system.TDS.config.tol,
                    "maximum_iterations": system.TDS.config.max_iter},
         "diagnostics": {n: r["diag"] for n, r in runs.items()}, "metrics": {n: r["metrics"] for n, r in runs.items()},
-        "refined_P+": refined, "numerical_step_comparison": numerical, "e6_mean_abs_voltage_error_final_pu": e6_mean_err,
+        "refined_P+": refined, "differential_P+_minus_S0": differential, "numerical_step_comparison": numerical, "e6_mean_abs_voltage_error_final_pu": e6_mean_err,
         "checks": checks,
         "limitations": [
             "Gains were fixed a priori from time-scale estimates and not tuned; no sensitivity runs.",
@@ -425,6 +449,7 @@ def main() -> int:
             "mean_abs_voltage_error_final_pu", "mean_abs_voltage_error_pre_event_pu", "final_unit_voltage_pu",
             "delivered_dp_over_headroom", "p_sharing_spread_rel", "total_delivered_dp_pu", "final_q_utilization",
             "max_final_s_over_sn", "transient_p_excess_over_pmax_pu", "final_vref_offset_pu", "final_p_margin_to_pmax_pu")}))
+    print("differential", json.dumps({k: (np.round(v, 4).tolist() if isinstance(v, list) else round(v, 4)) for k, v in differential.items()}))
     print("E6 mean |V-1| final", e6_mean_err)
     return 0 if status != "FAIL" else 1
 

@@ -28,8 +28,10 @@ from run_e0_ieee39 import (  # noqa: E402
     NOMINAL_FREQUENCY_HZ, PROJECT_ROOT, extract_time_series, git_commit, sha256,
 )
 
-CASE = PROJECT_ROOT / "Paper_manuscript" / "cases" / "ieee39_C2_6SG_4GFM.xlsx"
-PREFIX = "IEEE39_E5_C2"
+from variant import CASE_FILE, CASE_LABEL, SUFFIX, VARIANT  # noqa: E402
+
+CASE = PROJECT_ROOT / "Paper_manuscript" / "cases" / CASE_FILE
+PREFIX = f"IEEE39_E5_{VARIANT}"
 RAW_FILE = ARTIFACTS_DIR / f"{PREFIX}_timeseries.npz"
 SUMMARY_FILE = ARTIFACTS_DIR / f"{PREFIX}_summary.json"
 FREQUENCY_FIGURE = FIGURES_DIR / f"{PREFIX}_frequency.png"
@@ -191,7 +193,7 @@ def plot_frequency(all_data: dict[str, dict[str, np.ndarray]]) -> None:
         axis.set_xlabel("Time [s]"); axis.grid(alpha=.25)
         axis.ticklabel_format(axis="y", style="plain", useOffset=False)
     axes[0].set_ylabel("Frequency [Hz]"); axes[0].legend(ncol=3, fontsize=6)
-    fig.suptitle("E5--C2: filtered bus frequency, primary control only")
+    fig.suptitle(f"E5--{VARIANT}: filtered bus frequency, primary control only")
     fig.tight_layout(); fig.savefig(FREQUENCY_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
@@ -205,7 +207,7 @@ def plot_voltage(all_data: dict[str, dict[str, np.ndarray]]) -> None:
         axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
         axis.set_title(name); axis.set_xlabel("Time [s]"); axis.grid(alpha=.25)
     axes[0].set_ylabel("Voltage |V| [pu]"); axes[0].legend(ncol=4, fontsize=6)
-    fig.suptitle("E5--C2: bus-voltage response, primary control only")
+    fig.suptitle(f"E5--{VARIANT}: bus-voltage response, primary control only")
     fig.tight_layout(); fig.savefig(VOLTAGE_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
@@ -226,18 +228,18 @@ def plot_primary(all_data: dict[str, dict[str, np.ndarray]]) -> None:
             axis.set_title(f"{name}: delivered {label} change")
     axes[0, 0].legend(ncol=2, fontsize=6)
     for axis in axes[-1]: axis.set_xlabel("Time [s]")
-    fig.suptitle("E5--C2: SG and GFM delivered power change")
+    fig.suptitle(f"E5--{VARIANT}: SG and GFM delivered power change")
     fig.tight_layout(); fig.savefig(POWER_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
 def update_matrix(summary: dict[str, Any]) -> None:
     with MATRIX_FILE.open("r", newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream); fields = list(reader.fieldnames or [])
-        rows = [row for row in reader if row.get("stage") != "E5"]
+        rows = [row for row in reader if row.get("stage") != f"E5{SUFFIX}"]
     row = {key: "" for key in fields}
     p, q = summary["metrics"]["P+"], summary["metrics"]["Q+"]
     row.update({
-        "run_id": summary["run_id"], "stage": "E5", "case": "C2_6SG_4GFM",
+        "run_id": summary["run_id"], "stage": f"E5{SUFFIX}", "case": CASE_LABEL,
         "scenario": "S1alt_1pct_primary_P-f_and_Q-V_separate", "baseline": "B0_primary_only",
         "source_sha256": summary["case_sha256"], "variant_sha256": summary["case_sha256"],
         "andes_version": summary["andes_version"], "git_commit": summary["git_commit"],
