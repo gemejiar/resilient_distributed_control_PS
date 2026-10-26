@@ -4,7 +4,7 @@
   "mode": "limited",
   "voltage_tolerance_pu": 0.05,
   "status_auto": "PASS_AUTO_WAIT_HUMAN",
-  "status_human": "PENDING",
+  "status_human": "APROBADA_REFERENCIA",
   "case": "Paper_manuscript\\cases\\ieee39_C2_6SG_4GFM.xlsx",
   "case_sha256": "881EAA55902D6C45A576DFD02C5A3FCE043C2E6077702273E86F29E52BA5C875",
   "runner_sha256": "20030063C1D005F52F0242E3F704103D5834E514DCD414C4106206846B131396",
@@ -999,5 +999,7 @@
     "Ideal measurements, zero communication delay; effective-graph connectivity under small g_i is not analysed here.",
     "The cyber graph hub at bus 30 (degree 9) is inherited from E6.",
     "No stability or safety certification."
-  ]
+  ],
+  "status_human_at_run": "PENDING",
+  "status_human_source": "Paper_manuscript/artifacts/experiment_matrix.csv (human review recorded after the run; run data unchanged)"
 }

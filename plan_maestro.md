@@ -1,11 +1,11 @@
 # Plan maestro experimental progresivo — ANDES / IEEE 39 / SG–GFM–GFL / CLF–HOCBF
 
-**ESTADO DEL PLAN: `E4.2_APROBADA`**  
+**ESTADO DEL PLAN: `E8_APROBADA` (planta C2t, DEC-036; E4.2 congeló C2)**  
 **Versión:** 2.0 · **Fecha:** 2026-10-25  
 **Repositorio:** `Resilient_distributed_control_PS` · **Manuscrito:** `Paper_manuscript/main.tex`  
 **Origen:** revisión de `plan_maestro_experimentacion_progresiva_ANDES.md` (v1) más el adjunto «IEEE 39 barras en ANDES» y la secuencia E0–E15 solicitada.  
 **Responsable de aprobación:** investigador; ningún experimento posterior se ejecuta hasta recibir aprobación explícita del anterior.  
-**Próxima acción autorizada:** E8 (RDC original sobre C2t) aprobada (DEC-036). Siguiente: variante centrada `v_nom` (B3) como etapa separada, pendiente de definir el equilibrio de referencia ξ*(d); E9 no autorizada; OPEN-SG31-PMAX (DEC-031) sigue abierta.
+**Próxima acción autorizada:** revisión humana de la tabla del equilibrio de referencia ξ*(d) de B3 (DEC-037, planta C2t); B3 dinámico y E9 no autorizados; OPEN-SG31-PMAX (DEC-031) sigue abierta.
 
 > **DECISIÓN DE ALCANCE APROBADA (2026-10-25):** el sistema IEEE de 39 barras es el único banco de pruebas de todo el proceso experimental. Los casos de 10 y 14 buses no forman parte del alcance de validación ni de reproducción. El trabajo de Kavvathas y Konstantopoulos (2025) se conserva como antecedente del controlador RDC y referencia metodológica, sin presentar el IEEE-39 como reproducción de sus casos. Se autoriza la inspección de solo lectura y la etapa E0--C0; ninguna etapa posterior queda autorizada hasta la revisión humana de las gráficas obligatorias de E0.
 

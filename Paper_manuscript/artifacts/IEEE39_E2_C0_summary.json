@@ -2,7 +2,7 @@
   "run_id": "IEEE39_E2_C0_20261025T173514Z",
   "created_utc": "2026-10-25T17:35:18.352730+00:00",
   "status_auto": "PASS_AUTO_WAIT_HUMAN",
-  "status_human": "PENDING",
+  "status_human": "APROBADA",
   "source_case": "Paper_manuscript\\cases\\ieee39_E0_C0_instrumented.xlsx",
   "source_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
   "variant_sha256": "ADFB33106FCB0AB534BF801DBF19414DD027637DA4E79DA6A3B8EA95843E87A6",
@@ -92,5 +92,7 @@
     "The run is a numerical reactive-load response test, not a nonlinear stability certificate.",
     "ANDES reports original-case GENROU warnings for xl <= xd2.",
     "Bus frequency uses the BusFreq filter; SG rotor frequency is stored separately."
-  ]
+  ],
+  "status_human_at_run": "PENDING",
+  "status_human_source": "Paper_manuscript/artifacts/experiment_matrix.csv (human review recorded after the run; run data unchanged)"
 }

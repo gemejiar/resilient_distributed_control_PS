@@ -2,7 +2,7 @@
   "run_id": "IEEE39_E0_C0_20261025T172224Z",
   "created_utc": "2026-10-25T17:22:24.305372+00:00",
   "status_auto": "PASS_AUTO_WAIT_HUMAN",
-  "status_human": "PENDING",
+  "status_human": "APROBADA",
   "source_case": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\venv\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
   "base_case": "Paper_manuscript\\cases\\ieee39_base_original.xlsx",
   "instrumented_case": "Paper_manuscript\\cases\\ieee39_E0_C0_instrumented.xlsx",
@@ -65,5 +65,7 @@
     "BusFreq uses Tf=Tw=0.02 s and fn=60 Hz at buses 1--39.",
     "The 60 Hz base is verified from the effective case Line, Shunt, GENROU, and BusFreq data.",
     "No claim of nonlinear certification follows from this E0 run."
-  ]
+  ],
+  "status_human_at_run": "PENDING",
+  "status_human_source": "Paper_manuscript/artifacts/experiment_matrix.csv (human review recorded after the run; run data unchanged)"
 }

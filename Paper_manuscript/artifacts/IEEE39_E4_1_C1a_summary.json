@@ -2,7 +2,7 @@
   "run_id": "IEEE39_E4_1_C1a_20261025T182327Z",
   "created_utc": "2026-10-25T18:23:27.971414+00:00",
   "status_auto": "PASS_AUTO_WAIT_HUMAN",
-  "status_human": "PENDING",
+  "status_human": "APROBADA",
   "source_case": "Paper_manuscript\\cases\\ieee39_C1_8SG_2GFM.xlsx",
   "variant_case": "Paper_manuscript\\cases\\ieee39_C1a_7SG_3GFM.xlsx",
   "source_sha256": "7778323191092E14CE7EA7F2AD4FF08F43F0D66127E3C54E6E64EC8835837E9B",
@@ -1272,5 +1272,7 @@
     "Raw EIG contains eight spurious +1 modes from degenerate IEEEST F1 blocks (A1=A2=0); the documented reduced physical subspace has no positive modes.",
     "EIG evidence is local; degenerate modes and conditioning warnings preclude a strict Hurwitz claim.",
     "The signed 1% load steps are diagnostic and do not establish nonlinear safety."
-  ]
+  ],
+  "status_human_at_run": "PENDING",
+  "status_human_source": "Paper_manuscript/artifacts/experiment_matrix.csv (human review recorded after the run; run data unchanged)"
 }

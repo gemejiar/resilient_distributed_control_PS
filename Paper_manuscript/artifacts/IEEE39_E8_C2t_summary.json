@@ -2,7 +2,7 @@
   "run_id": "IEEE39_E8_C2t_20261026T115313Z",
   "created_utc": "2026-10-26T11:53:13.640436+00:00",
   "status_auto": "PASS_AUTO_WAIT_HUMAN",
-  "status_human": "PENDING",
+  "status_human": "APROBADA",
   "case": "Paper_manuscript\\cases\\ieee39_C2t_6SG_4GFM_KPv1p5.xlsx",
   "case_sha256": "C8BFA9DACDE751E58499B32DC52C3CD93124F075D576BAB5C362B2AAC066589F",
   "runner_sha256": "04416FC024F377681869211B4AF60ECCA0FBCCCE1CF1C0A9B5A54936EAC0282E",
@@ -852,5 +852,7 @@
     "Q/V actuation by inner tracking loops (DEC-032) differs from the E7 voltage-setpoint-offset structure; the E7 versus E8 comparison mixes law and actuation.",
     "Ideal measurements, zero delay, forward-Euler integration of the controller at the TDS step; no stability, regional-stability or physical-invariance claim.",
     "Graph hub at bus 30 (degree 9) inherited from E6."
-  ]
+  ],
+  "status_human_at_run": "PENDING",
+  "status_human_source": "Paper_manuscript/artifacts/experiment_matrix.csv (human review recorded after the run; run data unchanged)"
 }

@@ -2,7 +2,7 @@
   "run_id": "IEEE39_E6_C2_20261025T225519Z",
   "created_utc": "2026-10-25T22:55:19.834556+00:00",
   "status_auto": "PASS_AUTO_WAIT_HUMAN",
-  "status_human": "PENDING",
+  "status_human": "APROBADA",
   "case": "Paper_manuscript\\cases\\ieee39_C2_6SG_4GFM.xlsx",
   "case_sha256": "881EAA55902D6C45A576DFD02C5A3FCE043C2E6077702273E86F29E52BA5C875",
   "runner_sha256": "40E13F9AE512A6818217664FE13E3856D285C5A38AFCAE3FD87829F9A4376EB2",
@@ -404,5 +404,7 @@
     "Sharing is by rating (Sn), not by headroom; headroom and capability weights enter in E7/E8.",
     "The cyber graph hub (bus 30, degree 9) is a structural single point of concentration even though connectivity survives its loss.",
     "No stability or safety certification; REGF1 has no energy/SoC model."
-  ]
+  ],
+  "status_human_at_run": "PENDING",
+  "status_human_source": "Paper_manuscript/artifacts/experiment_matrix.csv (human review recorded after the run; run data unchanged)"
 }
