@@ -255,16 +255,22 @@ def metrics(data: dict[str, np.ndarray]) -> dict[str, Any]:
 
 
 def plot_frequency(runs: dict[str, dict[str, Any]]) -> None:
-    fig, axes = plt.subplots(1, 3, figsize=(15, 4.5), sharey=True)
-    for axis, (name, run) in zip(axes, runs.items()):
+    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
+    for col, (name, run) in enumerate(runs.items()):
         d = run["data"]; t, f = d["time_s"], d["bus_frequency_hz"]
-        axis.fill_between(t, f.min(1), f.max(1), color="0.85", label="39-bus envelope")
-        axis.plot(t, f.mean(1), "tab:blue", lw=1.0, label="mean bus frequency")
-        axis.axhline(60, color="black", ls=":", lw=.8); axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
-        axis.set_xlabel("Time [s]"); axis.set_title(name); axis.grid(alpha=.25)
-        axis.set_ylim(59.97, 60.01); axis.ticklabel_format(axis="y", style="plain", useOffset=False)
-    axes[0].set_ylabel("Frequency [Hz]"); axes[0].legend(fontsize=7)
-    fig.suptitle("E8--C2t: bus frequency, original RDC")
+        for row, (xlim, scale, unit) in enumerate(((None, 1.0, "Hz"), ((EVENT_TIME_S - 2, EVENT_TIME_S + 40), 1e3, "mHz"))):
+            axis = axes[row, col]
+            dev = (f - 60.0) * scale if row else f
+            axis.fill_between(t, dev.min(1), dev.max(1), color="0.85", label="39-bus envelope")
+            axis.plot(t, dev.mean(1), "tab:blue", lw=1.0, label="mean bus frequency")
+            axis.axhline(0 if row else 60, color="black", ls=":", lw=.8); axis.axvline(EVENT_TIME_S, color="tab:red", ls=":", lw=.8)
+            axis.set_xlabel("Time [s]"); axis.grid(alpha=.25)
+            if row:
+                axis.set_xlim(*xlim); axis.set_title(f"{name}: zoom, deviation [mHz]")
+            else:
+                axis.set_title(name); axis.set_ylim(59.97, 60.01); axis.ticklabel_format(axis="y", style="plain", useOffset=False)
+    axes[0, 0].set_ylabel("Frequency [Hz]"); axes[1, 0].set_ylabel("f - 60 Hz [mHz]"); axes[0, 0].legend(fontsize=7)
+    fig.suptitle("E8--C2t: bus frequency, original RDC (top: full run; bottom: zoom with independent axes)")
     fig.tight_layout(); fig.savefig(FREQUENCY_FIGURE, dpi=300, bbox_inches="tight"); plt.close(fig)
 
 

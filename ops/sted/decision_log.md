@@ -424,3 +424,14 @@ Blockers or limitations: The Q_set states were still drifting at 200 s (for exam
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator reviews the E8 figures; E9 (centered/modified RDC as a separate variant) stays unauthorized until then.
+
+## DEC-036
+Date: 2026-10-26
+Gate: E8--C2t human review
+Decision: The investigator approved the E8--C2t figures ("ok, apruebo continua") as numerical evidence of the original RDC on C2t. E8 matrix status APROBADA; E8-001 stays PARTIALLY_VERIFIED. Approval is not a certification of safety or stability (DEC-030, condition 7).
+Justification: The investigator reported that the frequency disturbance was not visible in the figure. The disturbance is visible in the P+ panel (nadir 59.9715 Hz) but S0 and Q+ move by about 0.2 and 1 mHz, which the +-0.02 Hz axis hides. The frequency figure was regenerated from the saved series (no new simulation, no data changed) with a second row showing f-60 Hz in mHz over 3-45 s with independent axes. S0 shows a -0.2 mHz drift after t=5 s with no load event (activation transient of the RDC, within the 1 mHz gate).
+Evidence reviewed: IEEE39_E8_C2t_frequency.png (regenerated), run_e8_ieee39.py plot_frequency.
+Blockers or limitations: OPEN-SG31-PMAX still open. Next plan step is the separate centered variant v_nom (Eq. centered, B3) before E9; its reference equilibrium xi*(d) (Eq. eqselection) is not yet defined for the ANDES model and needs an investigator decision (centering about the RDC's own settled state would be nearly a null change).
+Responsible: Investigator (approval); Integrator
+Status: VERIFIED
+Next action: Define xi*(d) for the centered variant (B3); do not start E9 until B3 is reviewed.
