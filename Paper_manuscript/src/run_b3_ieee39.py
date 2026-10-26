@@ -57,12 +57,12 @@ TOL_F_HZ, TOL_V_PU, TOL_PQ_PU, TOL_REF_PU, TOL_VNOM_ACTIVATION = 1.0e-4, 1.0e-3,
 TOL_REPLICATION = {"f_hz": 1.0e-6, "v_pu": 1.0e-6, "pq_pu": 1.0e-6, "ref_pu": 1.0e-6}
 
 
-def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S):
+def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict[str, np.ndarray] | None = None):
     system, ctx = e8.configure(scenario, time_step_s)
     lim = ctx["lim"]
     n_sg = ctx["n_sg"]
     unit_bus = ctx["unit_bus"]
-    log = {k: [] for k in ("t", "pset", "qset", "gp", "gq", "paux", "qaux", "z", "vrdc_p", "vrdc_q", "vnom_p", "vnom_q", "active")}
+    log = {k: [] for k in ("t", "pset", "qset", "gp", "gq", "paux", "qaux", "z", "vrdc_p", "vrdc_q", "vnom_p", "vnom_q", "active", "y", "yq")}
     st: dict[str, Any] = {"init": False, "last_t": -1.0}
 
     def field(pset, qset, p, q, volt, omega):
@@ -100,6 +100,9 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S):
             # reference equilibrium for d = 0: xi_pre (omega = 1, P = Pn, Q = Qn, setpoints at nominal)
             op, oq, _, _ = field(st["pn"], st["qn"], st["pn"], st["qn"], volt0, 1.0)
             st["off_p"], st["off_q"] = (op, oq) if mode == "B3" else (np.zeros_like(op), np.zeros_like(oq))
+            st["off_pre_p"], st["off_pre_q"] = op, oq
+            if mode == "B3" and ref is not None:  # post-event reference xi*(d), selected in advance (B3-A v2), not re-optimized
+                st["off_p"], st["off_q"], _, _ = field(ref["pset_eff"], ref["qset_eff"], ref["p_star"], ref["q_star"], ref["v_star"], 1.0)
             st["init"] = True
         if t <= st["last_t"]:
             return
@@ -123,7 +126,8 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S):
         sys_.REGF1.Qaux0.v[:] = qaux
         for key, val in (("t", t), ("pset", st["pset"].copy()), ("qset", st["qset"].copy()), ("gp", gp.copy()), ("gq", gq.copy()),
                          ("paux", paux.copy()), ("qaux", qaux.copy()), ("z", z.copy()), ("vrdc_p", vp.copy()), ("vrdc_q", vq.copy()),
-                         ("vnom_p", vnom_p.copy()), ("vnom_q", vnom_q.copy()), ("active", float(active))):
+                         ("vnom_p", vnom_p.copy()), ("vnom_q", vnom_q.copy()), ("active", float(active)),
+                         ("y", np.asarray(y[st["a_y"]], float).copy()), ("yq", np.asarray(y[st["a_yq"]], float).copy())):
             log[key].append(val)
 
     system.TDS.callpert = cb
@@ -143,6 +147,8 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S):
     for key in ("pmax", "pmin", "qmax", "qmin", "smax"):
         data[f"unit_{key}"] = lim[key]
     data["offset_p"], data["offset_q"] = st["off_p"], st["off_q"]
+    data["offset_pre_p"], data["offset_pre_q"] = st["off_pre_p"], st["off_pre_q"]
+    data["unit_y0"], data["unit_y0q"] = st["y0"], st["y0q"]
     diag = {"pflow_ok": pflow_ok, "tds_ok": tds_ok, "final_residual": float(np.max(np.abs(system.dae.g))),
             "t_end_s": float(system.dae.ts.t[-1]), "k_ip": float(st["k_ip"])}
     return system, data, diag
