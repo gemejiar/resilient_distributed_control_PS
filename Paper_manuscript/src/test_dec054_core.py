@@ -150,7 +150,15 @@ class TestPredictor(unittest.TestCase):
         x = PRD.excursion(self.A, self.f, self.C)
         np.testing.assert_allclose(x["D0"], 0.0, atol=1e-14)                  # no double counting of the jump
         sol = solve_ivp(lambda t, y: self.A @ y + self.f, (0, COM.T_POST), np.zeros(6), t_eval=x["t"], rtol=1e-10, atol=1e-12)
-        np.testing.assert_allclose(x["D"], self.C @ sol.y, atol=1e-6)
+        np.testing.assert_allclose(x["D"], self.C @ sol.y, atol=5e-5)        # first segment is the implicit trapezoid at h=2^-8 s (ANDES integrator): O(h^2) vs exact ODE
+        # independent trapezoid reference for the first segment
+        h, n = COM.DT, 6
+        z = np.zeros(n)
+        Iden = np.eye(n)
+        step = np.linalg.solve(Iden - 0.5 * h * self.A, Iden + 0.5 * h * self.A)
+        for k in range(1, 257):
+            z = step @ z + np.linalg.solve(Iden - 0.5 * h * self.A, h * self.f)
+            np.testing.assert_allclose(x["D"][:, k], self.C @ z, atol=1e-10)
         dense = np.linspace(0, COM.T_POST, 39001)
         sol2 = solve_ivp(lambda t, y: self.A @ y + self.f, (0, COM.T_POST), np.zeros(6), t_eval=dense, rtol=1e-10, atol=1e-12)
         D_ref = self.C @ sol2.y

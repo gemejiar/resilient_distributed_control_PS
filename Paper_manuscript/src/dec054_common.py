@@ -47,7 +47,7 @@ PROPOSED = {
     "kappa": 1.5, "eps_floor_pu": 1e-3, "tau_cut_pu": 1e-4, "K_max": 15, "N_it": 200, "kkt_tol": 1e-3,
     "r_tr_p0_pu": 0.05, "r_tr_v0_pu": 0.01, "P_floor_pu": 0.05, "lambda_pat": 1.0, "v_scale_pu": 0.05,
     "alpha_diag": 0.10, "m1_rho_grid_note": "rho fixed on DESIGN/TUNE statics only",
-    "t_grid_segments": [[0.0, 1.0, 101], [1.0, 10.0, 91], [10.0, T_POST, 186]],
+    "t_grid_segments": [[0.0, 1.0, DT, "trap"], [1.0, 10.0, 0.05, "exact"], [10.0, T_POST, 0.5, "exact"]],   # (start, stop, step, method): first segment = the ANDES trapezoidal step 2^-8 s
     "init_tol": 1e-8, "status": "PROPOSED_NOT_SEALED",
 }
 

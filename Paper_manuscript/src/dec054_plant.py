@@ -125,7 +125,7 @@ class AndesPlant:
         self.z_ref = z_ref_from_system(system0)                      # the historical case values (never a contingency-dependent value)
         pv_idx = [UNITS.index(u) for u in PV_UNITS]
         self.z_lo = np.concatenate([np.maximum(self.limits["pmin"][pv_idx], 0.05), 0.95 * np.ones(N_V)])
-        self.z_hi = np.concatenate([self.limits["pmax"][pv_idx], 1.05 * np.ones(N_V)])
+        self.z_hi = np.concatenate([self.limits["pmax"][pv_idx], np.maximum(1.05, self.z_ref[N_PV:])])      # case v0 reaches 1.06 pu; the 0.95-1.05 band is enforced on bus voltages, not on set-points
         spec = variable_spec()
         assert self.z_ref.shape == (spec["n"],) and self.z_lo.shape == self.z_hi.shape == (spec["n"],)
         self.var_names = spec["names"]
@@ -181,7 +181,7 @@ class AndesPlant:
             return {"ok": False, "reason": "JUMP_NOT_CONVERGED", "residual": out["residual"]}
         return {"ok": True, "dP": out["P"] - st["pn"], "dQ": out["Q"] - st["qn"], "P_plus": out["P"], "Q_plus": out["Q"], "V_plus": out["Vbus"], "residual": out["residual"]}
 
-    def affine(self, z, sc):
+    def affine(self, z, sc, diag: bool = False):
         """(A+, f+, C) at the post-jump point with the RDC active (v2 sec 2.4): M of e9h_predictor.build, forcing = [plant xdot; RDC rates at the post-jump point]."""
         system, ctx, rep = self._make(z)
         st = self.K.rdc_state(system, ctx)
@@ -196,7 +196,8 @@ class AndesPlant:
         else:
             system.PQ.Qpf.v[k] += sc.amp
         self.L.linearize(system, ctx, cache=pred.cache)
-        self.K.inner_solve(system, ctx, st, u, ix, pred.cache, tol=1e-11, itmax=40)      # algebraic jump: x and u continuous
+        info = self.K.inner_solve(system, ctx, st, u, ix, pred.cache, tol=1e-11, itmax=40)      # algebraic jump: x and u continuous
+        P_post = np.asarray(system.dae.y, float)[st["a_p"]].copy()
         vn = self.EQ.rates(system, ctx, st, u)
         b = pred.build(system, st, vn[:10], vn[10:], 5.0, refresh_params=True)
         M = b["M"]
@@ -204,6 +205,15 @@ class AndesPlant:
         C = b["Cz"][:10]                                                                  # physical P rows
         if not (np.all(np.isfinite(M)) and np.all(np.isfinite(f)) and np.all(np.isfinite(C))):
             raise InitInvalid({"ok": False, "reasons": ["non-finite predictor matrices"]})
+        if not info.get("converged", False):
+            raise InitInvalid({"ok": False, "reasons": [f"post-jump algebraic solve did not converge (residual {info.get('residual_history', ['?'])[-1]})"]})
+        self.last_affine_diag = {"inner_converged": bool(info["converged"]), "inner_residual": float(info["residual_history"][-1]), "P_post_jump": P_post, "P_pre": st["pn"].copy(),
+                                 "M_shape": list(M.shape), "n_dyn": int(b["n_dyn"]), "f_norm": float(np.linalg.norm(f)), "u_pre": u.copy()}
+        if diag:
+            lin2 = self.L.linearize(system, ctx, cache=pred.cache)
+            self.last_affine_diag.update({"gy_min_sv_post_jump": float(lin2["gy_min_sv"]), "gy_cond_post_jump": float(lin2["gy_cond"]), "n_x": int(lin2["n_x"]), "n_y": int(lin2["n_y"]),
+                                          "n_dynamic": int(lin2["n_dynamic"]), "n_quasi_algebraic": int(lin2["n_quasi_algebraic"]), "n_dropped_IEEEST_states": int(lin2["n_dropped_IEEEST_states"]),
+                                          "d_idx_original": np.asarray(lin2["d_idx_original"]).tolist(), "z_idx_original": np.asarray(lin2["z_idx_original"]).tolist(), "ix_pss": {k: v for k, v in ix["pss"].items()}})
         return M, f, C
 
     def excursion(self, z, sc):
