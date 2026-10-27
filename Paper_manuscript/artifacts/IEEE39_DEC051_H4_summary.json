@@ -1,0 +1,823 @@
+{
+  "stage": "DEC-051 H4",
+  "git_commit": "c07c482a85ae7acf1dcbc42ce8891e223d595d74",
+  "doc": "DEC-051 block B (H4-R): local stability of the exact DAE-RDC relative equilibrium (no time stepping).\n\nReduction.  At the equilibrium of IEEE39_DEC051_equilibrium.json the algebraic block (quasi-algebraic states + algebraic variables) is regular (min singular value reported), so y = phi(x, u) locally\n(implicit function theorem) and the closed loop is the ODE  xi' = F(xi),  xi = (x_d, u) in R^N (N = 208 dynamic states, including the two genuine PSS states per SG, + 20 references), whose Jacobian is the\nmatrix M of e9h_predictor.build with the PSS-complete linearisation of dec051_core (ANDES analytic Jacobians, Schur complement of the algebraic block, actuator maps, finite-difference linearisation of\nthe original RDC law).  The only marginal direction is the common rotor-angle shift v_null; quotient coordinates e = Qm xi (Qm removes the component along v_null at the SG31 angle) give\nA_q = Qm M S of dimension N - 1, with S the embedding (SG31 angle coordinate = 0).\nH4-1: spectrum of A_q (Hurwitz, margin, damping, conditioning, robustness to Jacobian errors).   H4-2: Lyapunov's indirect method (hypotheses checked: exact equilibrium, regular algebraic block,\nsmoothness domain = no limiter / clamp / positive-part switch active, Jacobian accuracy).   H4-3 (certified invariant sublevel set) is attempted only through an empirical estimate; it is labelled\nREGION_NOT_CERTIFIED because no validated bound of the second derivatives of the ANDES vector field is available.",
+  "equilibrium_json_sha256": "FFEF0A9BB302C8BD4C7CB9BFD9FFC84D7BF188458B5EA226C555ADE25C87294A",
+  "dimensions": {
+    "N_total": 228,
+    "n_dynamic": 208,
+    "n_refs": 20,
+    "N_quotient": 227
+  },
+  "symmetry": {
+    "smallest_singular_values_of_M": [
+      0.0014476318565271422,
+      0.0005157978892634207,
+      8.44887786813966e-13
+    ],
+    "norm_M_vnull": 6.10198161775641e-06,
+    "norm_Mt_wnull": 1.7595537348373218e-12,
+    "n_nonzero_entries_vnull": 88,
+    "vnull_nonzero_values_unique": [
+      1.0
+    ],
+    "vnull_support_names": [
+      "delta GENROU 1",
+      "delta GENROU 2",
+      "delta GENROU 4",
+      "delta GENROU 6",
+      "delta GENROU 9",
+      "delta GENROU 10",
+      "L_y BusFreq 1",
+      "L_y BusFreq 2",
+      "L_y BusFreq 3",
+      "L_y BusFreq 4",
+      "L_y BusFreq 5",
+      "L_y BusFreq 6",
+      "L_y BusFreq 7",
+      "L_y BusFreq 8",
+      "L_y BusFreq 9",
+      "L_y BusFreq 10",
+      "L_y BusFreq E0 1",
+      "L_y BusFreq E0 2",
+      "L_y BusFreq E0 3",
+      "L_y BusFreq E0 4",
+      "L_y BusFreq E0 5",
+      "L_y BusFreq E0 6",
+      "L_y BusFreq E0 7",
+      "L_y BusFreq E0 8",
+      "L_y BusFreq E0 9",
+      "L_y BusFreq E0 10",
+      "L_y BusFreq E0 11",
+      "L_y BusFreq E0 12",
+      "L_y BusFreq E0 13",
+      "L_y BusFreq E0 14",
+      "L_y BusFreq E0 15",
+      "L_y BusFreq E0 16",
+      "L_y BusFreq E0 17",
+      "L_y BusFreq E0 18",
+      "L_y BusFreq E0 19",
+      "L_y BusFreq E0 20",
+      "L_y BusFreq E0 21",
+      "L_y BusFreq E0 22",
+      "L_y BusFreq E0 23",
+      "L_y BusFreq E0 24",
+      "L_y BusFreq E0 25",
+      "L_y BusFreq E0 26",
+      "L_y BusFreq E0 27",
+      "L_y BusFreq E0 28",
+      "L_y BusFreq E0 29",
+      "WO_x BusFreq 1",
+      "WO_x BusFreq 2",
+      "WO_x BusFreq 3",
+      "WO_x BusFreq 4",
+      "WO_x BusFreq 5",
+      "WO_x BusFreq 6",
+      "WO_x BusFreq 7",
+      "WO_x BusFreq 8",
+      "WO_x BusFreq 9",
+      "WO_x BusFreq 10",
+      "WO_x BusFreq E0 1",
+      "WO_x BusFreq E0 2",
+      "WO_x BusFreq E0 3",
+      "WO_x BusFreq E0 4",
+      "WO_x BusFreq E0 5",
+      "WO_x BusFreq E0 6",
+      "WO_x BusFreq E0 7",
+      "WO_x BusFreq E0 8",
+      "WO_x BusFreq E0 9",
+      "WO_x BusFreq E0 10",
+      "WO_x BusFreq E0 11",
+      "WO_x BusFreq E0 12",
+      "WO_x BusFreq E0 13",
+      "WO_x BusFreq E0 14",
+      "WO_x BusFreq E0 15",
+      "WO_x BusFreq E0 16",
+      "WO_x BusFreq E0 17",
+      "WO_x BusFreq E0 18",
+      "WO_x BusFreq E0 19",
+      "WO_x BusFreq E0 20",
+      "WO_x BusFreq E0 21",
+      "WO_x BusFreq E0 22",
+      "WO_x BusFreq E0 23",
+      "WO_x BusFreq E0 24",
+      "WO_x BusFreq E0 25",
+      "WO_x BusFreq E0 26",
+      "WO_x BusFreq E0 27",
+      "WO_x BusFreq E0 28",
+      "WO_x BusFreq E0 29",
+      "delta REGF1 32",
+      "delta REGF1 37",
+      "delta REGF1 34",
+      "delta REGF1 36"
+    ],
+    "single_zero_direction_original_sv_ratio_criterion": false,
+    "sv_max": 12138.741321704942,
+    "sv_gap_second_over_smallest": 610492774.6777729,
+    "single_zero_direction": true,
+    "max_real_eig_full_M": 6.087001688507143e-11,
+    "n_eig_abs_real_below_1e-9_full_M": 1
+  },
+  "H4_1_spectrum": {
+    "max_real_part": -0.002342720792969636,
+    "n_eigenvalues": 227,
+    "n_nonnegative_real_part": 0,
+    "n_with_abs_real_part_below_1e-9": 0,
+    "min_damping_ratio_oscillatory": 0.07212901265782387,
+    "least_damped": [
+      {
+        "re": -0.5918443843593734,
+        "im": 8.183985774814813,
+        "freq_hz": 1.3025217902555326,
+        "zeta": 0.07212901265782387
+      },
+      {
+        "re": -0.5918443843593734,
+        "im": -8.183985774814813,
+        "freq_hz": 1.3025217902555326,
+        "zeta": 0.07212901265782387
+      },
+      {
+        "re": -0.40265917400905044,
+        "im": 4.478720192153781,
+        "freq_hz": 0.7128104573067576,
+        "zeta": 0.08954380460566853
+      },
+      {
+        "re": -0.40265917400905044,
+        "im": -4.478720192153781,
+        "freq_hz": 0.7128104573067576,
+        "zeta": 0.08954380460566853
+      },
+      {
+        "re": -0.871369902125667,
+        "im": -6.451609751775218,
+        "freq_hz": 1.0268055828949019,
+        "zeta": 0.13384710847318773
+      },
+      {
+        "re": -0.871369902125667,
+        "im": 6.451609751775218,
+        "freq_hz": 1.0268055828949019,
+        "zeta": 0.13384710847318773
+      },
+      {
+        "re": -1.3479796563023152,
+        "im": -9.140523058130778,
+        "freq_hz": 1.4547594271469613,
+        "zeta": 0.14589497545004776
+      },
+      {
+        "re": -1.3479796563023152,
+        "im": 9.140523058130778,
+        "freq_hz": 1.4547594271469613,
+        "zeta": 0.14589497545004776
+      }
+    ],
+    "slowest": [
+      {
+        "re": -0.002342720792969636,
+        "im": 0.0,
+        "tau_s": 426.854110400582
+      },
+      {
+        "re": -0.0032891940335275705,
+        "im": 0.0,
+        "tau_s": 304.0258463948165
+      },
+      {
+        "re": -0.007070232706326205,
+        "im": 0.0,
+        "tau_s": 141.43806032087653
+      },
+      {
+        "re": -0.008181859494225448,
+        "im": 0.0,
+        "tau_s": 122.2216050893779
+      },
+      {
+        "re": -0.009558668239678655,
+        "im": 0.0,
+        "tau_s": 104.61708419264254
+      },
+      {
+        "re": -0.012008442107835787,
+        "im": 0.0,
+        "tau_s": 83.2747487992199
+      },
+      {
+        "re": -0.012632458363074332,
+        "im": 0.0,
+        "tau_s": 79.16115543456517
+      },
+      {
+        "re": -0.016061570152020237,
+        "im": 0.0001938221102163547,
+        "tau_s": 62.26041355453776
+      }
+    ],
+    "condition_number_eigenvectors": 151321769834444.88
+  },
+  "jacobian_comparison": {
+    "used": "central differences of the nonlinear reduced field (h_states = 1e-6, h_refs = 1e-5), inner solve at every evaluation",
+    "numerical_step_study_frobenius_rel_(h)_vs_(10h)": 1.923810156650266e-09,
+    "max_real_part_with_10h": -0.002342720795425578,
+    "max_abs_difference_sorted_eigenvalues_h_vs_10h": 2.15284194929373e-06,
+    "E9_machinery_vs_numerical_frobenius_rel": 0.001343279270118012,
+    "E9_machinery_spectrum": {
+      "max_real_part": -0.0019840275822593442,
+      "slowest_tau_s": 504.0252509298452,
+      "min_damping_ratio": 0.0814994101279676
+    },
+    "numerical_spectrum": {
+      "max_real_part": -0.002342720792969636,
+      "slowest_tau_s": 426.854110400582,
+      "min_damping_ratio": 0.07212901265782387
+    },
+    "note": "the E9-A/E9-H analytic assembly (used in E13 and DEC-050) differs from the numerical derivative by up to 1.7 % in some columns (rate rows of Pset versus the BusFreq states); the slowest eigenvalue, which depends on the capability factor of SG31 (g_Q = 0.12), moves by about 18 %"
+  },
+  "effect_of_PSS_on_spectrum": {
+    "E9_machinery_without_PSS_max_real_nonzero": -0.001983887971113955,
+    "with_PSS_max_real": -0.002342720792969636,
+    "without_PSS_min_damping": 0.08279526093670617,
+    "with_PSS_min_damping": 0.07212901265782387,
+    "dimension_without": 216,
+    "dimension_with": 228,
+    "note": "DEC-050 C3 numbers were computed without the PSS; they are superseded by the ones in this file"
+  },
+  "H4_1_robustness": {
+    "relative_entrywise_perturbation_1e-06": {
+      "max_real_part_over_20_trials": -0.0023426940069995786,
+      "min": -0.0023427413627468722
+    },
+    "relative_entrywise_perturbation_0.0001": {
+      "max_real_part_over_20_trials": -0.0023408722628292964,
+      "min": -0.0023457108245378464
+    },
+    "finite_difference_step_of_parameter_derivatives": {
+      "numerical_jacobian_step_10x": {
+        "max_real_part": -0.002342720795425578,
+        "max_abs_difference_of_sorted_eigenvalues": 2.15284194929373e-06
+      }
+    }
+  },
+  "regularity": {
+    "algebraic_block_min_singular_value": 0.0020993355832750796,
+    "algebraic_block_cond": 529013.3423062077,
+    "equilibrium_gate": "EQUILIBRIUM_EXACT"
+  },
+  "H4_2_lyapunov": {
+    "natural_coordinates": {
+      "lambda_min_P": 0.0006210923666037074,
+      "lambda_max_P": 2890347.5595525415,
+      "cond_P": 4653651719.07957,
+      "positive_definite": true,
+      "residual_inf_norm": 1.5448808881046716e-06,
+      "decay_rate_of_V_per_s_lower_bound": 3.459791528167676e-07,
+      "exponential_rate_of_norm_per_s": 1.729895764083838e-07
+    },
+    "scaled_coordinates": {
+      "lambda_min_P": 0.0005653758120900469,
+      "lambda_max_P": 4296165.842175068,
+      "cond_P": 7598778989.665766,
+      "positive_definite": true,
+      "residual_inf_norm": 1.3098873751005158e-05,
+      "decay_rate_of_V_per_s_lower_bound": 2.3276568846181196e-07,
+      "exponential_rate_of_norm_per_s": 1.1638284423090598e-07
+    },
+    "scaling": "e_s = D e with D = diag(1 / max(|xi*_k|, 0.1))"
+  },
+  "smoothness_domain": {
+    "n_elements_checked": 142,
+    "all_inactive_at_equilibrium": true,
+    "min_margin": 0.08746318141019563,
+    "nearest_switch_by_P_norm": {
+      "element": "REGF1.dw_lim[0]",
+      "side": "upper",
+      "margin": 74.9999987508143,
+      "rho_switch_linear_estimate": 0.004644124406048465
+    },
+    "unchecked_elements": [],
+    "elements_with_smallest_margins": [
+      {
+        "element": "RDC.z_clamp[SG1]",
+        "side": "lower",
+        "margin": 0.08746318141019563
+      },
+      {
+        "element": "RDC.z_clamp[SG0]",
+        "side": "lower",
+        "margin": 0.09002826631484315
+      },
+      {
+        "element": "RDC.z_clamp[SG5]",
+        "side": "upper",
+        "margin": 0.09453895043298396
+      },
+      {
+        "element": "RDC.z_clamp[SG2]",
+        "side": "lower",
+        "margin": 0.09790304965361636
+      },
+      {
+        "element": "RDC.z_clamp[SG4]",
+        "side": "upper",
+        "margin": 0.09818109225224889
+      },
+      {
+        "element": "RDC.z_clamp[SG3]",
+        "side": "lower",
+        "margin": 0.09927079238455291
+      },
+      {
+        "element": "IEEEST.VLIM[0]",
+        "side": "upper",
+        "margin": 0.09999999999999999
+      },
+      {
+        "element": "IEEEST.VLIM[2]",
+        "side": "upper",
+        "margin": 0.09999999999999999
+      },
+      {
+        "element": "IEEEST.VLIM[4]",
+        "side": "lower",
+        "margin": 0.09999999999999999
+      },
+      {
+        "element": "IEEEST.VLIM[5]",
+        "side": "lower",
+        "margin": 0.09999999999999999
+      }
+    ]
+  },
+  "dominant_slow_mode": {
+    "eigenvalue": -0.002342720792969636,
+    "tau_s": 426.854110400582,
+    "imag": 0.0,
+    "max_abs_component_on_Pset": 0.014710747372343241,
+    "max_abs_component_on_Qset": 0.9677973817693843,
+    "dominant_units_Qset": [
+      "GFM32",
+      "SG31",
+      "GFM37"
+    ]
+  },
+  "H4_3_empirical_region": {
+    "status": "REGION_NOT_CERTIFIED",
+    "rho_switch_linear_estimate": 0.004644124406048465,
+    "levels": [
+      {
+        "rho": 4.6441244060484656e-07,
+        "rho_over_rho_switch": 0.0001,
+        "n_directions": 83,
+        "max_Vdot_over_V": -2.356088330518872e-07,
+        "all_negative": true,
+        "max_relative_nonlinear_remainder": 0.06909351991012773,
+        "all_inner_converged": true,
+        "min_physical_margin_pu_over_directions": 0.10699518766995819,
+        "bus_voltage_min": 0.9779790269495583,
+        "bus_voltage_max": 1.0409277121177907
+      },
+      {
+        "rho": 4.6441244060484655e-06,
+        "rho_over_rho_switch": 0.001,
+        "n_directions": 83,
+        "max_Vdot_over_V": -2.3375315307306508e-07,
+        "all_negative": true,
+        "max_relative_nonlinear_remainder": 0.029258391507504738,
+        "all_inner_converged": true,
+        "min_physical_margin_pu_over_directions": 0.10120034551438106,
+        "bus_voltage_min": 0.9777013599050199,
+        "bus_voltage_max": 1.0417425635950188
+      },
+      {
+        "rho": 4.644124406048465e-05,
+        "rho_over_rho_switch": 0.01,
+        "n_directions": 83,
+        "max_Vdot_over_V": -2.3305162880514538e-07,
+        "all_negative": true,
+        "max_relative_nonlinear_remainder": 0.03268894366017336,
+        "all_inner_converged": true,
+        "min_physical_margin_pu_over_directions": 0.07757588505643387,
+        "bus_voltage_min": 0.9768241871036584,
+        "bus_voltage_max": 1.044473700357635
+      },
+      {
+        "rho": 0.00046441244060484654,
+        "rho_over_rho_switch": 0.1,
+        "n_directions": 83,
+        "max_Vdot_over_V": -2.3285711156345316e-07,
+        "all_negative": true,
+        "max_relative_nonlinear_remainder": 0.08445554038860435,
+        "all_inner_converged": true,
+        "min_physical_margin_pu_over_directions": -0.15112108392897472,
+        "bus_voltage_min": 0.9694397320501896,
+        "bus_voltage_max": 1.0553105246592414
+      },
+      {
+        "rho": 0.004644124406048465,
+        "rho_over_rho_switch": 1.0,
+        "n_directions": 83,
+        "max_Vdot_over_V": -2.3278785929419005e-07,
+        "all_negative": true,
+        "max_relative_nonlinear_remainder": 0.2610829296012929,
+        "all_inner_converged": true,
+        "min_physical_margin_pu_over_directions": -1.2734939304515844,
+        "bus_voltage_min": 0.9073839524025217,
+        "bus_voltage_max": 1.0894979092785577
+      }
+    ],
+    "note": "sampling of V-dot along the nonlinear vector field on V = rho for eigen-directions and random directions: numerical validation only; no bound of the remainder is claimed"
+  },
+  "GATE_B": {
+    "hypotheses": {
+      "exact_equilibrium": true,
+      "regular_algebraic_block": true,
+      "hurwitz_quotient": true,
+      "all_switches_inactive_with_positive_margin": true,
+      "jacobian_accuracy_ok": true,
+      "lyapunov_P_positive_definite": true
+    },
+    "H4_1": "PROVEN_COMPUTER_ASSISTED",
+    "H4_2": "ACCEPTED",
+    "H4_3": "REGION_NOT_CERTIFIED"
+  },
+  "final_assessment": {
+    "existence": {
+      "computed_root_residual_quotient_inf": 5.0676929206598805e-12,
+      "declared_target": 1e-08,
+      "local_uniqueness_from_perturbed_starts": [
+        {
+          "start_perturbation": "1e-3 relative on x and u",
+          "final_norm_inf_F": 9.814371537686384e-12,
+          "iterations": 22,
+          "max_abs_dx_vs_root": 5.885465448329796e-10,
+          "max_abs_du_vs_root": 1.8045573924041491e-09
+        },
+        {
+          "start_perturbation": "1e-3 relative on x and u",
+          "final_norm_inf_F": 7.373790756036333e-12,
+          "iterations": 24,
+          "max_abs_dx_vs_root": 7.810632141058704e-10,
+          "max_abs_du_vs_root": 1.8298269566230374e-09
+        }
+      ],
+      "kantorovich_type_condition": {
+        "sigma_min_quotient_jacobian": 0.0004819801869723823,
+        "residual_2norm": 7.635249255361689e-11,
+        "beta": 2074.774082066781,
+        "eta": 1.584141726514412e-07,
+        "second_derivative_bound_allowed_by_Kantorovich_h<=1/2": 1521.2659918784022,
+        "empirical_remainder_ratio_||F(xi)-A e||/||e||^2_(scaled, sampled)": {
+          "max": 160.46140309252905,
+          "values": [
+            60.008399256120505,
+            83.34834122253282,
+            29.737159380591372,
+            123.82222879186558,
+            26.241628020176343,
+            11.693568440330408,
+            30.109563498357357,
+            71.38006341653045,
+            21.29347647562859,
+            46.09330397146726,
+            43.593990334775924,
+            160.46140309252905
+          ]
+        },
+        "reading": "if the second derivative of the reduced field in the scaled norm is below the allowed value on the ball of radius 2*eta around the computed root, a true equilibrium exists there (Newton-Kantorovich); the bound is not verified, only compared with sampled ratios"
+      },
+      "status": "CONDITIONAL"
+    },
+    "H4_1": {
+      "a_posteriori_lyapunov_certificate": {
+        "lambda_min_P": 0.0005653758120900469,
+        "eig_solver_error_bound_(eps*lambda_max)": 9.539404471181774e-09,
+        "spectral_norm_of_residual_(A^T P + P A + I)": 2.297471641915681e-05,
+        "evaluation_error_bound_(eps*|A||P|)": 0.009657643251239904,
+        "certificate_holds": true,
+        "statement": "P symmetric positive definite and A^T P + P A <= -(1 - ||R||) I with ||R|| < 1 imply Hurwitz A (a-posteriori Lyapunov certificate, independent of the accuracy of the eigenvalue computation)"
+      },
+      "spectrum": {
+        "max_real_part": -0.002342720792969636,
+        "n_eigenvalues": 227,
+        "n_nonnegative_real_part": 0,
+        "n_with_abs_real_part_below_1e-9": 0,
+        "min_damping_ratio_oscillatory": 0.07212901265782387,
+        "least_damped": [
+          {
+            "re": -0.5918443843593734,
+            "im": 8.183985774814813,
+            "freq_hz": 1.3025217902555326,
+            "zeta": 0.07212901265782387
+          },
+          {
+            "re": -0.5918443843593734,
+            "im": -8.183985774814813,
+            "freq_hz": 1.3025217902555326,
+            "zeta": 0.07212901265782387
+          },
+          {
+            "re": -0.40265917400905044,
+            "im": 4.478720192153781,
+            "freq_hz": 0.7128104573067576,
+            "zeta": 0.08954380460566853
+          },
+          {
+            "re": -0.40265917400905044,
+            "im": -4.478720192153781,
+            "freq_hz": 0.7128104573067576,
+            "zeta": 0.08954380460566853
+          },
+          {
+            "re": -0.871369902125667,
+            "im": -6.451609751775218,
+            "freq_hz": 1.0268055828949019,
+            "zeta": 0.13384710847318773
+          },
+          {
+            "re": -0.871369902125667,
+            "im": 6.451609751775218,
+            "freq_hz": 1.0268055828949019,
+            "zeta": 0.13384710847318773
+          },
+          {
+            "re": -1.3479796563023152,
+            "im": -9.140523058130778,
+            "freq_hz": 1.4547594271469613,
+            "zeta": 0.14589497545004776
+          },
+          {
+            "re": -1.3479796563023152,
+            "im": 9.140523058130778,
+            "freq_hz": 1.4547594271469613,
+            "zeta": 0.14589497545004776
+          }
+        ],
+        "slowest": [
+          {
+            "re": -0.002342720792969636,
+            "im": 0.0,
+            "tau_s": 426.854110400582
+          },
+          {
+            "re": -0.0032891940335275705,
+            "im": 0.0,
+            "tau_s": 304.0258463948165
+          },
+          {
+            "re": -0.007070232706326205,
+            "im": 0.0,
+            "tau_s": 141.43806032087653
+          },
+          {
+            "re": -0.008181859494225448,
+            "im": 0.0,
+            "tau_s": 122.2216050893779
+          },
+          {
+            "re": -0.009558668239678655,
+            "im": 0.0,
+            "tau_s": 104.61708419264254
+          },
+          {
+            "re": -0.012008442107835787,
+            "im": 0.0,
+            "tau_s": 83.2747487992199
+          },
+          {
+            "re": -0.012632458363074332,
+            "im": 0.0,
+            "tau_s": 79.16115543456517
+          },
+          {
+            "re": -0.016061570152020237,
+            "im": 0.0001938221102163547,
+            "tau_s": 62.26041355453776
+          }
+        ],
+        "condition_number_eigenvectors": 151321769834444.88
+      },
+      "robustness": {
+        "relative_entrywise_perturbation_1e-06": {
+          "max_real_part_over_20_trials": -0.0023426940069995786,
+          "min": -0.0023427413627468722
+        },
+        "relative_entrywise_perturbation_0.0001": {
+          "max_real_part_over_20_trials": -0.0023408722628292964,
+          "min": -0.0023457108245378464
+        },
+        "finite_difference_step_of_parameter_derivatives": {
+          "numerical_jacobian_step_10x": {
+            "max_real_part": -0.002342720795425578,
+            "max_abs_difference_of_sorted_eigenvalues": 2.15284194929373e-06
+          }
+        }
+      },
+      "status": "PROVEN (computer-assisted, floating point)"
+    },
+    "H4_2": {
+      "gate": {
+        "hypotheses": {
+          "exact_equilibrium": true,
+          "regular_algebraic_block": true,
+          "hurwitz_quotient": true,
+          "all_switches_inactive_with_positive_margin": true,
+          "jacobian_accuracy_ok": true,
+          "lyapunov_P_positive_definite": true
+        },
+        "H4_1": "PROVEN_COMPUTER_ASSISTED",
+        "H4_2": "ACCEPTED",
+        "H4_3": "REGION_NOT_CERTIFIED"
+      },
+      "theorem": "Lyapunov's indirect method on the quotient reduced field: exact relative equilibrium, regular algebraic block (implicit function theorem), C1 field in the neighbourhood where no limiter/clamp/positive part switches (all 142 margins positive), Hurwitz Jacobian",
+      "status": "PROVEN (computer-assisted: hypotheses verified numerically)",
+      "scope": "relative equilibrium of the original B2 RDC after Q+ on C2t_Vsafe_R35_040; neighbourhood of unquantified radius; exponential stability modulo the common rotor-angle shift"
+    },
+    "H4_3": {
+      "status": "REGION_NOT_CERTIFIED",
+      "empirical": {
+        "status": "REGION_NOT_CERTIFIED",
+        "rho_switch_linear_estimate": 0.004644124406048465,
+        "levels": [
+          {
+            "rho": 4.6441244060484656e-07,
+            "rho_over_rho_switch": 0.0001,
+            "n_directions": 83,
+            "max_Vdot_over_V": -2.356088330518872e-07,
+            "all_negative": true,
+            "max_relative_nonlinear_remainder": 0.06909351991012773,
+            "all_inner_converged": true,
+            "min_physical_margin_pu_over_directions": 0.10699518766995819,
+            "bus_voltage_min": 0.9779790269495583,
+            "bus_voltage_max": 1.0409277121177907
+          },
+          {
+            "rho": 4.6441244060484655e-06,
+            "rho_over_rho_switch": 0.001,
+            "n_directions": 83,
+            "max_Vdot_over_V": -2.3375315307306508e-07,
+            "all_negative": true,
+            "max_relative_nonlinear_remainder": 0.029258391507504738,
+            "all_inner_converged": true,
+            "min_physical_margin_pu_over_directions": 0.10120034551438106,
+            "bus_voltage_min": 0.9777013599050199,
+            "bus_voltage_max": 1.0417425635950188
+          },
+          {
+            "rho": 4.644124406048465e-05,
+            "rho_over_rho_switch": 0.01,
+            "n_directions": 83,
+            "max_Vdot_over_V": -2.3305162880514538e-07,
+            "all_negative": true,
+            "max_relative_nonlinear_remainder": 0.03268894366017336,
+            "all_inner_converged": true,
+            "min_physical_margin_pu_over_directions": 0.07757588505643387,
+            "bus_voltage_min": 0.9768241871036584,
+            "bus_voltage_max": 1.044473700357635
+          },
+          {
+            "rho": 0.00046441244060484654,
+            "rho_over_rho_switch": 0.1,
+            "n_directions": 83,
+            "max_Vdot_over_V": -2.3285711156345316e-07,
+            "all_negative": true,
+            "max_relative_nonlinear_remainder": 0.08445554038860435,
+            "all_inner_converged": true,
+            "min_physical_margin_pu_over_directions": -0.15112108392897472,
+            "bus_voltage_min": 0.9694397320501896,
+            "bus_voltage_max": 1.0553105246592414
+          },
+          {
+            "rho": 0.004644124406048465,
+            "rho_over_rho_switch": 1.0,
+            "n_directions": 83,
+            "max_Vdot_over_V": -2.3278785929419005e-07,
+            "all_negative": true,
+            "max_relative_nonlinear_remainder": 0.2610829296012929,
+            "all_inner_converged": true,
+            "min_physical_margin_pu_over_directions": -1.2734939304515844,
+            "bus_voltage_min": 0.9073839524025217,
+            "bus_voltage_max": 1.0894979092785577
+          }
+        ],
+        "note": "sampling of V-dot along the nonlinear vector field on V = rho for eigen-directions and random directions: numerical validation only; no bound of the remainder is claimed"
+      }
+    },
+    "validation_time_domain": {
+      "plus": {
+        "tds_ok": true,
+        "t_end_s": 1000.0,
+        "n_logged": 9847,
+        "sign": 1.0,
+        "amp_scale": 0.02,
+        "V_initial": 7.990707374747756,
+        "V_final": 0.06655650446696854,
+        "V_ratio_final_over_initial": 0.00832923811943114,
+        "V_monotone_decreasing_fraction": 1.0,
+        "V_max_over_run_over_initial": 1.0,
+        "norm_scaled_e_initial": 0.19544885684882868,
+        "norm_scaled_e_final": 0.017730095255334685,
+        "distance_ratio_final_over_initial": 0.09071475546694117,
+        "linear_prediction_V_final": 0.06858725089341319,
+        "linear_vs_observed_V_relative_error_at_final": 0.03051161479570341,
+        "linear_vs_observed_V_max_relative_error": 0.03051161479570341,
+        "observed_decay_tau_Qset_error_s": 417.00204585097816,
+        "predicted_slow_mode_tau_s": 426.854110400582,
+        "max_abs_Qset_error_final_pu": 0.0018239384726124186,
+        "frequency_dev_hz_min_max": [
+          2.700950130218871e-08,
+          2.5341355680552624e-07
+        ],
+        "unit_voltage_min_max_pu": [
+          0.990966806622089,
+          1.0048430823521664
+        ],
+        "bus_voltage_min_max_pu": [
+          0.9781054719293997,
+          1.0405341785221953
+        ],
+        "min_margin_P_pu": 0.10966722840788545,
+        "min_margin_Q_pu": 0.8635639854382742,
+        "min_margin_S_pu": 1.0658341106044915,
+        "max_reference_rate_pu_per_s": 4.9435556770274406e-05,
+        "final_reference_rate_pu_per_s": 7.65462651731283e-06,
+        "dae_residual_g_inf_max": 8.30501463155997e-08
+      },
+      "minus": {
+        "tds_ok": true,
+        "t_end_s": 1000.0,
+        "n_logged": 9847,
+        "sign": -1.0,
+        "amp_scale": 0.02,
+        "V_initial": 7.990707374747756,
+        "V_final": 0.07070777995541652,
+        "V_ratio_final_over_initial": 0.008848751010313223,
+        "V_monotone_decreasing_fraction": 1.0,
+        "V_max_over_run_over_initial": 1.0,
+        "norm_scaled_e_initial": 0.19544885684882868,
+        "norm_scaled_e_final": 0.01828765843077118,
+        "distance_ratio_final_over_initial": 0.09356748729881752,
+        "linear_prediction_V_final": 0.06858725089341319,
+        "linear_vs_observed_V_relative_error_at_final": 0.029990038767168044,
+        "linear_vs_observed_V_max_relative_error": 0.029990038767168044,
+        "observed_decay_tau_Qset_error_s": 419.47085791381534,
+        "predicted_slow_mode_tau_s": 426.854110400582,
+        "max_abs_Qset_error_final_pu": 0.001846841071898142,
+        "frequency_dev_hz_min_max": [
+          1.8695357262288326e-07,
+          4.611813864130454e-07
+        ],
+        "unit_voltage_min_max_pu": [
+          0.9916498269853081,
+          1.0048277216680865
+        ],
+        "bus_voltage_min_max_pu": [
+          0.9781072092499637,
+          1.0407815173293669
+        ],
+        "min_margin_P_pu": 0.10967339950270638,
+        "min_margin_Q_pu": 0.8395092744086012,
+        "min_margin_S_pu": 1.0693740903796725,
+        "max_reference_rate_pu_per_s": 4.768507514009193e-05,
+        "final_reference_rate_pu_per_s": 4.607988232120905e-06,
+        "dae_residual_g_inf_max": 8.808039808627655e-08
+      }
+    },
+    "domains": {
+      "1_regularity_domain": {
+        "description": "algebraic block regular",
+        "equilibrium_min_singular_value": 0.0020993355832750796,
+        "inner_solve_converged_at_all_sampled_points": true,
+        "radius": "not quantified (sampled up to rho = 4.64e-03)"
+      },
+      "2_local_stability_domain": {
+        "description": "neighbourhood where the indirect Lyapunov method applies",
+        "radius": "exists, NOT quantified",
+        "empirical_vdot_negative_up_to_rho": 0.004644124406048465,
+        "status": "REGION_NOT_CERTIFIED"
+      },
+      "3_physical_limits_domain": {
+        "description": "P/Q/S limits satisfied",
+        "empirical_up_to_rho": 4.644124406048465e-05,
+        "first_level_with_violation": 0.00046441244060484654
+      },
+      "4_post_jump_states": {
+        "description": "state immediately after the Q+ step = pre-event differential state and references (algebraic variables re-solved)",
+        "V_of_pre_event_state_relative_to_Q+_equilibrium": 924.4319795323412,
+        "ratio_to_rho_stab_empirical": 199054.0947456897,
+        "ratio_to_rho_phys_empirical": 19905409.474568974,
+        "belongs_to_certified_or_empirical_region": false
+      },
+      "joint_safe_invariant_region": "NOT ESTABLISHED: the post-jump state lies outside every region for which any property was obtained; no invariance of a set that is also inside the physical limits was proved; the P+ post-event equilibrium was not computed",
+      "certified_nothing_combined": true
+    },
+    "limitations_of_scope": [
+      "ANDES Jacobians were not used for the theorem: the central-difference derivative of the nonlinear field is (E9 analytic assembly differs by ~0.13 % Frobenius and ~18 % in the slowest eigenvalue)",
+      "five forced IEEEST variables per SG (degenerate zero-time-constant blocks) are eliminated exactly; the two genuine PSS states per SG are retained",
+      "no interval arithmetic: floating-point evaluation with a-posteriori checks",
+      "single equilibrium (Q+); no result for other events or for the P+ post-event equilibrium"
+    ]
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "stage": "DEC-051 H3-R",
+  "git_commit": "c07c482a85ae7acf1dcbc42ce8891e223d595d74",
+  "hypothesis_H3R": "A preventive selection of the operating point with explicit reserves avoids the observed physical violations under a delimited class of disturbances without modifying the RDC.",
+  "delimited_class_tested": "P load steps at bus 4 up to 64.42 MW and at bus 18 (58.564 MW); Q+ 17.345 MVAr at bus 21; configuration C2t_Vsafe_R35_040; B2 original; 200 s",
+  "eps_jump_pu": 0.00227892616553671,
+  "inequality_table": {
+    "C2t": {
+      "SG31": {
+        "reserve": 0.04000002000000169,
+        "jump": 0.08647416614774084,
+        "fast_increment": 0.023473649217562453,
+        "slow_increment": 0.0,
+        "margin_after_jump": -0.04875307231327586,
+        "predicted_min_margin": -0.07222672153083831,
+        "observed_min_margin": -0.0699477953653016
+      },
+      "SG35": {
+        "reserve": 0.10000001999999864,
+        "jump": 0.02449621229621446,
+        "fast_increment": 0.03590917403332483,
+        "slow_increment": 0.06049775534081547,
+        "margin_after_jump": 0.07322488153824747,
+        "predicted_min_margin": 0.012727126197431993,
+        "observed_min_margin": 0.015006052362968703
+      },
+      "units_violating_observed": [
+        "SG31"
+      ],
+      "units_violating_inequality_full": [
+        "SG31"
+      ],
+      "units_violating_inequality_jump_only": [
+        "SG31"
+      ]
+    },
+    "C2t_Vsafe": {
+      "SG31": {
+        "reserve": 0.1389144917830567,
+        "jump": 0.08936583654765062,
+        "fast_increment": 0.024534377171762323,
+        "slow_increment": 0.0,
+        "margin_after_jump": 0.04726972906986937,
+        "predicted_min_margin": 0.022735351898107048,
+        "observed_min_margin": 0.025014278063643758
+      },
+      "SG35": {
+        "reserve": 0.06970000000000187,
+        "jump": 0.022063933737561214,
+        "fast_increment": 0.02827639892463729,
+        "slow_increment": 0.061693963849267064,
+        "margin_after_jump": 0.04535714009690395,
+        "predicted_min_margin": -0.016336823752363117,
+        "observed_min_margin": -0.014057897586826407
+      },
+      "units_violating_observed": [
+        "SG35"
+      ],
+      "units_violating_inequality_full": [
+        "SG35"
+      ],
+      "units_violating_inequality_jump_only": []
+    },
+    "C2t_Vsafe_R35 (0.015)": {
+      "SG31": {
+        "reserve": 0.13891449178305937,
+        "jump": 0.08936449519039957,
+        "fast_increment": 0.024530417260109516,
+        "slow_increment": 0.0,
+        "margin_after_jump": 0.047271070427123085,
+        "predicted_min_margin": 0.02274065316701357,
+        "observed_min_margin": 0.02501957933255028
+      },
+      "SG35": {
+        "reserve": 0.08470000000000066,
+        "jump": 0.022091443645463116,
+        "fast_increment": 0.028316386493826506,
+        "slow_increment": 0.062196876193613804,
+        "margin_after_jump": 0.06032963018900084,
+        "predicted_min_margin": -0.0018672460046129657,
+        "observed_min_margin": 0.00041168016092374415
+      },
+      "units_violating_observed": [],
+      "units_violating_inequality_full": [
+        "SG35"
+      ],
+      "units_violating_inequality_jump_only": []
+    },
+    "C2t_Vsafe_R35_040": {
+      "SG31": {
+        "reserve": 0.1389144917830567,
+        "jump": 0.08936228130216506,
+        "fast_increment": 0.02452382916365803,
+        "slow_increment": 0.0,
+        "margin_after_jump": 0.047273284315354935,
+        "predicted_min_margin": 0.022749455151696907,
+        "observed_min_margin": 0.025028381317233617
+      },
+      "SG35": {
+        "reserve": 0.10970000000000013,
+        "jump": 0.02213723664531475,
+        "fast_increment": 0.028382947117896684,
+        "slow_increment": 0.06302753661894211,
+        "margin_after_jump": 0.08528383718914867,
+        "predicted_min_margin": 0.022256300570206555,
+        "observed_min_margin": 0.024535226735743265
+      },
+      "units_violating_observed": [],
+      "units_violating_inequality_full": [],
+      "units_violating_inequality_jump_only": []
+    }
+  },
+  "attribution_voltage_vs_dispatch": {
+    "per_configuration": {
+      "C2t": {
+        "reserve_SG31": 0.04000002000000169,
+        "reserve_SG35": 0.10000001999999864,
+        "jump_SG31": 0.08647416614774084,
+        "jump_SG35": 0.02449621229621446,
+        "margin_after_jump_SG31": -0.04647414614773915,
+        "margin_after_jump_SG35": 0.07550380770378418
+      },
+      "C2t + Vsafe voltages only": {
+        "reserve_SG31": 0.0400000200000008,
+        "reserve_SG35": 0.10000001999999952,
+        "jump_SG31": 0.08904007295123062,
+        "jump_SG35": 0.0221481006182751,
+        "margin_after_jump_SG31": -0.04904005295122982,
+        "margin_after_jump_SG35": 0.07785191938172442
+      },
+      "C2t + Vsafe dispatch only": {
+        "reserve_SG31": 0.1389144917830567,
+        "reserve_SG35": 0.06970000000000187,
+        "jump_SG31": 0.0867612006421572,
+        "jump_SG35": 0.024423988613368586,
+        "margin_after_jump_SG31": 0.052153291140899505,
+        "margin_after_jump_SG35": 0.045276011386633286
+      },
+      "C2t_Vsafe": {
+        "reserve_SG31": 0.1389144917830567,
+        "reserve_SG35": 0.06970000000000187,
+        "jump_SG31": 0.08936583654765062,
+        "jump_SG35": 0.022063933737561214,
+        "margin_after_jump_SG31": 0.04954865523540608,
+        "margin_after_jump_SG35": 0.04763606626244066
+      },
+      "C2t_Vsafe_R35 (0.015)": {
+        "reserve_SG31": 0.13891449178305937,
+        "reserve_SG35": 0.08470000000000066,
+        "jump_SG31": 0.08936449519039957,
+        "jump_SG35": 0.022091443645463116,
+        "margin_after_jump_SG31": 0.049549996592659795,
+        "margin_after_jump_SG35": 0.06260855635453755
+      },
+      "C2t_Vsafe_R35_040": {
+        "reserve_SG31": 0.1389144917830567,
+        "reserve_SG35": 0.10970000000000013,
+        "jump_SG31": 0.08936228130216506,
+        "jump_SG35": 0.02213723664531475,
+        "margin_after_jump_SG31": 0.049552210480891645,
+        "margin_after_jump_SG35": 0.08756276335468538
+      }
+    },
+    "decomposition": {
+      "SG31_post_jump_margin_change_due_to_voltages_only": -0.0025659068034906696,
+      "SG31_change_due_to_dispatch_only": 0.09862743728863865,
+      "SG31_change_both": 0.09602280138314523,
+      "SG35_change_due_to_voltages_only": 0.0023481116779402456,
+      "SG35_change_due_to_dispatch_only": -0.03022779631715089,
+      "SG35_change_both": -0.02786774144134352,
+      "SG35_observed_min_margin_Vsafe_to_R35_040": [
+        -0.014057897586826407,
+        0.024535226735743265
+      ],
+      "reading": "the SG31 improvement comes from the active-power dispatch of the B3-A solution (reserve 0.040 -> 0.139 pu); the Vsafe voltage set-points alone do not help (-0.0025 pu). SG35 is hit by the slow electromechanical excursion (peak at ~7.8 s) which the R35 redispatch compensates one-to-one with reserve."
+    }
+  },
+  "reference_authority_first_instants": {
+    "0.004": {
+      "max_abs_dP31_per_unit_reference_step": 0.0015190836203677852,
+      "max_abs_dP35_per_unit_reference_step": 0.0023163510130277325
+    },
+    "0.05": {
+      "max_abs_dP31_per_unit_reference_step": 0.04074853586284113,
+      "max_abs_dP35_per_unit_reference_step": 0.05360573195787133
+    },
+    "0.15": {
+      "max_abs_dP31_per_unit_reference_step": 0.1795301650084846,
+      "max_abs_dP35_per_unit_reference_step": 0.1389579768553888
+    },
+    "0.5": {
+      "max_abs_dP31_per_unit_reference_step": 0.6996846716893076,
+      "max_abs_dP35_per_unit_reference_step": 0.6840673007867253
+    }
+  },
+  "frontier_prediction_vs_dynamic_bracket": {
+    "amplitudes_MW": [
+      14.641,
+      29.282,
+      43.923,
+      58.564,
+      64.4204,
+      73.205,
+      87.846
+    ],
+    "predicted_min_margin_pu": [
+      0.08611839418474099,
+      0.06482333532021167,
+      0.04353595215031425,
+      0.022256300570206555,
+      0.011374575174657495,
+      -0.005683007341428015,
+      -0.03409961631893976
+    ],
+    "binding_unit": [
+      "SG35",
+      "SG35",
+      "SG35",
+      "SG35",
+      "SG31",
+      "SG31",
+      "SG31"
+    ],
+    "predicted_crossing_amplitude_MW": 70.27826954189256,
+    "dynamic_bracket_DEC050_MW": [
+      65.8845,
+      73.20500000000001
+    ],
+    "E12_violation_at_MW": 87.76,
+    "prediction_inside_bracket": true
+  },
+  "Q_plus_post_jump_R35_040": {
+    "min_margin_Qmax": 0.636428573168669,
+    "min_margin_Qmin": 1.476211426831331,
+    "min_margin_S": 1.0237594433785633,
+    "min_margin_P": 0.12121455979872842,
+    "bus_voltage_min_max_static_post_jump": [
+      0.9789277091683818,
+      1.043724552120609
+    ]
+  },
+  "validation": {
+    "H3_1": {
+      "event": "P+ 110 % at bus 4",
+      "predicted_margin_SG31_SG35": [
+        0.013653501340193941,
+        0.016025543660923347
+      ],
+      "observed_margin_SG31_SG35": [
+        0.013696257331728745,
+        0.016044644004770348
+      ],
+      "max_abs_prediction_error_all_units": 0.00033179578352715566,
+      "units_crossing_limits": {},
+      "n_buses_below_0.95": 0
+    },
+    "H3_2": {
+      "event": "P+ 58.564 MW at bus 18 (dist_fn step at 5 s)",
+      "selection": "smallest positive predicted margin among admissible buses (rule revised once before any simulation, see predictions file)",
+      "predicted_margin_SG31_SG35": [
+        0.07681550686905503,
+        0.01180335159045054
+      ],
+      "observed_margin_SG31_SG35": [
+        0.07766770000797862,
+        0.022959720050960364
+      ],
+      "max_abs_prediction_error_all_units": 0.05996852762812832,
+      "units_crossing_limits": {},
+      "n_buses_below_0.95": 0,
+      "analytic_scan_predicting_violations_not_simulated": [
+        [
+          31,
+          -0.20144898106356912,
+          "SG31"
+        ],
+        [
+          23,
+          -0.1048316356483161,
+          "GFM36"
+        ],
+        [
+          21,
+          -0.055697049662303044,
+          "SG35"
+        ],
+        [
+          24,
+          -0.017910155208515022,
+          "SG35"
+        ],
+        [
+          16,
+          -0.0102195996022445,
+          "SG35"
+        ],
+        [
+          7,
+          -0.005787224109585765,
+          "SG31"
+        ],
+        [
+          15,
+          -0.00040809170530664574,
+          "SG35"
+        ],
+        [
+          8,
+          -0.00033039908126131223,
+          "SG31"
+        ]
+      ]
+    }
+  },
+  "bound_classes": {
+    "jump_at_t0+": "conservative: exact algebraic solution of the DAE with continuous differential states, evaluated on the amplitude grid with monotonicity checked on the grid (not proved in the continuum); eps = max discrepancy with the first simulated sample",
+    "fast_phase_(<=50_ms)_and_slow_excursion": "empirical, from the simulated 58.564 MW run of the same configuration, scaled linearly with the amplitude (hypothesis tested by the two validation runs)",
+    "universal_bounds": "none"
+  },
+  "GATE_C": "H3_PREVENTIVE_NUMERICALLY_SUPPORTED",
+  "formal_certificate": "none: the transient increments are empirical; H3_PREVENTIVE_CERTIFIED is not claimed"
+}

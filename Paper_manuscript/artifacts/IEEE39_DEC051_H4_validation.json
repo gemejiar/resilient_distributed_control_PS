@@ -1,0 +1,84 @@
+{
+  "stage": "DEC-051 H4 validation",
+  "git_commit": "c07c482a85ae7acf1dcbc42ce8891e223d595d74",
+  "runs": {
+    "plus": {
+      "tds_ok": true,
+      "t_end_s": 1000.0,
+      "n_logged": 9847,
+      "sign": 1.0,
+      "amp_scale": 0.02,
+      "V_initial": 7.990707374747756,
+      "V_final": 0.06655650446696854,
+      "V_ratio_final_over_initial": 0.00832923811943114,
+      "V_monotone_decreasing_fraction": 1.0,
+      "V_max_over_run_over_initial": 1.0,
+      "norm_scaled_e_initial": 0.19544885684882868,
+      "norm_scaled_e_final": 0.017730095255334685,
+      "distance_ratio_final_over_initial": 0.09071475546694117,
+      "linear_prediction_V_final": 0.06858725089341319,
+      "linear_vs_observed_V_relative_error_at_final": 0.03051161479570341,
+      "linear_vs_observed_V_max_relative_error": 0.03051161479570341,
+      "observed_decay_tau_Qset_error_s": 417.00204585097816,
+      "predicted_slow_mode_tau_s": 426.854110400582,
+      "max_abs_Qset_error_final_pu": 0.0018239384726124186,
+      "frequency_dev_hz_min_max": [
+        2.700950130218871e-08,
+        2.5341355680552624e-07
+      ],
+      "unit_voltage_min_max_pu": [
+        0.990966806622089,
+        1.0048430823521664
+      ],
+      "bus_voltage_min_max_pu": [
+        0.9781054719293997,
+        1.0405341785221953
+      ],
+      "min_margin_P_pu": 0.10966722840788545,
+      "min_margin_Q_pu": 0.8635639854382742,
+      "min_margin_S_pu": 1.0658341106044915,
+      "max_reference_rate_pu_per_s": 4.9435556770274406e-05,
+      "final_reference_rate_pu_per_s": 7.65462651731283e-06,
+      "dae_residual_g_inf_max": 8.30501463155997e-08
+    },
+    "minus": {
+      "tds_ok": true,
+      "t_end_s": 1000.0,
+      "n_logged": 9847,
+      "sign": -1.0,
+      "amp_scale": 0.02,
+      "V_initial": 7.990707374747756,
+      "V_final": 0.07070777995541652,
+      "V_ratio_final_over_initial": 0.008848751010313223,
+      "V_monotone_decreasing_fraction": 1.0,
+      "V_max_over_run_over_initial": 1.0,
+      "norm_scaled_e_initial": 0.19544885684882868,
+      "norm_scaled_e_final": 0.01828765843077118,
+      "distance_ratio_final_over_initial": 0.09356748729881752,
+      "linear_prediction_V_final": 0.06858725089341319,
+      "linear_vs_observed_V_relative_error_at_final": 0.029990038767168044,
+      "linear_vs_observed_V_max_relative_error": 0.029990038767168044,
+      "observed_decay_tau_Qset_error_s": 419.47085791381534,
+      "predicted_slow_mode_tau_s": 426.854110400582,
+      "max_abs_Qset_error_final_pu": 0.001846841071898142,
+      "frequency_dev_hz_min_max": [
+        1.8695357262288326e-07,
+        4.611813864130454e-07
+      ],
+      "unit_voltage_min_max_pu": [
+        0.9916498269853081,
+        1.0048277216680865
+      ],
+      "bus_voltage_min_max_pu": [
+        0.9781072092499637,
+        1.0407815173293669
+      ],
+      "min_margin_P_pu": 0.10967339950270638,
+      "min_margin_Q_pu": 0.8395092744086012,
+      "min_margin_S_pu": 1.0693740903796725,
+      "max_reference_rate_pu_per_s": 4.768507514009193e-05,
+      "final_reference_rate_pu_per_s": 4.607988232120905e-06,
+      "dae_residual_g_inf_max": 8.808039808627655e-08
+    }
+  }
+}

@@ -1,0 +1,513 @@
+{
+  "stage": "DEC-051 A",
+  "git_commit": "c07c482a85ae7acf1dcbc42ce8891e223d595d74",
+  "doc": "DEC-051 block A: exact equilibrium of the full DAE + original RDC (no time stepping).\n\nUnknowns: dynamic states x_d, quasi-algebraic states x_z, algebraic variables y and the 20 references u = [Pset, Qset].  Equations: f_d = 0 (x' = 0), f_z = 0, g = 0, and the 20 RDC rates v_RDC(u, P, Q, V, omega) = 0,\nwith the E8 actuator maps theta(u, y) evaluated exactly (no frozen references).  Common rotor-angle symmetry: the DAE is invariant to a common shift of all rotor angles, so the right object is a RELATIVE equilibrium: all angle rates equal one common value c = Omega_b (omega_s - 1) (the\nsynchronous speed offset, a result of the solve) and every other rate is zero.  The residual is therefore the quotient residual F_q = F - v_null F_c (c = SG31 angle), and the explicit condition\n delta_SG31 = its 1999 s value removes the shift of the solution.\nMethod: outer damped Newton on (x_d, u) with the reduced Jacobian M of the closed loop (ANDES analytic Jacobians; parameter derivatives by finite differences, as in E9/DEC-050), the inner Newton re-solves\n(x_z, y) from g = 0 at every outer iterate (so the algebraic constraints and the maps theta(u, y) hold at every iterate); backtracking line search on the infinity norm of [x_d'; v_RDC].\nStart: the full ANDES state stored at t = 1999 s by run_dec051_state_dump.py.  Starts perturbed by 1e-3 relative are re-solved to test local uniqueness and tolerance sensitivity.\nIndependent validation (A2) re-evaluates every equation with fresh calls and checks balances, limits, discrete-limiter flags, clamp and regularity.",
+  "rdc_replica_vs_stored_rates_max_abs": 0.0,
+  "newton_history": [
+    {
+      "iter": 0,
+      "norm_inf_F": 4.599315153599358e-06,
+      "common_angle_rate_c": 2.0729985417904435e-06,
+      "norm_xdot_quotient": 3.850396757432151e-06,
+      "norm_vrdc": 4.599315153599358e-06,
+      "inner_iterations": 2,
+      "inner_residual": 9.947598300641403e-14,
+      "g_inf": 9.947598300641403e-14,
+      "step_length": 0.25,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 1,
+      "norm_inf_F": 3.1943305076442938e-06,
+      "common_angle_rate_c": 1.863933946134083e-06,
+      "norm_xdot_quotient": 2.887797568074113e-06,
+      "norm_vrdc": 3.1943305076442938e-06,
+      "inner_iterations": 1,
+      "inner_residual": 8.526512829121202e-14,
+      "g_inf": 8.526512829121202e-14,
+      "step_length": 0.25,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 2,
+      "norm_inf_F": 2.2186255577579493e-06,
+      "common_angle_rate_c": 1.7078238162884206e-06,
+      "norm_xdot_quotient": 2.1658481761388515e-06,
+      "norm_vrdc": 2.2186255577579493e-06,
+      "inner_iterations": 1,
+      "inner_residual": 7.638334409421077e-14,
+      "g_inf": 7.638334409421077e-14,
+      "step_length": 0.25,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 3,
+      "norm_inf_F": 1.6587078377483522e-06,
+      "common_angle_rate_c": 1.591289469977639e-06,
+      "norm_xdot_quotient": 1.6587078377483522e-06,
+      "norm_vrdc": 1.5603200116460786e-06,
+      "inner_iterations": 1,
+      "inner_residual": 8.526512829121202e-14,
+      "g_inf": 8.526512829121202e-14,
+      "step_length": 0.5,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 4,
+      "norm_inf_F": 1.4818914095826585e-06,
+      "common_angle_rate_c": 1.4173518676354752e-06,
+      "norm_xdot_quotient": 1.4818914095826585e-06,
+      "norm_vrdc": 7.740553716496581e-07,
+      "inner_iterations": 1,
+      "inner_residual": 7.105427357601002e-14,
+      "g_inf": 7.105427357601002e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 5,
+      "norm_inf_F": 3.9931151718519686e-07,
+      "common_angle_rate_c": 1.2461146288903656e-06,
+      "norm_xdot_quotient": 3.9931151718519686e-07,
+      "norm_vrdc": 1.3168898807601297e-07,
+      "inner_iterations": 1,
+      "inner_residual": 9.325873406851315e-14,
+      "g_inf": 9.325873406851315e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 6,
+      "norm_inf_F": 3.0173787051872335e-08,
+      "common_angle_rate_c": 1.2490898923309589e-06,
+      "norm_xdot_quotient": 1.7399592877609393e-08,
+      "norm_vrdc": 3.0173787051872335e-08,
+      "inner_iterations": 1,
+      "inner_residual": 9.237055564881302e-14,
+      "g_inf": 9.237055564881302e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 7,
+      "norm_inf_F": 6.9177095545749825e-09,
+      "common_angle_rate_c": 1.2492499436405954e-06,
+      "norm_xdot_quotient": 7.486455899652356e-10,
+      "norm_vrdc": 6.9177095545749825e-09,
+      "inner_iterations": 1,
+      "inner_residual": 7.16093850883226e-14,
+      "g_inf": 7.16093850883226e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 8,
+      "norm_inf_F": 1.5842473285380791e-09,
+      "common_angle_rate_c": 1.2491688297708059e-06,
+      "norm_xdot_quotient": 8.117950756059145e-11,
+      "norm_vrdc": 1.5842473285380791e-09,
+      "inner_iterations": 1,
+      "inner_residual": 8.704148513061227e-14,
+      "g_inf": 8.704148513061227e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 9,
+      "norm_inf_F": 3.6205338496664817e-10,
+      "common_angle_rate_c": 1.2491898406906379e-06,
+      "norm_xdot_quotient": 1.9451107391432743e-11,
+      "norm_vrdc": 3.6205338496664817e-10,
+      "inner_iterations": 1,
+      "inner_residual": 8.748557434046234e-14,
+      "g_inf": 8.748557434046234e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 10,
+      "norm_inf_F": 8.239830928571772e-11,
+      "common_angle_rate_c": 1.2491848181600007e-06,
+      "norm_xdot_quotient": 6.94999613415348e-12,
+      "norm_vrdc": 8.239830928571772e-11,
+      "inner_iterations": 1,
+      "inner_residual": 9.592326932761353e-14,
+      "g_inf": 9.592326932761353e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 11,
+      "norm_inf_F": 1.8598951399178068e-11,
+      "common_angle_rate_c": 1.249185990083816e-06,
+      "norm_xdot_quotient": 1.5498713423767185e-11,
+      "norm_vrdc": 1.8598951399178068e-11,
+      "inner_iterations": 1,
+      "inner_residual": 6.927791673660977e-14,
+      "g_inf": 6.927791673660977e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 12,
+      "norm_inf_F": 5.0676929206598805e-12,
+      "common_angle_rate_c": 1.2491857389572842e-06,
+      "norm_xdot_quotient": 2.575717417130363e-12,
+      "norm_vrdc": 5.0676929206598805e-12,
+      "inner_iterations": 1,
+      "inner_residual": 6.039613253960852e-14,
+      "g_inf": 6.039613253960852e-14
+    }
+  ],
+  "converged_declared_1e-8": true,
+  "reached_below_1e-11": true,
+  "sensitivity_starts": [
+    {
+      "start_perturbation": "1e-3 relative on x and u",
+      "final_norm_inf_F": 9.814371537686384e-12,
+      "iterations": 22,
+      "max_abs_dx_vs_root": 5.885465448329796e-10,
+      "max_abs_du_vs_root": 1.8045573924041491e-09
+    },
+    {
+      "start_perturbation": "1e-3 relative on x and u",
+      "final_norm_inf_F": 7.373790756036333e-12,
+      "iterations": 24,
+      "max_abs_dx_vs_root": 7.810632141058704e-10,
+      "max_abs_du_vs_root": 1.8298269566230374e-09
+    }
+  ],
+  "distance_to_1999s_point": {
+    "max_abs_dx_dynamic": 0.0017925259076378985,
+    "max_abs_du": 0.00191905715223184,
+    "max_abs_dy": 0.0021442601746857193
+  },
+  "reproducibility_u_diff_vs_DEC050": 3.0343517636310935e-06,
+  "A2": {
+    "residual_f_dynamic_raw_inf": 1.2491857389572842e-06,
+    "residual_xdot_inf": 1.2491857389572842e-06,
+    "residual_f_quasi_algebraic_inf": 0.0,
+    "residual_g_inf": 6.039613253960852e-14,
+    "rdc_rates_inf": 5.0676929206598805e-12,
+    "rdc_rates_by_unit_P": [
+      2.7059781086475637e-12,
+      -5.0676929206598805e-12,
+      -1.7434350894018204e-14,
+      -1.7400823569725535e-14,
+      -1.726279793631389e-14,
+      1.7557490777760165e-12,
+      4.8129762432030616e-14,
+      6.415658108644257e-13,
+      -1.8828480205060015e-14,
+      -1.3555054311954163e-14
+    ],
+    "rdc_rates_by_unit_Q": [
+      2.8057005503623333e-13,
+      -4.1288670074059175e-12,
+      -5.775021845282058e-14,
+      -4.980949294241654e-14,
+      -9.544394354715768e-14,
+      4.633870598434037e-14,
+      6.913456657468234e-14,
+      9.091577317377197e-16,
+      -7.657513268225988e-14,
+      -5.906516595266531e-14
+    ],
+    "balance": {
+      "sum_P_units_pu": 58.97318900671892,
+      "sum_P_constant_power_loads_pu": 58.564,
+      "network_loss_pu_from_Ybus": 0.4091834754493249,
+      "residual_P_pu": 5.5312695934617295e-06,
+      "sum_Q_units_pu": 13.865549269488657,
+      "sum_Q_loads_pu": 17.51845
+    },
+    "units": {
+      "SG30": {
+        "P_pu": 4.470938891809258,
+        "Q_pu": 0.5805638233276911,
+        "S_pu": 4.508475233074865,
+        "V_pu": 0.9937014876856953,
+        "P_margin_to_pmax": 5.9290611081907425,
+        "Q_margin_to_qmax": 0.951236176672309,
+        "Q_margin_to_qmin": 1.161403823327691,
+        "S_margin_pu": 5.891524766925135,
+        "Pset_minus_Pn": 3.1831169379437085e-05,
+        "Qset_minus_Qn": -0.16619556141928105,
+        "g_P_raw": 20.458652695949397,
+        "g_Q_raw": 0.7717784467082414
+      },
+      "SG31": {
+        "P_pu": 6.361290056571313,
+        "Q_pu": 3.436498036705748,
+        "S_pu": 7.230181874622209,
+        "V_pu": 0.9915941320022506,
+        "P_margin_to_pmax": 0.1387099434286867,
+        "Q_margin_to_qmax": 0.8615419632942514,
+        "Q_margin_to_qmin": 4.663148036705748,
+        "S_margin_pu": 1.1298181253777901,
+        "Pset_minus_Pn": -0.002020003815629501,
+        "Qset_minus_Qn": -0.20894697649673954,
+        "g_P_raw": 0.11936398582528707,
+        "g_Q_raw": 0.13318726729948185
+      },
+      "SG33": {
+        "P_pu": 6.4591006218253515,
+        "Q_pu": 1.966672370404595,
+        "S_pu": 6.751872411070686,
+        "V_pu": 0.9970285477302621,
+        "P_margin_to_pmax": 0.3608993781746488,
+        "Q_margin_to_qmax": 3.515407629595405,
+        "Q_margin_to_qmin": 4.104472370404595,
+        "S_margin_pu": 4.996127588929314,
+        "Pset_minus_Pn": 8.497985095079486e-05,
+        "Qset_minus_Qn": -0.034949172439727505,
+        "g_P_raw": 1.5538190135070504,
+        "g_Q_raw": 0.6666061933101843
+      },
+      "SG35": {
+        "P_pu": 6.860325144644158,
+        "Q_pu": 1.8221493763220562,
+        "S_pu": 7.098189166249921,
+        "V_pu": 0.999651716592245,
+        "P_margin_to_pmax": 0.10967485535584132,
+        "Q_margin_to_qmax": 4.115730623677944,
+        "Q_margin_to_qmin": 4.171869376322056,
+        "S_margin_pu": 3.75881083375008,
+        "Pset_minus_Pn": 0.0010466853597774772,
+        "Qset_minus_Qn": -0.012153460257451565,
+        "g_P_raw": 0.42745737946902745,
+        "g_Q_raw": 0.5733772741771883
+      },
+      "SG38": {
+        "P_pu": 7.740211752254979,
+        "Q_pu": 1.2137234034162272,
+        "S_pu": 7.83479434763583,
+        "V_pu": 1.0018766692635854,
+        "P_margin_to_pmax": 0.9097882477450216,
+        "Q_margin_to_qmax": 7.134026596583772,
+        "Q_margin_to_qmin": 4.782613403416227,
+        "S_margin_pu": 9.006205652364168,
+        "Pset_minus_Pn": 6.28161967517471e-05,
+        "Qset_minus_Qn": 0.030315129129185214,
+        "g_P_raw": 5.295463641502061,
+        "g_Q_raw": 0.7519788628302889
+      },
+      "SG39": {
+        "P_pu": 5.751913610503218,
+        "Q_pu": 0.12799509208629273,
+        "S_pu": 5.753337546701944,
+        "V_pu": 1.004829057892325,
+        "P_margin_to_pmax": 5.248086389496782,
+        "Q_margin_to_qmax": 5.620504907913707,
+        "Q_margin_to_qmin": 1.8606050920862927,
+        "S_margin_pu": 6.236662453298056,
+        "Pset_minus_Pn": 3.2279599762929934e-05,
+        "Qset_minus_Qn": 0.09101749278360056,
+        "g_P_raw": 16.520306788694185,
+        "g_Q_raw": 0.5472737330647537
+      },
+      "GFM32": {
+        "P_pu": 7.129631836710233,
+        "Q_pu": 1.8588653258694021,
+        "S_pu": 7.367973291669269,
+        "V_pu": 0.9981408570651612,
+        "P_margin_to_pmax": 0.3703681632897666,
+        "Q_margin_to_qmax": 2.608354674130598,
+        "Q_margin_to_qmin": 3.6610453258694022,
+        "S_margin_pu": 1.0690267083307319,
+        "Pset_minus_Pn": 6.867194061044302e-05,
+        "Qset_minus_Qn": 0.011333664782524178,
+        "g_P_raw": 0.6326682591273478,
+        "g_Q_raw": 0.23959370655837753
+      },
+      "GFM37": {
+        "P_pu": 3.2941326724958704,
+        "Q_pu": 0.5590958671593035,
+        "S_pu": 3.341242022464012,
+        "V_pu": 1.0014315968781757,
+        "P_margin_to_pmax": 2.3458673275041293,
+        "Q_margin_to_qmax": 3.8755841328406966,
+        "Q_margin_to_qmin": 2.7203158671593037,
+        "S_margin_pu": 6.360757977535988,
+        "Pset_minus_Pn": 3.231319532170929e-05,
+        "Qset_minus_Qn": 0.22907965895129012,
+        "g_P_raw": 6.8054202367365715,
+        "g_Q_raw": 0.8806643586589549
+      },
+      "GFM34": {
+        "P_pu": 5.072273073224172,
+        "Q_pu": 1.671678657977,
+        "S_pu": 5.340642626584442,
+        "V_pu": 0.9998736930143165,
+        "P_margin_to_pmax": 0.42772692677582835,
+        "Q_margin_to_qmax": 4.443271342023,
+        "Q_margin_to_qmin": 3.551958657977,
+        "S_margin_pu": 5.461357373415558,
+        "Pset_minus_Pn": 4.812698246947633e-05,
+        "Qset_minus_Qn": 0.034770824701254144,
+        "g_P_raw": 1.6398701720218813,
+        "g_Q_raw": 0.7558582229207289
+      },
+      "GFM36": {
+        "P_pu": 5.833371346680364,
+        "Q_pu": 0.6283073162203408,
+        "S_pu": 5.867110988543467,
+        "V_pu": 1.0040672283526835,
+        "P_margin_to_pmax": 0.11662865331963612,
+        "Q_margin_to_qmax": 5.055412683779658,
+        "Q_margin_to_qmin": 3.119627316220341,
+        "S_margin_pu": 4.384889011456534,
+        "Pset_minus_Pn": 5.4087062292040855e-05,
+        "Qset_minus_Qn": 0.24881333383098314,
+        "g_P_raw": 0.4567420645851184,
+        "g_Q_raw": 0.6713461335776184
+      }
+    },
+    "bus_voltage_min_max_pu": [
+      0.9781074866351938,
+      1.0405507985532707
+    ],
+    "bus_voltages_pu": [
+      1.018857190020595,
+      1.0111561058555965,
+      0.990851500070241,
+      1.0164094913743187,
+      1.0383217167263274,
+      1.0405507985532707,
+      1.0268780245419167,
+      1.0241708681631596,
+      1.024276037614407,
+      1.0394576002373628,
+      1.0391507825995365,
+      1.03502793175515,
+      1.0337186459076484,
+      1.0212536272560444,
+      0.9984268348910982,
+      1.0035856696109422,
+      1.0003832587462707,
+      0.9952708685804668,
+      1.0365418655128305,
+      0.9781074866351938,
+      0.9921972143576918,
+      1.002982369707382,
+      0.9966984168794398,
+      1.0060249640175574,
+      1.0141627123762804,
+      1.0122177241153352,
+      1.0006992575965827,
+      1.0089295211761897,
+      1.0086884495047985,
+      0.9937014876856953,
+      0.9915941320022506,
+      0.9981408570651612,
+      0.9970285477302621,
+      0.9998736930143165,
+      0.999651716592245,
+      1.0040672283526835,
+      1.0014315968781757,
+      1.0018766692635854,
+      1.004829057892325
+    ],
+    "n_buses_outside_0.95_1.05": 0,
+    "frequency_deviation_hz": 1.988140851949538e-07,
+    "omega_unit_spread": 0.0,
+    "sg_z_clamp_margin": 0.08746318141019563,
+    "z_raw": [
+      -0.009971733685156862,
+      -0.012536818589804372,
+      -0.0020969503463836503,
+      -0.0007292076154470938,
+      0.0018189077477511128,
+      0.005461049567016034
+    ],
+    "min_capability_factors_raw": [
+      0.11936398582528707,
+      0.13318726729948185
+    ],
+    "limiter_flags_stored": {
+      "PQ.vcmp": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "PV.qlim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "Slack.qlim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "Slack.plim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "TGOV1N.LAG_lim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "IEEEX1.LA_lim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "IEEEST.VLIM": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "IEEEST.OLIM": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "REGF1.Psig_lim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "REGF1.Qsig_lim": {
+        "active_upper": 0,
+        "active_lower": 0
+      },
+      "REGF1.dw_lim": {
+        "active_upper": 0,
+        "active_lower": 0
+      }
+    },
+    "regularity": {
+      "extended_algebraic_block_min_singular_value": 0.002099335583275072,
+      "extended_algebraic_block_cond": 529013.3423062097,
+      "gy_only_cond": 529013.3423062749,
+      "n_dynamic": 208,
+      "n_quasi_algebraic": 12,
+      "n_forced_PSS_states_eliminated": 30
+    },
+    "quotient": {
+      "norm_inf_quotient_residual": 5.0676929206598805e-12,
+      "common_angle_rate_rad_per_s": 1.2491857389572842e-06,
+      "implied_synchronous_frequency_offset_hz": 1.988140851949538e-07,
+      "n_angle_states_in_null_vector": 88,
+      "n_nonzero_entries_in_null_vector_total": 88,
+      "angle_rates_spread_after_removing_common_rate": 5.0676929206598805e-12
+    },
+    "PSS": {
+      "forced_state_rows_f_inf": 0.0,
+      "forced_algebraic_rows_g_inf": 0.0,
+      "vsout_by_SG": [
+        1.7675249112671813e-17,
+        -8.451710382538061e-19,
+        1.7689063896421283e-17,
+        8.801143393527668e-20,
+        -8.755257326433378e-18,
+        -8.752798623141508e-18
+      ],
+      "WO_x_plus_2_LL2_x_max_abs": 0.0,
+      "LL2_x_minus_sig_max_abs": 1.2212453270876722e-15,
+      "n_genuine_PSS_states_kept": 12,
+      "note": "PSS active: washout of the lagged electrical power, DC gain zero -> vsout = 0 at a relative equilibrium"
+    }
+  },
+  "tolerance": {
+    "declared_target_normalized_residual": 1e-08,
+    "reached_norm_inf_F_quotient": 5.0676929206598805e-12,
+    "reached_g_inf": 6.039613253960852e-14,
+    "reached_rdc_rates_inf": 5.0676929206598805e-12
+  },
+  "GATE_A": "EQUILIBRIUM_EXACT"
+}

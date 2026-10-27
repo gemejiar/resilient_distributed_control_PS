@@ -1,0 +1,9 @@
+id,test,prediction,observation,error_or_note,outcome,type
+DEC051-A-eq,equilibrium Newton from the 1999 s state,quotient residual 5.07e-12,target 1e-8,,GATE_A EQUILIBRIUM_EXACT,static
+DEC051-A-uniq,two perturbed starts (1e-3 relative),same root,"|dx|<=7.8e-10, |du|<=1.8e-09",,local uniqueness supported,static
+DEC051-H4-plus,1000 s from equilibrium + +0.02 pu slow-mode perturbation,V(1000)/V(0) linear 0.0086,observed 0.0083,V monotone decreasing 1.00,converges to the equilibrium; faster than linear (see report),sim
+DEC051-H4-minus,1000 s from equilibrium + -0.02 pu slow-mode perturbation,V(1000)/V(0) linear 0.0086,observed 0.0088,V monotone decreasing 1.00,converges to the equilibrium; faster than linear (see report),sim
+DEC051-H3-1,P+ 110 % at bus 4,margin SG31/SG35 0.0137/0.0160,0.0137/0.0160,max err 0.0003,no violation (as predicted),sim
+DEC051-H3-2,P+ 58.564 MW at bus 18 (dist_fn step at 5 s),margin SG31/SG35 0.0768/0.0118,0.0777/0.0230,max err 0.0600,no violation (as predicted; conservative),sim
+DEC050-reuse,P step 65.9 MW / 73.2 MW (R35_040),inequality crossing 70.3 MW,ok / SG31 crosses,,prediction inside the dynamic bracket,reused
+DEC050-reuse,delay 0.5 s / 0.75 s,,ok / band violations,,"reused, not reinterpreted",reused

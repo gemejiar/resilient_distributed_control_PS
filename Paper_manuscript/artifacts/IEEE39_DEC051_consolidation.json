@@ -1,0 +1,153 @@
+{
+  "stage": "DEC-051 consolidation",
+  "git_commit": "c07c482a85ae7acf1dcbc42ce8891e223d595d74",
+  "base": "review/rdc-recovery-dec050 @ c07c482",
+  "dynamic_simulations": {
+    "limit": 6,
+    "used": 6,
+    "list": [
+      {
+        "id": 1,
+        "what": "contingency: 2000 s state-dump run that crashed at t=1999 s (AttributeError PQ.Ipf in the dump code); nothing usable, counted"
+      },
+      {
+        "id": 2,
+        "what": "contingency: 2000 s re-run, full ANDES state at 1999 s stored"
+      },
+      {
+        "id": 3,
+        "what": "H3-1: P+ 110 % bus 4, B2, R35_040, 200 s"
+      },
+      {
+        "id": 4,
+        "what": "H3-2: P step 58.564 MW at bus 18, B2, R35_040, 200 s"
+      },
+      {
+        "id": 5,
+        "what": "H4-1: +perturbation from the equilibrium, 1000 s"
+      },
+      {
+        "id": 6,
+        "what": "H4-2: -perturbation from the equilibrium, 1000 s"
+      }
+    ]
+  },
+  "hashes_sha256": {
+    "IEEE39_DEC051_consolidation.json": "8F5C3C137272FA94D6D23B1DF8D3AFA181EB471B602CBED427C1FE27087154FB",
+    "IEEE39_DEC051_equilibrium.csv": "1E60BA778CD0F8C582FBFDA6ACFA3E500113BD6062702911C8FD6ECC386AF769",
+    "IEEE39_DEC051_equilibrium.json": "FFEF0A9BB302C8BD4C7CB9BFD9FFC84D7BF188458B5EA226C555ADE25C87294A",
+    "IEEE39_DEC051_equilibrium_state.npz": "4F4C476293D015EBC8C5B24771CC86301483A7AD7105EBC8B6FE93B4E8543733",
+    "IEEE39_DEC051_H3_jump.json": "7103C76967F3F3D1528B60F66CAFF3D429BF5A21A4F840C0E192C380F582D69D",
+    "IEEE39_DEC051_H3_predictions.json": "5951A4F3D3C9BA2064566EDBD5683BFD4AD965F87B763ADC696BED083D5F3140",
+    "IEEE39_DEC051_H3_sim1.json": "46A256C5431F5692C9A072DAEF31C9061FF2376613A061C316F1FD74C2FCE2B7",
+    "IEEE39_DEC051_H3_sim1_series.npz": "02CC2F245649F60F3F5D78DEABDDE7C29E7FD42F281049EEE6FD7E972781810F",
+    "IEEE39_DEC051_H3_sim2.json": "F32ED0E1799CA6A11522B9FC7E0A7E8977CA8A9F539C7557AEC01A646A73839D",
+    "IEEE39_DEC051_H3_sim2_series.npz": "C9140A4C1C04C65EA021EC1A47754F32AE6B4F4054993735967E295DC6F81B89",
+    "IEEE39_DEC051_H3_summary.json": "8BB82B0EFBD0E964BBF4B6AB35425F48FCF7E41B60B72D516EFA3895B2FAA32D",
+    "IEEE39_DEC051_H4_matrices.npz": "1F00D054429AC4AAACC345C8552ED8ACBC836B57094B591549773446D562A255",
+    "IEEE39_DEC051_H4_mode.npz": "B0C23AFCF79548F9FB145EF2FBB49E3E76A5A744098B263E20042839453B96D7",
+    "IEEE39_DEC051_H4_perturb_minus.npz": "38D67CDDCCCE633FA1EF55350AC24F88BC5493D8A94DAD158EC448DF71CF2CD0",
+    "IEEE39_DEC051_H4_perturb_plus.npz": "FE873D06A38D33CE0D2AF15E5D188DC2D40EE364FC07C864A0DE0FED20042385",
+    "IEEE39_DEC051_H4_summary.json": "9D3FC3D7072EF7177A966BAF03E2AB25D17B9E86B40880C60E8116E27A694246",
+    "IEEE39_DEC051_H4_validation.json": "38D8F548540934A39DCCDBBECEE4FF658BDF41B5098D272A86AA1AD446C4890E",
+    "IEEE39_DEC051_H4_validation_minus_summary.npz": "3FAB20BBDE8A936778D22F1029913FFC5A6A6317B54442A36E0B180C1C24A5B4",
+    "IEEE39_DEC051_H4_validation_plus_summary.npz": "405A50086FD489142D140881B8FDBFF03D48FDE79F3C1154CBEF06C0270BB290",
+    "IEEE39_DEC051_safety_margins.csv": "F0DC397F9BA6A96D750C199DBAA7BB8623C96301C65426095A9AC1D9F03443FD",
+    "IEEE39_DEC051_state_t1999.npz": "775CC43A1581D382F85ED209B6398640D06953958225812802E8DE2A96593EDB",
+    "IEEE39_DEC051_validation.csv": "9EF9714A00EDABF76D0E88A323B0C40C323160DEB27AB3FCC0384DA46E347D10",
+    "IEEE39_DEC051_H3_reserve_safety.png": "EFCB0DA2AABFB95237F80AB8281C2DA7BEE4BBBA0BB7FA18932143D95EA028CA",
+    "IEEE39_DEC051_H3H4_summary.png": "ECC73ED20D83FFF069CFCBA4498E3C35EDCCEE5E3BBB731A959C137743203C54",
+    "IEEE39_DEC051_H4_local_stability.png": "56D034DD7E901322C0967414A11B46A77EE937D6954669804A83C2C38C1C9FA6",
+    "analyse_dec051_h4_val.py": "43BC71AD99BB73AC8B2CCC739A84854DE6CE3BB4B301D33B04487864C0823BDD",
+    "dec051_core.py": "B6523C3B3529BE454C8E1ECEC54CB218B8C171265712CB6A951711A916E2626A",
+    "finalize_dec051.py": "D6C5E5B0B7E6B7BAAB62BA1D147690BFCD8A24983F05CB454EAB9D87C01F059E",
+    "run_dec051_equilibrium.py": "245E2BDB1B8C2F61ED00FB94992AA561C09087F9A84410A18FB9256FDFF8FBDC",
+    "run_dec051_h3_jump.py": "BBF958FEF26B00EEC70760C61E2DF1C73AD536E51683CC71814D2B6313370116",
+    "run_dec051_h3_select.py": "87C472FA0AE1CB281F7EAF8282115E3175549FA00BB8551956FF0153DDE06E55",
+    "run_dec051_h3_sim.py": "0B88C256AC1FBADED0F14A9D45AC33CCA430799A9ADBE81DCAF34319F531F7A0",
+    "run_dec051_h4.py": "513BF2D6B47E215BA66EAECEEE98B56CE594ABEBFB8D291535DDBAEFA5E240DF",
+    "run_dec051_h4_perturb.py": "346C669680158954E6A78EAF8DE3126E0F6F382CD7EE04525939125B1A3A804C",
+    "run_dec051_state_dump.py": "99D0EE7550C0E43C05BDE585277F5DDC3861F21B7B3961568A0C0AF3BCB4D99C"
+  },
+  "H3_GATE_C": "H3_PREVENTIVE_NUMERICALLY_SUPPORTED",
+  "H4_GATE_A": "EQUILIBRIUM_EXACT",
+  "H4_GATE_B": {
+    "hypotheses": {
+      "exact_equilibrium": true,
+      "regular_algebraic_block": true,
+      "hurwitz_quotient": true,
+      "all_switches_inactive_with_positive_margin": true,
+      "jacobian_accuracy_ok": true,
+      "lyapunov_P_positive_definite": true
+    },
+    "H4_1": "PROVEN_COMPUTER_ASSISTED",
+    "H4_2": "ACCEPTED",
+    "H4_3": "REGION_NOT_CERTIFIED"
+  },
+  "conclusions_matrix": [
+    {
+      "property": "Existencia de equilibrio DAE-RDC",
+      "mathematical_demonstration": "Condicional (Newton-Kantorovich no verificado)",
+      "numerical_evidence": "Si: residual 5.1e-12, unicidad local",
+      "scope": "Q+ sobre C2t_Vsafe_R35_040, equilibrio relativo",
+      "status": "CONDITIONAL"
+    },
+    {
+      "property": "Estabilidad lineal local",
+      "mathematical_demonstration": "Si (certificado Lyapunov a posteriori, asistido por computador)",
+      "numerical_evidence": "Si: max Re = -2.34e-03, zeta_min = 0.072",
+      "scope": "Ese punto; cociente por el angulo comun",
+      "status": "PROVEN"
+    },
+    {
+      "property": "Estabilidad no lineal local",
+      "mathematical_demonstration": "Si (metodo indirecto de Lyapunov; hipotesis verificadas numericamente)",
+      "numerical_evidence": "Si: dos corridas +/-, V decrece monotonamente",
+      "scope": "Vecindad de radio NO cuantificado",
+      "status": "PROVEN"
+    },
+    {
+      "property": "Region invariante segura",
+      "mathematical_demonstration": "No",
+      "numerical_evidence": "Parcial: V-dot<0 muestreado; limites P/Q/S solo hasta rho=4.6e-05",
+      "scope": "Elipsoide empirico",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "property": "Reserva preventiva SG31/SG35",
+      "mathematical_demonstration": "Parcial (salto algebraico exacto; incrementos empiricos)",
+      "numerical_evidence": "Si: 3 corridas B2 sin violacion; desigualdad predice la frontera dinamica",
+      "scope": "P+ barra 4 hasta 64.4 MW y barra 18; R35_040",
+      "status": "NUMERICALLY_SUPPORTED"
+    },
+    {
+      "property": "Seguridad ante salto instantaneo",
+      "mathematical_demonstration": "Condicional (resolucion algebraica con continuidad de estados; malla de amplitudes)",
+      "numerical_evidence": "Si: error de prediccion 2.3e-03 pu",
+      "scope": "P+ en barra 4 (rejilla 0.25-1.5x)",
+      "status": "CONDITIONAL"
+    },
+    {
+      "property": "Seguridad transitoria posterior",
+      "mathematical_demonstration": "No",
+      "numerical_evidence": "Si: incrementos rapido y lento observados",
+      "scope": "Misma clase; escalado lineal empirico",
+      "status": "NUMERICALLY_SUPPORTED"
+    },
+    {
+      "property": "H3 original (HOCBF) / H3-R",
+      "mathematical_demonstration": "H3 original: no; H3-R: parcial",
+      "numerical_evidence": "H3 original: sin lazo cerrado; H3-R: H3_PREVENTIVE_NUMERICALLY_SUPPORTED",
+      "scope": "Diferenciado",
+      "status": "H3 original NOT_PROVEN; H3-R NUMERICALLY_SUPPORTED"
+    },
+    {
+      "property": "H4 original (CLF-HOCBF) / H4-R",
+      "mathematical_demonstration": "H4 original: no; H4-R: si (local)",
+      "numerical_evidence": "H4 original: no implementado; H4-R: dos validaciones",
+      "scope": "Diferenciado",
+      "status": "H4 original NOT_PROVEN; H4-R PROVEN (local, asistido)"
+    }
+  ],
+  "predictions_file_sha256_before_runs": "5951a4f3d3c9ba2064566edbd5683bfd4ad965f87b763adc696bed083d5f3140"
+}
