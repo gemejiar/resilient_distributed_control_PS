@@ -58,7 +58,7 @@ TOL_REPLICATION = {"f_hz": 1.0e-6, "v_pu": 1.0e-6, "pq_pu": 1.0e-6, "ref_pu": 1.
 
 
 def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict[str, np.ndarray] | None = None,
-        probe=None, init_hook=None, freeze_t=None, ramp=None, qp_filter=None, dist_fn=None):
+        probe=None, init_hook=None, freeze_t=None, ramp=None, qp_filter=None, dist_fn=None, log_every: int = 1):
     system, ctx = e8.configure(scenario, time_step_s)
     if init_hook is not None:  # E9-A: independent initial-condition variant (the historical runs never pass a hook)
         init_hook(system, ctx)
@@ -136,6 +136,9 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict
         sys_.IEEEX1.vref0.v[ctx["ex_pos"]] = st["vref0_sg"][ctx["ex_pos"]] + z
         qaux = e8.KCQ_GFM * (st["y0q"] + (st["qset"] - st["qn"])[n_sg:] - np.asarray(y[st["a_yq"]], float))
         sys_.REGF1.Qaux0.v[:] = qaux
+        st["n_log"] = st.get("n_log", -1) + 1
+        if st["n_log"] % log_every:   # DEC-050: optional thinning of the command log for the 2000 s run (default 1 = every step, historical behaviour)
+            return
         for key, val in (("t", t), ("pset", st["pset"].copy()), ("qset", st["qset"].copy()), ("gp", gp.copy()), ("gq", gq.copy()),
                          ("paux", paux.copy()), ("qaux", qaux.copy()), ("z", z.copy()), ("vrdc_p", vp.copy()), ("vrdc_q", vq.copy()),
                          ("vnom_p", vnom_p.copy()), ("vnom_q", vnom_q.copy()), ("active", float(active)),

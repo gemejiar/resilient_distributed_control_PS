@@ -1,0 +1,298 @@
+{
+  "stage": "DEC-050 consolidation",
+  "git_commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+  "branch": "review/rdc-recovery-dec050 (from 4710e76)",
+  "dynamic_simulations": {
+    "limit": 12,
+    "used": 12,
+    "list": [
+      {
+        "id": 1,
+        "what": "8 s smoke test of run_dec050_a_longrun.py (output discarded)"
+      },
+      {
+        "id": 2,
+        "what": "block A: 2000 s B2 Q+ on R35_040"
+      },
+      {
+        "id": 3,
+        "what": "block B: B2_QV1 S0 200 s"
+      },
+      {
+        "id": 4,
+        "what": "block B: B2_QV1 P+ 200 s"
+      },
+      {
+        "id": 5,
+        "what": "block B: B2_QV1 Q+ 200 s"
+      },
+      {
+        "id": 6,
+        "what": "C1: P step 73.2 MW, 40 s"
+      },
+      {
+        "id": 7,
+        "what": "C1: P step 65.9 MW, 40 s"
+      },
+      {
+        "id": 8,
+        "what": "C1: Q step 104.1 MVAr, 40 s"
+      },
+      {
+        "id": 9,
+        "what": "C1: Q step 86.7 MVAr, 40 s"
+      },
+      {
+        "id": 10,
+        "what": "C2: delay 0.50 s, P+ 100 s"
+      },
+      {
+        "id": 11,
+        "what": "C2: delay 0.75 s, P+ 100 s"
+      },
+      {
+        "id": 12,
+        "what": "C1 diagnostic: Q 138.6 MVAr as 5 s ramp, 40 s"
+      }
+    ]
+  },
+  "A": {
+    "equilibrium_exists_numerically": true,
+    "verified_by_declared_criterion": true,
+    "drift_v0_199_to_1999": [
+      0.0004092084034607689,
+      0.0001669759884590989,
+      5.1860027225356336e-05,
+      4.596508645960442e-06
+    ],
+    "tau_observed_s": 417.5119046236717,
+    "tau_modal_s": [
+      560.897634149277,
+      482.26302396629103,
+      440.9496365104815,
+      428.02933306038096
+    ],
+    "final_tail": {
+      "qset_slope_max_abs_pu_per_s": 5.1840847119907585e-06,
+      "pset_slope_max_abs_pu_per_s": 2.777377263592118e-07,
+      "unit_voltage_slope_max_abs_pu_per_s": 1.6228050748552975e-07,
+      "frequency_error_hz": 3.16326520533039e-07,
+      "unit_voltage_mean_abs_error_to_1pu": 0.0032172031372228018,
+      "unit_voltage_max_abs_error_to_1pu": 0.008347128226535272,
+      "qset_minus_qn_final_pu": [
+        -0.16620036447953468,
+        -0.20703240791076816,
+        -0.034958872635695304,
+        -0.012179510682841066,
+        0.030299086312361112,
+        0.0909826213066191,
+        0.009597811023202452,
+        0.22889324503108188,
+        0.034718692008342655,
+        0.24874560750233232
+      ],
+      "unit_voltage_final_pu": [
+        0.9937015542425807,
+        0.9916528717734647,
+        0.9970278983256031,
+        0.9996512364899892,
+        1.0018757809370997,
+        1.0048276539415981,
+        0.9981202405376172,
+        1.0014289707459134,
+        0.9998729569172945,
+        1.0040663840341661
+      ],
+      "bus_voltage_final_min_max_pu": [
+        0.978107408025103,
+        1.0405705878153588
+      ]
+    }
+  },
+  "B": {
+    "improves_by_declared_criteria": false,
+    "criteria": {
+      "S0": {
+        "qset_drift_20s_new_over_old": 0.9725452855945191,
+        "unit_V_error_new_over_old": 0.8825907023147194,
+        "new_limit_crossings": [],
+        "freq_final_error_change_hz": -1.0324646382287028e-06
+      },
+      "P+": {
+        "qset_drift_20s_new_over_old": 0.9482666343458849,
+        "unit_V_error_new_over_old": 0.8225138796520285,
+        "new_limit_crossings": [],
+        "freq_final_error_change_hz": 1.7051381888677497e-06
+      },
+      "Q+": {
+        "qset_drift_20s_new_over_old": 0.9704453595009532,
+        "unit_V_error_new_over_old": 0.8675107461090239,
+        "new_limit_crossings": [],
+        "freq_final_error_change_hz": -1.1441226561714757e-06
+      }
+    },
+    "g_floor": 0.7580154199421696
+  },
+  "C": {
+    "C1": {
+      "P_dynamic_frontier_R35_040_MW_between": [
+        65.8845,
+        73.20500000000001
+      ],
+      "Q_dynamic_frontier_voltage_band_MVAr_between": [
+        69.31224609374999,
+        86.725
+      ],
+      "Q_unit_limit_crossings_up_to_MVAr": 104.07,
+      "Q_step_failure_E12_138MVAr": {
+        "step": "TDS failure at 5.2 s, residual 238",
+        "same_amplitude_as_5s_ramp": {
+          "tds_failed": false,
+          "violating_units": [],
+          "n_buses_outside_band": 0,
+          "bus_voltage_min_pu": 0.9628688761160723
+        }
+      },
+      "static_dispatch_conditioned_ceilings": {
+        "C2t historical (E8_B2 P+ shares) | interior margin 0": {
+          "MW": 106.64767480468751,
+          "first_infeasible_binding": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0": {
+          "MW": 104.0740615234375,
+          "first_infeasible_binding": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        "C2t historical (E8_B2 P+ shares) | interior margin 0.01": {
+          "MW": 0.0,
+          "first_infeasible_binding": [
+            "P<=pmax@31",
+            "Vmax@1",
+            "Vmax@5",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@11"
+          ]
+        },
+        "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0.01": {
+          "MW": 39.7337294921875,
+          "first_infeasible_binding": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        }
+      },
+      "E12_correction": "E12 static P frontier (117 MW) is dispatch-independent (free redispatch with 1 % interior margins) and is a ceiling for any redispatch; with physical limits and the observed RDC sharing the end-state ceiling is 104-107 MW, and the dynamic step frontier is 66-73 MW (transient overshoot).  E12's Q 'collapse' at 138.6 MVAr was a step-integration failure: the same amplitude as a 5 s ramp respects all limits and the band."
+    },
+    "C2": {
+      "delay_tolerance": {
+        "0.5": {
+          "tds_ok": true,
+          "n_buses_outside_band": 0,
+          "bus_voltage_min_max_pu": [
+            0.972872108532595,
+            1.044414827684715
+          ],
+          "units_crossing_limits": {},
+          "frequency_oscillation_last_20s_hz": 6.946322464784771e-06
+        },
+        "0.75": {
+          "tds_ok": true,
+          "n_buses_outside_band": 22,
+          "bus_voltage_min_max_pu": [
+            0.8967605093416742,
+            1.0798894357411328
+          ],
+          "units_crossing_limits": {},
+          "frequency_oscillation_last_20s_hz": 0.057095182160622926
+        }
+      },
+      "from_E15": "0.2 s ok; 1.0 s limits and band violated; 5 s TDS failure"
+    },
+    "C3_admissible_points": [
+      "R35_040 Q+ post-event, t = 1999 s (B2 original RDC)",
+      "C2t_Vsafe_R35_040 S0 equilibrium (t=4.9 s) - equilibrium of the CENTERED RDC (B3-S0 invariance); not an equilibrium of the original B2 law (v_nom != 0 at S0)",
+      "C2t historical S0 equilibrium (t=4.9 s) - equilibrium of the CENTERED RDC (B3-S0 invariance); not an equilibrium of the original B2 law (v_nom != 0 at S0)"
+    ],
+    "C4": {
+      "dynamic_P_step_frontier_R35_040_MW": [
+        65.8845,
+        73.20500000000001
+      ],
+      "tolerated_amplitude_gain_lower_bound_MW": 7.320500000000003
+    },
+    "C5": {
+      "numerical_results": [
+        "2000 s run: references converge toward an equilibrium (max|v0| 4.1e-4 -> 4.6e-6 pu/s); Newton estimates from 199/500/1000 s approach the final state (0.17 -> 0.02 pu of Qset)",
+        "B2_QV1 drift reduction 3-5 % in the max-drift metric; mean unit-voltage error 12-18 % lower; no new crossings (negative by the declared criterion)",
+        "dynamic P step frontier 66-73 MW; Q band frontier 69-87 MVAr; delay: 0.5 s ok, 0.75 s degraded, 1.0 s limits, 5 s TDS failure"
+      ],
+      "locally_demonstrable": [
+        "linearisation of the plant+RDC loop has no unstable eigenvalue at the 2000 s post-event state and at the S0 equilibrium of the centered RDC; single marginal rotor-angle direction (local exponential stability on the quotient)",
+        "a verified equilibrium of the original B2 law exists for Q+ on R35_040 (numerically, within tolerances); unit voltages at it deviate from 1 pu by up to 8.3e-3 pu (mean 3.2e-3) - a steady-state offset set by the Q-consensus term"
+      ],
+      "not_available": [
+        "any closed-loop safety guarantee (no HOCBF/CLF-HOCBF filter in the loop, Option B)",
+        "regional stability / region of attraction",
+        "global or nonlinear stability beyond Lyapunov's indirect method",
+        "real-time capability",
+        "robustness outside the tested cases (inertia, loads, delays, one N-1)",
+        "extension to grid-following resources",
+        "convergence to V = 1 pu: the equilibrium itself has a voltage offset"
+      ]
+    }
+  },
+  "hashes_sha256": {
+    "IEEE39_DEC050_A_longrun_Qplus_series.npz": "9EEEA20A45425F02E7E8501DEF9C8C0CB50AF5F455D09256DE5782CCA4ABE46A",
+    "IEEE39_DEC050_A_longrun_Qplus_probes.npz": "04850876CE6C22AA3BF452CCB084048B658E3CE725FE2FB0E99247F3E9850AE4",
+    "IEEE39_DEC050_A_summary.json": "C269596148D88AEBD890098E1642792F24057D578A8598391F99034825717C06",
+    "IEEE39_DEC050_A_equilibrium.csv": "993AF07B5B2FA27D338E93E1DC62B243335CEB093B0F70C7BF8CD7023A79632F",
+    "IEEE39_DEC050_B_B2QV1_series.npz": "2A55FFA42D29A279189FC5B7274BDEC50BF088523A88EFCD3B07C390B9CE04D5",
+    "IEEE39_DEC050_B_summary.json": "3D39A10B31F14818A96677BA8E0A8F1C3DFC368E8CB80F40A182D1EF1014D559",
+    "IEEE39_DEC050_B_paired.csv": "F0F2D769261D96CF2C442F9C6CD05E87F5A6BB4B18D438388CB13E23F8880058",
+    "IEEE39_DEC050_C1_static.json": "214A0C48DFC09940CB6D0B9176FB6EFDB63A956696FEDCA2B68D8A9B15189C99",
+    "IEEE39_DEC050_C_dynamic.json": "B84C83388AA22F164C51B288FF1516C7C511BC53B66E162DD1EB2126571E438D",
+    "IEEE39_DEC050_C_ramp_diagnostic.json": "0C6B5675D1A2FBE875D9BED07A7EF490CD91F4792A64F1D8C316C041601B6F19",
+    "IEEE39_DEC050_C_summary.json": "F344DE02B0F0C8149A3FA3E323E8B3F4058CA497BB7C561B7EC6989F1C3FA434",
+    "IEEE39_DEC050_C_observations.csv": "69EC949B3E2471A8E3C3D7929A92E4E08E05C9697CA43CEE4E96A2FDD0C8772C"
+  },
+  "historical_hashes_recheck": {
+    "E8 raw": {
+      "recorded": "FE59F362CEB3F96A17E4DC90249031C5CB7D37A495DA8786F886D5D5547F2422",
+      "now": "FE59F362CEB3F96A17E4DC90249031C5CB7D37A495DA8786F886D5D5547F2422",
+      "unchanged": true
+    },
+    "B3-S0 raw": {
+      "recorded": "D34A55E50EFFBB0C3F0873757242DF82AB551663872141D5BAFA213E8DD19EFA",
+      "now": "D34A55E50EFFBB0C3F0873757242DF82AB551663872141D5BAFA213E8DD19EFA",
+      "unchanged": true
+    },
+    "R35_040 B0 raw": {
+      "recorded": "8BC40CDDBE5D290552162D9FF5D18FF6A6C137BEEA329E8613C0BC9954453F65",
+      "now": "8BC40CDDBE5D290552162D9FF5D18FF6A6C137BEEA329E8613C0BC9954453F65",
+      "unchanged": true
+    }
+  },
+  "code_changes_to_existing_files": [
+    "run_b3_ieee39.py: optional log_every (default 1)",
+    "e9h_predictor.py: build() additionally returns xdot, v0, Cz (additive)"
+  ],
+  "scratch_note": "E15 artifacts were accidentally overwritten by a rerun with the default (non-R35_040) variant and restored from commit 4710e76 before any use"
+}

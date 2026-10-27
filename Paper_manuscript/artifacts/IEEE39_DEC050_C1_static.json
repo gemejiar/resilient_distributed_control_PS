@@ -1,0 +1,672 @@
+{
+  "stage": "DEC-050 C1 static",
+  "git_commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+  "doc": "DEC-050 block C1 (static part, no dynamic simulation): dispatch-conditioned active-power frontier.\n\nE12 compared a STATIC frontier (AC equilibrium with free redispatch of the ten units, 1 % interior margins, bus voltages 0.95-1.05 pu) with DYNAMIC runs of B2 on the variant\nC2t_Vsafe_R35_040.  The static problem contains no dependence on the dispatch (the pre-event powers enter only the objective, not the constraints), so 117 MW is a ceiling for ANY redispatch\nand is not comparable with a run that keeps a given dispatch and the RDC sharing.  Here the comparison is made on equal terms.  For each dispatch D in {C2t historical,\nC2t_Vsafe_R35_040} and the load step at bus 4 of amplitude a:\n    p_i = p0_i(D) + s_i (sum_j p_j - sum_j p0_j)        for all units  (the ACTIVE-POWER SHARES s_i observed in the B2 P+ run of that dispatch are frozen),\n    AC power balance, Q free, V_bus in 0.95-1.05, P/Q/S limits with the same a margin of 0 (physical limits, as used to count violations in the dynamic runs) and, for reference, the 1 % margin used by E12 (which alone removes most of the SG reserve).\nThe largest a for which this problem is feasible is the first amplitude at which the observed sharing hits a limit or the network cannot supply it (\"sharing frontier\").\nShares are taken from the delivered dP at the end of the 200 s run at 58.564 MW (E11); they are an assumption of this extrapolation (the RDC shares change near limits).\n",
+  "cases": {
+    "C2t historical (E8_B2 P+ shares) | interior margin 0": {
+      "p0_pu": [
+        4.360863850000001,
+        6.459999979999998,
+        6.5199999800000015,
+        6.869999980000001,
+        7.64783381,
+        5.731104244528378,
+        7.24999998,
+        3.21521338,
+        5.07999998,
+        5.79999998
+      ],
+      "shares": [
+        0.08518848178774001,
+        0.030191065050998358,
+        0.12579125217378173,
+        0.09101011247044753,
+        0.1493953536335324,
+        0.11207511775602537,
+        0.13598433775046828,
+        0.0628930337148282,
+        0.09848741959506957,
+        0.10898382606710853
+      ],
+      "frontier_multiple": 1.821044921875,
+      "frontier_amplitude_MW": 106.64767480468751,
+      "first_infeasible_binding": [
+        "P<=pmax@35",
+        "Vmax@1",
+        "Vmax@6",
+        "Vmax@10",
+        "Vmax@19",
+        "Vmax@25"
+      ],
+      "first_infeasible_amplitude_MW": 106.862142578125,
+      "log": [
+        {
+          "multiple": 0.25,
+          "amplitude_MW": 14.641000000000002,
+          "feasible": true,
+          "ineq_min": 0.017414182571383385,
+          "eq_residual": 1.1503519873062131e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 4.0,
+          "amplitude_MW": 234.25600000000003,
+          "feasible": false,
+          "ineq_min": -0.004463963205021182,
+          "eq_residual": 0.968933528813367,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@22"
+          ]
+        },
+        {
+          "multiple": 2.125,
+          "amplitude_MW": 124.44850000000001,
+          "feasible": false,
+          "ineq_min": -0.0009703722266281023,
+          "eq_residual": 0.09194002247490192,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.1875,
+          "amplitude_MW": 69.54475000000001,
+          "feasible": true,
+          "ineq_min": 0.017270405210096484,
+          "eq_residual": 3.3393565690431615e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 1.65625,
+          "amplitude_MW": 96.99662500000001,
+          "feasible": true,
+          "ineq_min": 0.0058544444399446505,
+          "eq_residual": 5.936362512670712e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 1.890625,
+          "amplitude_MW": 110.72256250000001,
+          "feasible": false,
+          "ineq_min": -0.00012594868734527864,
+          "eq_residual": 0.0188144890184887,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.7734375,
+          "amplitude_MW": 103.85959375,
+          "feasible": true,
+          "ineq_min": 7.194245199571014e-14,
+          "eq_residual": 5.531407540631236e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35"
+          ]
+        },
+        {
+          "multiple": 1.83203125,
+          "amplitude_MW": 107.29107812500001,
+          "feasible": false,
+          "ineq_min": -8.276996177336571e-08,
+          "eq_residual": 0.004895621581257448,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.802734375,
+          "amplitude_MW": 105.57533593750001,
+          "feasible": true,
+          "ineq_min": 2.7267077484793845e-13,
+          "eq_residual": 5.422425014376758e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35"
+          ]
+        },
+        {
+          "multiple": 1.8173828125,
+          "amplitude_MW": 106.43320703125,
+          "feasible": true,
+          "ineq_min": -1.0440537323574972e-12,
+          "eq_residual": 2.7631230636870896e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@19",
+            "Vmax@29",
+            "Vmax@35",
+            "Vmax@36"
+          ]
+        },
+        {
+          "multiple": 1.82470703125,
+          "amplitude_MW": 106.862142578125,
+          "feasible": false,
+          "ineq_min": -3.433458477752893e-06,
+          "eq_residual": 0.0023928102459072065,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.821044921875,
+          "amplitude_MW": 106.64767480468751,
+          "feasible": true,
+          "ineq_min": -1.9051427102567686e-12,
+          "eq_residual": 8.336401163705197e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@19",
+            "Vmax@29",
+            "Vmax@35",
+            "Vmax@36"
+          ]
+        }
+      ]
+    },
+    "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0": {
+      "p0_pu": [
+        4.470895483426771,
+        6.361085508216943,
+        6.459039491221807,
+        6.8603,
+        7.740136609023779,
+        5.751857356257235,
+        7.129563265180761,
+        3.2941004597116956,
+        5.072225046652844,
+        5.833317360029225
+      ],
+      "shares": [
+        0.08006165652688312,
+        0.08365743007412146,
+        0.1147784752888612,
+        0.10601671564953757,
+        0.1386134719123707,
+        0.10309946070633938,
+        0.12581564804583295,
+        0.0590465794572803,
+        0.09025533171603257,
+        0.09865523062274074
+      ],
+      "frontier_multiple": 1.777099609375,
+      "frontier_amplitude_MW": 104.0740615234375,
+      "first_infeasible_binding": [
+        "P<=pmax@35",
+        "Vmax@1",
+        "Vmax@6",
+        "Vmax@10",
+        "Vmax@19",
+        "Vmax@25"
+      ],
+      "first_infeasible_amplitude_MW": 104.288529296875,
+      "log": [
+        {
+          "multiple": 0.25,
+          "amplitude_MW": 14.641000000000002,
+          "feasible": true,
+          "ineq_min": 0.017353164637800678,
+          "eq_residual": 8.00453515462021e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 4.0,
+          "amplitude_MW": 234.25600000000003,
+          "feasible": false,
+          "ineq_min": -0.005254743152335539,
+          "eq_residual": 1.1631916612932804,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@22"
+          ]
+        },
+        {
+          "multiple": 2.125,
+          "amplitude_MW": 124.44850000000001,
+          "feasible": false,
+          "ineq_min": -0.0012282278680990633,
+          "eq_residual": 0.14302209320714054,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.1875,
+          "amplitude_MW": 69.54475000000001,
+          "feasible": true,
+          "ineq_min": 0.01730446262349994,
+          "eq_residual": 1.626944084522843e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 1.65625,
+          "amplitude_MW": 96.99662500000001,
+          "feasible": true,
+          "ineq_min": 0.003864099165767243,
+          "eq_residual": 5.537693976968193e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 1.890625,
+          "amplitude_MW": 110.72256250000001,
+          "feasible": false,
+          "ineq_min": -8.084568925426083e-08,
+          "eq_residual": 0.03783066888386692,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.7734375,
+          "amplitude_MW": 103.85959375,
+          "feasible": true,
+          "ineq_min": -8.845368881793547e-12,
+          "eq_residual": 9.17408549842544e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@19",
+            "Vmax@29",
+            "Vmax@35",
+            "Vmax@36"
+          ]
+        },
+        {
+          "multiple": 1.83203125,
+          "amplitude_MW": 107.29107812500001,
+          "feasible": false,
+          "ineq_min": -8.6895601558723e-07,
+          "eq_residual": 0.010282945144689748,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.802734375,
+          "amplitude_MW": 105.57533593750001,
+          "feasible": false,
+          "ineq_min": -2.2209319006094574e-07,
+          "eq_residual": 0.007099644930725013,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.7880859375,
+          "amplitude_MW": 104.71746484375002,
+          "feasible": false,
+          "ineq_min": -1.5208350201412202e-06,
+          "eq_residual": 0.012614963645488864,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.78076171875,
+          "amplitude_MW": 104.288529296875,
+          "feasible": false,
+          "ineq_min": -1.9940273174867684e-06,
+          "eq_residual": 0.008297996229501337,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 1.777099609375,
+          "amplitude_MW": 104.0740615234375,
+          "feasible": true,
+          "ineq_min": -4.524380869952438e-12,
+          "eq_residual": 3.063298606346526e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@19",
+            "Vmax@29",
+            "Vmax@35",
+            "Vmax@36"
+          ]
+        }
+      ]
+    },
+    "C2t historical (E8_B2 P+ shares) | interior margin 0.01": {
+      "p0_pu": [
+        4.360863850000001,
+        6.459999979999998,
+        6.5199999800000015,
+        6.869999980000001,
+        7.64783381,
+        5.731104244528378,
+        7.24999998,
+        3.21521338,
+        5.07999998,
+        5.79999998
+      ],
+      "shares": [
+        0.08518848178774001,
+        0.030191065050998358,
+        0.12579125217378173,
+        0.09101011247044753,
+        0.1493953536335324,
+        0.11207511775602537,
+        0.13598433775046828,
+        0.0628930337148282,
+        0.09848741959506957,
+        0.10898382606710853
+      ],
+      "frontier_multiple": 0.0,
+      "frontier_amplitude_MW": 0.0,
+      "first_infeasible_binding": [
+        "P<=pmax@31",
+        "Vmax@1",
+        "Vmax@5",
+        "Vmax@6",
+        "Vmax@10",
+        "Vmax@11"
+      ],
+      "first_infeasible_amplitude_MW": 14.641000000000002,
+      "log": [
+        {
+          "multiple": 0.25,
+          "amplitude_MW": 14.641000000000002,
+          "feasible": false,
+          "ineq_min": -0.02254827606931542,
+          "eq_residual": 0.13202329275672817,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@31",
+            "Vmax@1",
+            "Vmax@5",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@11"
+          ]
+        }
+      ]
+    },
+    "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0.01": {
+      "p0_pu": [
+        4.470895483426771,
+        6.361085508216943,
+        6.459039491221807,
+        6.8603,
+        7.740136609023779,
+        5.751857356257235,
+        7.129563265180761,
+        3.2941004597116956,
+        5.072225046652844,
+        5.833317360029225
+      ],
+      "shares": [
+        0.08006165652688312,
+        0.08365743007412146,
+        0.1147784752888612,
+        0.10601671564953757,
+        0.1386134719123707,
+        0.10309946070633938,
+        0.12581564804583295,
+        0.0590465794572803,
+        0.09025533171603257,
+        0.09865523062274074
+      ],
+      "frontier_multiple": 0.678466796875,
+      "frontier_amplitude_MW": 39.7337294921875,
+      "first_infeasible_binding": [
+        "P<=pmax@35",
+        "Vmax@1",
+        "Vmax@6",
+        "Vmax@10",
+        "Vmax@19",
+        "Vmax@25"
+      ],
+      "first_infeasible_amplitude_MW": 39.948197265625005,
+      "log": [
+        {
+          "multiple": 0.25,
+          "amplitude_MW": 14.641000000000002,
+          "feasible": true,
+          "ineq_min": 0.01735313564036778,
+          "eq_residual": 8.838263454435946e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 4.0,
+          "amplitude_MW": 234.25600000000003,
+          "feasible": false,
+          "ineq_min": -0.022983226428920034,
+          "eq_residual": 2.11883829616918,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@31",
+            "Vmax@1",
+            "Vmax@5",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@11"
+          ]
+        },
+        {
+          "multiple": 2.125,
+          "amplitude_MW": 124.44850000000001,
+          "feasible": false,
+          "ineq_min": -0.023615766698166674,
+          "eq_residual": 1.1112193539504414,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@31",
+            "Vmax@1",
+            "Vmax@5",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@11"
+          ]
+        },
+        {
+          "multiple": 1.1875,
+          "amplitude_MW": 69.54475000000001,
+          "feasible": false,
+          "ineq_min": -0.004050202112099832,
+          "eq_residual": 0.27044404831247054,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@22"
+          ]
+        },
+        {
+          "multiple": 0.71875,
+          "amplitude_MW": 42.092875,
+          "feasible": false,
+          "ineq_min": -0.0003385954034254013,
+          "eq_residual": 0.026911281579854673,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 0.484375,
+          "amplitude_MW": 28.3669375,
+          "feasible": true,
+          "ineq_min": 0.00870614820168214,
+          "eq_residual": 5.708389778163471e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 0.6015625,
+          "amplitude_MW": 35.229906250000006,
+          "feasible": true,
+          "ineq_min": 0.0012573445284465024,
+          "eq_residual": 3.654299085553703e-13,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": []
+        },
+        {
+          "multiple": 0.66015625,
+          "amplitude_MW": 38.661390625,
+          "feasible": true,
+          "ineq_min": 1.8118839761882555e-13,
+          "eq_residual": 5.1613026192519184e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35"
+          ]
+        },
+        {
+          "multiple": 0.689453125,
+          "amplitude_MW": 40.37713281250001,
+          "feasible": false,
+          "ineq_min": -6.505088201436138e-07,
+          "eq_residual": 0.004205811528408709,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 0.6748046875,
+          "amplitude_MW": 39.51926171875,
+          "feasible": true,
+          "ineq_min": -2.611244553918368e-13,
+          "eq_residual": 2.66662386976037e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@19",
+            "Vmax@29",
+            "Vmax@35",
+            "Vmax@36"
+          ]
+        },
+        {
+          "multiple": 0.68212890625,
+          "amplitude_MW": 39.948197265625005,
+          "feasible": false,
+          "ineq_min": -2.3714081133219267e-05,
+          "eq_residual": 0.0009703835895518154,
+          "message": "Positive directional derivative for linesearch",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@1",
+            "Vmax@6",
+            "Vmax@10",
+            "Vmax@19",
+            "Vmax@25"
+          ]
+        },
+        {
+          "multiple": 0.678466796875,
+          "amplitude_MW": 39.7337294921875,
+          "feasible": true,
+          "ineq_min": -5.912825784548659e-12,
+          "eq_residual": 3.958373277237091e-12,
+          "message": "Optimization terminated successfully",
+          "binding_or_violated": [
+            "P<=pmax@35",
+            "Vmax@19",
+            "Vmax@29",
+            "Vmax@35",
+            "Vmax@36"
+          ]
+        }
+      ]
+    }
+  }
+}

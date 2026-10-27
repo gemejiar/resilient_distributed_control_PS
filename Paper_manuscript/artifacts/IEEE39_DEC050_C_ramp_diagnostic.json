@@ -1,0 +1,19 @@
+{
+  "kind": "Q ramp 5 s",
+  "multiple": 7.9921875,
+  "amplitude": 138.62449218749998,
+  "tds_failed": false,
+  "t_end_s": 40.0,
+  "violating_units": [],
+  "n_buses_outside_band": 0,
+  "bus_voltage_min_pu": 0.9628688761160723,
+  "bus_voltage_max_pu": 1.044414827684715,
+  "final_residual": 1.1211074735228976e-08,
+  "compared_with_E12_step": {
+    "amplitude": 138.62449218749998,
+    "t_end_s": 5.20864544456838,
+    "bus_voltage_min_pu": 0.225189452651859,
+    "final_residual": 238.3583038903501
+  },
+  "doc": "DEC-050 diagnostic (dynamic simulation 12 of 12): same Q amplitude as the lowest E12 TDS failure, applied as a 5 s quintic ramp instead of a step."
+}

@@ -1,0 +1,449 @@
+{
+  "stage": "DEC-050 C analysis",
+  "git_commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+  "doc": "DEC-050 block C analysis (post-processing only, no simulation): C3 local stability around verified equilibria, C4 benefit of the preventive reserve, C5 classification of what is\nnumerical, what is locally demonstrable and what is not available.\n\nC3.  Admissible linearisation points (declared): (i) the 2000 s post-event state of block A (drift max|v0| 4.6e-6 pu/s < 5e-5, remaining displacement < 2e-3 pu; criterion of\nanalyse_dec050_a.py); (ii) the pre-event state of the B3-S0 reference, which is an equilibrium of the centered RDC (invariance residual ~1e-8, DEC-039) and has the same Jacobian as B2 (the offset is a constant).\nE13's post-event points at t = 199 s are NOT admissible: the RDC rates there are 4e-4 pu/s (> 5e-5) and the remaining displacement is 0.17 pu.  The common rotor-angle shift is the only marginal\ndirection (checked on the null vector); the claim is local exponential stability of the linearisation on the quotient by that shift, built from the frozen-Jacobian model of e9a_linear (index-1\nelimination of the algebraic and quasi-algebraic variables, degenerate IEEEST states excluded).  It is not a statement about the full nonlinear DAE beyond Lyapunov's indirect method, saturations or regions.\nC4.  Benefit of the preventive reserve from available runs only (E5t, E8, E9-B0, E11, DEC-050 C): P+ margins of SG31 and SG35 and the largest tolerated dynamic P step.\n",
+  "C3": {
+    "admissible_points": {
+      "R35_040 Q+ post-event, t = 1999 s (B2 original RDC)": {
+        "drift_max_abs_v0_pu_per_s": 4.596508645960442e-06,
+        "remaining_ref_displacement_pu": 0.0019229393068711561,
+        "closed_loop": {
+          "n_states": 216,
+          "n_unstable_Re_gt_1e-6": 0,
+          "n_marginal": 1,
+          "spectral_abscissa_stable_part": -0.0023362884801610842,
+          "min_zeta_oscillatory": 0.07340673921949352,
+          "least_damped": [
+            {
+              "re": -0.6020881520143093,
+              "im": -8.17995427004707,
+              "freq_hz": 1.3018801563436477,
+              "zeta": 0.07340673921949352
+            },
+            {
+              "re": -0.6020881520143093,
+              "im": 8.17995427004707,
+              "freq_hz": 1.3018801563436477,
+              "zeta": 0.07340673921949352
+            },
+            {
+              "re": -0.41471828512401065,
+              "im": 4.464714555765505,
+              "freq_hz": 0.7105813910444156,
+              "zeta": 0.09248982078647351
+            },
+            {
+              "re": -0.41471828512401065,
+              "im": -4.464714555765505,
+              "freq_hz": 0.7105813910444156,
+              "zeta": 0.09248982078647351
+            },
+            {
+              "re": -0.8901985911947753,
+              "im": 6.441023837189508,
+              "freq_hz": 1.0251207822614377,
+              "zeta": 0.1369062605853385
+            },
+            {
+              "re": -0.8901985911947753,
+              "im": -6.441023837189508,
+              "freq_hz": 1.0251207822614377,
+              "zeta": 0.1369062605853385
+            },
+            {
+              "re": -1.3576374397249156,
+              "im": -9.148970170250415,
+              "freq_hz": 1.4561038267956528,
+              "zeta": 0.14678505295917135
+            },
+            {
+              "re": -1.3576374397249156,
+              "im": 9.148970170250415,
+              "freq_hz": 1.4561038267956528,
+              "zeta": 0.14678505295917135
+            },
+            {
+              "re": -1.2762731506744878,
+              "im": 8.45117000600995,
+              "freq_hz": 1.3450454813664463,
+              "zeta": 0.14932417068080825
+            },
+            {
+              "re": -1.2762731506744878,
+              "im": -8.45117000600995,
+              "freq_hz": 1.3450454813664463,
+              "zeta": 0.14932417068080825
+            }
+          ],
+          "slowest_modes": [
+            {
+              "re": -0.0023362884801610842,
+              "im": 0.0,
+              "tau_s": 428.02933306038096
+            },
+            {
+              "re": -0.0032872245174822316,
+              "im": 0.0,
+              "tau_s": 304.2080012125017
+            },
+            {
+              "re": -0.00706921027039603,
+              "im": 0.0,
+              "tau_s": 141.45851682863838
+            },
+            {
+              "re": -0.008181537179077342,
+              "im": 0.0,
+              "tau_s": 122.22642006166048
+            },
+            {
+              "re": -0.009558486483028974,
+              "im": 0.0,
+              "tau_s": 104.619073508708
+            },
+            {
+              "re": -0.012004517949241997,
+              "im": 0.0,
+              "tau_s": 83.30197049379589
+            },
+            {
+              "re": -0.012651055227516736,
+              "im": 0.0,
+              "tau_s": 79.04478970457305
+            },
+            {
+              "re": -0.016046613349680883,
+              "im": -0.0001554620271571658,
+              "tau_s": 62.318445531678925
+            },
+            {
+              "re": -0.016046613349680883,
+              "im": 0.0001554620271571658,
+              "tau_s": 62.318445531678925
+            },
+            {
+              "re": -0.016895694490333554,
+              "im": 0.0,
+              "tau_s": 59.186676260755355
+            }
+          ],
+          "lyapunov": {
+            "stable_subspace_dim": 215,
+            "lambda_min_P": 0.0006211885263241408,
+            "lambda_max_P": 42478548.50922384,
+            "positive_definite": true,
+            "residual_inf_norm": 6.328809831757098e-08,
+            "V_decay_rate_lower_bound_per_s": 2.3541294020035992e-08,
+            "cond_P": 68382699790.97814
+          }
+        },
+        "plant_frozen_references": {
+          "n_states": 196,
+          "n_unstable_Re_gt_1e-6": 0,
+          "n_marginal": 1,
+          "spectral_abscissa_stable_part": -0.07326677987209013,
+          "min_zeta_oscillatory": 0.14235232775765685,
+          "lyapunov": {
+            "stable_subspace_dim": 195,
+            "lambda_min_P": 0.0006211206014437494,
+            "lambda_max_P": 67099.88309846167,
+            "positive_definite": true,
+            "residual_inf_norm": 4.284550492172912e-09,
+            "V_decay_rate_lower_bound_per_s": 1.4903155621487603e-05,
+            "cond_P": 108030361.48292764
+          }
+        },
+        "marginal_mode_check": {
+          "smallest_singular_value": 2.7973991074528577e-11,
+          "second_smallest": 0.0005157981554198524,
+          "n_entries_above_1e-3_of_max": 88,
+          "relative_spread_of_those_entries": 1.4087925064617603e-13,
+          "interpretation": "single null direction supported on a few equal-magnitude entries = common rotor-angle shift (the DAE is invariant to it); state ordering inferred from structure"
+        },
+        "valid_for": "approximate equilibrium within the stated tolerances; local exponential stability of the linearisation on the quotient by the angle shift; Lyapunov function V = x^T P x with a very weak guaranteed decay rate (see lyapunov.V_decay_rate_lower_bound_per_s)"
+      },
+      "C2t_Vsafe_R35_040 S0 equilibrium (t=4.9 s) - equilibrium of the CENTERED RDC (B3-S0 invariance); not an equilibrium of the original B2 law (v_nom != 0 at S0)": {
+        "closed_loop": {
+          "n_unstable_Re_gt_1e-6": 0,
+          "n_marginal": 1,
+          "min_zeta_oscillatory": 0.08201341238796675,
+          "slowest_modes": [
+            {
+              "re": -0.0015416089473343118,
+              "im": 0.0,
+              "tau_s": 648.6729346824043
+            },
+            {
+              "re": -0.003098641440228222,
+              "im": 0.0,
+              "tau_s": 322.7220765260106
+            },
+            {
+              "re": -0.007111211882886043,
+              "im": 0.0,
+              "tau_s": 140.6230072270264
+            },
+            {
+              "re": -0.00818438941616221,
+              "im": 0.0,
+              "tau_s": 122.18382449217766
+            },
+            {
+              "re": -0.009924823677854234,
+              "im": 0.0,
+              "tau_s": 100.75745750842417
+            },
+            {
+              "re": -0.010771104075919807,
+              "im": 0.0,
+              "tau_s": 92.8409931750292
+            },
+            {
+              "re": -0.011225626546829718,
+              "im": 0.0,
+              "tau_s": 89.08188739651372
+            },
+            {
+              "re": -0.013163139145620154,
+              "im": 0.0,
+              "tau_s": 75.9697203636061
+            },
+            {
+              "re": -0.014963798476555542,
+              "im": 0.0,
+              "tau_s": 66.82795157705078
+            },
+            {
+              "re": -0.016815624151011923,
+              "im": 0.0,
+              "tau_s": 59.46850328120723
+            }
+          ]
+        },
+        "plant_frozen_references": {
+          "n_unstable_Re_gt_1e-6": 0,
+          "n_marginal": 1,
+          "min_zeta_oscillatory": 0.14016203946231814
+        }
+      },
+      "C2t historical S0 equilibrium (t=4.9 s) - equilibrium of the CENTERED RDC (B3-S0 invariance); not an equilibrium of the original B2 law (v_nom != 0 at S0)": {
+        "closed_loop": {
+          "n_unstable_Re_gt_1e-6": 0,
+          "n_marginal": 1,
+          "min_zeta_oscillatory": 0.0881045740715457,
+          "slowest_modes": [
+            {
+              "re": -0.0018432178691236577,
+              "im": 0.0,
+              "tau_s": 542.5294626052217
+            },
+            {
+              "re": -0.002900665847990889,
+              "im": 0.0,
+              "tau_s": 344.74843101718795
+            },
+            {
+              "re": -0.006291120982773549,
+              "im": 0.0,
+              "tau_s": 158.9541836404381
+            },
+            {
+              "re": -0.006639351363528555,
+              "im": 0.0,
+              "tau_s": 150.61712285528736
+            },
+            {
+              "re": -0.007837837213630855,
+              "im": 0.0,
+              "tau_s": 127.58621705754373
+            },
+            {
+              "re": -0.009131340100594354,
+              "im": 0.002357984193622491,
+              "tau_s": 109.5129508904077
+            },
+            {
+              "re": -0.009131340100594354,
+              "im": -0.002357984193622491,
+              "tau_s": 109.5129508904077
+            },
+            {
+              "re": -0.009978369728615107,
+              "im": 0.0,
+              "tau_s": 100.21677159669544
+            },
+            {
+              "re": -0.012976067780024157,
+              "im": 0.0,
+              "tau_s": 77.06494886990629
+            },
+            {
+              "re": -0.017102173161192506,
+              "im": 0.0,
+              "tau_s": 58.472101210456444
+            }
+          ]
+        },
+        "plant_frozen_references": {
+          "n_unstable_Re_gt_1e-6": 0,
+          "n_marginal": 1,
+          "min_zeta_oscillatory": 0.14143641056336076
+        }
+      }
+    },
+    "inadmissible_points": {
+      "R35_040 post-event P+ (t=199 s)": "drifting state (max|v0| ~ 4e-4 pu/s at 199 s); E13's stability statement for this point is withdrawn as a claim; it is a modal diagnostic of a transient state",
+      "R35_040 post-event Q+ (t=199 s)": "drifting state (max|v0| ~ 4e-4 pu/s at 199 s); E13's stability statement for this point is withdrawn as a claim; it is a modal diagnostic of a transient state"
+    }
+  },
+  "C4": {
+    "p_plus_margins": {
+      "C2t (E8 B2, historical)": {
+        "SG31_min_P_margin_pu": -0.0699477953653016,
+        "SG35_min_P_margin_pu": 0.015006052362968704,
+        "pre_event_headroom_SG31_pu": 0.04000002028853089,
+        "pre_event_headroom_SG35_pu": 0.10000001999996222,
+        "crossing_at_58.5MW": [
+          "SG31"
+        ]
+      },
+      "C2t_Vsafe (SG31 reserve)": {
+        "SG31_min_P_margin_pu": 0.025014278063643758,
+        "SG35_min_P_margin_pu": -0.014057897586826407,
+        "crossing_at_58.5MW": [
+          "SG35"
+        ]
+      },
+      "C2t_Vsafe_R35_040 (SG31 + SG35 reserve)": {
+        "SG31_min_P_margin_pu": 0.025028381317233617,
+        "SG35_min_P_margin_pu": 0.024535226735743265,
+        "crossing_at_58.5MW": []
+      }
+    },
+    "dynamic_P_step_frontier_R35_040_MW": [
+      65.8845,
+      73.20500000000001
+    ],
+    "C2t_original_dynamic_P_step": "violates SG31 already at 58.564 MW (E5t, E8, B3) - tolerated amplitude < 58.564 MW (not bracketed: no further simulation)",
+    "tolerated_amplitude_gain_lower_bound_MW": 7.320500000000003,
+    "static_fixed_share_ceiling_MW": {
+      "C2t historical (E8_B2 P+ shares) | interior margin 0": 106.64767480468751,
+      "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0": 104.0740615234375,
+      "C2t historical (E8_B2 P+ shares) | interior margin 0.01": 0.0,
+      "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0.01": 39.7337294921875
+    },
+    "reading": "the reserve changes the TRANSIENT margins (the 0.07 pu electrical jump of SG31 no longer crosses pmax; SG35 no longer crosses at 58.5 MW) and the dynamic frontier; the static end-state ceiling is nearly the same (~104-107 MW with physical limits) because it is set by total capacity, not by the transient"
+  },
+  "C1": {
+    "P_dynamic_frontier_R35_040_MW_between": [
+      65.8845,
+      73.20500000000001
+    ],
+    "Q_dynamic_frontier_voltage_band_MVAr_between": [
+      69.31224609374999,
+      86.725
+    ],
+    "Q_unit_limit_crossings_up_to_MVAr": 104.07,
+    "Q_step_failure_E12_138MVAr": {
+      "step": "TDS failure at 5.2 s, residual 238",
+      "same_amplitude_as_5s_ramp": {
+        "tds_failed": false,
+        "violating_units": [],
+        "n_buses_outside_band": 0,
+        "bus_voltage_min_pu": 0.9628688761160723
+      }
+    },
+    "static_dispatch_conditioned_ceilings": {
+      "C2t historical (E8_B2 P+ shares) | interior margin 0": {
+        "MW": 106.64767480468751,
+        "first_infeasible_binding": [
+          "P<=pmax@35",
+          "Vmax@1",
+          "Vmax@6",
+          "Vmax@10",
+          "Vmax@19",
+          "Vmax@25"
+        ]
+      },
+      "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0": {
+        "MW": 104.0740615234375,
+        "first_infeasible_binding": [
+          "P<=pmax@35",
+          "Vmax@1",
+          "Vmax@6",
+          "Vmax@10",
+          "Vmax@19",
+          "Vmax@25"
+        ]
+      },
+      "C2t historical (E8_B2 P+ shares) | interior margin 0.01": {
+        "MW": 0.0,
+        "first_infeasible_binding": [
+          "P<=pmax@31",
+          "Vmax@1",
+          "Vmax@5",
+          "Vmax@6",
+          "Vmax@10",
+          "Vmax@11"
+        ]
+      },
+      "C2t_Vsafe_R35_040 (R35_040_B2 P+ shares) | interior margin 0.01": {
+        "MW": 39.7337294921875,
+        "first_infeasible_binding": [
+          "P<=pmax@35",
+          "Vmax@1",
+          "Vmax@6",
+          "Vmax@10",
+          "Vmax@19",
+          "Vmax@25"
+        ]
+      }
+    },
+    "E12_correction": "E12 static P frontier (117 MW) is dispatch-independent (free redispatch with 1 % interior margins) and is a ceiling for any redispatch; with physical limits and the observed RDC sharing the end-state ceiling is 104-107 MW, and the dynamic step frontier is 66-73 MW (transient overshoot).  E12's Q 'collapse' at 138.6 MVAr was a step-integration failure: the same amplitude as a 5 s ramp respects all limits and the band."
+  },
+  "C2": {
+    "delay_tolerance": {
+      "0.5": {
+        "tds_ok": true,
+        "n_buses_outside_band": 0,
+        "bus_voltage_min_max_pu": [
+          0.972872108532595,
+          1.044414827684715
+        ],
+        "units_crossing_limits": {},
+        "frequency_oscillation_last_20s_hz": 6.946322464784771e-06
+      },
+      "0.75": {
+        "tds_ok": true,
+        "n_buses_outside_band": 22,
+        "bus_voltage_min_max_pu": [
+          0.8967605093416742,
+          1.0798894357411328
+        ],
+        "units_crossing_limits": {},
+        "frequency_oscillation_last_20s_hz": 0.057095182160622926
+      }
+    },
+    "from_E15": "0.2 s ok; 1.0 s limits and band violated; 5 s TDS failure"
+  },
+  "C5": {
+    "numerical_results": [
+      "2000 s run: references converge toward an equilibrium (max|v0| 4.1e-4 -> 4.6e-6 pu/s); Newton estimates from 199/500/1000 s approach the final state (0.17 -> 0.02 pu of Qset)",
+      "B2_QV1 drift reduction 3-5 % in the max-drift metric; mean unit-voltage error 12-18 % lower; no new crossings (negative by the declared criterion)",
+      "dynamic P step frontier 66-73 MW; Q band frontier 69-87 MVAr; delay: 0.5 s ok, 0.75 s degraded, 1.0 s limits, 5 s TDS failure"
+    ],
+    "locally_demonstrable": [
+      "linearisation of the plant+RDC loop has no unstable eigenvalue at the 2000 s post-event state and at the S0 equilibrium of the centered RDC; single marginal rotor-angle direction (local exponential stability on the quotient)",
+      "a verified equilibrium of the original B2 law exists for Q+ on R35_040 (numerically, within tolerances); unit voltages at it deviate from 1 pu by up to 8.3e-3 pu (mean 3.2e-3) - a steady-state offset set by the Q-consensus term"
+    ],
+    "not_available": [
+      "any closed-loop safety guarantee (no HOCBF/CLF-HOCBF filter in the loop, Option B)",
+      "regional stability / region of attraction",
+      "global or nonlinear stability beyond Lyapunov's indirect method",
+      "real-time capability",
+      "robustness outside the tested cases (inertia, loads, delays, one N-1)",
+      "extension to grid-following resources",
+      "convergence to V = 1 pu: the equilibrium itself has a voltage offset"
+    ]
+  }
+}

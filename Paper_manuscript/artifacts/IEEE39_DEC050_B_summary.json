@@ -1,0 +1,737 @@
+{
+  "stage": "DEC-050 B",
+  "git_commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+  "doc": "DEC-050 block B: the single Q/V correction \"B2_QV1\" (dynamic simulations 3-5 of 12), evaluated on S0, P+ and Q+ of C2t_Vsafe_R35_040 against the stored B2 runs (E9-B0 series, reused).\n\nCause identified in block A (analyse_dec050_a.py, IEEE39_DEC050_A_summary.json).  The closed loop has a verified equilibrium (reached at ~2000 s).  Its slowest non-leak modes (tau 432 s and 311 s)\nlive on the Q references of SG31 and GFM32, the two units whose normalised capability factor g_Q is smallest at the operating point (0.12 and 0.27 versus a median of 0.76): in the original law\nthe voltage term is v_Q,i = K_IQ [ K_V g_Q,i (V_ref - V_i) - K_Q l_Q,i ] - K_LEAK (Qset_i - Qn_i), so the integral rate of the voltage correction of a unit is proportional to its g_Q.\nThe correction.  In the VOLTAGE term only, g_Q,i is replaced by max(g_Q,i, g_floor) with g_floor = median of the ten nominal normalised factors (a rule fixed before running; 0.758).  The consensus\nterm, the leak, the P channel, the graph, the gains K_IQ, K_V, K_Q, K_LEAK, the capability definitions and the actuator maps are those of B2.  Prediction from the quasi-static reduced model at the\nblock-A equilibrium (before running): slowest Q mode 432 s -> ~185 s, all modes stable.\nImplementation: the b.run ``qp_filter`` hook adds  K_IQ K_V (max(g_Q,g_floor) - g_Q)(V_ref - V)  to the Q rates after the event; B2 itself (b.run without the hook) is untouched.\nImprovement criteria (declared before running): in P+ and Q+ the 20 s Qset drift at 200 s is reduced by at least 30 %; the mean unit-voltage error does not grow by more than 10 %; no unit crosses a\nlimit that B2 did not cross; the final frequency error does not worsen by more than 1e-4 Hz; S0 does not get worse (drift and voltage error).  Otherwise the correction is recorded as negative and\nno second round is made.\n",
+  "variant": "C2t_Vsafe_R35_040",
+  "scenarios": {
+    "S0": {
+      "diag_new": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 3.3466895033029687e-08,
+        "t_end_s": 200.0,
+        "k_ip": 57.474368649055265
+      },
+      "g_floor": 0.7580154199421696,
+      "B2_QV1": {
+        "convergence": {
+          "run": "B2_QV1 S0",
+          "frequency_final_error_hz": 3.3118878874915936e-06,
+          "frequency_nadir_hz": 59.99999206032377,
+          "frequency_max_dev_hz": 7.939676230250825e-06,
+          "frequency_tail_slope_hz_per_s": -7.973175260177978e-09,
+          "frequency_tau_s": 31.195866120064178,
+          "frequency_2mHz_settling_after_event_s": 0.0,
+          "bus_voltage_final_min_pu": 0.9784419485522589,
+          "bus_voltage_final_max_pu": 1.0440068452232747,
+          "bus_voltage_tail_slope_max_abs_pu_per_s": 9.077886647818066e-06,
+          "unit_voltage_mean_abs_error_to_1pu": 0.002033652533043384,
+          "pset_minus_pn_final_pu": [
+            -4.017803510425466e-05,
+            -6.704972518356556e-05,
+            -3.4272541711288795e-05,
+            -0.00032267454260903605,
+            -5.98416033579241e-05,
+            -8.399585017215827e-05,
+            -4.9667150593180054e-05,
+            -2.4477869918548834e-05,
+            -3.503494315371114e-05,
+            -3.424853286748686e-05
+          ],
+          "qset_minus_qn_final_pu": [
+            -0.16763584754515493,
+            -0.019454472837754366,
+            -0.03277050149979699,
+            -0.02187411432666675,
+            0.02636078847257073,
+            0.06885024412372191,
+            -0.00967644919195898,
+            0.16540377739597245,
+            0.010265630183811547,
+            0.1593917590907291
+          ],
+          "pset_drift_20s_max_abs_pu": 7.546919692058012e-05,
+          "qset_drift_20s_max_abs_pu": 0.007620806609002627,
+          "P_over_Pn_final_spread": 2.4311258539855274e-05,
+          "delivered_dP_sum_pu": -0.0001169115123849096,
+          "tail_slopes_unit_P_pu_per_s_max": 6.50813702083526e-07,
+          "converged": false,
+          "not_converged_channels": [
+            "Qset"
+          ]
+        },
+        "limits": {
+          "run": "B2_QV1 S0",
+          "max_units_near_limit_simultaneously": 4,
+          "time_with_>=2_units_near_s": 200.00390625,
+          "time_with_>=3_units_near_s": 200.00390625,
+          "longest_simultaneous_pair": [
+            "SG31",
+            "SG35"
+          ],
+          "longest_simultaneous_pair_duration_s": 200.00390625,
+          "units_near_limit_at_any_time": [
+            "SG31",
+            "SG35",
+            "GFM32",
+            "GFM36"
+          ],
+          "units_crossing_a_limit": {},
+          "min_normalised_margin_by_unit": {
+            "SG30": 0.3119474968117968,
+            "SG31": 0.021355046472723717,
+            "SG33": 0.0529214179974393,
+            "SG35": 0.01572045180280631,
+            "SG38": 0.1051791930355625,
+            "SG39": 0.21897948915295135,
+            "GFM32": 0.04938533834168932,
+            "GFM37": 0.386586610269546,
+            "GFM34": 0.07777037026066952,
+            "GFM36": 0.019605675700259683
+          },
+          "delivered_dP_by_unit_pu": {
+            "SG30": -3.306740426634036e-05,
+            "SG31": 0.0001061902357584188,
+            "SG33": -4.4676174930202706e-05,
+            "SG35": 0.00010148921040986636,
+            "SG38": -5.777165976716958e-05,
+            "SG39": -4.3518042352808095e-05,
+            "GFM32": -5.0123863240436606e-05,
+            "GFM37": -2.5092908504387168e-05,
+            "GFM34": -3.599152573752207e-05,
+            "GFM36": -3.434937953539219e-05
+          },
+          "delivered_dP_total_pu": -0.00011691151216597362,
+          "SG_share_of_delivered_dP": -0.2450243292644854,
+          "GFM_share_of_delivered_dP": 1.2450243292644854,
+          "corr_delivered_dP_vs_pre_event_headroom": -0.3077874734048365,
+          "pre_event_headroom_pu": {
+            "SG30": 5.929104516573247,
+            "SG31": 0.13891449178305137,
+            "SG33": 0.36096050877819774,
+            "SG35": 0.1096999999999646,
+            "SG38": 0.9098633909762519,
+            "SG39": 5.248142643742766,
+            "GFM32": 0.37043673481928696,
+            "GFM37": 2.3458995402883196,
+            "GFM34": 0.427774953347142,
+            "GFM36": 0.11668263997076345
+          },
+          "total_pre_event_headroom_pu": 15.957479420278991,
+          "bus_voltage_min_pu": 0.978439712382028,
+          "bus_voltage_max_pu": 1.044414864264298,
+          "frequency_nadir_hz": 59.99999206032377,
+          "frequency_final_error_hz": 3.3118878874915936e-06
+        }
+      },
+      "B2": {
+        "convergence": {
+          "run": "R35_040_B2 S0",
+          "frequency_final_error_hz": 4.344352525720296e-06,
+          "frequency_nadir_hz": 59.999992578755176,
+          "frequency_max_dev_hz": 7.42124482400186e-06,
+          "frequency_tail_slope_hz_per_s": -2.415601789695494e-08,
+          "frequency_tau_s": 40.41616112317408,
+          "frequency_2mHz_settling_after_event_s": 0.0,
+          "bus_voltage_final_min_pu": 0.9783872301811152,
+          "bus_voltage_final_max_pu": 1.043214782554603,
+          "bus_voltage_tail_slope_max_abs_pu_per_s": 1.0078886265448898e-05,
+          "unit_voltage_mean_abs_error_to_1pu": 0.0023041853122969026,
+          "pset_minus_pn_final_pu": [
+            -5.976190144085791e-05,
+            -0.0004292649647137381,
+            -6.256133095217109e-05,
+            -0.0002722455800938661,
+            -9.660840776870572e-05,
+            -0.0001130618384967974,
+            -8.515117641838543e-05,
+            -4.08500586353e-05,
+            -6.176176623018392e-05,
+            -6.325539880958075e-05
+          ],
+          "qset_minus_qn_final_pu": [
+            -0.16756003195390223,
+            -0.0706413523068723,
+            -0.032993839214972454,
+            -0.02046788918994813,
+            0.026763897753192323,
+            0.08012352870856179,
+            -0.013826243731507759,
+            0.167677455313185,
+            0.011353099897607244,
+            0.1604840623335395
+          ],
+          "pset_drift_20s_max_abs_pu": 8.780524845250968e-05,
+          "qset_drift_20s_max_abs_pu": 0.00783594010673139,
+          "P_over_Pn_final_spread": 6.625928801617942e-05,
+          "delivered_dP_sum_pu": -0.00017618608221692256,
+          "tail_slopes_unit_P_pu_per_s_max": 6.979608886425535e-07,
+          "converged": false,
+          "not_converged_channels": [
+            "Qset",
+            "voltage"
+          ]
+        },
+        "limits": {
+          "run": "R35_040_B2 S0",
+          "max_units_near_limit_simultaneously": 4,
+          "time_with_>=2_units_near_s": 200.00390625,
+          "time_with_>=3_units_near_s": 200.00390625,
+          "longest_simultaneous_pair": [
+            "SG31",
+            "SG35"
+          ],
+          "longest_simultaneous_pair_duration_s": 200.00390625,
+          "units_near_limit_at_any_time": [
+            "SG31",
+            "SG35",
+            "GFM32",
+            "GFM36"
+          ],
+          "units_crossing_a_limit": {},
+          "min_normalised_margin_by_unit": {
+            "SG30": 0.3119474968117968,
+            "SG31": 0.021318966597824975,
+            "SG33": 0.052922289233677235,
+            "SG35": 0.015727269464572674,
+            "SG38": 0.1051800497259413,
+            "SG39": 0.21897949044295945,
+            "GFM32": 0.04938641061662435,
+            "GFM37": 0.386586610269546,
+            "GFM34": 0.0777714076246546,
+            "GFM36": 0.019606716159669964
+          },
+          "delivered_dP_by_unit_pu": {
+            "SG30": -5.625817931331767e-05,
+            "SG31": 0.00034004052936431606,
+            "SG33": -7.869499264412383e-05,
+            "SG35": 4.570015664562277e-05,
+            "SG38": -9.909634798788147e-05,
+            "SG39": -7.3257493159673e-05,
+            "GFM32": -8.592274806584754e-05,
+            "GFM37": -4.206109474358399e-05,
+            "GFM34": -6.303762069492791e-05,
+            "GFM36": -6.359829139856998e-05
+          },
+          "delivered_dP_total_pu": -0.00017618608199798658,
+          "SG_share_of_delivered_dP": -0.44517519213486556,
+          "GFM_share_of_delivered_dP": 1.4451751921348657,
+          "corr_delivered_dP_vs_pre_event_headroom": -0.25456214270376104,
+          "pre_event_headroom_pu": {
+            "SG30": 5.929104516573247,
+            "SG31": 0.13891449178305137,
+            "SG33": 0.36096050877819774,
+            "SG35": 0.1096999999999646,
+            "SG38": 0.9098633909762519,
+            "SG39": 5.248142643742766,
+            "GFM32": 0.37043673481928696,
+            "GFM37": 2.3458995402883196,
+            "GFM34": 0.427774953347142,
+            "GFM36": 0.11668263997076345
+          },
+          "total_pre_event_headroom_pu": 15.957479420278991,
+          "bus_voltage_min_pu": 0.9783837312703251,
+          "bus_voltage_max_pu": 1.0444148623364493,
+          "frequency_nadir_hz": 59.999992578755176,
+          "frequency_final_error_hz": 4.344352525720296e-06
+        }
+      }
+    },
+    "P+": {
+      "diag_new": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 2.979809465841754e-08,
+        "t_end_s": 200.0,
+        "k_ip": 57.474368649055265
+      },
+      "g_floor": 0.7580154199421696,
+      "B2_QV1": {
+        "convergence": {
+          "run": "B2_QV1 P+",
+          "frequency_final_error_hz": -0.0002213213793709201,
+          "frequency_nadir_hz": 59.97167959059443,
+          "frequency_max_dev_hz": 0.028320409405573344,
+          "frequency_tail_slope_hz_per_s": 5.346133766596974e-09,
+          "frequency_tau_s": 16.52116702552865,
+          "frequency_2mHz_settling_after_event_s": 22.2891625,
+          "bus_voltage_final_min_pu": 0.9781488600691949,
+          "bus_voltage_final_max_pu": 1.0428503844826937,
+          "bus_voltage_tail_slope_max_abs_pu_per_s": 1.0959052938051645e-05,
+          "unit_voltage_mean_abs_error_to_1pu": 0.002136410078956541,
+          "pset_minus_pn_final_pu": [
+            0.04741694827546272,
+            0.050915802027050816,
+            0.06831776861121064,
+            0.06868760385293804,
+            0.08232243036693365,
+            0.061166194567396026,
+            0.07546840140503264,
+            0.035388874642010126,
+            0.05414045570709192,
+            0.05919474373680256
+          ],
+          "qset_minus_qn_final_pu": [
+            -0.17238544160316127,
+            0.023056531128053503,
+            -0.033274222322067004,
+            0.005112309394669889,
+            0.031755129850340236,
+            0.06828463997735924,
+            0.026250574088429124,
+            0.18095431016490449,
+            0.027572408252726444,
+            0.18330526415377268
+          ],
+          "pset_drift_20s_max_abs_pu": 0.0014669979514107387,
+          "qset_drift_20s_max_abs_pu": 0.008297068170739498,
+          "P_over_Pn_final_spread": 0.0031963178300682404,
+          "delivered_dP_sum_pu": 0.599815597166582,
+          "tail_slopes_unit_P_pu_per_s_max": 7.237268642869288e-05,
+          "converged": false,
+          "not_converged_channels": [
+            "Pset",
+            "Qset",
+            "voltage"
+          ]
+        },
+        "limits": {
+          "run": "B2_QV1 P+",
+          "max_units_near_limit_simultaneously": 5,
+          "time_with_>=2_units_near_s": 200.01171875,
+          "time_with_>=3_units_near_s": 200.01171875,
+          "longest_simultaneous_pair": [
+            "SG31",
+            "SG35"
+          ],
+          "longest_simultaneous_pair_duration_s": 200.01171875,
+          "units_near_limit_at_any_time": [
+            "SG31",
+            "SG33",
+            "SG35",
+            "GFM32",
+            "GFM36"
+          ],
+          "units_crossing_a_limit": {},
+          "min_normalised_margin_by_unit": {
+            "SG30": 0.24105819320991564,
+            "SG31": 0.003850520203662209,
+            "SG33": 0.035767967389304704,
+            "SG35": 0.0035189842608573177,
+            "SG38": 0.0811568029788324,
+            "SG39": 0.21897956674639105,
+            "GFM32": 0.03603105475304709,
+            "GFM37": 0.38102346060950015,
+            "GFM34": 0.0652316561676591,
+            "GFM36": 0.009631457990179889
+          },
+          "delivered_dP_by_unit_pu": {
+            "SG30": 0.04819334769717987,
+            "SG31": 0.04830453198467577,
+            "SG33": 0.06908422457639674,
+            "SG35": 0.0638206210200094,
+            "SG38": 0.08343795717715885,
+            "SG39": 0.06206175266815972,
+            "GFM32": 0.07571228314941258,
+            "GFM37": 0.03554358754725229,
+            "GFM34": 0.0543251784392309,
+            "GFM36": 0.05933211290732476
+          },
+          "delivered_dP_total_pu": 0.5998155971668009,
+          "SG_share_of_delivered_dP": 0.6250294872197611,
+          "GFM_share_of_delivered_dP": 0.3749705127802389,
+          "corr_delivered_dP_vs_pre_event_headroom": -0.3175756588923375,
+          "pre_event_headroom_pu": {
+            "SG30": 5.929104516573247,
+            "SG31": 0.13891449178305137,
+            "SG33": 0.36096050877819774,
+            "SG35": 0.1096999999999646,
+            "SG38": 0.9098633909762519,
+            "SG39": 5.248142643742766,
+            "GFM32": 0.37043673481928696,
+            "GFM37": 2.3458995402883196,
+            "GFM34": 0.427774953347142,
+            "GFM36": 0.11668263997076345
+          },
+          "total_pre_event_headroom_pu": 15.957479420278991,
+          "bus_voltage_min_pu": 0.9728535656920975,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "frequency_nadir_hz": 59.97167959059443,
+          "frequency_final_error_hz": -0.0002213213793709201
+        }
+      },
+      "B2": {
+        "convergence": {
+          "run": "R35_040_B2 P+",
+          "frequency_final_error_hz": -0.00021961624118205236,
+          "frequency_nadir_hz": 59.97167829765243,
+          "frequency_max_dev_hz": 0.02832170234756859,
+          "frequency_tail_slope_hz_per_s": -1.8084941608108371e-09,
+          "frequency_tau_s": 15.54009574474081,
+          "frequency_2mHz_settling_after_event_s": 22.28525625,
+          "bus_voltage_final_min_pu": 0.9780354984642095,
+          "bus_voltage_final_max_pu": 1.0413495545811982,
+          "bus_voltage_tail_slope_max_abs_pu_per_s": 1.114483919297573e-05,
+          "unit_voltage_mean_abs_error_to_1pu": 0.0025974152312911334,
+          "pset_minus_pn_final_pu": [
+            0.047247084827469976,
+            0.05206887197268717,
+            0.06808461799119048,
+            0.06865327063908477,
+            0.08202745116253585,
+            0.06094746308542831,
+            0.0752155849818017,
+            0.03525920528370596,
+            0.05394717751576916,
+            0.059030820293945574
+          ],
+          "qset_minus_qn_final_pu": [
+            -0.1731138644005955,
+            -0.05623971275855988,
+            -0.033901246368240656,
+            0.006289756827551729,
+            0.03265387377791473,
+            0.07994875812862666,
+            0.0057751599692266176,
+            0.18678599555942876,
+            0.030474966092624678,
+            0.18704436181549822
+          ],
+          "pset_drift_20s_max_abs_pu": 0.0014833689074713204,
+          "qset_drift_20s_max_abs_pu": 0.008749720669506444,
+          "P_over_Pn_final_spread": 0.0028630618443963307,
+          "delivered_dP_sum_pu": 0.5997814259502952,
+          "tail_slopes_unit_P_pu_per_s_max": 7.658274390950731e-05,
+          "converged": false,
+          "not_converged_channels": [
+            "Pset",
+            "Qset",
+            "voltage"
+          ]
+        },
+        "limits": {
+          "run": "R35_040_B2 P+",
+          "max_units_near_limit_simultaneously": 5,
+          "time_with_>=2_units_near_s": 200.01171875,
+          "time_with_>=3_units_near_s": 200.01171875,
+          "longest_simultaneous_pair": [
+            "SG31",
+            "SG35"
+          ],
+          "longest_simultaneous_pair_duration_s": 200.01171875,
+          "units_near_limit_at_any_time": [
+            "SG31",
+            "SG33",
+            "SG35",
+            "GFM32",
+            "GFM36"
+          ],
+          "units_crossing_a_limit": {},
+          "min_normalised_margin_by_unit": {
+            "SG30": 0.2410581932035836,
+            "SG31": 0.0038505202026513255,
+            "SG33": 0.035767967330715016,
+            "SG35": 0.003520118613449536,
+            "SG38": 0.08115638175459516,
+            "SG39": 0.21897956674639105,
+            "GFM32": 0.03603105475304614,
+            "GFM37": 0.381023460609501,
+            "GFM34": 0.06523530468501239,
+            "GFM36": 0.009655711996868793
+          },
+          "delivered_dP_by_unit_pu": {
+            "SG30": 0.04801949451565424,
+            "SG31": 0.050176172701211996,
+            "SG33": 0.06884199757717901,
+            "SG35": 0.06358685688686982,
+            "SG38": 0.08313778583955322,
+            "SG39": 0.06183714155717723,
+            "GFM32": 0.0754618887918177,
+            "GFM37": 0.03541504162438791,
+            "GFM34": 0.05413347155627868,
+            "GFM36": 0.05917157490038427
+          },
+          "delivered_dP_total_pu": 0.5997814259505141,
+          "SG_share_of_delivered_dP": 0.6262272101581134,
+          "GFM_share_of_delivered_dP": 0.37377278984188655,
+          "corr_delivered_dP_vs_pre_event_headroom": -0.3326351513220054,
+          "pre_event_headroom_pu": {
+            "SG30": 5.929104516573247,
+            "SG31": 0.13891449178305137,
+            "SG33": 0.36096050877819774,
+            "SG35": 0.1096999999999646,
+            "SG38": 0.9098633909762519,
+            "SG39": 5.248142643742766,
+            "GFM32": 0.37043673481928696,
+            "GFM37": 2.3458995402883196,
+            "GFM34": 0.427774953347142,
+            "GFM36": 0.11668263997076345
+          },
+          "total_pre_event_headroom_pu": 15.957479420278991,
+          "bus_voltage_min_pu": 0.9728535622493032,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "frequency_nadir_hz": 59.97167829765243,
+          "frequency_final_error_hz": -0.00021961624118205236
+        }
+      }
+    },
+    "Q+": {
+      "diag_new": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 3.271546056282659e-08,
+        "t_end_s": 200.0,
+        "k_ip": 57.474368649055265
+      },
+      "g_floor": 0.7580154199421696,
+      "B2_QV1": {
+        "convergence": {
+          "run": "B2_QV1 Q+",
+          "frequency_final_error_hz": 2.2985706848999143e-06,
+          "frequency_nadir_hz": 59.99825166051502,
+          "frequency_max_dev_hz": 0.001748339484983319,
+          "frequency_tail_slope_hz_per_s": -3.377832157673788e-08,
+          "frequency_tau_s": 55.69014060034631,
+          "frequency_2mHz_settling_after_event_s": 0.0,
+          "bus_voltage_final_min_pu": 0.9781661962305608,
+          "bus_voltage_final_max_pu": 1.0436657678121377,
+          "bus_voltage_tail_slope_max_abs_pu_per_s": 1.0608890000449275e-05,
+          "unit_voltage_mean_abs_error_to_1pu": 0.002046723385396132,
+          "pset_minus_pn_final_pu": [
+            4.844276094040367e-05,
+            0.00034367193475048907,
+            0.0001141285456585095,
+            0.0013487336611381906,
+            9.365025205898547e-05,
+            2.802412857771941e-05,
+            9.170660732316094e-05,
+            4.127603101933275e-05,
+            6.544842823963393e-05,
+            8.286401790069675e-05
+          ],
+          "qset_minus_qn_final_pu": [
+            -0.1689418047751019,
+            -0.012025654125197072,
+            -0.03353922363401085,
+            -0.006766226615408488,
+            0.02782037782997704,
+            0.06937743962550835,
+            0.0011919400292208504,
+            0.1746087222159346,
+            0.02331639175432776,
+            0.1843018296761446
+          ],
+          "pset_drift_20s_max_abs_pu": 9.398521535919959e-05,
+          "qset_drift_20s_max_abs_pu": 0.008488626119632699,
+          "P_over_Pn_final_spread": 1.853772224169603e-05,
+          "delivered_dP_sum_pu": 0.0009873796000920976,
+          "tail_slopes_unit_P_pu_per_s_max": 7.289536520140747e-07,
+          "converged": false,
+          "not_converged_channels": [
+            "Qset",
+            "voltage"
+          ]
+        },
+        "limits": {
+          "run": "B2_QV1 Q+",
+          "max_units_near_limit_simultaneously": 4,
+          "time_with_>=2_units_near_s": 200.01171875,
+          "time_with_>=3_units_near_s": 200.01171875,
+          "longest_simultaneous_pair": [
+            "SG31",
+            "SG35"
+          ],
+          "longest_simultaneous_pair_duration_s": 200.01171875,
+          "units_near_limit_at_any_time": [
+            "SG31",
+            "SG33",
+            "SG35",
+            "GFM32",
+            "GFM36"
+          ],
+          "units_crossing_a_limit": {},
+          "min_normalised_margin_by_unit": {
+            "SG30": 0.2795705545382671,
+            "SG31": 0.020330762407246048,
+            "SG33": 0.04995855881520554,
+            "SG35": 0.014254919449120534,
+            "SG38": 0.10373051622180374,
+            "SG39": 0.21897956674639105,
+            "GFM32": 0.04851362624269531,
+            "GFM37": 0.38614190262759585,
+            "GFM34": 0.07662745420802576,
+            "GFM36": 0.016925552943186976
+          },
+          "delivered_dP_by_unit_pu": {
+            "SG30": 5.628373405563991e-05,
+            "SG31": 0.0001829270144870776,
+            "SG33": 8.53880973963328e-05,
+            "SG35": 0.00021215107700545133,
+            "SG38": 9.621845824980824e-05,
+            "SG39": 7.124675213532328e-05,
+            "GFM32": 9.25836084961773e-05,
+            "GFM37": 4.081548116063871e-05,
+            "GFM34": 6.540934181042957e-05,
+            "GFM36": 8.435603551415483e-05
+          },
+          "delivered_dP_total_pu": 0.0009873796003110336,
+          "SG_share_of_delivered_dP": 0.7132162069256839,
+          "GFM_share_of_delivered_dP": 0.2867837930743161,
+          "corr_delivered_dP_vs_pre_event_headroom": -0.4851260210240142,
+          "pre_event_headroom_pu": {
+            "SG30": 5.929104516573247,
+            "SG31": 0.13891449178305137,
+            "SG33": 0.36096050877819774,
+            "SG35": 0.1096999999999646,
+            "SG38": 0.9098633909762519,
+            "SG39": 5.248142643742766,
+            "GFM32": 0.37043673481928696,
+            "GFM37": 2.3458995402883196,
+            "GFM34": 0.427774953347142,
+            "GFM36": 0.11668263997076345
+          },
+          "total_pre_event_headroom_pu": 15.957479420278991,
+          "bus_voltage_min_pu": 0.9748824220674207,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "frequency_nadir_hz": 59.99825166051502,
+          "frequency_final_error_hz": 2.2985706848999143e-06
+        }
+      },
+      "B2": {
+        "convergence": {
+          "run": "R35_040_B2 Q+",
+          "frequency_final_error_hz": 3.44269334107139e-06,
+          "frequency_nadir_hz": 59.99825166034269,
+          "frequency_max_dev_hz": 0.0017483396573112486,
+          "frequency_tail_slope_hz_per_s": -3.395338373733006e-08,
+          "frequency_tau_s": 56.81210270237852,
+          "frequency_2mHz_settling_after_event_s": 0.0,
+          "bus_voltage_final_min_pu": 0.9780987189198034,
+          "bus_voltage_final_max_pu": 1.0427310176389686,
+          "bus_voltage_tail_slope_max_abs_pu_per_s": 1.0561201876640187e-05,
+          "unit_voltage_mean_abs_error_to_1pu": 0.002359306088801938,
+          "pset_minus_pn_final_pu": [
+            2.9902351809774075e-05,
+            -3.467034827142612e-05,
+            8.789126191643959e-05,
+            0.0014240203480877511,
+            5.9765172772507924e-05,
+            5.155162519088208e-09,
+            5.6935226560916874e-05,
+            2.505518831075193e-05,
+            3.92221627913969e-05,
+            5.43403032731149e-05
+          ],
+          "qset_minus_qn_final_pu": [
+            -0.16906242154385942,
+            -0.06822682544885428,
+            -0.03381107206476286,
+            -0.006137336662219051,
+            0.028345419557159746,
+            0.0807335988527159,
+            -0.00758992836225314,
+            0.17775602250097022,
+            0.024870476668718222,
+            0.18624661388816177
+          ],
+          "pset_drift_20s_max_abs_pu": 8.656079124590506e-05,
+          "qset_drift_20s_max_abs_pu": 0.008747144840795501,
+          "P_over_Pn_final_spread": 6.062995891387146e-05,
+          "delivered_dP_sum_pu": 0.0009462737944905264,
+          "tail_slopes_unit_P_pu_per_s_max": 7.916240797558419e-07,
+          "converged": false,
+          "not_converged_channels": [
+            "Qset",
+            "voltage"
+          ]
+        },
+        "limits": {
+          "run": "R35_040_B2 Q+",
+          "max_units_near_limit_simultaneously": 4,
+          "time_with_>=2_units_near_s": 200.01171875,
+          "time_with_>=3_units_near_s": 200.01171875,
+          "longest_simultaneous_pair": [
+            "SG31",
+            "SG35"
+          ],
+          "longest_simultaneous_pair_duration_s": 200.01171875,
+          "units_near_limit_at_any_time": [
+            "SG31",
+            "SG33",
+            "SG35",
+            "GFM32",
+            "GFM36"
+          ],
+          "units_crossing_a_limit": {},
+          "min_normalised_margin_by_unit": {
+            "SG30": 0.27957055220112526,
+            "SG31": 0.020331154159295102,
+            "SG33": 0.04995855881371439,
+            "SG35": 0.014255020728864188,
+            "SG38": 0.1037305087627634,
+            "SG39": 0.21897956674639105,
+            "GFM32": 0.048513626277833906,
+            "GFM37": 0.3861419026275969,
+            "GFM34": 0.07662745420709592,
+            "GFM36": 0.016925552942519722
+          },
+          "delivered_dP_by_unit_pu": {
+            "SG30": 3.3419963942904474e-05,
+            "SG31": 0.00043191311684065425,
+            "SG33": 5.14630412009609e-05,
+            "SG35": 0.00015554651822746735,
+            "SG38": 5.626552712101329e-05,
+            "SG39": 4.205017445002568e-05,
+            "GFM32": 5.730670420867057e-05,
+            "GFM37": 2.4089777098446064e-05,
+            "GFM34": 3.869950129065103e-05,
+            "GFM36": 5.5519470328668774e-05
+          },
+          "delivered_dP_total_pu": 0.0009462737947094624,
+          "SG_share_of_delivered_dP": 0.8144136993877589,
+          "GFM_share_of_delivered_dP": 0.18558630061224113,
+          "corr_delivered_dP_vs_pre_event_headroom": -0.34168143735795325,
+          "pre_event_headroom_pu": {
+            "SG30": 5.929104516573247,
+            "SG31": 0.13891449178305137,
+            "SG33": 0.36096050877819774,
+            "SG35": 0.1096999999999646,
+            "SG38": 0.9098633909762519,
+            "SG39": 5.248142643742766,
+            "GFM32": 0.37043673481928696,
+            "GFM37": 2.3458995402883196,
+            "GFM34": 0.427774953347142,
+            "GFM36": 0.11668263997076345
+          },
+          "total_pre_event_headroom_pu": 15.957479420278991,
+          "bus_voltage_min_pu": 0.9748824197911924,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "frequency_nadir_hz": 59.99825166034269,
+          "frequency_final_error_hz": 3.44269334107139e-06
+        }
+      }
+    }
+  },
+  "series_sha256": "2A55FFA42D29A279189FC5B7274BDEC50BF088523A88EFCD3B07C390B9CE04D5",
+  "criteria": {
+    "S0": {
+      "qset_drift_20s_new_over_old": 0.9725452855945191,
+      "unit_V_error_new_over_old": 0.8825907023147194,
+      "new_limit_crossings": [],
+      "freq_final_error_change_hz": -1.0324646382287028e-06
+    },
+    "P+": {
+      "qset_drift_20s_new_over_old": 0.9482666343458849,
+      "unit_V_error_new_over_old": 0.8225138796520285,
+      "new_limit_crossings": [],
+      "freq_final_error_change_hz": 1.7051381888677497e-06
+    },
+    "Q+": {
+      "qset_drift_20s_new_over_old": 0.9704453595009532,
+      "unit_V_error_new_over_old": 0.8675107461090239,
+      "new_limit_crossings": [],
+      "freq_final_error_change_hz": -1.1441226561714757e-06
+    }
+  },
+  "improves_by_declared_criteria": false
+}

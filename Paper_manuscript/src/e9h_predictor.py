@@ -105,7 +105,7 @@ class LinearPredictor:
             U[k] = u0 + Z[n:, 0]
             RU[k] = Z[n:, 1:]
         tt["propagate"] = time.perf_counter() - t0
-        return {"Y": Y, "R": R, "U": U, "RU": RU, "y0": y0_59, "u0": u0, "t": t, "timing": tt, "M": M, "A_plant": lin["A"], "n_dyn": n}
+        return {"Y": Y, "R": R, "U": U, "RU": RU, "y0": y0_59, "u0": u0, "t": t, "timing": tt, "M": M, "A_plant": lin["A"], "n_dyn": n, "xdot": lin["xdot"], "v0": v0, "Cz": Cz}
 
 
 def tighten_and_assemble(pred: dict[str, Any], eps: np.ndarray, vref: np.ndarray, lim: dict[str, np.ndarray], sens_err: float = SENS_ERR):

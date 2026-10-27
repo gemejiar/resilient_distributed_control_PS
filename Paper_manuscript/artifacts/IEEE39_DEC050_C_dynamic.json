@@ -1,0 +1,182 @@
+{
+  "stage": "DEC-050 C dynamic",
+  "git_commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+  "doc": "DEC-050 block C (dynamic part): refinement of the P/Q dynamic frontiers and two additional delay tests (dynamic simulations 6-12 of 12 at most).\n\nDeclared before running (nothing is tuned; B2 original on C2t_Vsafe_R35_040, 40 s step runs exactly as in E12, so the new points are directly comparable with the E12 points):\n  P frontier : E12 brackets it between 58.5 MW (no violation) and 87.8 MW (SG31/SG35 cross).  One simulation at the midpoint (73.2 MW = 1.25 x), then one at the midpoint of the remaining half.\n  Q frontier : E12 brackets it between 69.3 MVAr (ok) and 138.6 MVAr (TDS failure at 5.2 s).  One simulation at the midpoint (104 MVAr = 6.0 x), then one at the midpoint of the remaining half\n               (5.0 x or 7.0 x).\n  delays     : 0.50 s and 0.75 s (E15 tested 0.2 s: ok, 1.0 s: limits/band violated, 5 s: divergence), same ring-buffer implementation and P+ 100 s run as E15.\n  diagnostic : only if a Q step ends in a TDS failure, ONE run of the lowest failing Q amplitude with the same load applied as a 5 s quintic ramp (dist_fn) to separate \"the instantaneous step\n               cannot be integrated / has no short-term solution\" from \"the system cannot withstand the amplitude\".  A TDS failure is never read as physical instability or as the non-existence\n               of an equilibrium: the static AC equilibrium exists up to ~277 MVAr (E12), and the failure time/residual are reported.\nClassification as in E12: (iii) respects limits and the 0.95-1.05 pu band; (ii) otherwise.\n",
+  "variant": "C2t_Vsafe_R35_040",
+  "P": [
+    {
+      "kind": "P",
+      "multiple": 1.25,
+      "amplitude": 73.20500000000001,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [
+        1
+      ],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.96459312671284,
+      "frequency_final_error_hz": -0.0009908322475382647,
+      "bus_voltage_min_pu": 0.9710666281855409,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.7324288938939345,
+        -0.0032822047945755273,
+        0.21457317230072093,
+        0.0033205553133184296,
+        0.6505808026255036,
+        4.6991923369569335,
+        0.24523093659661832,
+        2.2290875191952813,
+        0.34131764171418855,
+        0.06256400120437533
+      ],
+      "final_residual": 2.235165053043886e-09,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails"
+    },
+    {
+      "kind": "P",
+      "multiple": 1.125,
+      "amplitude": 65.8845,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.96813605409696,
+      "frequency_final_error_hz": -0.0008833559804202196,
+      "bus_voltage_min_pu": 0.9719682696798673,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.752218351531757,
+        0.010864866261892203,
+        0.2292611517322376,
+        0.013922947782620376,
+        0.6762607534747849,
+        4.753763755220708,
+        0.2577294474147198,
+        2.2408014012949495,
+        0.3500689431238415,
+        0.06699786582138945
+      ],
+      "final_residual": 5.0793525829817554e-08,
+      "class": "(iii) equilibrium exists and the run respects the limits"
+    }
+  ],
+  "Q": [
+    {
+      "kind": "Q",
+      "multiple": 6.0,
+      "amplitude": 104.07,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 4,
+      "frequency_nadir_hz": 59.98711622692656,
+      "frequency_final_error_hz": -2.405499731139571e-05,
+      "bus_voltage_min_pu": 0.9356959885327603,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.794679483757362,
+        0.07941841279514783,
+        0.23655441439634206,
+        0.02035896058306008,
+        0.8229219144999433,
+        4.966171104432815,
+        0.33177092599488667,
+        2.31313419776122,
+        0.38964352552123405,
+        0.023067973026304145
+      ],
+      "final_residual": 5.0040680044105557e-08,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails"
+    },
+    {
+      "kind": "Q",
+      "multiple": 5.0,
+      "amplitude": 86.725,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 1,
+      "frequency_nadir_hz": 59.98978167565094,
+      "frequency_final_error_hz": -2.0221387366348154e-05,
+      "bus_voltage_min_pu": 0.9493601241817737,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.824156076147191,
+        0.09452694636913161,
+        0.25780245001937985,
+        0.04269714517330314,
+        0.84004933817954,
+        5.030108474300954,
+        0.33805651609793763,
+        2.3187009926732642,
+        0.3960278362540448,
+        0.03826011379607852
+      ],
+      "final_residual": 2.3210347421809274e-08,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails"
+    }
+  ],
+  "delay": [
+    {
+      "delay_s": 0.5,
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 3.346973276308063e-08,
+      "frequency_nadir_hz": 59.969771387443366,
+      "frequency_max_dev_hz": 0.030228612556634005,
+      "frequency_final_error_hz": -0.00022675424606433126,
+      "frequency_oscillation_last_20s_hz": 6.946322464784771e-06,
+      "bus_voltage_min_pu": 0.972872108532595,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.698559637972162,
+        0.025028358901554526,
+        0.24393557345220263,
+        0.030270293486688082,
+        0.7030168877240666,
+        4.771870187118671,
+        0.2702329106476702,
+        2.2068065184189383,
+        0.357727415940456,
+        0.05901540189482812
+      ],
+      "qset_drift_last_20s_pu": 0.0200315152364261,
+      "max_abs_z": 0.009917450022730614,
+      "label": "delay 0.5 s"
+    },
+    {
+      "delay_s": 0.75,
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 2.6357994409309526e-07,
+      "frequency_nadir_hz": 59.96871175692499,
+      "frequency_max_dev_hz": 0.03128824307501077,
+      "frequency_final_error_hz": -0.002746110202153318,
+      "frequency_oscillation_last_20s_hz": 0.057095182160622926,
+      "bus_voltage_min_pu": 0.8967605093416742,
+      "bus_voltage_max_pu": 1.0798894357411328,
+      "n_buses_outside_band": 22,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        4.561020535279783,
+        0.025028358901554526,
+        0.2077448536493609,
+        0.014201697625957799,
+        0.18060029019546597,
+        3.748984273211369,
+        0.2702329106476702,
+        0.5395707239879393,
+        0.32568106743654646,
+        0.05380821523004631
+      ],
+      "qset_drift_last_20s_pu": 0.02822702094367119,
+      "max_abs_z": 0.009227876722243912,
+      "label": "delay 0.75 s"
+    }
+  ],
+  "diagnostic_ramp": null,
+  "dynamic_simulations_in_this_script": 6
+}
