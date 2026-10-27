@@ -86,7 +86,7 @@ class Problem:
 
     def margins_d(self, z, d_idx):
         """(10 upper, 10 lower) design margins for scenario d at z; M2: jump only; M3: jump + excursion."""
-        key = (tuple(np.round(z, 12)), d_idx, self.mode in ("M2", "M3"), self.mode)
+        key = (tuple(np.round(z, 12)), d_idx, self.mode, self._state_sig())
         if key in self._cache:
             return self._cache[key]
         self.calls += 1
@@ -100,6 +100,10 @@ class Problem:
         dP = j["dP"]
         if self.mode == "M3":
             x = self.plant.excursion(z, sc)
+            if not x.get("ok", True):
+                out = (-1e3 * np.ones(NU), -1e3 * np.ones(NU), {"ok": False})
+                self._cache[key] = out
+                return out
             Eup, Edn = x["E_up"], x["E_dn"]
             epsE = self.eps_E
         else:
@@ -114,6 +118,18 @@ class Problem:
         out = (up, dn, {"ok": True})
         self._cache[key] = out
         return out
+
+    def _state_sig(self):
+        """Signature of everything the cached margins depend on besides (z, d): dynamic cuts and the eps vectors.  Mutating `dyn_cuts` or `eps_*` therefore
+        changes the cache key (regression: stale margins after a new cut)."""
+        cuts = tuple((c["d"], c["i"], c["cls"], float(c["delta"]), tuple(np.round(np.asarray(c["z_c"], float), 12)), tuple(np.round(np.broadcast_to(np.asarray(c["r"], float), (len(c["z_c"]),)), 12))) for c in self.dyn_cuts)
+        return (cuts, tuple(np.round(self.eps_J, 15)), tuple(np.round(self.eps_E, 15)))
+
+    def add_dynamic_cut(self, d: int, i: int, cls: str, delta: float, z_c, r):
+        """Register a local empirical correction (P3-B) inside a trust region and invalidate the cache."""
+        assert cls in ("P+", "P-") and delta >= 0
+        self.dyn_cuts.append({"d": int(d), "i": int(i), "cls": cls, "delta": float(delta), "z_c": np.asarray(z_c, float).copy(), "r": np.broadcast_to(np.asarray(r, float), (len(z_c),)).copy()})
+        self._cache.clear()
 
     def constraints(self, z, W=()):
         parts = [self.base(z)]

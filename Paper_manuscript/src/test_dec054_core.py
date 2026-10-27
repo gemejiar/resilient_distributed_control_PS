@@ -24,6 +24,10 @@ import dec054_synth as SYN
 LIM = SYN.LIM
 
 
+def _disp(shift=0.0):
+    return {m: RUN.make_dispatch_entry(np.full(19, 1.0 + shift * i)) for i, m in enumerate(RUN.METHODS)}
+
+
 class TestConstants(unittest.TestCase):
     def test_time_horizon_is_195(self):
         self.assertEqual(COM.EVENT_T, 5.0)
@@ -273,9 +277,9 @@ class TestDynamicCutAndFrozen(unittest.TestCase):
         d = Path(tempfile.mkdtemp())
         (d / "m.py").write_text("x=1")
         fz = d / "design_frozen.json"
-        RUN.write_frozen(fz, d, ["m.py"], {}, {}, {}, {}, {"buses": [3]}, "2.0.0")
+        RUN.write_frozen(fz, d, ["m.py"], {}, {}, {}, _disp(), {"buses": [3]}, "2.0.0")
         with self.assertRaises(FileExistsError):
-            RUN.write_frozen(fz, d, ["m.py"], {}, {}, {}, {}, {"buses": [3]}, "2.0.0")
+            RUN.write_frozen(fz, d, ["m.py"], {}, {}, {}, _disp(), {"buses": [3]}, "2.0.0")
         self.assertTrue(RUN.verify_frozen(fz, d)["sealed"])
 
 
@@ -374,10 +378,10 @@ class TestFrozen(unittest.TestCase):
         src = Path(tempfile.mkdtemp())
         (src / "a.py").write_text("x=1")
         fz = src / "f.json"
-        fz.write_text(json.dumps({"sealed": True, "code_sha256": {"a.py": "0" * 64}, "partition": {}, "params": {}, "eps": {}, "dispatches": {}, "scenarios_test": {"buses": [3]}, "andes_version": "2.0.0"}))
+        fz.write_text(json.dumps({"sealed": True, "code_sha256": {"a.py": "0" * 64}, "partition": {}, "params": {}, "eps": {}, "dispatches": _disp(), "scenarios_test": {"buses": [3]}, "andes_version": "2.0.0"}))
         with self.assertRaises(RUN.FrozenError):
             RUN.verify_frozen(fz, src)
-        fz.write_text(json.dumps({"sealed": True, "code_sha256": {"a.py": COM.sha_file(src / "a.py")}, "partition": {}, "params": {}, "eps": {}, "dispatches": {}, "scenarios_test": {"buses": [3]}, "andes_version": "2.0.0"}))
+        fz.write_text(json.dumps({"sealed": True, "code_sha256": {"a.py": COM.sha_file(src / "a.py")}, "partition": {}, "params": {}, "eps": {}, "dispatches": _disp(), "scenarios_test": {"buses": [3]}, "andes_version": "2.0.0"}))
         self.assertTrue(RUN.verify_frozen(fz, src)["sealed"])
 
 

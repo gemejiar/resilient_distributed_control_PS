@@ -19,3 +19,13 @@ Blockers: no independent backup destination (STOP_BACKUP_NOT_VERIFIED); P2 techn
 Responsible: Integrator
 Status: BLOCKED_AT_BACKUP_GATE (code and synthetic tests delivered)
 Next action: Investigator provides the independent backup destination; then S3-S8 in IEEE39_DEC054_reproduction_commands.md.
+
+## DEC-054 / Integration readiness (pre-ANDES)
+Date: 2026-10-27
+Gate: Authorization "DEC-054 — Corrección de integración previa a ANDES" (start commit 6ba63061c3275dff6094762b20693985cf270ff0). Rule: no ANDES, no optimisation on IEEE-39 before BACKUP_VERIFIED.
+Decision: Implemented z_ref from the historical case with an exact 19-variable spec; explicit PFlow/TDS.init/residual validation (never ok=True on invalid init); cache key including dynamic cuts and eps; exactly one frozen dispatch per method M0-M3; exclusive per-run evidence store (also for failures). Details in IEEE39_DEC054_integration_readiness_report.md.
+Results: full synthetic battery 67 tests, 0 failures (IEEE39_DEC054_unit_test_report_R4.json). Issues fixed: unclosed ledger file handle; four tests adapted to the new frozen schema; cache regression reproduced with the old key (2 failures) and fixed.
+Blockers: independent backup not verified (STOP_BACKUP_NOT_VERIFIED); 0/48 TDS; adapter UNTESTED_ON_PLANT.
+Responsible: Integrator
+Status: BLOCKED_AT_BACKUP_GATE (integration corrections and tests delivered)
+Next action: Investigator decision on the backup gate; then P2 technical checks.

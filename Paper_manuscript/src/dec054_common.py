@@ -11,6 +11,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+# persistent per-run evidence goes to an exclusive folder inside the paper folder (excluded from Git locally: .git/info/exclude)
+RUNS_DIR = Path(os.environ.get("DEC054_RUNS_DIR", r"c:/onedrive/OneDrive - Universidad del Valle/05_Univalle_Investigacion/02_Publicaciones/En_Preparacion/Proyectos_Latex/Resilient_distributed_control_PS/Paper_manuscript/backups/DEC054_runs"))
 ART = ROOT / "Paper_manuscript" / "artifacts"
 FIG = ROOT / "Paper_manuscript" / "figures_main"
 
@@ -46,7 +48,7 @@ PROPOSED = {
     "r_tr_p0_pu": 0.05, "r_tr_v0_pu": 0.01, "P_floor_pu": 0.05, "lambda_pat": 1.0, "v_scale_pu": 0.05,
     "alpha_diag": 0.10, "m1_rho_grid_note": "rho fixed on DESIGN/TUNE statics only",
     "t_grid_segments": [[0.0, 1.0, 101], [1.0, 10.0, 91], [10.0, T_POST, 186]],
-    "status": "PROPOSED_NOT_SEALED",
+    "init_tol": 1e-8, "status": "PROPOSED_NOT_SEALED",
 }
 
 # ---- status vocabularies (protocol)
@@ -96,7 +98,8 @@ class TdsLedger:
         if not self.path.exists():
             with open(self.path, "x", newline="", encoding="utf-8") as f:
                 csv.writer(f).writerow(LEDGER_COLS)
-        self.rows = list(csv.DictReader(open(self.path, encoding="utf-8")))
+        with open(self.path, encoding="utf-8") as f:
+            self.rows = list(csv.DictReader(f))
 
     def used(self, block: str | None = None) -> int:
         reqs = [r for r in self.rows if r["status"] == "REQUESTED"]
