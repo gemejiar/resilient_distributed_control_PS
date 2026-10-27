@@ -1,0 +1,282 @@
+{
+  "variant": "C2t_Vsafe_R35_040",
+  "git_commit": "bb2e5fac071ae4480c0e5a1be706d65c25a1bb5d",
+  "andes": "2.0.0",
+  "python": "3.12.10",
+  "update_s": 0.1,
+  "horizon_s": 3.0,
+  "bounds_sha256": "6B7BA925BCCA1BD5562A87ED78AF0A0EAFD0BCF5BA524C90FA0E68BD6B0885C2",
+  "doc": "E9-H: predictive safety filter (B4) versus B2 on C2t_Vsafe_R35_040.\n\nStages (declared before running, DEC-047):\n  1. S0 (60 s): B4 active from t = 5.5 s; passes only if the safety LP is feasible at every update with zero action (nominal command kept) and the mean update cost is <= 0.5 s.\n  2. Shadow runs on P+ and Q+ (filter evaluated, output discarded): the scenario is selected by this rule, before any B4 result exists: P+ if in the shadow run the nominal B2 command violates a tightened\n     ENFORCEABLE barrier at >= 3 updates and the LP is feasible at every update; else Q+ under the same rule; else no scenario (the development stops, option B).\n  3. B2 versus B4 on the selected scenario (60 s) with identical variant, dispatch, perturbation and actuators.\nIf the LP is infeasible at an update at which the nominal command violates an enforceable constraint, the test STOPS (no relaxation).  The result is reported as: constraints enforced up to the\nverified horizon, conditional on the empirical error bound; no claim against unknown steps; no claim of improved safety if B2 respects all physical constraints.\nMonitored barriers (not influenced by the GFM within the horizon, e.g. SG limits) are only reported: their reserve is checked, not enforced.\n",
+  "stages": {
+    "S0": {
+      "label": "S0",
+      "scenario": "S0",
+      "shadow": false,
+      "B2": {
+        "t_end_s": 60.0,
+        "min_P_margin_pu": [
+          5.929072223136054,
+          0.13885681623241197,
+          0.36093001257367874,
+          0.1096997150382295,
+          0.9098074301293924,
+          5.248099630478226,
+          0.37039807962468263,
+          2.34587441418049,
+          0.42774274193560036,
+          0.1166599611500363
+        ],
+        "min_Q_margin_pu": [
+          0.6590327596644743,
+          0.6541799484766848,
+          3.4972918189265076,
+          4.130090856399299,
+          4.72788242822278,
+          1.6382096557477284,
+          2.654593808413365,
+          2.5498866226768984,
+          3.506620138444393,
+          2.9597587309256608
+        ],
+        "min_S_rel_margin": [
+          0.5619917462021388,
+          0.12310599895370533,
+          0.42482876054237606,
+          0.346560052139783,
+          0.5349294726678757,
+          0.520213218971818,
+          0.1280781903733974,
+          0.6573131488000561,
+          0.5065020295251703,
+          0.42888119342313114
+        ],
+        "bus_voltage_min_pu": 0.9787984147244185,
+        "bus_voltage_max_pu": 1.0444148623364493,
+        "min_voltage_margin_to_band_pu": 0.005585137663550732,
+        "n_buses_ever_outside_band": 0,
+        "violating_units": [],
+        "frequency_nadir_hz": 59.999992578755176,
+        "frequency_max_dev_hz": 7.42124482400186e-06,
+        "max_cmd_z": 0.00803208934538631
+      },
+      "B4": {
+        "t_end_s": 60.0,
+        "min_P_margin_pu": [
+          5.92907221691592,
+          0.13885683340917243,
+          0.360929912262292,
+          0.1096997150382295,
+          0.9098074285925399,
+          5.248099608417676,
+          0.3703980797929569,
+          2.3458744021114555,
+          0.42774273963572185,
+          0.11665995977556243
+        ],
+        "min_Q_margin_pu": [
+          0.6590327596644743,
+          0.6541799484766848,
+          3.497291818913787,
+          4.13009083727108,
+          4.72788242822278,
+          1.6382096557477284,
+          2.6545938095241857,
+          2.5498866226768984,
+          3.506620138444393,
+          2.9597587309256608
+        ],
+        "min_S_rel_margin": [
+          0.5619917462021388,
+          0.12310599895370533,
+          0.42482876054237606,
+          0.34656005120370137,
+          0.5349294728192943,
+          0.5202132189686575,
+          0.12807819027936085,
+          0.6573131486986281,
+          0.506502029514409,
+          0.42888119349675347
+        ],
+        "bus_voltage_min_pu": 0.9787984145756728,
+        "bus_voltage_max_pu": 1.0444148623364493,
+        "min_voltage_margin_to_band_pu": 0.005585137663550732,
+        "n_buses_ever_outside_band": 0,
+        "violating_units": [],
+        "frequency_nadir_hz": 59.999992576348454,
+        "frequency_max_dev_hz": 7.4236515459347174e-06,
+        "max_cmd_z": 0.008032086641030944
+      },
+      "difference_B4_minus_B2": {
+        "max_abs_frequency_diff_hz": 4.269707432058567e-08,
+        "max_abs_voltage_diff_pu": 5.358235632968444e-09,
+        "max_abs_P_diff_pu": 2.872426723143917e-07,
+        "max_abs_Q_diff_pu": 1.0830987556571109e-07
+      },
+      "stopped": null,
+      "stop_exception": null,
+      "filter": {
+        "n_updates": 546,
+        "n_active_updates": 0,
+        "n_lp_infeasible": 0,
+        "max_dv_abs_pu_per_s": 0.0,
+        "n_updates_nominal_violates_enforceable": 0,
+        "enforceable_barriers_activated": [],
+        "monitored_reserve_violations": [],
+        "n_updates_monitored_reserve_violated": 0,
+        "active_times_s": [],
+        "worst_enforceable_margin_minus_eps_min": 0.003343211527229384
+      },
+      "cost": {
+        "mean_update_s": 0.5308443564101166,
+        "p95_update_s": 0.6344568250060547,
+        "max_update_s": 0.6780013999668881,
+        "requirement_mean_le_0.5s": false,
+        "update_period_s": 0.1,
+        "wall_B2_s": 18.75307179999072,
+        "wall_B4_s": 308.29009030002635
+      },
+      "coverage_first_0.3s_of_each_window": {
+        "samples": 233168,
+        "outside_bound": 0,
+        "fraction_inside": 1.0,
+        "worst_error_over_bound": 0.027328927631027147
+      },
+      "diag_B2": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 1.0771035707790588e-07,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      },
+      "diag_B4": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 3.300696871377795e-08,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      },
+      "log_head": [
+        {
+          "t_s": 5.5,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.003343211527229384,
+          "lp_feasible": true,
+          "lp_rows": 867,
+          "t_predict_s": 0.45237559999804944,
+          "t_assemble_lp_s": 0.041930400067940354,
+          "timing_predict": {
+            "linearize": 0.44148080004379153,
+            "rdc_fd": 0.0017201000591740012,
+            "assemble_expm": 0.007152499980293214,
+            "propagate": 0.0015278999926522374
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        },
+        {
+          "t_s": 5.6015625,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.0033451863627824707,
+          "lp_feasible": true,
+          "lp_rows": 867,
+          "t_predict_s": 0.2992940000258386,
+          "t_assemble_lp_s": 0.03914639994036406,
+          "timing_predict": {
+            "linearize": 0.287093999912031,
+            "rdc_fd": 0.0017704000929370522,
+            "assemble_expm": 0.00841679994482547,
+            "propagate": 0.0017253999831154943
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        }
+      ],
+      "log_tail": [
+        {
+          "t_s": 59.90234375,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.00400883610943259,
+          "lp_feasible": true,
+          "lp_rows": 864,
+          "t_predict_s": 0.6037289000814781,
+          "t_assemble_lp_s": 0.04059229989070445,
+          "timing_predict": {
+            "linearize": 0.5912204999476671,
+            "rdc_fd": 0.0018306000856682658,
+            "assemble_expm": 0.008538499940186739,
+            "propagate": 0.0017167000332847238
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        },
+        {
+          "t_s": 60.0,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.004009390584281958,
+          "lp_feasible": true,
+          "lp_rows": 864,
+          "t_predict_s": 0.4636059000622481,
+          "t_assemble_lp_s": 0.041860299999825656,
+          "timing_predict": {
+            "linearize": 0.4524749000556767,
+            "rdc_fd": 0.001656699925661087,
+            "assemble_expm": 0.007741600042209029,
+            "propagate": 0.0013470000121742487
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        }
+      ],
+      "gate": {
+        "lp_feasible_every_update": true,
+        "zero_action_every_update": true,
+        "cost_requirement": false,
+        "passed": false
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "variant": "C2t_Vsafe_R35_040",
+  "git_commit": "bb2e5fac071ae4480c0e5a1be706d65c25a1bb5d",
+  "factor": 1.5,
+  "update_s": 0.1,
+  "horizon_s": 3.0,
+  "dt_s": 0.1,
+  "t_start_s": 5.5,
+  "doc": "E9-H predictor validation: error bound of the nominal prediction, cost and coverage (declared protocol, DEC-047).\n\nProtocol (declared before running).  B2 (original RDC, no filter) is replayed on C2t_Vsafe_R35_040 for S0, P+ and Q+ over 60 s.  From t = 5.5 s (0.5 s after the event: the filter is never\nactive during the initial unsafe interval, nor claims anything about unknown future steps) a supervisory update is performed every Ts = 0.1 s with exactly the machinery of the filter\n(linearization with parameter derivatives refreshed every 1 s and cached in between, closed-loop RDC prediction over H = 3 s on a 0.1 s grid).  Every 1 s the 3 s prediction (Delta v = 0) is stored and,\nafter the run, compared with the actual B2 trajectory on the solver grid (3.906 ms), the predicted curve being interpolated linearly between grid points (this includes the between-sample\nbehaviour).  Windows containing the event are excluded.  The bound is eps_j(tau_k) = FACTOR x the maximum observed absolute error of output j in the tau-bin k over all windows of the three\nscenarios (cumulative maximum over k); it is an EMPIRICAL bound, not a mathematically derived one.\nRequirements for continuing (declared): cost, mean update <= 0.5 s (offline, Python; no real-time claim); usefulness, in S0 the nominal predicted margins exceed eps for every enforceable barrier\n(zero action feasible); coverage in the closed-loop test, at least 99 % of the (window, output, tau) samples within eps.\n",
+  "per_scenario": {
+    "S0": {
+      "n_windows": 52,
+      "n_updates": 546,
+      "timing_mean_s": {
+        "wall": 0.3369320575077506,
+        "linearize": 0.32527617710487294,
+        "rdc_fd": 0.001855747434378844,
+        "assemble_expm": 0.007847427839333116,
+        "propagate": 0.0016422739890813419
+      },
+      "wall_max_s": 0.6214309999486431,
+      "max_error_P": 1.569173109228217e-05,
+      "max_error_Q": 3.231183058105547e-05,
+      "max_error_V": 1.3616562775098373e-06,
+      "diag": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 3.300696871377795e-08,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      }
+    },
+    "P+": {
+      "n_windows": 52,
+      "n_updates": 546,
+      "timing_mean_s": {
+        "wall": 0.4660636531169895,
+        "linearize": 0.4546777029308975,
+        "rdc_fd": 0.0017981184987631035,
+        "assemble_expm": 0.00772212289321499,
+        "propagate": 0.0016035631854656824
+      },
+      "wall_max_s": 0.660937299951911,
+      "max_error_P": 0.007914064337987803,
+      "max_error_Q": 0.09450769070850806,
+      "max_error_V": 0.004381063567381549,
+      "diag": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 1.0971668989189975e-10,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      }
+    },
+    "Q+": {
+      "n_windows": 52,
+      "n_updates": 546,
+      "timing_mean_s": {
+        "wall": 0.47974344633942667,
+        "linearize": 0.4681970567786606,
+        "rdc_fd": 0.0018462957842053757,
+        "assemble_expm": 0.007904961540392726,
+        "propagate": 0.0016395364465420527
+      },
+      "wall_max_s": 0.7509348000166938,
+      "max_error_P": 0.0014397042233778024,
+      "max_error_Q": 0.0019072238462102403,
+      "max_error_V": 0.00012061410221808622,
+      "diag": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 3.2657725412832406e-08,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      }
+    }
+  },
+  "bound_summary": {
+    "P_units_max_over_k_pu": 0.011871096506981704,
+    "Q_units_max_pu": 0.1417615360627621,
+    "V_buses_max_pu": 0.0065715953510723235,
+    "P_at_tau_0.1": 0.004647240915874651,
+    "P_at_tau_1": 0.005959630652510484,
+    "P_at_tau_3": 0.011871096506981704,
+    "V_at_tau_3": 0.0065715953510723235
+  },
+  "cost": {
+    "mean_update_wall_s": 0.4275797189880556,
+    "p95_update_wall_s": 0.5973700700036716,
+    "max_update_wall_s": 0.7509348000166938,
+    "requirement_mean_le_0.5s": true,
+    "control_update_Ts_s": 0.1
+  },
+  "npz": "IEEE39_E9H_error_bounds_R35_040.npz",
+  "npz_sha256": "6B7BA925BCCA1BD5562A87ED78AF0A0EAFD0BCF5BA524C90FA0E68BD6B0885C2"
+}

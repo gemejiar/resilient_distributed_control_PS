@@ -1,0 +1,814 @@
+{
+  "variant": "C2t_Vsafe_R35_040",
+  "git_commit": "bb2e5fac071ae4480c0e5a1be706d65c25a1bb5d",
+  "andes": "2.0.0",
+  "python": "3.12.10",
+  "update_s": 0.1,
+  "horizon_s": 3.0,
+  "bounds_sha256": "6B7BA925BCCA1BD5562A87ED78AF0A0EAFD0BCF5BA524C90FA0E68BD6B0885C2",
+  "doc": "E9-H: predictive safety filter (B4) versus B2 on C2t_Vsafe_R35_040.\n\nStages (declared before running, DEC-047):\n  1. S0 (60 s): B4 active from t = 5.5 s; passes only if the safety LP is feasible at every update with zero action (nominal command kept) and the mean update cost is <= 0.5 s.\n  2. Shadow runs on P+ and Q+ (filter evaluated, output discarded): the scenario is selected by this rule, before any B4 result exists: P+ if in the shadow run the nominal B2 command violates a tightened\n     ENFORCEABLE barrier at >= 3 updates and the LP is feasible at every update; else Q+ under the same rule; else no scenario (the development stops, option B).\n  3. B2 versus B4 on the selected scenario (60 s) with identical variant, dispatch, perturbation and actuators.\nIf the LP is infeasible at an update at which the nominal command violates an enforceable constraint, the test STOPS (no relaxation).  The result is reported as: constraints enforced up to the\nverified horizon, conditional on the empirical error bound; no claim against unknown steps; no claim of improved safety if B2 respects all physical constraints.\nMonitored barriers (not influenced by the GFM within the horizon, e.g. SG limits) are only reported: their reserve is checked, not enforced.\n",
+  "stages": {
+    "S0": {
+      "label": "S0",
+      "scenario": "S0",
+      "shadow": false,
+      "B2": {
+        "t_end_s": 60.0,
+        "min_P_margin_pu": [
+          5.929072223136054,
+          0.13885681623241197,
+          0.36093001257367874,
+          0.1096997150382295,
+          0.9098074301293924,
+          5.248099630478226,
+          0.37039807962468263,
+          2.34587441418049,
+          0.42774274193560036,
+          0.1166599611500363
+        ],
+        "min_Q_margin_pu": [
+          0.6590327596644743,
+          0.6541799484766848,
+          3.4972918189265076,
+          4.130090856399299,
+          4.72788242822278,
+          1.6382096557477284,
+          2.654593808413365,
+          2.5498866226768984,
+          3.506620138444393,
+          2.9597587309256608
+        ],
+        "min_S_rel_margin": [
+          0.5619917462021388,
+          0.12310599895370533,
+          0.42482876054237606,
+          0.346560052139783,
+          0.5349294726678757,
+          0.520213218971818,
+          0.1280781903733974,
+          0.6573131488000561,
+          0.5065020295251703,
+          0.42888119342313114
+        ],
+        "bus_voltage_min_pu": 0.9787984147244185,
+        "bus_voltage_max_pu": 1.0444148623364493,
+        "min_voltage_margin_to_band_pu": 0.005585137663550732,
+        "n_buses_ever_outside_band": 0,
+        "violating_units": [],
+        "frequency_nadir_hz": 59.999992578755176,
+        "frequency_max_dev_hz": 7.42124482400186e-06,
+        "max_cmd_z": 0.00803208934538631
+      },
+      "B4": {
+        "t_end_s": 60.0,
+        "min_P_margin_pu": [
+          5.92907221691592,
+          0.13885683340917243,
+          0.360929912262292,
+          0.1096997150382295,
+          0.9098074285925399,
+          5.248099608417676,
+          0.3703980797929569,
+          2.3458744021114555,
+          0.42774273963572185,
+          0.11665995977556243
+        ],
+        "min_Q_margin_pu": [
+          0.6590327596644743,
+          0.6541799484766848,
+          3.497291818913787,
+          4.13009083727108,
+          4.72788242822278,
+          1.6382096557477284,
+          2.6545938095241857,
+          2.5498866226768984,
+          3.506620138444393,
+          2.9597587309256608
+        ],
+        "min_S_rel_margin": [
+          0.5619917462021388,
+          0.12310599895370533,
+          0.42482876054237606,
+          0.34656005120370137,
+          0.5349294728192943,
+          0.5202132189686575,
+          0.12807819027936085,
+          0.6573131486986281,
+          0.506502029514409,
+          0.42888119349675347
+        ],
+        "bus_voltage_min_pu": 0.9787984145756728,
+        "bus_voltage_max_pu": 1.0444148623364493,
+        "min_voltage_margin_to_band_pu": 0.005585137663550732,
+        "n_buses_ever_outside_band": 0,
+        "violating_units": [],
+        "frequency_nadir_hz": 59.999992576348454,
+        "frequency_max_dev_hz": 7.4236515459347174e-06,
+        "max_cmd_z": 0.008032086641030944
+      },
+      "difference_B4_minus_B2": {
+        "max_abs_frequency_diff_hz": 4.269707432058567e-08,
+        "max_abs_voltage_diff_pu": 5.358235632968444e-09,
+        "max_abs_P_diff_pu": 2.872426723143917e-07,
+        "max_abs_Q_diff_pu": 1.0830987556571109e-07
+      },
+      "stopped": null,
+      "stop_exception": null,
+      "filter": {
+        "n_updates": 546,
+        "n_active_updates": 0,
+        "n_lp_infeasible": 0,
+        "max_dv_abs_pu_per_s": 0.0,
+        "n_updates_nominal_violates_enforceable": 0,
+        "enforceable_barriers_activated": [],
+        "monitored_reserve_violations": [],
+        "n_updates_monitored_reserve_violated": 0,
+        "active_times_s": [],
+        "worst_enforceable_margin_minus_eps_min": 0.003343211527229384
+      },
+      "cost": {
+        "mean_update_s": 0.41798419926904873,
+        "p95_update_s": 0.6025597000552807,
+        "max_update_s": 0.7234416999854147,
+        "requirement_mean_le_0.5s": true,
+        "update_period_s": 0.1,
+        "wall_B2_s": 18.204295999952592,
+        "wall_B4_s": 245.96050549997017
+      },
+      "coverage_first_0.3s_of_each_window": {
+        "samples": 233168,
+        "outside_bound": 0,
+        "fraction_inside": 1.0,
+        "worst_error_over_bound": 0.027328927631027147
+      },
+      "diag_B2": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 1.0771035707790588e-07,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      },
+      "diag_B4": {
+        "pflow_ok": true,
+        "tds_ok": true,
+        "final_residual": 3.300696871377795e-08,
+        "t_end_s": 60.0,
+        "k_ip": 57.474368649055265
+      },
+      "log_head": [
+        {
+          "t_s": 5.5,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.003343211527229384,
+          "lp_feasible": true,
+          "lp_rows": 867,
+          "t_predict_s": 0.5413152000401169,
+          "t_assemble_lp_s": 0.007774000056087971,
+          "timing_predict": {
+            "linearize": 0.5295113000320271,
+            "rdc_fd": 0.0018356000073254108,
+            "assemble_expm": 0.008035899954847991,
+            "propagate": 0.0015960000455379486
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        },
+        {
+          "t_s": 5.6015625,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.0033451863627824707,
+          "lp_feasible": true,
+          "lp_rows": 867,
+          "t_predict_s": 0.4234576999442652,
+          "t_assemble_lp_s": 0.006324299960397184,
+          "timing_predict": {
+            "linearize": 0.41239209997002035,
+            "rdc_fd": 0.0017393999733030796,
+            "assemble_expm": 0.00725400005467236,
+            "propagate": 0.0016038999892771244
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        }
+      ],
+      "log_tail": [
+        {
+          "t_s": 59.90234375,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.00400883610943259,
+          "lp_feasible": true,
+          "lp_rows": 864,
+          "t_predict_s": 0.5916454999241978,
+          "t_assemble_lp_s": 0.0072734999703243375,
+          "timing_predict": {
+            "linearize": 0.5794737000251189,
+            "rdc_fd": 0.001777400029823184,
+            "assemble_expm": 0.008325599948875606,
+            "propagate": 0.0016790999798104167
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        },
+        {
+          "t_s": 60.0,
+          "n_enforced_barriers": 128,
+          "enforced_names_sample": [
+            "P+0",
+            "P+1",
+            "P+2",
+            "P+3",
+            "P+4",
+            "P+5"
+          ],
+          "nominal_violates_enforceable": [],
+          "monitored_reserve_violated": [],
+          "worst_enforceable_margin_minus_eps": 0.004009390584281958,
+          "lp_feasible": true,
+          "lp_rows": 864,
+          "t_predict_s": 0.4186471999855712,
+          "t_assemble_lp_s": 0.007382299983873963,
+          "timing_predict": {
+            "linearize": 0.40537699998822063,
+            "rdc_fd": 0.001868999912403524,
+            "assemble_expm": 0.00928240001667291,
+            "propagate": 0.0016487999819219112
+          },
+          "dv_norm_normalized": 0.0,
+          "dv_max_abs": 0.0,
+          "active": false
+        }
+      ],
+      "gate": {
+        "lp_feasible_every_update": true,
+        "zero_action_every_update": true,
+        "cost_requirement": true,
+        "passed": true
+      }
+    },
+    "shadow": {
+      "P+": {
+        "label": "shadow P+",
+        "scenario": "P+",
+        "shadow": true,
+        "B2": {
+          "t_end_s": 60.0,
+          "min_P_margin_pu": [
+            5.771989688910377,
+            0.025028381317233617,
+            0.2439375371954764,
+            0.024535226735743265,
+            0.7020027021772481,
+            4.808415836442028,
+            0.27023291064784605,
+            2.2525094252342184,
+            0.3587941757675681,
+            0.06462702140745957
+          ],
+          "min_Q_margin_pu": [
+            0.5092691812896188,
+            0.5911977004728279,
+            3.3329084301942715,
+            4.0407591569173436,
+            4.727882767719952,
+            1.6382102265820935,
+            2.581105004587349,
+            2.513192643834208,
+            3.4733565298304914,
+            2.9002319906880842
+          ],
+          "min_S_rel_margin": [
+            0.5452175391387808,
+            0.10754056424523095,
+            0.411216042898809,
+            0.3379609337244499,
+            0.5222408128985727,
+            0.4835894956622727,
+            0.11589358511282433,
+            0.6480852932899226,
+            0.5002379702277272,
+            0.4235964126864352
+          ],
+          "bus_voltage_min_pu": 0.9728535622493032,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "min_voltage_margin_to_band_pu": 0.005585172315285103,
+          "n_buses_ever_outside_band": 0,
+          "violating_units": [],
+          "frequency_nadir_hz": 59.97167829765243,
+          "frequency_max_dev_hz": 0.02832170234756859,
+          "max_cmd_z": 0.0082556558258788
+        },
+        "B4": {
+          "t_end_s": 60.0,
+          "min_P_margin_pu": [
+            5.771991704753022,
+            0.025028381317233617,
+            0.2439375371954764,
+            0.024535455285610297,
+            0.7020021455188008,
+            4.808415836442028,
+            0.27023291064784605,
+            2.2525090611028475,
+            0.35879417747395426,
+            0.06462701966275297
+          ],
+          "min_Q_margin_pu": [
+            0.5092691812896188,
+            0.5911977004728279,
+            3.3329084301942715,
+            4.0407591569173436,
+            4.727882767719952,
+            1.6382102265820935,
+            2.5811047500227704,
+            2.513192643834208,
+            3.4733565298304914,
+            2.9002319906880842
+          ],
+          "min_S_rel_margin": [
+            0.5452175391387808,
+            0.10754056424523095,
+            0.411216042898809,
+            0.33796114603276406,
+            0.522240775904889,
+            0.4835894956622727,
+            0.11589358511282433,
+            0.6480852605362996,
+            0.5002379699278825,
+            0.42359641276349635
+          ],
+          "bus_voltage_min_pu": 0.9728535622493032,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "min_voltage_margin_to_band_pu": 0.005585172315285103,
+          "n_buses_ever_outside_band": 0,
+          "violating_units": [],
+          "frequency_nadir_hz": 59.97167821231371,
+          "frequency_max_dev_hz": 0.02832178768628779,
+          "max_cmd_z": 0.008255655876155916
+        },
+        "difference_B4_minus_B2": {
+          "max_abs_frequency_diff_hz": 2.9698205139538913e-07,
+          "max_abs_voltage_diff_pu": 1.0582443954465504e-07,
+          "max_abs_P_diff_pu": 5.190972221846835e-06,
+          "max_abs_Q_diff_pu": 2.109603184335951e-06
+        },
+        "stopped": null,
+        "stop_exception": null,
+        "filter": {
+          "n_updates": 546,
+          "n_active_updates": 0,
+          "n_lp_infeasible": 0,
+          "max_dv_abs_pu_per_s": 0.0,
+          "n_updates_nominal_violates_enforceable": 0,
+          "enforceable_barriers_activated": [],
+          "monitored_reserve_violations": [],
+          "n_updates_monitored_reserve_violated": 0,
+          "active_times_s": [],
+          "worst_enforceable_margin_minus_eps_min": 0.005207251966879989
+        },
+        "cost": {
+          "mean_update_s": 0.5196983760061602,
+          "p95_update_s": 0.6210911750677042,
+          "max_update_s": 0.662377200089395,
+          "requirement_mean_le_0.5s": false,
+          "update_period_s": 0.1,
+          "wall_B2_s": 27.589905899949372,
+          "wall_B4_s": 310.0393907999387
+        },
+        "coverage_first_0.3s_of_each_window": {
+          "samples": 233168,
+          "outside_bound": 0,
+          "fraction_inside": 1.0,
+          "worst_error_over_bound": 0.6666666666666666
+        },
+        "diag_B2": {
+          "pflow_ok": true,
+          "tds_ok": true,
+          "final_residual": 1.0938668637550109e-08,
+          "t_end_s": 60.0,
+          "k_ip": 57.474368649055265
+        },
+        "diag_B4": {
+          "pflow_ok": true,
+          "tds_ok": true,
+          "final_residual": 1.0971668989189975e-10,
+          "t_end_s": 60.0,
+          "k_ip": 57.474368649055265
+        },
+        "log_head": [
+          {
+            "t_s": 5.5001,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.00785227234795105,
+            "lp_feasible": true,
+            "lp_rows": 814,
+            "t_predict_s": 0.5388194998959079,
+            "t_assemble_lp_s": 0.007224200060591102,
+            "timing_predict": {
+              "linearize": 0.5275176001014188,
+              "rdc_fd": 0.0017355999443680048,
+              "assemble_expm": 0.0077197999926283956,
+              "propagate": 0.001698400010354817
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          },
+          {
+            "t_s": 5.6016625,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.008868643938735099,
+            "lp_feasible": true,
+            "lp_rows": 800,
+            "t_predict_s": 0.5695525999180973,
+            "t_assemble_lp_s": 0.005998500040732324,
+            "timing_predict": {
+              "linearize": 0.5585054000839591,
+              "rdc_fd": 0.0017310999101027846,
+              "assemble_expm": 0.007543500047177076,
+              "propagate": 0.0016467999666929245
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          }
+        ],
+        "log_tail": [
+          {
+            "t_s": 59.90244375,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.00598995541576941,
+            "lp_feasible": true,
+            "lp_rows": 882,
+            "t_predict_s": 0.48262629995588213,
+            "t_assemble_lp_s": 0.007217300008051097,
+            "timing_predict": {
+              "linearize": 0.4714207999641076,
+              "rdc_fd": 0.0018646999960765243,
+              "assemble_expm": 0.007434200029820204,
+              "propagate": 0.0016589999431744218
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          },
+          {
+            "t_s": 60.0,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.005990719262624955,
+            "lp_feasible": true,
+            "lp_rows": 882,
+            "t_predict_s": 0.49751560005825013,
+            "t_assemble_lp_s": 0.03527859994210303,
+            "timing_predict": {
+              "linearize": 0.48562059993855655,
+              "rdc_fd": 0.0019290000200271606,
+              "assemble_expm": 0.0081044000107795,
+              "propagate": 0.0016282000578939915
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          }
+        ]
+      },
+      "Q+": {
+        "label": "shadow Q+",
+        "scenario": "Q+",
+        "shadow": true,
+        "B2": {
+          "t_end_s": 60.0,
+          "min_P_margin_pu": [
+            5.911254591172669,
+            0.13215250203541817,
+            0.34071737110953215,
+            0.09935749448018338,
+            0.8972689007979033,
+            5.211553498726671,
+            0.36385219708375427,
+            2.340540657776861,
+            0.42145099813902753,
+            0.10070704000799235
+          ],
+          "min_Q_margin_pu": [
+            0.5906319314021852,
+            0.6211528283302856,
+            3.4001380539284662,
+            4.040827489268856,
+            4.727882767719952,
+            1.6382102265820935,
+            2.6275408058043803,
+            2.5469533755413667,
+            3.49569859359309,
+            2.9202044781484893
+          ],
+          "min_S_rel_margin": [
+            0.5593094906335847,
+            0.12146100373213442,
+            0.42132313193175386,
+            0.34491435701786,
+            0.5343327597417915,
+            0.5172259327965187,
+            0.12726510093290333,
+            0.6571737461379941,
+            0.5060625017632754,
+            0.427497773829695
+          ],
+          "bus_voltage_min_pu": 0.9748824197911924,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "min_voltage_margin_to_band_pu": 0.005585172315285103,
+          "n_buses_ever_outside_band": 0,
+          "violating_units": [],
+          "frequency_nadir_hz": 59.99825166034269,
+          "frequency_max_dev_hz": 0.0017483396573112486,
+          "max_cmd_z": 0.00815043301807009
+        },
+        "B4": {
+          "t_end_s": 60.0,
+          "min_P_margin_pu": [
+            5.911254591172669,
+            0.13215250203541817,
+            0.34071737110953215,
+            0.09935749448018338,
+            0.8972695320005473,
+            5.211553498726671,
+            0.36385219708375427,
+            2.340540657776861,
+            0.42145099813902753,
+            0.10070704000799235
+          ],
+          "min_Q_margin_pu": [
+            0.5906319314021852,
+            0.6211528283302856,
+            3.4001380539284662,
+            4.040827489268856,
+            4.727882767719952,
+            1.6382102265820935,
+            2.6275408096740427,
+            2.5469533755413667,
+            3.49569859359309,
+            2.9202044781484893
+          ],
+          "min_S_rel_margin": [
+            0.5593094906335847,
+            0.12146100373213442,
+            0.42132313193175386,
+            0.34491435701786,
+            0.5343327978808106,
+            0.5172259327965187,
+            0.12726510082452303,
+            0.6571737470932126,
+            0.5060625018496092,
+            0.427497773829695
+          ],
+          "bus_voltage_min_pu": 0.9748824197911924,
+          "bus_voltage_max_pu": 1.044414827684715,
+          "min_voltage_margin_to_band_pu": 0.005585172315285103,
+          "n_buses_ever_outside_band": 0,
+          "violating_units": [],
+          "frequency_nadir_hz": 59.99825166034269,
+          "frequency_max_dev_hz": 0.0017483396573112486,
+          "max_cmd_z": 0.008150432889710318
+        },
+        "difference_B4_minus_B2": {
+          "max_abs_frequency_diff_hz": 2.374940137883641e-07,
+          "max_abs_voltage_diff_pu": 8.889641878173649e-08,
+          "max_abs_P_diff_pu": 4.55464788728932e-06,
+          "max_abs_Q_diff_pu": 1.3224787129145765e-06
+        },
+        "stopped": null,
+        "stop_exception": null,
+        "filter": {
+          "n_updates": 546,
+          "n_active_updates": 0,
+          "n_lp_infeasible": 0,
+          "max_dv_abs_pu_per_s": 0.0,
+          "n_updates_nominal_violates_enforceable": 0,
+          "enforceable_barriers_activated": [],
+          "monitored_reserve_violations": [],
+          "n_updates_monitored_reserve_violated": 0,
+          "active_times_s": [],
+          "worst_enforceable_margin_minus_eps_min": 0.003966497310784467
+        },
+        "cost": {
+          "mean_update_s": 0.5219664071411945,
+          "p95_update_s": 0.6184114500065334,
+          "max_update_s": 0.7346341999946162,
+          "requirement_mean_le_0.5s": false,
+          "update_period_s": 0.1,
+          "wall_B2_s": 25.963786600041203,
+          "wall_B4_s": 310.6131129999412
+        },
+        "coverage_first_0.3s_of_each_window": {
+          "samples": 233168,
+          "outside_bound": 0,
+          "fraction_inside": 1.0,
+          "worst_error_over_bound": 0.6666666666666666
+        },
+        "diag_B2": {
+          "pflow_ok": true,
+          "tds_ok": true,
+          "final_residual": 3.27120028842387e-08,
+          "t_end_s": 60.0,
+          "k_ip": 57.474368649055265
+        },
+        "diag_B4": {
+          "pflow_ok": true,
+          "tds_ok": true,
+          "final_residual": 3.2657725412832406e-08,
+          "t_end_s": 60.0,
+          "k_ip": 57.474368649055265
+        },
+        "log_head": [
+          {
+            "t_s": 5.5001,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.004170759102399391,
+            "lp_feasible": true,
+            "lp_rows": 593,
+            "t_predict_s": 0.49447369994595647,
+            "t_assemble_lp_s": 0.004554999992251396,
+            "timing_predict": {
+              "linearize": 0.4814530999865383,
+              "rdc_fd": 0.0018561999313533306,
+              "assemble_expm": 0.009483700036071241,
+              "propagate": 0.0015713999746367335
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          },
+          {
+            "t_s": 5.6016625,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.004085030983663973,
+            "lp_feasible": true,
+            "lp_rows": 594,
+            "t_predict_s": 0.4190868999576196,
+            "t_assemble_lp_s": 0.0047923000529408455,
+            "timing_predict": {
+              "linearize": 0.40788079996127635,
+              "rdc_fd": 0.0018665000097826123,
+              "assemble_expm": 0.007656299974769354,
+              "propagate": 0.0015719999792054296
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          }
+        ],
+        "log_tail": [
+          {
+            "t_s": 59.90244375,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.004648388494489453,
+            "lp_feasible": true,
+            "lp_rows": 589,
+            "t_predict_s": 0.5913652000017464,
+            "t_assemble_lp_s": 0.005240799975581467,
+            "timing_predict": {
+              "linearize": 0.5810475000180304,
+              "rdc_fd": 0.0017591000068932772,
+              "assemble_expm": 0.0066874000476673245,
+              "propagate": 0.0015422999858856201
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          },
+          {
+            "t_s": 60.0,
+            "n_enforced_barriers": 128,
+            "enforced_names_sample": [
+              "P+0",
+              "P+1",
+              "P+2",
+              "P+3",
+              "P+4",
+              "P+5"
+            ],
+            "nominal_violates_enforceable": [],
+            "monitored_reserve_violated": [],
+            "worst_enforceable_margin_minus_eps": 0.004648764093867941,
+            "lp_feasible": true,
+            "lp_rows": 589,
+            "t_predict_s": 0.5772624999517575,
+            "t_assemble_lp_s": 0.005018800031393766,
+            "timing_predict": {
+              "linearize": 0.5660497999051586,
+              "rdc_fd": 0.0017651000525802374,
+              "assemble_expm": 0.007331499946303666,
+              "propagate": 0.0017388000851497054
+            },
+            "dv_norm_normalized": 0.0,
+            "dv_max_abs": 0.0,
+            "active": false
+          }
+        ]
+      }
+    }
+  },
+  "selected_scenario": null,
+  "selection_rule": "P+ if the nominal B2 plan violates a tightened enforceable barrier at >= 3 updates and the LP is feasible at every update; else Q+ under the same rule; else none"
+}

@@ -62,7 +62,7 @@ def output_indices(system: Any, ctx: dict[str, Any]) -> dict[str, np.ndarray]:
             "Vunit": np.array([np.asarray(system.Bus.v.a)[bus_idx.index(b)] for b in ctx["unit_bus"]]).astype(int)}
 
 
-def linearize(system: Any, ctx: dict[str, Any], eps: float = FD_EPS) -> dict[str, Any]:
+def linearize(system: Any, ctx: dict[str, Any], eps: float = FD_EPS, cache: dict[str, Any] | None = None) -> dict[str, Any]:
     """Frozen linearization at the current (x, y) of ``system``: returns A (n_d x n_d), B_u (n_d x 20), output maps.
 
     States with a zero time constant (Tf = 0) are quasi-algebraic: they are eliminated together with the algebraic
@@ -77,7 +77,10 @@ def linearize(system: Any, ctx: dict[str, Any], eps: float = FD_EPS) -> dict[str
     m = len(chans)
     fp = np.zeros((fx.shape[0], m))
     gp = np.zeros((gy.shape[0], m))
-    for j, c in enumerate(chans):
+    reuse = cache is not None and "fp" in cache      # E9-H: the parameter derivatives change slowly; reuse them between supervisory updates
+    if reuse:
+        fp, gp = cache["fp"].copy(), cache["gp"].copy()
+    for j, c in ([] if reuse else enumerate(chans)):
         arr, pos = c["param"]
         old = float(arr.v[pos])
         arr.v[pos] = old + eps
@@ -86,6 +89,8 @@ def linearize(system: Any, ctx: dict[str, Any], eps: float = FD_EPS) -> dict[str
         fp[:, j] = (f1 - f0) / eps
         gp[:, j] = (g1 - g0) / eps
     _refresh(system)  # restore residuals at the unperturbed parameters
+    if cache is not None and not reuse:
+        cache["fp"], cache["gp"] = fp.copy(), gp.copy()
     fy_c, gy_c = fy.copy(), gy.copy()
     for j, c in enumerate(chans):
         if c["fb"] is not None:
