@@ -1,0 +1,41 @@
+{
+ "stage": "DEC-054 P0 restore test",
+ "restored_from": "same-disk copy (not independent)",
+ "large_series_restore": {
+  "Paper_manuscript/artifacts/IEEE39_DEC050_B_B2QV1_series.npz": {
+   "sha256_restored": "2a55ffa42d29a279189fc5b7274bdec50bf088523a88efcd3b07c390b9ce04d5",
+   "matches_original_manifest": true,
+   "npz_readable": true,
+   "first_array": "S0__time_s",
+   "shape": [
+    51201
+   ]
+  },
+  "Paper_manuscript/artifacts/IEEE39_E8_C2t_timeseries.npz": {
+   "sha256_restored": "fe59f362ceb3f96a17e4dc90249031c5cb7d37a495da8786f886d5d5547f2422",
+   "matches_original_manifest": true,
+   "npz_readable": true,
+   "first_array": "S0_time_s",
+   "shape": [
+    51201
+   ]
+  },
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_Pplus_timeseries.npz": {
+   "sha256_restored": "ea5364c6ff1c71a88aaebd7b19bf1b389764999864a33a31aae9b8ff682afef7",
+   "matches_original_manifest": true,
+   "npz_readable": true,
+   "first_array": "B3_time_s",
+   "shape": [
+    51203
+   ]
+  }
+ },
+ "bundle": {
+  "verify_rc": 0,
+  "clone_head": "04e082b26054bf046bd5421ceb275b582a0547a5",
+  "clone_ok": true
+ },
+ "all_ok_on_same_disk": true,
+ "independent_backup_verified": false,
+ "gate0": "STOP_BACKUP_NOT_VERIFIED"
+}

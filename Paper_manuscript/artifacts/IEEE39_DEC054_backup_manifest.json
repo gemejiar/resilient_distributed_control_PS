@@ -1,0 +1,579 @@
+{
+ "stage": "DEC-054 P0 backup",
+ "status": "BACKUP_BLOCKED",
+ "gate0": "STOP_BACKUP_NOT_VERIFIED",
+ "reason": "The only physical disk is the OS NVMe (C:); no external drive, remote destination or authorised service was provided. A second copy was made on the same physical disk and is NOT an independent backup.",
+ "logical_destination": "local folder outside the repository tree and outside OneDrive (path not published)",
+ "storage_type": "SAME_PHYSICAL_DISK_COPY (NVMe C:)",
+ "bundle": {
+  "bundle_bytes": 171179177,
+  "bundle_sha256": "2c96669750cf0f644a0a89bb9dbe45b954978b5b31e790dca0f4b77d8fb8b2ab",
+  "verify_rc": 0,
+  "verify_msg": "The bundle uses this hash algorithm: sha1",
+  "clone_rc": 0,
+  "clone_dec053_head": "04e082b26054bf046bd5421ceb275b582a0547a5",
+  "clone_matches_dec053": true,
+  "clone_contains_local_main_commits": true
+ },
+ "files_copied": 89,
+ "all_copy_hashes_match_source": true,
+ "per_file": {
+  ".claude/scheduled_tasks.lock": {
+   "bytes": 124,
+   "sha256_copy": "2d95f06e382b0d6cc3a38889b328ee4da097a511f70d609e9367508c203331b2",
+   "sha256_source": "2d95f06e382b0d6cc3a38889b328ee4da097a511f70d609e9367508c203331b2",
+   "match": true
+  },
+  "AI_TOOLS/skills/venue-templates/assets/posters/beamerposter_academic.aux": {
+   "bytes": 1682,
+   "sha256_copy": "543594ca6481a8c13c8b4168d4670157dbe50c963f68271784b032aa3fe6b019",
+   "sha256_source": "543594ca6481a8c13c8b4168d4670157dbe50c963f68271784b032aa3fe6b019",
+   "match": true
+  },
+  "AI_TOOLS/skills/venue-templates/assets/posters/beamerposter_academic.fdb_latexmk": {
+   "bytes": 28825,
+   "sha256_copy": "cef23572756b1d9f9af711e58387c156d5702935360d33b0cd08efd5ef7b9c56",
+   "sha256_source": "cef23572756b1d9f9af711e58387c156d5702935360d33b0cd08efd5ef7b9c56",
+   "match": true
+  },
+  "AI_TOOLS/skills/venue-templates/assets/posters/beamerposter_academic.fls": {
+   "bytes": 32096,
+   "sha256_copy": "79626c34ec5d76f8a1bd33a1ee5164384bc94122ef0873c87c612991a5d71fbb",
+   "sha256_source": "79626c34ec5d76f8a1bd33a1ee5164384bc94122ef0873c87c612991a5d71fbb",
+   "match": true
+  },
+  "AI_TOOLS/skills/venue-templates/assets/posters/beamerposter_academic.log": {
+   "bytes": 45015,
+   "sha256_copy": "872ebde076c2ea3475acfb4d15eb54a341483070d4395f4284612f2eb9058b66",
+   "sha256_source": "872ebde076c2ea3475acfb4d15eb54a341483070d4395f4284612f2eb9058b66",
+   "match": true
+  },
+  "AI_TOOLS/skills/venue-templates/assets/posters/beamerposter_academic.out": {
+   "bytes": 0,
+   "sha256_copy": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "sha256_source": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "match": true
+  },
+  "AI_TOOLS/skills/venue-templates/assets/posters/beamerposter_academic.synctex.gz": {
+   "bytes": 20596,
+   "sha256_copy": "467f45689d95cd8f08a438cb2147d6f831fd813c93e999c60e85fd6e3e32db90",
+   "sha256_source": "467f45689d95cd8f08a438cb2147d6f831fd813c93e999c60e85fd6e3e32db90",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_Pplus_timeseries.npz": {
+   "bytes": 112901940,
+   "sha256_copy": "ea5364c6ff1c71a88aaebd7b19bf1b389764999864a33a31aae9b8ff682afef7",
+   "sha256_source": "ea5364c6ff1c71a88aaebd7b19bf1b389764999864a33a31aae9b8ff682afef7",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_Qplus_timeseries.npz": {
+   "bytes": 110972560,
+   "sha256_copy": "a90724f8ee38b0ee1c693a9fed44b6c1d8d6eec8697d56f438789c1c65acb430",
+   "sha256_source": "a90724f8ee38b0ee1c693a9fed44b6c1d8d6eec8697d56f438789c1c65acb430",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_S0_timeseries.npz": {
+   "bytes": 67588989,
+   "sha256_copy": "d34a55e50effbb0c3f0873757242df82ab551663872141d5bafa213e8dd19efa",
+   "sha256_source": "d34a55e50effbb0c3f0873757242df82ab551663872141d5bafa213e8dd19efa",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC050_B_B2QV1_series.npz": {
+   "bytes": 145405791,
+   "sha256_copy": "2a55ffa42d29a279189fc5b7274bdec50bf088523a88efcd3b07c390b9ce04d5",
+   "sha256_source": "2a55ffa42d29a279189fc5b7274bdec50bf088523a88efcd3b07c390b9ce04d5",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H3_sim1_series.npz": {
+   "bytes": 15208738,
+   "sha256_copy": "02cc2f245649f60f3f5d78deabdde7c29e7fd42f281049eee6fd7e972781810f",
+   "sha256_source": "02cc2f245649f60f3f5d78deabdde7c29e7fd42f281049eee6fd7e972781810f",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H3_sim2_series.npz": {
+   "bytes": 15238735,
+   "sha256_copy": "c9140a4c1c04c65ea021ec1a47754f32ae6b4f4054993735967e295dc6f81b89",
+   "sha256_source": "c9140a4c1c04c65ea021ec1a47754f32ae6b4f4054993735967e295dc6f81b89",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H4_perturb_minus.npz": {
+   "bytes": 18116074,
+   "sha256_copy": "38d67cddccce633fa1ef55350ac24f88bc5493d8a94dad158ec448df71cf2cd0",
+   "sha256_source": "38d67cddccce633fa1ef55350ac24f88bc5493d8a94dad158ec448df71cf2cd0",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H4_perturb_plus.npz": {
+   "bytes": 18077449,
+   "sha256_copy": "fe873d06a38d33ce0d2af15e5d188dc2d40ee364fc07c864a0de0fed20042385",
+   "sha256_source": "fe873d06a38d33ce0d2af15e5d188dc2d40ee364fc07c864a0de0fed20042385",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E0_C0_run.log": {
+   "bytes": 6542,
+   "sha256_copy": "710d50803aebd5a4f9aa1e2cc578a380cf62e0ebd19b680c3e0899c5cdf738e5",
+   "sha256_source": "710d50803aebd5a4f9aa1e2cc578a380cf62e0ebd19b680c3e0899c5cdf738e5",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E1_C0_run.log": {
+   "bytes": 9568,
+   "sha256_copy": "7573ebcdbbab91da0737f6b4ac936444326dab6cd5253818315840c4fc6d347f",
+   "sha256_source": "7573ebcdbbab91da0737f6b4ac936444326dab6cd5253818315840c4fc6d347f",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E2_C0_run.log": {
+   "bytes": 10034,
+   "sha256_copy": "01fd1db22e94648e91a3163f18f13045e6837825a04f6ec72a65636c382cba5d",
+   "sha256_source": "01fd1db22e94648e91a3163f18f13045e6837825a04f6ec72a65636c382cba5d",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E4_1_C1a_timeseries.npz": {
+   "bytes": 11027907,
+   "sha256_copy": "4b7717bb51ee9348e5150d157741aea140a45f67f1f12eee4b2525e5d4f0c27f",
+   "sha256_source": "4b7717bb51ee9348e5150d157741aea140a45f67f1f12eee4b2525e5d4f0c27f",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E4_2_C2_timeseries.npz": {
+   "bytes": 11586204,
+   "sha256_copy": "9f3f508003f7ed6d566e8c5f720fb3db0b0117bf6f78a12ad41f9dc40f54ea2f",
+   "sha256_source": "9f3f508003f7ed6d566e8c5f720fb3db0b0117bf6f78a12ad41f9dc40f54ea2f",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E4_C1_timeseries.npz": {
+   "bytes": 10567023,
+   "sha256_copy": "0c4b774c59a5177f0d734e0cd74fff457fce53ca45310dc8677dead86336f80e",
+   "sha256_source": "0c4b774c59a5177f0d734e0cd74fff457fce53ca45310dc8677dead86336f80e",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E6_C2_timeseries.npz": {
+   "bytes": 11085459,
+   "sha256_copy": "6e02d7bc97d17a3507ad62e44bcaa9a0e1f62ea4f8dafa83826adbf52d7cb3f0",
+   "sha256_source": "6e02d7bc97d17a3507ad62e44bcaa9a0e1f62ea4f8dafa83826adbf52d7cb3f0",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E6_C2t_timeseries.npz": {
+   "bytes": 10716802,
+   "sha256_copy": "7221b68b47f41f32cdf9a9ae1120c8ffcfd4fa6429204024fbbe188deba21d61",
+   "sha256_source": "7221b68b47f41f32cdf9a9ae1120c8ffcfd4fa6429204024fbbe188deba21d61",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E7L_C2_timeseries.npz": {
+   "bytes": 48010205,
+   "sha256_copy": "168cf1f60f707a76a2f1d0620912d048afb15283a8a2fce7895c1cdf33ac64e3",
+   "sha256_source": "168cf1f60f707a76a2f1d0620912d048afb15283a8a2fce7895c1cdf33ac64e3",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E7_C2t_timeseries.npz": {
+   "bytes": 60267725,
+   "sha256_copy": "cd4be2572c05cec8665c3a274d653919bd9a4e139e13e810b29b78833218e23c",
+   "sha256_source": "cd4be2572c05cec8665c3a274d653919bd9a4e139e13e810b29b78833218e23c",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E8_C2t_timeseries.npz": {
+   "bytes": 116882987,
+   "sha256_copy": "fe59f362ceb3f96a17e4dc90249031c5cb7d37a495da8786f886d5d5547f2422",
+   "sha256_source": "fe59f362ceb3f96a17e4dc90249031c5cb7d37a495da8786f886d5d5547f2422",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E9A_replay_series.npz": {
+   "bytes": 41272753,
+   "sha256_copy": "99a0205eb690820d5c79f2598b4eccae0ea029d1b35f87507737ad66105c0f11",
+   "sha256_source": "99a0205eb690820d5c79f2598b4eccae0ea029d1b35f87507737ad66105c0f11",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_R35_040_series.npz": {
+   "bytes": 66696953,
+   "sha256_copy": "8bc40cddbe5d290552162d9ff5d18ff6a6c137beea329e8613c0bc9954453f65",
+   "sha256_source": "8bc40cddbe5d290552162d9ff5d18ff6a6c137beea329e8613c0bc9954453f65",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_R35_series.npz": {
+   "bytes": 66686873,
+   "sha256_copy": "e535e941b3aa4b466e6b6ba680cd6e04c47a03799abc6ae161a4556c2877fe8b",
+   "sha256_source": "e535e941b3aa4b466e6b6ba680cd6e04c47a03799abc6ae161a4556c2877fe8b",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_series.npz": {
+   "bytes": 66686764,
+   "sha256_copy": "3ae85aa4377e51d4d6745220a2aea643f1cdf664f9258b6e3cbb57e8046b8253",
+   "sha256_source": "3ae85aa4377e51d4d6745220a2aea643f1cdf664f9258b6e3cbb57e8046b8253",
+   "match": true
+  },
+  "Paper_manuscript/main.aux": {
+   "bytes": 8187,
+   "sha256_copy": "a746c3b89b2732778f4780dc4b7e781f7e939915ff77be3446532a2371193dd5",
+   "sha256_source": "a746c3b89b2732778f4780dc4b7e781f7e939915ff77be3446532a2371193dd5",
+   "match": true
+  },
+  "Paper_manuscript/main.bbl": {
+   "bytes": 860,
+   "sha256_copy": "2348e23f5d482719438d2b96b7632ee47b1af7d2c7f00af2c6ac58edf6b1f0c5",
+   "sha256_source": "2348e23f5d482719438d2b96b7632ee47b1af7d2c7f00af2c6ac58edf6b1f0c5",
+   "match": true
+  },
+  "Paper_manuscript/main.blg": {
+   "bytes": 1021,
+   "sha256_copy": "d4defcae45ac39879ffc17473631614693d86a33ef92f4af402bc56937ed4a57",
+   "sha256_source": "d4defcae45ac39879ffc17473631614693d86a33ef92f4af402bc56937ed4a57",
+   "match": true
+  },
+  "Paper_manuscript/main.fdb_latexmk": {
+   "bytes": 13926,
+   "sha256_copy": "12d4411c10b6a3b2ba0942077b0490d22873f65bbbf23b4629a5e60cfb030a4f",
+   "sha256_source": "12d4411c10b6a3b2ba0942077b0490d22873f65bbbf23b4629a5e60cfb030a4f",
+   "match": true
+  },
+  "Paper_manuscript/main.fls": {
+   "bytes": 15709,
+   "sha256_copy": "7fb54c435f67c20d40a6bb4df910dacdb25836c8e98c09b494a7972ac47ce979",
+   "sha256_source": "7fb54c435f67c20d40a6bb4df910dacdb25836c8e98c09b494a7972ac47ce979",
+   "match": true
+  },
+  "Paper_manuscript/main.log": {
+   "bytes": 19882,
+   "sha256_copy": "45dfd128bc3db634418fa7c8c884e591a1739e5c6355d5d2692049aa8ccd0edf",
+   "sha256_source": "45dfd128bc3db634418fa7c8c884e591a1739e5c6355d5d2692049aa8ccd0edf",
+   "match": true
+  },
+  "Paper_manuscript/main.out": {
+   "bytes": 4799,
+   "sha256_copy": "211e1b66dc7691b04297668833a503907979ddd3ce69b516f0295c13561cad32",
+   "sha256_source": "211e1b66dc7691b04297668833a503907979ddd3ce69b516f0295c13561cad32",
+   "match": true
+  },
+  "Paper_manuscript/references/An_MPC-Based_Frequency_Control_Method_Considering_Nodal_Frequency_and_RoCoF.md": {
+   "bytes": 73046,
+   "sha256_copy": "bd182a1914d9ed4d4105b42fe616082e9423471b1103445949f5b1267eb8954f",
+   "sha256_source": "bd182a1914d9ed4d4105b42fe616082e9423471b1103445949f5b1267eb8954f",
+   "match": true
+  },
+  "Paper_manuscript/references/DNN_Assisted_Projection_Based_Deep_Reinforcement_Learning_for_Safe_Control_of_Distribution_Grids.md": {
+   "bytes": 53053,
+   "sha256_copy": "23f80ab9d0167df8bb07e5516e1b94d04b19ca7e0cdde7dda17a6208430605cc",
+   "sha256_source": "23f80ab9d0167df8bb07e5516e1b94d04b19ca7e0cdde7dda17a6208430605cc",
+   "match": true
+  },
+  "Paper_manuscript/references/Data_Driven_Decentralized_Control_of_Inverter_Based_Renewable_Energy_Sources_Using_Safe_Guaranteed_Multi-Agent_Deep_Reinforcement_Learning.md": {
+   "bytes": 60991,
+   "sha256_copy": "5854524d0e027dfe9b1f5a384c7c12778e1c28d9670b340c1b153220aa930a79",
+   "sha256_source": "5854524d0e027dfe9b1f5a384c7c12778e1c28d9670b340c1b153220aa930a79",
+   "match": true
+  },
+  "Paper_manuscript/references/Distributed_Coordination_of_Grid-Forming_and_Grid-Following_Inverters_for_Optimal_Frequency_Control_in_Power_Systems.md": {
+   "bytes": 85257,
+   "sha256_copy": "03df3e3c87069a2bf57d7a2168cbd2e8764ebcff6f1a63405919389c3bd7c21c",
+   "sha256_source": "03df3e3c87069a2bf57d7a2168cbd2e8764ebcff6f1a63405919389c3bd7c21c",
+   "match": true
+  },
+  "Paper_manuscript/references/Distributed_Safe_Frequency_Control_for_Networked_Microgrids_Using_Control_Barrier_Functions.md": {
+   "bytes": 19913,
+   "sha256_copy": "200822b197bbdfe440f2db306754c698778a4898d067294a5a6ae5086605bfb5",
+   "sha256_source": "200822b197bbdfe440f2db306754c698778a4898d067294a5a6ae5086605bfb5",
+   "match": true
+  },
+  "Paper_manuscript/references/Multi-Slot_Distributed_Frequency_Control_for_Power_Systems_With_Heterogeneous_Devices.md": {
+   "bytes": 92018,
+   "sha256_copy": "bd76e7f2930a28467c9cb2c67fecd2bc2f0144e182c26983550951946b7cce35",
+   "sha256_source": "bd76e7f2930a28467c9cb2c67fecd2bc2f0144e182c26983550951946b7cce35",
+   "match": true
+  },
+  "Paper_manuscript/references/Physics-Shielded_Multi-Agent_Deep_Reinforcement_Learning_for_Safe_Active_Voltage_Control_With_Photovoltaic_Battery_Energy_Storage_Systems.md": {
+   "bytes": 69634,
+   "sha256_copy": "458c8af351359c018c7d7bd7fcccd16215c388365740bb362205a2857d96998a",
+   "sha256_source": "458c8af351359c018c7d7bd7fcccd16215c388365740bb362205a2857d96998a",
+   "match": true
+  },
+  "Paper_manuscript/references/Quantitative_Parameter_Conditions_for_Stability_and_Coupling_in_GFMGFL_Converter_Hybrid_Systems_From_a_Small-Signal_Synchronous_Perspective.md": {
+   "bytes": 63995,
+   "sha256_copy": "cd66a320f55dd1d4ca1d9de85b4747bc276ab691458a96dc57a2f55578bdddc5",
+   "sha256_source": "cd66a320f55dd1d4ca1d9de85b4747bc276ab691458a96dc57a2f55578bdddc5",
+   "match": true
+  },
+  "Paper_manuscript/references/Resilient_Distributed_Control_for_Power_Systems_With_Multiple_Synchronous_Generators_and_DERs_Satisfying_Capability_Curve_Requirements.md": {
+   "bytes": 63461,
+   "sha256_copy": "7bd5a4192166b225c598406fc1f406ef8ea9ba1709c1d58ddb6778673e7a207d",
+   "sha256_source": "7bd5a4192166b225c598406fc1f406ef8ea9ba1709c1d58ddb6778673e7a207d",
+   "match": true
+  },
+  "scratch_amp.log": {
+   "bytes": 75056,
+   "sha256_copy": "fa29fb385544c3f9efd6ae650620a68ed65a646120fdb424009c7c9258741809",
+   "sha256_source": "fa29fb385544c3f9efd6ae650620a68ed65a646120fdb424009c7c9258741809",
+   "match": true
+  },
+  "scratch_b0.log": {
+   "bytes": 2316,
+   "sha256_copy": "b4af8e483cd2910bad7835a03dd641e9d59223a8b53acc4f569d3ce39a9bcaad",
+   "sha256_source": "b4af8e483cd2910bad7835a03dd641e9d59223a8b53acc4f569d3ce39a9bcaad",
+   "match": true
+  },
+  "scratch_b0_040.log": {
+   "bytes": 2294,
+   "sha256_copy": "b722cf8cb06b0c4a6c24333828aea2496e3f753b16a0ca9518487018176b908c",
+   "sha256_source": "b722cf8cb06b0c4a6c24333828aea2496e3f753b16a0ca9518487018176b908c",
+   "match": true
+  },
+  "scratch_b0r.log": {
+   "bytes": 2294,
+   "sha256_copy": "148136862b20380bc040cd5dfb8ed01e7c41ca881d76732dcaaad48d872d73cc",
+   "sha256_source": "148136862b20380bc040cd5dfb8ed01e7c41ca881d76732dcaaad48d872d73cc",
+   "match": true
+  },
+  "scratch_b1.log": {
+   "bytes": 11481,
+   "sha256_copy": "66409b53055403c2d205fca696a2de9e52b9267466bc4e388e67861663886740",
+   "sha256_source": "66409b53055403c2d205fca696a2de9e52b9267466bc4e388e67861663886740",
+   "match": true
+  },
+  "scratch_d50_a.log": {
+   "bytes": 1960,
+   "sha256_copy": "af6502f28e92e566a193e57cf4d5227e2e4cef375580210e6123b5db8bf4a52c",
+   "sha256_source": "af6502f28e92e566a193e57cf4d5227e2e4cef375580210e6123b5db8bf4a52c",
+   "match": true
+  },
+  "scratch_d50_b.log": {
+   "bytes": 1912,
+   "sha256_copy": "6ba77a009f56db0575764673725b05050af5f678517f03664876c3fadfc47e1b",
+   "sha256_source": "6ba77a009f56db0575764673725b05050af5f678517f03664876c3fadfc47e1b",
+   "match": true
+  },
+  "scratch_d50_c.log": {
+   "bytes": 2303,
+   "sha256_copy": "8ea6ce8f3ec46c26bc62391b65bd8e30e62f846c06e123b27835548020d9f3a8",
+   "sha256_source": "8ea6ce8f3ec46c26bc62391b65bd8e30e62f846c06e123b27835548020d9f3a8",
+   "match": true
+  },
+  "scratch_d51_dump.log": {
+   "bytes": 2257,
+   "sha256_copy": "95c792b86b4543890d0f3c8585e28ba9f94fdd4eb5130c1a14b7ce639eda6dc4",
+   "sha256_source": "95c792b86b4543890d0f3c8585e28ba9f94fdd4eb5130c1a14b7ce639eda6dc4",
+   "match": true
+  },
+  "scratch_d51_dump2.log": {
+   "bytes": 843,
+   "sha256_copy": "beb617266fd71fe4ce1a4a4f684eea3a053616c78dcf469dbde1494fa8147532",
+   "sha256_source": "beb617266fd71fe4ce1a4a4f684eea3a053616c78dcf469dbde1494fa8147532",
+   "match": true
+  },
+  "scratch_d51_eq2.log": {
+   "bytes": 13036,
+   "sha256_copy": "c8fc894e52269e9bd3f1136121c91c9fd5520c6d6916fa75d5a2bce426fa3a11",
+   "sha256_source": "c8fc894e52269e9bd3f1136121c91c9fd5520c6d6916fa75d5a2bce426fa3a11",
+   "match": true
+  },
+  "scratch_d51_eq3.log": {
+   "bytes": 5828,
+   "sha256_copy": "af8466a4772bec1de739204f13169bcffe62b33bad5463260db924cf9e735bee",
+   "sha256_source": "af8466a4772bec1de739204f13169bcffe62b33bad5463260db924cf9e735bee",
+   "match": true
+  },
+  "scratch_d51_h3jump.log": {
+   "bytes": 2715,
+   "sha256_copy": "a141dcd90fbe224d588b637b4250ce5e10766332d93b66eca15da811e4c4d68f",
+   "sha256_source": "a141dcd90fbe224d588b637b4250ce5e10766332d93b66eca15da811e4c4d68f",
+   "match": true
+  },
+  "scratch_d51_h3s1.log": {
+   "bytes": 543,
+   "sha256_copy": "70177b6855e603f12ffb1682ba579c3c17750720db8218081791395cacc30750",
+   "sha256_source": "70177b6855e603f12ffb1682ba579c3c17750720db8218081791395cacc30750",
+   "match": true
+  },
+  "scratch_d51_h3s2.log": {
+   "bytes": 577,
+   "sha256_copy": "404c13b7d2c3efb1adf2ec3749eb68fbe53710a42e939110e1d3c3d8c7097c32",
+   "sha256_source": "404c13b7d2c3efb1adf2ec3749eb68fbe53710a42e939110e1d3c3d8c7097c32",
+   "match": true
+  },
+  "scratch_d51_h3sel.log": {
+   "bytes": 999,
+   "sha256_copy": "e103299d895f5318482872f1f00605f468e013b44396f23bedabd9af34aae7e8",
+   "sha256_source": "e103299d895f5318482872f1f00605f468e013b44396f23bedabd9af34aae7e8",
+   "match": true
+  },
+  "scratch_d51_h4.log": {
+   "bytes": 7116,
+   "sha256_copy": "2f0624ed82f97c45caa4ff4ae29f0dc8f4c5c042d09209a673a45cd9c1802786",
+   "sha256_source": "2f0624ed82f97c45caa4ff4ae29f0dc8f4c5c042d09209a673a45cd9c1802786",
+   "match": true
+  },
+  "scratch_d51_h4b.log": {
+   "bytes": 7280,
+   "sha256_copy": "074dbb392a02ce2a378d9a97468f8b1368d3cbba7651b02a9b51055c35859720",
+   "sha256_source": "074dbb392a02ce2a378d9a97468f8b1368d3cbba7651b02a9b51055c35859720",
+   "match": true
+  },
+  "scratch_d51_h4c.log": {
+   "bytes": 7160,
+   "sha256_copy": "2a5d7c9eafe2ab5860944b2fb0dbc5c94196edeb60c713935e4bdd29ec0ab86b",
+   "sha256_source": "2a5d7c9eafe2ab5860944b2fb0dbc5c94196edeb60c713935e4bdd29ec0ab86b",
+   "match": true
+  },
+  "scratch_d51_h4m.log": {
+   "bytes": 683,
+   "sha256_copy": "752434d388c0d2b171f9266ed1e3d53d74813801caf1ebac9d74663007b60937",
+   "sha256_source": "752434d388c0d2b171f9266ed1e3d53d74813801caf1ebac9d74663007b60937",
+   "match": true
+  },
+  "scratch_d51_h4p.log": {
+   "bytes": 673,
+   "sha256_copy": "2bad4f9fe183daa98c532a54d964d8d71a4295ee950c8d5ab9f48ed4bd1214f1",
+   "sha256_source": "2bad4f9fe183daa98c532a54d964d8d71a4295ee950c8d5ab9f48ed4bd1214f1",
+   "match": true
+  },
+  "scratch_d51_val.log": {
+   "bytes": 3239,
+   "sha256_copy": "7b1609e43301147df1b9ee471490300fe47f437ae7399011b5204ec28977a1ce",
+   "sha256_source": "7b1609e43301147df1b9ee471490300fe47f437ae7399011b5204ec28977a1ce",
+   "match": true
+  },
+  "scratch_e12.log": {
+   "bytes": 3944,
+   "sha256_copy": "f0e93ddfd8fb7a6b3634eb4fce606fad203517a3b6183027a461e237020d1d08",
+   "sha256_source": "f0e93ddfd8fb7a6b3634eb4fce606fad203517a3b6183027a461e237020d1d08",
+   "match": true
+  },
+  "scratch_e13.log": {
+   "bytes": 1555,
+   "sha256_copy": "c386076c7cce731ea361c09ec915ca1fd27819f093d7c563f93a76ce965e2870",
+   "sha256_source": "c386076c7cce731ea361c09ec915ca1fd27819f093d7c563f93a76ce965e2870",
+   "match": true
+  },
+  "scratch_e14.log": {
+   "bytes": 1102,
+   "sha256_copy": "3a772777ddab706031492fa685dc636c3d75c8726c8b4c6358afb5d79166d160",
+   "sha256_source": "3a772777ddab706031492fa685dc636c3d75c8726c8b4c6358afb5d79166d160",
+   "match": true
+  },
+  "scratch_e15.log": {
+   "bytes": 4294,
+   "sha256_copy": "b8ab4d56ffdac2ce998cff037b1ce4fc1696210beaab8b40d131e6ef35baf55e",
+   "sha256_source": "b8ab4d56ffdac2ce998cff037b1ce4fc1696210beaab8b40d131e6ef35baf55e",
+   "match": true
+  },
+  "scratch_e15b.log": {
+   "bytes": 4497,
+   "sha256_copy": "43f8a4a7c5ae27859f76cd3af4e9e6f3bac5fe991b48f454250c89aff0af37cc",
+   "sha256_source": "43f8a4a7c5ae27859f76cd3af4e9e6f3bac5fe991b48f454250c89aff0af37cc",
+   "match": true
+  },
+  "scratch_e15c.log": {
+   "bytes": 4552,
+   "sha256_copy": "55dc56135e122b772e9cbf852b410a9867243487ddd7c49556c52adfe950a5bd",
+   "sha256_source": "55dc56135e122b772e9cbf852b410a9867243487ddd7c49556c52adfe950a5bd",
+   "match": true
+  },
+  "scratch_f_slow.log": {
+   "bytes": 18636,
+   "sha256_copy": "7811db75f723d2bd3452df1811cd64274c84f6cfc9231616b67f67f826c4f342",
+   "sha256_source": "7811db75f723d2bd3452df1811cd64274c84f6cfc9231616b67f67f826c4f342",
+   "match": true
+  },
+  "scratch_h_b4.log": {
+   "bytes": 2042,
+   "sha256_copy": "001ce4a0a21eae1848800dd0d376f162df723bd3f89c2b3244bfa746341bebc5",
+   "sha256_source": "001ce4a0a21eae1848800dd0d376f162df723bd3f89c2b3244bfa746341bebc5",
+   "match": true
+  },
+  "scratch_h_val.log": {
+   "bytes": 2829,
+   "sha256_copy": "17ca4aaae6691bf2e94309c55272c825bef074b5c652ad643218e163ec9f2364",
+   "sha256_source": "17ca4aaae6691bf2e94309c55272c825bef074b5c652ad643218e163ec9f2364",
+   "match": true
+  },
+  "scratch_lie.log": {
+   "bytes": 9133,
+   "sha256_copy": "4512397b242647ddd2c2a38eed3e0fdf7bbbc994bcce713aff505f3d665c98fd",
+   "sha256_source": "4512397b242647ddd2c2a38eed3e0fdf7bbbc994bcce713aff505f3d665c98fd",
+   "match": true
+  },
+  "scratch_red.log": {
+   "bytes": 4246,
+   "sha256_copy": "a5d53c9a1215732b60c2563311addab95d19a2e11c7ffda2f15f126a96c00012",
+   "sha256_source": "a5d53c9a1215732b60c2563311addab95d19a2e11c7ffda2f15f126a96c00012",
+   "match": true
+  },
+  "scratch_val.log": {
+   "bytes": 9946,
+   "sha256_copy": "3f3851281c2f3005870db1be027d5d63fdb5d4fd3e4d89f9a2709f7af1e66c3f",
+   "sha256_source": "3f3851281c2f3005870db1be027d5d63fdb5d4fd3e4d89f9a2709f7af1e66c3f",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC053_reproducibility.json": {
+   "bytes": 14121,
+   "sha256_copy": "1eab5f84c4db015b8212884c28b41eff31fcdc81a32515afbb75160642d9dbbb",
+   "sha256_source": "1eab5f84c4db015b8212884c28b41eff31fcdc81a32515afbb75160642d9dbbb",
+   "match": true
+  },
+  "Paper_manuscript/artifacts/IEEE39_DEC053_inventory.csv": {
+   "bytes": 25080,
+   "sha256_copy": "7d42b434ed1a00677629d8bddd804fc6b7169a9119870b7777460da7e0b48455",
+   "sha256_source": "7d42b434ed1a00677629d8bddd804fc6b7169a9119870b7777460da7e0b48455",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_base_original.xlsx": {
+   "bytes": 38449,
+   "sha256_copy": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+   "sha256_source": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_C0a_9SG_1GFM.xlsx": {
+   "bytes": 27605,
+   "sha256_copy": "19b9351d2d4750e25f14dfd75e51856ee65dc618eb68b1561e0b3ff785188611",
+   "sha256_source": "19b9351d2d4750e25f14dfd75e51856ee65dc618eb68b1561e0b3ff785188611",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_C1a_7SG_3GFM.xlsx": {
+   "bytes": 26989,
+   "sha256_copy": "6483f471e68c45d2e534ad56bf0e73bce0e1c9e279f97edeb1266b4376eca527",
+   "sha256_source": "6483f471e68c45d2e534ad56bf0e73bce0e1c9e279f97edeb1266b4376eca527",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_C1_8SG_2GFM.xlsx": {
+   "bytes": 27276,
+   "sha256_copy": "7778323191092e14ce7ea7f2ad4ff08f43f0d66127e3c54e6e64ec8835837e9b",
+   "sha256_source": "7778323191092e14ce7ea7f2ad4ff08f43f0d66127e3c54e6e64ec8835837e9b",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_C2t_6SG_4GFM_KPv1p5.xlsx": {
+   "bytes": 26719,
+   "sha256_copy": "c8bfa9dacde751e58499b32dc52c3cd93124f075d576bab5c362b2aac066589f",
+   "sha256_source": "c8bfa9dacde751e58499b32dc52c3cd93124f075d576bab5c362b2aac066589f",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_C2_6SG_4GFM.xlsx": {
+   "bytes": 26695,
+   "sha256_copy": "881eaa55902d6c45a576dfd02c5a3fce043c2e6077702273e86f29e52ba5c875",
+   "sha256_source": "881eaa55902d6c45a576dfd02c5a3fce043c2e6077702273e86f29e52ba5c875",
+   "match": true
+  },
+  "Paper_manuscript/cases/ieee39_E0_C0_instrumented.xlsx": {
+   "bytes": 27345,
+   "sha256_copy": "adfb33106fcb0ab534bf801dbf19414dd027637da4e79da6a3b8ea95843e87a6",
+   "sha256_source": "adfb33106fcb0ab534bf801dbf19414dd027637da4e79da6a3b8ea95843e87a6",
+   "match": true
+  }
+ },
+ "dec053_at_risk_series_covered": [
+  "Paper_manuscript/artifacts/IEEE39_E6_C2t_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E7_C2t_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E8_C2t_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_R35_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_R35_040_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_DEC050_B_B2QV1_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_S0_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_Pplus_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_Qplus_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E4_C1_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E4_1_C1a_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E4_2_C2_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E6_C2_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E7L_C2_timeseries.npz",
+  "Paper_manuscript/artifacts/IEEE39_E9A_replay_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H3_sim1_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H3_sim2_series.npz",
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H4_perturb_plus.npz",
+  "Paper_manuscript/artifacts/IEEE39_DEC051_H4_perturb_minus.npz"
+ ],
+ "dec053_series_hash_mismatches": []
+}
