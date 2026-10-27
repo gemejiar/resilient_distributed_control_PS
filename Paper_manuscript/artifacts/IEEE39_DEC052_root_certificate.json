@@ -1,0 +1,119 @@
+{
+  "stage": "DEC-052 B root certificate attempt",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "problem": "F_q(z) = Qm [f_d(x_d, y, u)/Tf ; v_RDC(u, P, Q, V, omega)] with y = phi(x_d, u) from the inner Newton solve of [f_z; g] = 0; unknown z = Qm xi in R^227 (SG31 angle fixed); relative equilibrium F = c v_null removed by the quotient; original RDC, E8 actuator maps, PSS kept",
+  "approximate_root_z0": "IEEE39_DEC051_equilibrium_state.npz",
+  "inputs_sha256": {
+    "IEEE39_DEC051_equilibrium_state.npz": "4f4c476293d015ebc8c5b24771cc86301483a7ad7105ebc8b6fe93b4e8543733",
+    "IEEE39_DEC051_equilibrium.json": "ffef0a9bb302c8bd4c7cb9bfd9ffc84d7bf188458b5ea226c555ade25c87294a"
+  },
+  "residuals_recomputed_now": {
+    "quotient_residual_inf": 5.0676929206598805e-12,
+    "algebraic_residual_inf": 6.039613253960852e-14,
+    "common_angle_rate_c": 1.2491857389572842e-06
+  },
+  "residuals_DEC051": {
+    "quotient": 5.0676929206598805e-12,
+    "g": 6.039613253960852e-14
+  },
+  "newton_history_last_iterations": [
+    {
+      "iter": 9,
+      "norm_inf_F": 3.6205338496664817e-10,
+      "common_angle_rate_c": 1.2491898406906379e-06,
+      "norm_xdot_quotient": 1.9451107391432743e-11,
+      "norm_vrdc": 3.6205338496664817e-10,
+      "inner_iterations": 1,
+      "inner_residual": 8.748557434046234e-14,
+      "g_inf": 8.748557434046234e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 10,
+      "norm_inf_F": 8.239830928571772e-11,
+      "common_angle_rate_c": 1.2491848181600007e-06,
+      "norm_xdot_quotient": 6.94999613415348e-12,
+      "norm_vrdc": 8.239830928571772e-11,
+      "inner_iterations": 1,
+      "inner_residual": 9.592326932761353e-14,
+      "g_inf": 9.592326932761353e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 11,
+      "norm_inf_F": 1.8598951399178068e-11,
+      "common_angle_rate_c": 1.249185990083816e-06,
+      "norm_xdot_quotient": 1.5498713423767185e-11,
+      "norm_vrdc": 1.8598951399178068e-11,
+      "inner_iterations": 1,
+      "inner_residual": 6.927791673660977e-14,
+      "g_inf": 6.927791673660977e-14,
+      "step_length": 1.0,
+      "rank_deficit_of_[QM; pin]": 0
+    },
+    {
+      "iter": 12,
+      "norm_inf_F": 5.0676929206598805e-12,
+      "common_angle_rate_c": 1.2491857389572842e-06,
+      "norm_xdot_quotient": 2.575717417130363e-12,
+      "norm_vrdc": 5.0676929206598805e-12,
+      "inner_iterations": 1,
+      "inner_residual": 6.039613253960852e-14,
+      "g_inf": 6.039613253960852e-14
+    }
+  ],
+  "local_uniqueness_starts": [
+    {
+      "start_perturbation": "1e-3 relative on x and u",
+      "final_norm_inf_F": 9.814371537686384e-12,
+      "iterations": 22,
+      "max_abs_dx_vs_root": 5.885465448329796e-10,
+      "max_abs_du_vs_root": 1.8045573924041491e-09
+    },
+    {
+      "start_perturbation": "1e-3 relative on x and u",
+      "final_norm_inf_F": 7.373790756036333e-12,
+      "iterations": 24,
+      "max_abs_dx_vs_root": 7.810632141058704e-10,
+      "max_abs_du_vs_root": 1.8298269566230374e-09
+    }
+  ],
+  "kantorovich_quantities_scaled_2norm": {
+    "norm": "||D e||_2 on the domain, ||D F||_2 on the range (D of DEC-051)",
+    "C": "inverse of the scaled central-difference Jacobian",
+    "beta=||C||_2": 13426.544693112908,
+    "eta=||C F_q(z0)||_2": 1.2197268233252213e-08,
+    "cond_2(A_s)": 598808973.7891804,
+    "required_Lipschitz_constant_of_J_on_the_ball_L_req=1/(2 beta eta)": 3053.115034917014,
+    "ball_radius_if_satisfied": 1.2197268233252213e-08,
+    "contraction_condition_needs": "sup_{z in X} ||I - C J(z)|| < 1 and ||C F(z0)|| + sup||I - C J(z)|| r < r, i.e. a validated inclusion of J(X), or equivalently L <= L_req"
+  },
+  "L_not_validated_diagnostics": {
+    "DEC051_sampled_relative_nonlinear_remainder_of_Vdot_at_levels": [
+      0.06909351991012773,
+      0.029258391507504738,
+      0.03268894366017336,
+      0.08445554038860435,
+      0.2610829296012929
+    ],
+    "DEC051_sampled_second_derivative_ratio_max": 160,
+    "reading": "sampled values, NOT a bound; the DEC-051 'bound 1521' was computed in a different norm and must not be compared with L_req above"
+  },
+  "interval_inclusion_attempted": false,
+  "reason": "no validated enclosure of J(X) or of the second derivatives is obtainable with the available infrastructure (blocked operation below); mpmath high precision, step comparisons and random sampling are excluded by the protocol as substitutes for an inclusion",
+  "blocked_operation": "A validated ||E||_2 needs (i) interval enclosures of the first and second derivatives of the 706 ANDES equations (250 states + 456 algebraic variables; compiled numpy callables without interval or AD backend; pyinterval, jax and autograd are not installed), (ii) an enclosure of the implicit elimination of the 486 x 486 algebraic block and of its derivative, (iii) interval evaluation of the RDC law (capability factors with positive parts, graph Laplacian) and of the discrete limiter logic, (iv) a validated bound of the finite-difference truncation error (third derivatives) and of the location error of the exact equilibrium. None is available; step studies are consistency checks only.",
+  "algebraic_elimination_error": "the inner solve reaches [f_z; g] residual 6.0e-14; the elimination error is not enclosed in the interval sense",
+  "GATE_B": "ROOT_NUMERICALLY_VERIFIED",
+  "justification": "quotient residual 5.1e-12 with quadratic final Newton steps, local uniqueness from perturbed starts, algebraic block nonsingular (validated for the computed matrix), but no inclusion of J(X)",
+  "what_would_certify_it": "L <= 3.053e+03 on the ball of radius 1.22e-08 (scaled) would give a unique root in that ball (Newton-Kantorovich); it would locate the root only: the stability statement would still need the validated delta_A"
+}

@@ -1,0 +1,252 @@
+{
+  "stage": "DEC-052 block D (H3-R audit)",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "band": [
+    0.95,
+    1.05
+  ],
+  "inputs_sha256": {
+    "IEEE39_DEC051_H3_predictions.json": "5951a4f3d3c9ba2064566edbd5683bfd4ad965f87b763adc696bed083d5f3140",
+    "IEEE39_DEC051_H3_jump.json": "7103c76967f3f3d1528b60f66caff3d429bf5a21a4f840c0e192c380f582d69d",
+    "IEEE39_DEC051_H3_sim1.json": "46a256c5431f5692c9a072daef31c9061ff2376613a061c316f1fd74c2fce2b7",
+    "IEEE39_DEC051_H3_sim2.json": "f32ed0e1799ca6a11522b9fc7e0a7e8977ca8a9f539c7557aec01a646a73839d"
+  },
+  "pre_event": {
+    "static_C2t": {
+      "vmin": 1.0018570383987089,
+      "vmax": 1.0729898322851823,
+      "n_above_1.05": 21,
+      "n_below_0.95": 0,
+      "within_original_band": false
+    },
+    "static_R35_040": {
+      "vmin": 0.979421206387759,
+      "vmax": 1.044414827684715,
+      "n_above_1.05": 0,
+      "n_below_0.95": 0,
+      "within_original_band": true
+    },
+    "tds_init_C2t": {
+      "vmin": 1.0018570383987089,
+      "vmax": 1.0729898322851823,
+      "n_above_1.05": 21,
+      "n_below_0.95": 0,
+      "within_original_band": false
+    },
+    "tds_init_R35_040": {
+      "vmin": 0.979421206387759,
+      "vmax": 1.044414827684715,
+      "n_above_1.05": 0,
+      "n_below_0.95": 0,
+      "within_original_band": true
+    },
+    "static_vs_tds_init_max_abs_diff_R35_040": 0.0,
+    "static_vs_tds_init_max_abs_diff_C2t": 0.0,
+    "bus_of_max_C2t": 6,
+    "bus_of_max_R35_040": 6
+  },
+  "screening_plant_defect": {
+    "finding": "the DEC-051 admissibility screen (select_equilibrium_b3.load_plant) evaluated the HISTORICAL C2t plant, whose pre-event voltages reach 1.073 pu at bus 6 (21 buses above 1.05 pu), not C2t_Vsafe_R35_040 (the plant of the H3 simulations; static voltages 0.979-1.044 pu). The upper-bound relaxation of DEC-051 was unnecessary: it followed from screening the wrong plant.",
+    "dynamic_simulation_bus_voltage_min_max": {
+      "H3-1": [
+        0.9721466131783657,
+        1.044414827684715
+      ],
+      "H3-2": [
+        0.972470708006814,
+        1.044414827684715
+      ]
+    },
+    "buses_outside_band_in_simulations": {
+      "H3-1": 0,
+      "H3-2": 0
+    }
+  },
+  "reselection_original_band_on_R35_040_plant": {
+    "rule": "DEC-051 rule unchanged (smallest positive predicted margin); admissibility = static post-event power flow converged with all 39 buses in [0.95, 1.05] on C2t_Vsafe_R35_040 and algebraic post-jump voltages in the band",
+    "admissible_buses_by_static_flow": [
+      3,
+      4,
+      7,
+      8,
+      12,
+      15,
+      16,
+      18,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      31,
+      39
+    ],
+    "inadmissible_buses_by_static_flow": [],
+    "inadmissible_buses_by_post_jump": [],
+    "selected_bus": 18,
+    "DEC051_selected_bus": 18,
+    "selection_changes": false,
+    "selected_predicted_margin": 0.01180335159045054
+  },
+  "epsilon_DEC051": {
+    "value_pu": 0.00227892616553671,
+    "definition": "max over the four configurations with a stored series of |algebraic jump - first stored sample| in the 58.564 MW P+ event at bus 4 (jump term only)"
+  },
+  "reserve_audit": {
+    "H3-1": {
+      "max_abs_error_all_units_pu": 0.00033179578352715566,
+      "unit_of_max_abs_error": "GFM36",
+      "n_units_nonconservative": 5,
+      "nonconservative_units": [
+        "SG30",
+        "SG33",
+        "GFM32",
+        "GFM37",
+        "GFM34"
+      ],
+      "max_nonconservative_error_pu": 8.960511173761176e-05,
+      "observed_margin_of_nonconservative_units_pu": {
+        "SG30": 5.756174089088574,
+        "SG33": 0.2321973490473619,
+        "GFM32": 0.26022974445965996,
+        "GFM37": 2.243143503987728,
+        "GFM34": 0.3518160489391251
+      },
+      "predicted_margin_of_nonconservative_units_pu": {
+        "SG30": 5.756263694200312,
+        "SG33": 0.23222027656606237,
+        "GFM32": 0.26023322847405517,
+        "GFM37": 2.2431627620645274,
+        "GFM34": 0.35189231137891763
+      },
+      "SG31_SG35_error_pu": [
+        4.275599153480414e-05,
+        1.9100343847000545e-05
+      ],
+      "SG31_SG35_observed_margin_pu": [
+        0.013696257331728745,
+        0.016044644004770348
+      ],
+      "SG31_SG35_predicted_margin_pu": [
+        0.013653501340193941,
+        0.016025543660923347
+      ],
+      "SG31_SG35_observed_excursion_over_jump_pu": [
+        0.026933456088489294,
+        0.06931118993698959
+      ],
+      "SG31_SG35_empirical_term_used_pu": [
+        0.026976212080023834,
+        0.06933029028083633
+      ],
+      "units_where_observed_excursion_exceeded_the_empirical_term": [
+        "SG30",
+        "SG33",
+        "GFM32",
+        "GFM37",
+        "GFM34"
+      ],
+      "ratio_max_nonconservative_error_over_epsilon": 0.03931900607078635,
+      "trajectory_min_margins_pu": {
+        "P_to_pmax": 0.013696257331728745,
+        "P_to_pmin": 3.2783197736291854,
+        "Q_to_qmax": 0.4938984090852925,
+        "Q_to_qmin": 1.1788354949038653,
+        "S": 0.8859982173300649
+      },
+      "bus_voltage_pre_event_min_max": [
+        0.979421206387759,
+        1.044414827684715
+      ],
+      "bus_voltage_post_event_min_max": [
+        0.9721466131783657,
+        1.04247035963434
+      ],
+      "bus_of_max_post_event": 6,
+      "n_buses_outside_original_band_whole_run": 0,
+      "series_sha256_local": "02cc2f245649f60f3f5d78deabdde7c29e7fd42f281049eee6fd7e972781810f"
+    },
+    "H3-2": {
+      "max_abs_error_all_units_pu": 0.05996852762812832,
+      "unit_of_max_abs_error": "SG39",
+      "n_units_nonconservative": 2,
+      "nonconservative_units": [
+        "SG39",
+        "GFM32"
+      ],
+      "max_nonconservative_error_pu": 0.05996852762812832,
+      "observed_margin_of_nonconservative_units_pu": {
+        "SG39": 4.788146681104391,
+        "GFM32": 0.2872660780574865
+      },
+      "predicted_margin_of_nonconservative_units_pu": {
+        "SG39": 4.848115208732519,
+        "GFM32": 0.3238620553241329
+      },
+      "SG31_SG35_error_pu": [
+        0.0008521931389235959,
+        0.011156368460509825
+      ],
+      "SG31_SG35_observed_margin_pu": [
+        0.07766770000797862,
+        0.022959720050960364
+      ],
+      "SG31_SG35_predicted_margin_pu": [
+        0.07681550686905503,
+        0.01180335159045054
+      ],
+      "SG31_SG35_observed_excursion_over_jump_pu": [
+        0.023671636024734433,
+        0.05187116815843229
+      ],
+      "SG31_SG35_empirical_term_used_pu": [
+        0.02452382916365803,
+        0.06302753661894211
+      ],
+      "units_where_observed_excursion_exceeded_the_empirical_term": [
+        "SG39",
+        "GFM32"
+      ],
+      "ratio_max_nonconservative_error_over_epsilon": 26.31437934892688,
+      "trajectory_min_margins_pu": {
+        "P_to_pmax": 0.022959720050960364,
+        "P_to_pmin": 3.287091061149982,
+        "Q_to_qmax": 0.5415142810694362,
+        "Q_to_qmin": 1.175209501011568,
+        "S": 0.9640286907956375
+      },
+      "bus_voltage_pre_event_min_max": [
+        0.9771995220326148,
+        1.044414827684715
+      ],
+      "bus_voltage_post_event_min_max": [
+        0.972470708006814,
+        1.043402384065005
+      ],
+      "bus_of_max_post_event": 6,
+      "n_buses_outside_original_band_whole_run": 0,
+      "series_sha256_local": "c9140a4c1c04c65ea021ec1a47754f32ae6b4f4054993735967e295dc6f81b89"
+    }
+  },
+  "inequality_term_classes": {
+    "R_i": "initial reserve, exact (limit minus pre-event physical power)",
+    "dP_jump": "algebraic: ANDES algebraic solve with continuous differential states; floating point, no validated enclosure; computed on an amplitude grid, monotone on the grid, not proved in the continuum; location dependent",
+    "dP_exc_fast": "empirical: maximum over (5 s, 5.05 s] in the 58.564 MW event at bus 4, scaled linearly with amplitude; hypothesis untested for other locations",
+    "dP_exc_slow": "empirical: maximum over t > 5.05 s of the same bus-4 run (200 s horizon only)",
+    "epsilon": "observed discrepancy of the JUMP term only (2.28e-03 pu); it is neither a bound of the excursion terms nor a mathematical bound",
+    "universal_guarantee": false,
+    "reason": "two terms depend on empirical maxima from one disturbance location and a 200 s horizon; the bus-18 run exceeds the empirical term at some units when the location changes"
+  }
+}

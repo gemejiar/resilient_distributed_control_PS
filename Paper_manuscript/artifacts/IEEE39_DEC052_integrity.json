@@ -1,0 +1,235 @@
+{
+  "stage": "DEC-052 E3 integrity",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "base_commit": "5719200",
+  "base_commit_sha": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "DEC051_recorded_hashes_vs_disk": {
+    "n_files": 34,
+    "n_match": 34,
+    "mismatches": {},
+    "detail": {
+      "IEEE39_DEC051_equilibrium.csv": {
+        "recorded": "1e60ba778cd0f8c582fbfda6acfa3e500113bd6062702911c8fd6ecc386af769",
+        "on_disk": "1e60ba778cd0f8c582fbfda6acfa3e500113bd6062702911c8fd6ecc386af769",
+        "match": true
+      },
+      "IEEE39_DEC051_equilibrium.json": {
+        "recorded": "ffef0a9bb302c8bd4c7cb9bfd9ffc84d7bf188458b5ea226c555ade25c87294a",
+        "on_disk": "ffef0a9bb302c8bd4c7cb9bfd9ffc84d7bf188458b5ea226c555ade25c87294a",
+        "match": true
+      },
+      "IEEE39_DEC051_equilibrium_state.npz": {
+        "recorded": "4f4c476293d015ebc8c5b24771cc86301483a7ad7105ebc8b6fe93b4e8543733",
+        "on_disk": "4f4c476293d015ebc8c5b24771cc86301483a7ad7105ebc8b6fe93b4e8543733",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_jump.json": {
+        "recorded": "7103c76967f3f3d1528b60f66caff3d429bf5a21a4f840c0e192c380f582d69d",
+        "on_disk": "7103c76967f3f3d1528b60f66caff3d429bf5a21a4f840c0e192c380f582d69d",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_predictions.json": {
+        "recorded": "5951a4f3d3c9ba2064566edbd5683bfd4ad965f87b763adc696bed083d5f3140",
+        "on_disk": "5951a4f3d3c9ba2064566edbd5683bfd4ad965f87b763adc696bed083d5f3140",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_sim1.json": {
+        "recorded": "46a256c5431f5692c9a072daef31c9061ff2376613a061c316f1fd74c2fce2b7",
+        "on_disk": "46a256c5431f5692c9a072daef31c9061ff2376613a061c316f1fd74c2fce2b7",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_sim1_series.npz": {
+        "recorded": "02cc2f245649f60f3f5d78deabdde7c29e7fd42f281049eee6fd7e972781810f",
+        "on_disk": "02cc2f245649f60f3f5d78deabdde7c29e7fd42f281049eee6fd7e972781810f",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_sim2.json": {
+        "recorded": "f32ed0e1799ca6a11522b9fc7e0a7e8977ca8a9f539c7557aec01a646a73839d",
+        "on_disk": "f32ed0e1799ca6a11522b9fc7e0a7e8977ca8a9f539c7557aec01a646a73839d",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_sim2_series.npz": {
+        "recorded": "c9140a4c1c04c65ea021ec1a47754f32ae6b4f4054993735967e295dc6f81b89",
+        "on_disk": "c9140a4c1c04c65ea021ec1a47754f32ae6b4f4054993735967e295dc6f81b89",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_summary.json": {
+        "recorded": "8bb82b0efbd0e964bbf4b6ab35425f48fcf7e41b60b72d516efa3895b2faa32d",
+        "on_disk": "8bb82b0efbd0e964bbf4b6ab35425f48fcf7e41b60b72d516efa3895b2faa32d",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_matrices.npz": {
+        "recorded": "1f00d054429ac4aaacc345c8552ed8acbc836b57094b591549773446d562a255",
+        "on_disk": "1f00d054429ac4aaacc345c8552ed8acbc836b57094b591549773446d562a255",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_mode.npz": {
+        "recorded": "b0c23afcf79548f9fb145ef2fbb49e3e76a5a744098b263e20042839453b96d7",
+        "on_disk": "b0c23afcf79548f9fb145ef2fbb49e3e76a5a744098b263e20042839453b96d7",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_perturb_minus.npz": {
+        "recorded": "38d67cddccce633fa1ef55350ac24f88bc5493d8a94dad158ec448df71cf2cd0",
+        "on_disk": "38d67cddccce633fa1ef55350ac24f88bc5493d8a94dad158ec448df71cf2cd0",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_perturb_plus.npz": {
+        "recorded": "fe873d06a38d33ce0d2af15e5d188dc2d40ee364fc07c864a0de0fed20042385",
+        "on_disk": "fe873d06a38d33ce0d2af15e5d188dc2d40ee364fc07c864a0de0fed20042385",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_summary.json": {
+        "recorded": "9d3fc3d7072ef7177a966baf03e2ab25d17b9e86b40880c60e8116e27a694246",
+        "on_disk": "9d3fc3d7072ef7177a966baf03e2ab25d17b9e86b40880c60e8116e27a694246",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_validation.json": {
+        "recorded": "38d8f548540934a39dccdbbecee4ff658bdf41b5098d272a86aa1ad446c4890e",
+        "on_disk": "38d8f548540934a39dccdbbecee4ff658bdf41b5098d272a86aa1ad446c4890e",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_validation_minus_summary.npz": {
+        "recorded": "3fab20bbde8a936778d22f1029913ffc5a6a6317b54442a36e0b180c1c24a5b4",
+        "on_disk": "3fab20bbde8a936778d22f1029913ffc5a6a6317b54442a36e0b180c1c24a5b4",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_validation_plus_summary.npz": {
+        "recorded": "405a50086fd489142d140881b8fdbff03d48fde79f3c1154cbef06c0270bb290",
+        "on_disk": "405a50086fd489142d140881b8fdbff03d48fde79f3c1154cbef06c0270bb290",
+        "match": true
+      },
+      "IEEE39_DEC051_safety_margins.csv": {
+        "recorded": "f0dc397f9ba6a96d750c199dbaa7bb8623c96301c65426095a9ac1d9f03443fd",
+        "on_disk": "f0dc397f9ba6a96d750c199dbaa7bb8623c96301c65426095a9ac1d9f03443fd",
+        "match": true
+      },
+      "IEEE39_DEC051_state_t1999.npz": {
+        "recorded": "775cc43a1581d382f85ed209b6398640d06953958225812802e8de2a96593edb",
+        "on_disk": "775cc43a1581d382f85ed209b6398640d06953958225812802e8de2a96593edb",
+        "match": true
+      },
+      "IEEE39_DEC051_validation.csv": {
+        "recorded": "9ef9714a00edabf76d0e88a323b0c40c323160deb27ab3fcc0384da46e347d10",
+        "on_disk": "9ef9714a00edabf76d0e88a323b0c40c323160deb27ab3fcc0384da46e347d10",
+        "match": true
+      },
+      "IEEE39_DEC051_H3_reserve_safety.png": {
+        "recorded": "efcb0da2aabfb95237f80ab8281c2da7bee4bbba0bb7fa18932143d95ea028ca",
+        "on_disk": "efcb0da2aabfb95237f80ab8281c2da7bee4bbba0bb7fa18932143d95ea028ca",
+        "match": true
+      },
+      "IEEE39_DEC051_H3H4_summary.png": {
+        "recorded": "ecc73ed20d83fff069cfcba4498e3c35edccee5e3bbb731a959c137743203c54",
+        "on_disk": "ecc73ed20d83fff069cfcba4498e3c35edccee5e3bbb731a959c137743203c54",
+        "match": true
+      },
+      "IEEE39_DEC051_H4_local_stability.png": {
+        "recorded": "56d034dd7e901322c0967414a11b46a77ee937d6954669804a83c2c38c1c9fa6",
+        "on_disk": "56d034dd7e901322c0967414a11b46a77ee937d6954669804a83c2c38c1c9fa6",
+        "match": true
+      },
+      "analyse_dec051_h4_val.py": {
+        "recorded": "43bc71ad99bb73ac8b2ccc739a84854de6ce3bb4b301d33b04487864c0823bdd",
+        "on_disk": "43bc71ad99bb73ac8b2ccc739a84854de6ce3bb4b301d33b04487864c0823bdd",
+        "match": true
+      },
+      "dec051_core.py": {
+        "recorded": "b6523c3b3529be454c8e1ecec54cb218b8c171265712cb6a951711a916e2626a",
+        "on_disk": "b6523c3b3529be454c8e1ecec54cb218b8c171265712cb6a951711a916e2626a",
+        "match": true
+      },
+      "finalize_dec051.py": {
+        "recorded": "d6c5e5b0b7e6b7baab62ba1d147690bfcd8a24983f05cb454eab9d87c01f059e",
+        "on_disk": "d6c5e5b0b7e6b7baab62ba1d147690bfcd8a24983f05cb454eab9d87c01f059e",
+        "match": true
+      },
+      "run_dec051_equilibrium.py": {
+        "recorded": "245e2bdb1b8c2f61ed00fb94992aa561c09087f9a84410a18fb9256fdff8fbdc",
+        "on_disk": "245e2bdb1b8c2f61ed00fb94992aa561c09087f9a84410a18fb9256fdff8fbdc",
+        "match": true
+      },
+      "run_dec051_h3_jump.py": {
+        "recorded": "bbf958fef26b00eec70760c61e2df1c73ad536e51683cc71814d2b6313370116",
+        "on_disk": "bbf958fef26b00eec70760c61e2df1c73ad536e51683cc71814d2b6313370116",
+        "match": true
+      },
+      "run_dec051_h3_select.py": {
+        "recorded": "87c472fa0ae1cb281f7eaf8282115e3175549fa00bb8551956ff0153dde06e55",
+        "on_disk": "87c472fa0ae1cb281f7eaf8282115e3175549fa00bb8551956ff0153dde06e55",
+        "match": true
+      },
+      "run_dec051_h3_sim.py": {
+        "recorded": "0b88c256ac1fbaded0f14a9d45ac33cca430799a9adbe81dcaf34319f531f7a0",
+        "on_disk": "0b88c256ac1fbaded0f14a9d45ac33cca430799a9adbe81dcaf34319f531f7a0",
+        "match": true
+      },
+      "run_dec051_h4.py": {
+        "recorded": "513bf2d6b47e215ba66eaeceee98b56ce594abebfb8d291535ddbaefa5e240df",
+        "on_disk": "513bf2d6b47e215ba66eaeceee98b56ce594abebfb8d291535ddbaefa5e240df",
+        "match": true
+      },
+      "run_dec051_h4_perturb.py": {
+        "recorded": "346c669680158954e6a78eaf8de3126e0f6f382cd7ee04525939125b1a3a804c",
+        "on_disk": "346c669680158954e6a78eaf8de3126e0f6f382cd7ee04525939125b1a3a804c",
+        "match": true
+      },
+      "run_dec051_state_dump.py": {
+        "recorded": "99d0ee7550c0e43c05bde585277f5ddc3861f21b7b3961568a0c0af3bcb4d99c",
+        "on_disk": "99d0ee7550c0e43c05bde585277f5ddc3861f21b7b3961568a0c0af3bcb4d99c",
+        "match": true
+      }
+    },
+    "note": "IEEE39_DEC051_consolidation.json itself is excluded (it holds the other hashes); gitignored raw series are checked from the local files"
+  },
+  "tracked_files_modified_vs_base_at_time_of_check": [],
+  "new_untracked_files_at_time_of_check": [
+    "Paper_manuscript/artifacts/IEEE39_DEC052_H3_audit.json",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_H3_location_scan.csv",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_H3_reserve_audit.csv",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_H3_voltage_audit.csv",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_jacobian_certificate.json",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_lyapunov_certificate.json",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_model_audit.json",
+    "Paper_manuscript/artifacts/IEEE39_DEC052_root_certificate.json",
+    "Paper_manuscript/src/dec052_certificates.py",
+    "Paper_manuscript/src/dec052_common.py",
+    "Paper_manuscript/src/dec052_h3_audit.py",
+    "Paper_manuscript/src/dec052_integrity.py",
+    "Paper_manuscript/src/dec052_model_audit.py",
+    "ops/sted/DEC052_protocol.md",
+    "scratch_pred_hash.txt"
+  ],
+  "diff_vs_base_name_status": [],
+  "historical_or_protected_files_touched": [],
+  "plant_parameter_sources_checked": [
+    "Paper_manuscript/src/run_e8_ieee39.py",
+    "Paper_manuscript/src/run_b3_ieee39.py",
+    "Paper_manuscript/src/e9b_variant.py",
+    "Paper_manuscript/src/e9h_predictor.py",
+    "Paper_manuscript/src/e9a_linear.py"
+  ],
+  "plant_parameter_sources_changed_vs_base": [],
+  "legitimately_updated_records_in_DEC052": [
+    "plan_maestro.md",
+    "ops/sted/decision_log.md",
+    "ops/sted/traceability_matrix.csv",
+    "Paper_manuscript/artifacts/experiment_matrix.csv"
+  ],
+  "DEC049": "no entry exists in decision_log.md (the number appears only inside the DEC-050 text); nothing was fabricated",
+  "DEC051_date_check": {
+    "decision_log_date": "Date: 2026-10-28",
+    "commit_5719200_author_date": "2026-10-27 10:31:37 -0500",
+    "commit_c07c482_author_date": "2026-10-27 08:30:19 -0500",
+    "environment_clock_at_DEC052": "Tue Oct 27 2026 (system date)",
+    "discrepancy": "the log says 2026-10-28; the commit and the clock say 2026-10-27 (one-day error in the log entry; no evidence for 2026-10-28). The historical entry is not edited: a correction note is appended in DEC-052."
+  },
+  "status": "OK"
+}

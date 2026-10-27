@@ -1,0 +1,59 @@
+{
+  "stage": "DEC-052 reproducibility",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "scripts": [
+    "dec052_model_audit.py",
+    "dec052_certificates.py",
+    "dec052_h3_audit.py"
+  ],
+  "first_run_sha256": {
+    "IEEE39_DEC052_model_audit.json": "31df067e1675117a5e3e15b4ee0ff477400b2cad559c1f9ce94eedc594174ceb",
+    "IEEE39_DEC052_jacobian_certificate.json": "046a5d9bcaeae5c65cac3e5ceca0b7243aaf9564b5dff47c8b03d3371a7aea1d",
+    "IEEE39_DEC052_lyapunov_certificate.json": "aa5dc2db3d27ad6555760d7b7afd8e0c94027681102f4f7b368b94c0a392c989",
+    "IEEE39_DEC052_root_certificate.json": "f3a8a6eb7b105645f2829ba158b880d5ce4d26cea79e23fcd74f0d68de2a10ab",
+    "IEEE39_DEC052_H3_audit.json": "1e062d82cf20cf097ee58c6f3ce91ac86ac89ba470250c8e3663d510be24bcd6",
+    "IEEE39_DEC052_H3_voltage_audit.csv": "29b00481036b804f300c6cb00e5d3b679f257478d0010a4ee36aef765d524584",
+    "IEEE39_DEC052_H3_reserve_audit.csv": "7fa3e45375c8ba05e2ebc8fd760e3401605de453d5051073e6c0a06f43e4ba1f",
+    "IEEE39_DEC052_H3_location_scan.csv": "620fef808111e8fb08eda89348fa70713d81f657243eacbfd73aafbb19129cda"
+  },
+  "second_run_sha256": {
+    "IEEE39_DEC052_model_audit.json": "31df067e1675117a5e3e15b4ee0ff477400b2cad559c1f9ce94eedc594174ceb",
+    "IEEE39_DEC052_jacobian_certificate.json": "046a5d9bcaeae5c65cac3e5ceca0b7243aaf9564b5dff47c8b03d3371a7aea1d",
+    "IEEE39_DEC052_lyapunov_certificate.json": "aa5dc2db3d27ad6555760d7b7afd8e0c94027681102f4f7b368b94c0a392c989",
+    "IEEE39_DEC052_root_certificate.json": "f3a8a6eb7b105645f2829ba158b880d5ce4d26cea79e23fcd74f0d68de2a10ab",
+    "IEEE39_DEC052_H3_audit.json": "1e062d82cf20cf097ee58c6f3ce91ac86ac89ba470250c8e3663d510be24bcd6",
+    "IEEE39_DEC052_H3_voltage_audit.csv": "29b00481036b804f300c6cb00e5d3b679f257478d0010a4ee36aef765d524584",
+    "IEEE39_DEC052_H3_reserve_audit.csv": "7fa3e45375c8ba05e2ebc8fd760e3401605de453d5051073e6c0a06f43e4ba1f",
+    "IEEE39_DEC052_H3_location_scan.csv": "620fef808111e8fb08eda89348fa70713d81f657243eacbfd73aafbb19129cda"
+  },
+  "identical_bytes": {
+    "IEEE39_DEC052_model_audit.json": true,
+    "IEEE39_DEC052_jacobian_certificate.json": true,
+    "IEEE39_DEC052_lyapunov_certificate.json": true,
+    "IEEE39_DEC052_root_certificate.json": true,
+    "IEEE39_DEC052_H3_audit.json": true,
+    "IEEE39_DEC052_H3_voltage_audit.csv": true,
+    "IEEE39_DEC052_H3_reserve_audit.csv": true,
+    "IEEE39_DEC052_H3_location_scan.csv": true
+  },
+  "numerical_differences": {},
+  "return_codes": {
+    "dec052_model_audit.py": 0,
+    "dec052_certificates.py": 0,
+    "dec052_h3_audit.py": 0
+  },
+  "all_identical_or_within_1e-9": true,
+  "static_recomputation_of_the_equilibrium_residual": {
+    "quotient_residual_inf": 5.0676929206598805e-12,
+    "algebraic_residual_inf": 6.039613253960852e-14,
+    "common_angle_rate_c": 1.2491857389572842e-06
+  }
+}

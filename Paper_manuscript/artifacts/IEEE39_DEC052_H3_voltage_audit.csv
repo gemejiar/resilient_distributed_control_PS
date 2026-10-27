@@ -1,0 +1,65 @@
+state,bus_of_disturbance,amplitude_MW,source,converged,vmin_pu,vmax_pu,n_buses_above_1.05,n_buses_below_0.95,within_original_band_0.95_1.05
+pre-event,-,-,"static power flow, historical C2t (plant used by the DEC-051 screening)",True,1.0018570383987089,1.0729898322851823,21,0,False
+pre-event,-,-,"static power flow, C2t_Vsafe_R35_040 (plant used by the H3 simulations)",True,0.979421206387759,1.044414827684715,0,0,True
+pre-event,-,-,"ANDES TDS initialisation t=0, historical C2t",True,1.0018570383987089,1.0729898322851823,21,0,False
+pre-event,-,-,"ANDES TDS initialisation t=0, C2t_Vsafe_R35_040",True,0.979421206387759,1.044414827684715,0,0,True
+post-event,4,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0017963997317456,1.0724683707034444,21,0,False
+post-event,4,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793533970240341,1.0438367698082167,0,0,True
+post-event,4,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9789455165007354,1.0423653509429909,0,0,True
+post-event,4,64.4204,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0017898988031466,1.0724109700528397,21,0,False
+post-event,4,64.4204,"static power flow, C2t_Vsafe_R35_040",True,0.979346126473352,1.0437731333267843,0,0,True
+post-event,4,64.4204,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9788969781995132,1.0421553650731432,0,0,True
+post-event,3,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0017797438746563,1.0726006829980432,21,0,False
+post-event,3,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793374355420903,1.04398606150067,0,0,True
+post-event,3,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9789454649665718,1.0430107942040436,0,0,True
+post-event,7,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018208051002204,1.0723427916102815,21,0,False
+post-event,7,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793793373480927,1.0437019562206469,0,0,True
+post-event,7,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9790388773096808,1.042057712110117,0,0,True
+post-event,8,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.001818763609259,1.0723138711663271,21,0,False
+post-event,8,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.979377192538702,1.0436706133278761,0,0,True
+post-event,8,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9790402069693257,1.042044239897241,0,0,True
+post-event,12,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018277005853686,1.0727064168440572,21,0,False
+post-event,12,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793866130248241,1.0440883540410524,0,0,True
+post-event,12,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9790207311394323,1.042516651819804,0,0,True
+post-event,15,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.001768758945968,1.0727583527462976,21,0,False
+post-event,15,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793254090103738,1.0441513160036127,0,0,True
+post-event,15,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9787174714943079,1.0430638943805945,0,0,True
+post-event,16,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0017985879137028,1.072874675898938,21,0,False
+post-event,16,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.979361379863852,1.0442815031099548,0,0,True
+post-event,16,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9787272074766024,1.0434319551328934,0,0,True
+post-event,18,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0017659749410242,1.0726986348571488,21,0,False
+post-event,18,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793231897897668,1.0440898063210176,0,0,True
+post-event,18,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9788233547201901,1.0431570512423387,0,0,True
+post-event,20,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0015216750898612,1.073050017066698,21,0,False
+post-event,20,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9790770771100977,1.044470083673129,0,0,True
+post-event,20,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9779790657208953,1.0441194959398996,0,0,True
+post-event,21,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018893813631702,1.0729808362125846,21,0,False
+post-event,21,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9794644662272345,1.0444028496494813,0,0,True
+post-event,21,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9788622454126855,1.043622957096,0,0,True
+post-event,23,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0019907544159103,1.0730996233090302,21,0,False
+post-event,23,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9795820789969508,1.0445416503586433,0,0,True
+post-event,23,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9791019234250885,1.0439608890178207,0,0,True
+post-event,24,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018067314690982,1.072884167208461,21,0,False
+post-event,24,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793704497952705,1.0442921401070753,0,0,True
+post-event,24,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9787283737463917,1.0434342202341158,0,0,True
+post-event,25,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018538710676943,1.0729942781416415,21,0,False
+post-event,25,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9794202444179116,1.0444173476013812,0,0,True
+post-event,25,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9792331659832727,1.0440534247810405,0,0,True
+post-event,26,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018194883741347,1.0729013922150938,21,0,False
+post-event,26,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793841777870438,1.0443162157289207,0,0,True
+post-event,26,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9790708991876905,1.0437788702397823,0,0,True
+post-event,27,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.001775625380562,1.0728086801868388,21,0,False
+post-event,27,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9793348263300444,1.0442107322096734,0,0,True
+post-event,27,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9788880351824744,1.043466160151265,0,0,True
+post-event,28,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018593937404707,1.0729797619458323,21,0,False
+post-event,28,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9794301399320295,1.0444069096277373,0,0,True
+post-event,28,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9792412993280968,1.0440886454571734,0,0,True
+post-event,29,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018791270791572,1.0730186904990768,21,0,False
+post-event,29,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9794530362864955,1.0444523459801254,0,0,True
+post-event,29,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9793149032348166,1.044227046335901,0,0,True
+post-event,31,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018599281057115,1.073241249757709,21,0,False
+post-event,31,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9794213288730735,1.0446593122280787,0,0,True
+post-event,31,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9792463368968275,1.0436739162070916,0,0,True
+post-event,39,58.56400000000001,"static power flow, historical C2t (DEC-051 screening plant)",True,1.0018570383987089,1.0729898322851823,21,0,False
+post-event,39,58.56400000000001,"static power flow, C2t_Vsafe_R35_040",True,0.9794212063877588,1.0444148276847143,0,0,True
+post-event,39,58.56400000000001,"algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",True,0.9794180241045427,1.044395331478474,0,0,True

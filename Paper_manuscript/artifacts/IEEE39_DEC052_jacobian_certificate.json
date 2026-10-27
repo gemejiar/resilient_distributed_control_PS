@@ -1,0 +1,91 @@
+{
+  "stage": "DEC-052 C1/C2 Jacobian audit",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "reference_matrix": "central-difference Jacobian of the nonlinear reduced field F(x_d, u) = [x_d'; v_RDC] with inner re-solve of the algebraic block at every evaluation (DEC-051 model with PSS); h_states=1e-6, h_refs=1e-5",
+  "comparison": {
+    "analytic_with_correct_references_vs_numerical": {
+      "frobenius_rel": 1.3263694130175223e-07,
+      "max_column_rel": 1.8413236128104467e-07,
+      "max_abs_entry": 0.000858541721754591
+    },
+    "analytic_with_stale_references_vs_numerical": {
+      "frobenius_rel": 0.001343279270118012,
+      "max_column_rel": 0.016886338366585738,
+      "max_abs_entry": 16.149841843924833
+    },
+    "numerical_h_vs_10h": {
+      "frobenius_rel": 1.923810156613124e-09
+    },
+    "numerical_h_vs_h/10": {
+      "frobenius_rel": 3.2943481837625135e-08
+    }
+  },
+  "CAUSE_OF_THE_1.7_PERCENT_DISCREPANCY": {
+    "finding": "produced by the DEC-051 harness, not by the E9 analytic assembly: e9h_predictor.build() evaluates the original RDC law at u0 = [st['pset'], st['qset']], and run_dec051_h4.load_eq() rebuilt st from the pre-event state (pset = pn, qset = qn) without writing the equilibrium references into it. The capability factors g_P, g_Q (and the RDC derivatives) were evaluated at the wrong references (largest error in Qset 0.249 pu); the slowest mode depends on g_Q of SG31, which explains 504 s vs 427 s.",
+    "stale_reference_error": {
+      "max_abs_pset_minus_u": 0.002020003815629501,
+      "max_abs_qset_minus_u": 0.24881333383098314
+    },
+    "fix": "assign st['pset'], st['qset'] = u* before build(); analytic and numerical Jacobians then agree at the finite-difference accuracy",
+    "consequence_for_history": "E13 and DEC-050 call build() inside a live B2 replay where st['pset'], st['qset'] are the live references (run_b3_ieee39 updates them every step): no evidence of an analytic-assembly error there. What remains true for E9-A/E13/DEC-050 is the omission of the PSS states. The DEC-051 statement 'the analytic assembly of E9-A/E9-H/DEC-050 has entry errors up to 1.7 %' is WITHDRAWN (INVALIDATED); the numerical Jacobian used by DEC-051 was correct."
+  },
+  "spectra_quotient": {
+    "numerical_central_difference_h": {
+      "max_real_part": -0.0023427207929696036,
+      "slowest_tau_s": 426.8541104005879,
+      "min_damping": 0.07212901265782655
+    },
+    "analytic_ANDES_assembly_with_correct_references": {
+      "max_real_part": -0.00234272081409584,
+      "slowest_tau_s": 426.854106551294,
+      "min_damping": 0.07212901313758147
+    },
+    "analytic_ANDES_assembly_with_stale_references(DEC-051 harness)": {
+      "max_real_part": -0.0019840275822593507,
+      "slowest_tau_s": 504.02525092984354,
+      "min_damping": 0.08149941012796942
+    },
+    "analytic_without_PSS_(E9-A_linearisation)_correct_references": {
+      "max_real_part": -0.0023425210498541436,
+      "slowest_tau_s": 426.890507584666,
+      "min_damping": 0.07340497287828902
+    }
+  },
+  "dimensions": {
+    "N": 228,
+    "N_quotient": 227,
+    "n_dynamic": 208,
+    "references": 20
+  },
+  "coordinates": "quotient coordinates e = Qm xi; scaled e_s = D e, D = diag(1/max(|xi*|, 0.1)) (DEC-051)",
+  "empirical_consistency_indicators_(not_bounds)": {
+    "scaled_2norm_Anum_h_minus_Anum_10h": 9.121632081038053e-05,
+    "scaled_2norm_Anum_h_minus_Anum_h/10": 0.0010110709593209488,
+    "scaled_2norm_Anum_minus_Aanalytic_correct": 0.006165859756250573,
+    "scaled_2norm_Anum_minus_DEC051_Aq": 8.934384300281027e-10,
+    "scaled_2norm_of_A": 44598.88880348144
+  },
+  "lyapunov_tolerance_link": {
+    "delta_A_tolerable_strategy_1": 1.1637789949606309e-07,
+    "delta_A_tolerable_strategy_2": 0.00020580839808674402
+  },
+  "delta_A_bound": {
+    "status": "NOT_CERTIFIED",
+    "blocked_operation": "A validated ||E||_2 needs (i) interval enclosures of the first and second derivatives of the 706 ANDES equations (250 states + 456 algebraic variables; compiled numpy callables without interval or AD backend; pyinterval, jax and autograd are not installed), (ii) an enclosure of the implicit elimination of the 486 x 486 algebraic block and of its derivative, (iii) interval evaluation of the RDC law (capability factors with positive parts, graph Laplacian) and of the discrete limiter logic, (iv) a validated bound of the finite-difference truncation error (third derivatives) and of the location error of the exact equilibrium. None is available; step studies are consistency checks only.",
+    "components_budget": {
+      "rounding_of_scaling_product": 2.2181670534217033e-11,
+      "finite_difference_truncation": "NOT BOUNDED",
+      "algebraic_elimination": "NOT BOUNDED",
+      "equilibrium_location": "NOT BOUNDED (needs the root certificate)",
+      "RDC_derivative_finite_difference": "NOT BOUNDED"
+    }
+  }
+}

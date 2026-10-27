@@ -1,0 +1,114 @@
+{
+  "stage": "DEC-052 C3/C4 Lyapunov certificate",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "arithmetic": "binary64; first-order Higham bounds gamma_k; no directed rounding (valid for the computed floating matrices, not interval arithmetic)",
+  "inputs_sha256": {
+    "IEEE39_DEC051_H4_matrices.npz": "1f00d054429ac4aaacc345c8552ed8acbc836b57094b591549773446d562a255"
+  },
+  "matrix": "Ahat_s = D Aq D^-1 with Aq the DEC-051 quotient Jacobian (central differences), D = diag(1/max(|xi*|,0.1))",
+  "P": "DEC-051 solution of Ahat_s^T P + P Ahat_s = -I (scaled coordinates)",
+  "strategy_1_DEC051_scaling": {
+    "n": 227,
+    "P_symmetrisation": "P_used = fl(0.5 (P + P^T)), exactly symmetric",
+    "R0_frobenius_computed": 4.144725856184624e-05,
+    "R0_spectral_computed": 2.297471641915681e-05,
+    "R0_norm_upper_bound_for_computed_matrices": 4.2486793639146534e-05,
+    "P_positive_definite_certified": true,
+    "lambda_min_P_lower_bound": 0.000565147336589143,
+    "lambda_min_P_computed_eigvalsh": 0.0005653758120900469,
+    "lambda_max_P_upper_bound": 4296165.842210393,
+    "lambda_max_P_computed": 4296165.842175068,
+    "norm_inf_P": 6141000.766860147,
+    "cholesky_shift_mu": 2.2847550092026596e-07,
+    "certificate_for_the_computed_matrix": true,
+    "margin_1_minus_R0": 0.9999575132063608,
+    "delta_A_tolerable_(1-||R0||)/(2||P||)": 1.1637789949606309e-07,
+    "rounding_of_scaling_product_D_Aq_Dinv_frobenius_bound": 2.2181670534217033e-11
+  },
+  "strategy_2_diagonal_balancing_similarity_(scipy_matrix_balance), P_recomputed": {
+    "n": 227,
+    "P_symmetrisation": "P_used = fl(0.5 (P + P^T)), exactly symmetric",
+    "R0_frobenius_computed": 1.0850174231563059e-09,
+    "R0_spectral_computed": 7.734119085441682e-10,
+    "R0_norm_upper_bound_for_computed_matrices": 2.220183379132238e-09,
+    "P_positive_definite_certified": true,
+    "lambda_min_P_lower_bound": 0.0009979015874198493,
+    "lambda_min_P_computed_eigvalsh": 0.0009979017303179884,
+    "lambda_max_P_upper_bound": 2429.444102077742,
+    "lambda_max_P_computed": 2429.4441020531985,
+    "norm_inf_P": 4266.95023424321,
+    "cholesky_shift_mu": 1.4289813106605363e-10,
+    "certificate_for_the_computed_matrix": true,
+    "margin_1_minus_R0": 0.9999999977798166,
+    "delta_A_tolerable_(1-||R0||)/(2||P||)": 0.00020580839808674402,
+    "rounding_of_balancing_product_frobenius_bound": 1.8758395769637554e-12
+  },
+  "reference_natural_coordinates": {
+    "n": 227,
+    "P_symmetrisation": "P_used = fl(0.5 (P + P^T)), exactly symmetric",
+    "R0_frobenius_computed": 5.730207187920686e-06,
+    "R0_spectral_computed": 4.147855677290479e-06,
+    "R0_norm_upper_bound_for_computed_matrices": 5.865864039567893e-06,
+    "P_positive_definite_certified": true,
+    "lambda_min_P_lower_bound": 0.0006210081925946121,
+    "lambda_min_P_computed_eigvalsh": 0.0006210923666037074,
+    "lambda_max_P_upper_bound": 2890347.5595732117,
+    "lambda_max_P_computed": 2890347.5595525415,
+    "norm_inf_P": 3593858.520331984,
+    "cholesky_shift_mu": 8.417400908681442e-08,
+    "certificate_for_the_computed_matrix": true,
+    "margin_1_minus_R0": 0.9999941341359604,
+    "delta_A_tolerable_(1-||R0||)/(2||P||)": 1.729885616738112e-07
+  },
+  "inequality": "||R0||_2 + 2 ||P||_2 delta_A < 1  with  A^T P + P A = -I + R0 + E^T P + P E,  E = A - Ahat",
+  "delta_A_available": null,
+  "delta_A_status": "NOT_AVAILABLE: no validated bound of ||E||_2 (see jacobian certificate)",
+  "delta_A_tolerable_strategy_1": 1.1637789949606309e-07,
+  "delta_A_tolerable_strategy_2": 0.00020580839808674402,
+  "delta_A_tolerable_natural": 1.729885616738112e-07,
+  "empirical_consistency_scaled_2norm_(not_a_bound)": {
+    "scaled_2norm_Anum_h_minus_Anum_10h": 9.121632081038053e-05,
+    "scaled_2norm_Anum_h_minus_Anum_h/10": 0.0010110709593209488,
+    "scaled_2norm_Anum_minus_Aanalytic_correct": 0.006165859756250573,
+    "scaled_2norm_Anum_minus_DEC051_Aq": 8.934384300281027e-10,
+    "scaled_2norm_of_A": 44598.88880348144
+  },
+  "empirical_consistency_in_balanced_coordinates_(not_a_bound)": {
+    "scaled_2norm_Anum_h_minus_Anum_10h": 8.65817377448777e-06,
+    "scaled_2norm_Anum_h_minus_Anum_h/10": 0.0002858973476371743,
+    "scaled_2norm_Anum_minus_Aanalytic_correct": 0.0003630070497452863,
+    "scaled_2norm_of_A": 2273.7541593185556
+  },
+  "complex_stability_radius_balanced_coordinates_numerical_(not_validated)": {
+    "r_C": 0.0017999560300484218,
+    "omega_at_min": 1.00000150136098e-06,
+    "sigma_min_at_omega_0": 0.0017999560300484218
+  },
+  "complex_stability_radius_of_Ahat_s_numerical_(not_validated)": {
+    "r_C": 7.447932605554795e-05,
+    "omega_at_min": 1.0002439376004481e-06,
+    "sigma_min_at_omega_0": 7.447932605554795e-05,
+    "meaning": "Ahat + E is Hurwitz for every ||E||_2 < r_C (exact statement about the matrix; the number is an unvalidated floating evaluation)",
+    "lyapunov_lower_bound_1_over_(2 lambda_max(P))": 1.1638284422994903e-07
+  },
+  "classification": {
+    "linear_stability_numerical": "SUPPORTED (eigenvalues, a-posteriori Lyapunov residual, two independent Jacobian assemblies, two full-ANDES time-domain runs)",
+    "linear_stability_rigorous_for_computed_matrix": "CERTIFIED",
+    "linear_stability_rigorous_for_exact_Jacobian": "NOT_CERTIFIED (delta_A unavailable)"
+  },
+  "comparison_empirical_vs_tolerable": {
+    "balanced_empirical_Anum_vs_Aanalytic_over_tolerable_strategy_2": 1.7638106759486376,
+    "balanced_empirical_h_vs_10h_over_tolerable_strategy_2": 0.0420690985157881,
+    "empirical_Anum_vs_Aanalytic_over_tolerable_strategy_1": 52981.36315356985,
+    "empirical_h_vs_10h_over_tolerable_strategy_1": 783.7941843370893,
+    "reading": "ratios > 1: finite-difference-level uncertainty of the Jacobian exceeds what the Lyapunov inequality with Q = I can absorb, so even a validated delta_A of the empirical size would not close the certificate"
+  }
+}

@@ -1,0 +1,912 @@
+{
+  "stage": "DEC-052 block A (model audit)",
+  "git_commit": "5719200ef17ed90e5370efe2b437485f8d45f553",
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "andes": "2.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "float": "IEEE-754 binary64, round-to-nearest (no directed rounding)"
+  },
+  "inputs_sha256": {
+    "IEEE39_DEC051_equilibrium_state.npz": "4f4c476293d015ebc8c5b24771cc86301483a7ad7105ebc8b6fe93b4e8543733",
+    "IEEE39_DEC051_H4_matrices.npz": "1f00d054429ac4aaacc345c8552ed8acbc836b57094b591549773446d562a255",
+    "IEEE39_DEC051_equilibrium.json": "ffef0a9bb302c8bd4c7cb9bfd9ffc84d7bf188458b5ea226c555ade25c87294a"
+  },
+  "A1": {
+    "table_andes_to_reduced": [
+      {
+        "unit": "1",
+        "andes_name": "F1_x IEEEST 1",
+        "andes_address": 78,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "1",
+        "andes_name": "F1_y IEEEST 1",
+        "andes_address": 84,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "1",
+        "andes_name": "F2_x1 IEEEST 1",
+        "andes_address": 90,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "1",
+        "andes_name": "F2_x2 IEEEST 1",
+        "andes_address": 96,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "1",
+        "andes_name": "LL1_x IEEEST 1",
+        "andes_address": 102,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "1",
+        "andes_name": "LL2_x IEEEST 1",
+        "andes_address": 108,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 66
+      },
+      {
+        "unit": "1",
+        "andes_name": "WO_x IEEEST 1",
+        "andes_address": 114,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 72
+      },
+      {
+        "unit": "1",
+        "andes_name": "F2_y IEEEST 1",
+        "andes_address": 276,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "1",
+        "andes_name": "LL1_y IEEEST 1",
+        "andes_address": 282,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "F1_x IEEEST 2",
+        "andes_address": 79,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "F1_y IEEEST 2",
+        "andes_address": 85,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "F2_x1 IEEEST 2",
+        "andes_address": 91,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "F2_x2 IEEEST 2",
+        "andes_address": 97,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "LL1_x IEEEST 2",
+        "andes_address": 103,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "LL2_x IEEEST 2",
+        "andes_address": 109,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 67
+      },
+      {
+        "unit": "2",
+        "andes_name": "WO_x IEEEST 2",
+        "andes_address": 115,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 73
+      },
+      {
+        "unit": "2",
+        "andes_name": "F2_y IEEEST 2",
+        "andes_address": 277,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "2",
+        "andes_name": "LL1_y IEEEST 2",
+        "andes_address": 283,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "F1_x IEEEST 4",
+        "andes_address": 80,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "F1_y IEEEST 4",
+        "andes_address": 86,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "F2_x1 IEEEST 4",
+        "andes_address": 92,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "F2_x2 IEEEST 4",
+        "andes_address": 98,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "LL1_x IEEEST 4",
+        "andes_address": 104,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "LL2_x IEEEST 4",
+        "andes_address": 110,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 68
+      },
+      {
+        "unit": "4",
+        "andes_name": "WO_x IEEEST 4",
+        "andes_address": 116,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 74
+      },
+      {
+        "unit": "4",
+        "andes_name": "F2_y IEEEST 4",
+        "andes_address": 278,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "4",
+        "andes_name": "LL1_y IEEEST 4",
+        "andes_address": 284,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "F1_x IEEEST 6",
+        "andes_address": 81,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "F1_y IEEEST 6",
+        "andes_address": 87,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "F2_x1 IEEEST 6",
+        "andes_address": 93,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "F2_x2 IEEEST 6",
+        "andes_address": 99,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "LL1_x IEEEST 6",
+        "andes_address": 105,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "LL2_x IEEEST 6",
+        "andes_address": 111,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 69
+      },
+      {
+        "unit": "6",
+        "andes_name": "WO_x IEEEST 6",
+        "andes_address": 117,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 75
+      },
+      {
+        "unit": "6",
+        "andes_name": "F2_y IEEEST 6",
+        "andes_address": 279,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "6",
+        "andes_name": "LL1_y IEEEST 6",
+        "andes_address": 285,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "F1_x IEEEST 9",
+        "andes_address": 82,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "F1_y IEEEST 9",
+        "andes_address": 88,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "F2_x1 IEEEST 9",
+        "andes_address": 94,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "F2_x2 IEEEST 9",
+        "andes_address": 100,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "LL1_x IEEEST 9",
+        "andes_address": 106,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "LL2_x IEEEST 9",
+        "andes_address": 112,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 70
+      },
+      {
+        "unit": "9",
+        "andes_name": "WO_x IEEEST 9",
+        "andes_address": 118,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 76
+      },
+      {
+        "unit": "9",
+        "andes_name": "F2_y IEEEST 9",
+        "andes_address": 280,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "9",
+        "andes_name": "LL1_y IEEEST 9",
+        "andes_address": 286,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "F1_x IEEEST 10",
+        "andes_address": 83,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "F1_y IEEEST 10",
+        "andes_address": 89,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "F2_x1 IEEEST 10",
+        "andes_address": 95,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "F2_x2 IEEEST 10",
+        "andes_address": 101,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "LL1_x IEEEST 10",
+        "andes_address": 107,
+        "role": "eliminated (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "LL2_x IEEEST 10",
+        "andes_address": 113,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 71
+      },
+      {
+        "unit": "10",
+        "andes_name": "WO_x IEEEST 10",
+        "andes_address": 119,
+        "role": "kept (genuine PSS state)",
+        "reduced_index": 77
+      },
+      {
+        "unit": "10",
+        "andes_name": "F2_y IEEEST 10",
+        "andes_address": 281,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      },
+      {
+        "unit": "10",
+        "andes_name": "LL1_y IEEEST 10",
+        "andes_address": 287,
+        "role": "eliminated algebraic (forced identity)",
+        "reduced_index": null
+      }
+    ],
+    "symbolic_elimination": {
+      "andes_parameters": {
+        "A1": [
+          0.0
+        ],
+        "A2": [
+          0.0
+        ],
+        "A3": [
+          0.0
+        ],
+        "A4": [
+          0.0
+        ],
+        "A5": [
+          0.0
+        ],
+        "A6": [
+          0.0
+        ],
+        "T1": [
+          0.0
+        ],
+        "T2": [
+          0.0
+        ],
+        "T3": [
+          0.0
+        ],
+        "T4": [
+          0.75
+        ],
+        "T5": [
+          1.0
+        ],
+        "T6": [
+          4.2
+        ],
+        "KS": [
+          -2.0
+        ]
+      },
+      "lead_lag_flags": {
+        "F2_LT_z0": [
+          0.0
+        ],
+        "F2_LT_z1": [
+          1.0
+        ],
+        "LL1_LT_z0": [
+          0.0
+        ],
+        "LL1_LT_z1": [
+          1.0
+        ],
+        "LL2_LT_z0": [
+          1.0
+        ],
+        "LL2_LT_z1": [
+          0.0
+        ],
+        "WO_LT_z0": [
+          1.0
+        ],
+        "WO_LT_z1": [
+          0.0
+        ]
+      },
+      "equations_after_substitution": {
+        "F1_x": "-F1_y + sig",
+        "F2_x1": "F1_y - F2_x2",
+        "LL1_x": "F2_y - LL1_x",
+        "F2_y": "-F1_y + F2_y",
+        "LL1_y": "-F2_y + LL1_y"
+      },
+      "solution_of_constraint_chain": {
+        "F1_y": "sig",
+        "F2_x2": "sig",
+        "F2_y": "sig",
+        "LL1_x": "sig",
+        "LL1_y": "sig"
+      },
+      "LL2_x_equation_after_elimination": "-LL2_x + sig",
+      "LL2_y_equation_after_substitution": "3*LL2_x/4 - 3*LL2_y/4",
+      "differential_consequences": "F1_y' = F1_x and F2_x2' = F2_x1 are differentiated copies of F1_y = sig and F2_x2 = F1_y (index-2 structure of the ANDES formulation); F1_x, F2_x1 feed no retained equation",
+      "all_constraints_resolve_to_sig": true,
+      "LL2_x_is_lag_of_sig_with_T4": true,
+      "LL2_x_note": "ANDES e_str is the numerator: T4 * LL2_x' = sig - LL2_x with T4 = 0.75 s"
+    },
+    "nonzero_dependence_of_retained_equations_on_eliminated_variables": [
+      {
+        "block": "fy[keep_x, junk_y]",
+        "row": "LL2_x IEEEST 1",
+        "col": "LL1_y IEEEST 1",
+        "value": 1.0
+      },
+      {
+        "block": "fy[keep_x, junk_y]",
+        "row": "LL2_x IEEEST 2",
+        "col": "LL1_y IEEEST 2",
+        "value": 1.0
+      },
+      {
+        "block": "fy[keep_x, junk_y]",
+        "row": "LL2_x IEEEST 4",
+        "col": "LL1_y IEEEST 4",
+        "value": 1.0
+      },
+      {
+        "block": "fy[keep_x, junk_y]",
+        "row": "LL2_x IEEEST 6",
+        "col": "LL1_y IEEEST 6",
+        "value": 1.0
+      },
+      {
+        "block": "fy[keep_x, junk_y]",
+        "row": "LL2_x IEEEST 9",
+        "col": "LL1_y IEEEST 9",
+        "value": 1.0
+      },
+      {
+        "block": "fy[keep_x, junk_y]",
+        "row": "LL2_x IEEEST 10",
+        "col": "LL1_y IEEEST 10",
+        "value": 1.0
+      }
+    ],
+    "residual_of_forced_rows_at_equilibrium_max_abs": 0.0,
+    "constraint_residual_off_equilibrium_3_random_perturbations_1e-2": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "connections": {
+      "vsout_class": "Algeb",
+      "vsout_e_str": "ue * OLIM_zi * Vss - vsout",
+      "vsout_target": "? of ?",
+      "jacobian_connectivity_per_PSS_unit": {
+        "1": {
+          "vsout_enters_algebraic_equations": [
+            [
+              "vi IEEEX1 1",
+              1.0
+            ]
+          ],
+          "vsout_enters_state_equations": [],
+          "sig_depends_on": [
+            [
+              "te GENROU 1",
+              0.09615384615384615
+            ]
+          ]
+        },
+        "2": {
+          "vsout_enters_algebraic_equations": [
+            [
+              "vi IEEEX1 2",
+              1.0
+            ]
+          ],
+          "vsout_enters_state_equations": [],
+          "sig_depends_on": [
+            [
+              "te GENROU 2",
+              0.11961722488038279
+            ]
+          ]
+        },
+        "4": {
+          "vsout_enters_algebraic_equations": [
+            [
+              "vi IEEEX1 4",
+              1.0
+            ]
+          ],
+          "vsout_enters_state_equations": [],
+          "sig_depends_on": [
+            [
+              "te GENROU 4",
+              0.08512087163772558
+            ]
+          ]
+        },
+        "6": {
+          "vsout_enters_algebraic_equations": [
+            [
+              "vi IEEEX1 6",
+              1.0
+            ]
+          ],
+          "vsout_enters_state_equations": [],
+          "sig_depends_on": [
+            [
+              "te GENROU 6",
+              0.09210647508519848
+            ]
+          ]
+        },
+        "9": {
+          "vsout_enters_algebraic_equations": [
+            [
+              "vi IEEEX1 9",
+              1.0
+            ]
+          ],
+          "vsout_enters_state_equations": [],
+          "sig_depends_on": [
+            [
+              "te GENROU 9",
+              0.05937889674009858
+            ]
+          ]
+        },
+        "10": {
+          "vsout_enters_algebraic_equations": [
+            [
+              "vi IEEEX1 10",
+              1.0
+            ]
+          ],
+          "vsout_enters_state_equations": [],
+          "sig_depends_on": [
+            [
+              "te GENROU 10",
+              0.08340283569641367
+            ]
+          ]
+        }
+      },
+      "sig_equation": "ue * ( SW_s1*(omega-1) + SW_s2*(f-1) + SW_s3*(te/SnSb) + SW_s4*(tm-tm0) + SW_s5*v + SW_s6*dv_v ) - sig",
+      "MODE": [
+        3.0
+      ],
+      "host_generators": [
+        "GENROU_1",
+        "GENROU_2",
+        "GENROU_4",
+        "GENROU_6",
+        "GENROU_9",
+        "GENROU_10"
+      ],
+      "host_exciters": [
+        "IEEEX1_1",
+        "IEEEX1_2",
+        "IEEEX1_4",
+        "IEEEX1_6",
+        "IEEEX1_9",
+        "IEEEX1_10"
+      ],
+      "input": "MODE 3: electrical power te/(Sn/Sb) of the host generator"
+    },
+    "kept_dynamic_pss_states_in_reduced_model": 12,
+    "eliminated_states": 30,
+    "eliminated_algebraics": 12,
+    "dimensions": {
+      "ANDES_states": 250,
+      "ANDES_algebraics": 456,
+      "reduced_dynamic": 208,
+      "references": 20,
+      "total_N": 228,
+      "quasi_algebraic_states_kept": 12,
+      "algebraic_variables_kept": 444
+    },
+    "criterion_A1": "equivalence of retained and eliminated equations on the constraint manifold: the symbolic chain resolves to sig, retained equations see the eliminated variables only through LL2_x <- LL1_y (= sig), forced rows have zero numerical residual",
+    "limit": "valid on the constraint manifold for smooth trajectories; at an algebraic jump of sig the ANDES integrator produces a non-physical impulse in F1_x/F2_x1 that feeds no retained equation"
+  },
+  "A2": {
+    "angle_like_states_in_null_vector": 88,
+    "kinds": [
+      "L_y BusFreq",
+      "WO_x BusFreq",
+      "delta GENROU",
+      "delta REGF1"
+    ],
+    "bus_angle_variables_shifted": 39,
+    "nonlinear_invariance_under_common_shift": [
+      {
+        "trial": 0,
+        "shift_rad": 0.5,
+        "max_abs_diff_f": 4.534480430029575e-13,
+        "max_abs_diff_g": 4.917177776064818e-13,
+        "worst_g_row": "vq GENROU 6"
+      },
+      {
+        "trial": 1,
+        "shift_rad": 0.5,
+        "max_abs_diff_f": 4.5335263321177877e-13,
+        "max_abs_diff_g": 4.936051567483446e-13,
+        "worst_g_row": "vq GENROU 6"
+      },
+      {
+        "trial": 2,
+        "shift_rad": 0.5,
+        "max_abs_diff_f": 4.534922784515949e-13,
+        "max_abs_diff_g": 4.89386309254769e-13,
+        "worst_g_row": "vq GENROU 6"
+      }
+    ],
+    "projection": "S = I with column pin removed (embedding, SG31 angle = 0); Qm = I - v e_pin^T with row pin removed; reconstruction xi = S e + xi_pin v; Qm S = I",
+    "Qm_S_identity_error": 0.0,
+    "cond_of_change_of_basis_[S v]": 88.98876262599255,
+    "vnull_unique_nonzero_values": [
+      1.0
+    ],
+    "block_triangular_structure_of_M_in_basis_[S v]": {
+      "norm_M_v": 6.102004610011636e-06,
+      "relative_norm_M_v_over_norm_M": 2.522214342187206e-10,
+      "abs_lower_right_cell": 0.0,
+      "norm_upper_right_cell_Qm_M_v": 6.102004599259537e-06,
+      "norm_(upper_left - Aq_DEC051)_relative": 3.805362809965529e-15
+    },
+    "eig(M) minus the zero eigenvalue vs eig(Aq): max matching distance": 7.393423928636622e-09,
+    "relative_equilibrium": {
+      "common_angle_rate_rad_per_s": 1.2491857389572842e-06,
+      "quotient_residual": 5.0676929206598805e-12
+    },
+    "structural_argument": "the DAE depends on rotor/PLL angles and bus angles only through angle differences, so F(x + a v, y + a w, u) = F(x, y, u) for the exact vector field (verified above to roundoff at the equilibrium and at two perturbed points), hence M v = 0 and, in the basis [S v], M = [[Aq, 0],[*, 0]] with eig(M) = eig(Aq) U {0}. The quotient field e' = Qm F(S e + a v) is independent of a: the reduction removes exactly one direction and no physical mode; a relative equilibrium has F = c v with c != 0 allowed."
+  },
+  "A3": {
+    "structure": "DAE x' = f(x,y,u), 0 = g(x,y,u); quasi-algebraic states (Tf = 0) are appended to the algebraic block",
+    "block_dimension": 456,
+    "n_quasi_algebraic_states": 12,
+    "n_algebraic_variables": 444,
+    "norm_2": 1110.576533530702,
+    "norm_inf": 1508.633692980808,
+    "min_singular_value": 0.002099335583275072,
+    "condition_number_2": 529013.3423062097,
+    "after_Ruiz_equilibration": {
+      "min_singular_value": 0.011382177750832494,
+      "condition_number_2": 234.92410772470902,
+      "row_scale_range": [
+        0.01999999007286708,
+        26.559690481504294
+      ],
+      "col_scale_range": [
+        0.05448802500722117,
+        26.559690481504294
+      ]
+    },
+    "validated_nonsingularity_of_the_floating_matrix": {
+      "method": "Rump-type: ||I - R K||_inf + gamma_(n+2) || |R||K| ||_inf < 1 with R = fl(inv(K)); first-order floating-point error bound (Higham), no directed rounding",
+      "bound": 2.7250602676239365e-10,
+      "nonsingular": true
+    },
+    "algebraic_residual_inf_at_equilibrium": 6.039613253960852e-14,
+    "unreduced_block_with_eliminated_IEEEST_variables": {
+      "dimension": 486,
+      "min_singular_value": 5.258728260631046e-15,
+      "n_singular_values_below_1e-12_rel": 12,
+      "comment": "singular: the ANDES formulation is index-2 on the degenerate IEEEST chain (F1_x does not appear in its own constraint); the elimination yields a regular index-1 block"
+    },
+    "caveat": "a favourable condition number is a diagnostic; the nonsingularity bound is validated for the computed floating matrix, not for the exact Jacobian of the nonlinear equations"
+  },
+  "PSS_influence": {
+    "modes_with_PSS_participation_above_0.2": 12,
+    "max_PSS_participation": 0.9958318681603182,
+    "slowest_8_modes": [
+      {
+        "tau_s": 426.854110400582,
+        "PSS_participation": 8.480512824859677e-05
+      },
+      {
+        "tau_s": 304.0258463948165,
+        "PSS_participation": 1.4942391525257272e-05
+      },
+      {
+        "tau_s": 141.43806032087653,
+        "PSS_participation": 0.0001310519158692683
+      },
+      {
+        "tau_s": 122.2216050893779,
+        "PSS_participation": 3.531660464295332e-05
+      },
+      {
+        "tau_s": 104.61708419264254,
+        "PSS_participation": 5.390697499247267e-05
+      },
+      {
+        "tau_s": 83.2747487992199,
+        "PSS_participation": 0.00019801465600642235
+      },
+      {
+        "tau_s": 79.16115543456517,
+        "PSS_participation": 0.0008319945610496351
+      },
+      {
+        "tau_s": 62.26041355453776,
+        "PSS_participation": 0.003961866173795483
+      }
+    ],
+    "nearest_eigenvalue_to_-1/T4": {
+      "nominal": -1.3333333333333333,
+      "re": -1.3321743468909188,
+      "im": 0.0
+    },
+    "nearest_eigenvalue_to_-1/T6": {
+      "nominal": -0.23809523809523808,
+      "re": -0.23797665137705779,
+      "im": 0.0
+    },
+    "reference": "IEEE39_DEC051_H4_summary.json effect_of_PSS_on_spectrum compares with the E9-A linearisation that drops the PSS"
+  },
+  "fidelity_vs_full_TDS_linear_prediction": {
+    "note": "full-state comparison of the ANDES time-domain runs (DEC-051 H4, +-0.02 pu along the slowest mode) with expm(Aq t) e(0); nonlinearity and slow-mode dominance included",
+    "plus": [
+      {
+        "t_s": 1.01953125,
+        "rel_state_error_scaled_2norm": 0.0017997199504681323,
+        "rel_error_PSS_states_unscaled": 0.001884886985902469,
+        "norm_sim_scaled": 0.1953983812187593
+      },
+      {
+        "t_s": 9.95703125,
+        "rel_state_error_scaled_2norm": 0.002224932420960116,
+        "rel_error_PSS_states_unscaled": 0.004011947474829297,
+        "norm_sim_scaled": 0.19149630400184847
+      },
+      {
+        "t_s": 49.97265625,
+        "rel_state_error_scaled_2norm": 0.0001765626230181105,
+        "rel_error_PSS_states_unscaled": 0.0038592163193821604,
+        "norm_sim_scaled": 0.1735778088694322
+      },
+      {
+        "t_s": 100.04296875,
+        "rel_state_error_scaled_2norm": 0.0018438476293084474,
+        "rel_error_PSS_states_unscaled": 0.007183715278780037,
+        "norm_sim_scaled": 0.1536139566740027
+      },
+      {
+        "t_s": 199.98046875,
+        "rel_state_error_scaled_2norm": 0.005293736346472166,
+        "rel_error_PSS_states_unscaled": 0.01285942108257982,
+        "norm_sim_scaled": 0.12045296416217596
+      },
+      {
+        "t_s": 399.95703125,
+        "rel_state_error_scaled_2norm": 0.010109959067884857,
+        "rel_error_PSS_states_unscaled": 0.01338945877051514,
+        "norm_sim_scaled": 0.07428886775583456
+      },
+      {
+        "t_s": 699.97265625,
+        "rel_state_error_scaled_2norm": 0.013616673108791758,
+        "rel_error_PSS_states_unscaled": 0.0240701188328788,
+        "norm_sim_scaled": 0.03621773008941307
+      },
+      {
+        "t_s": 999.98828125,
+        "rel_state_error_scaled_2norm": 0.015895366589311344,
+        "rel_error_PSS_states_unscaled": 0.042109214807135836,
+        "norm_sim_scaled": 0.01773009525533469
+      }
+    ],
+    "minus": [
+      {
+        "t_s": 1.01953125,
+        "rel_state_error_scaled_2norm": 0.001789712344706604,
+        "rel_error_PSS_states_unscaled": 0.001859154157627116,
+        "norm_sim_scaled": 0.19470195688126377
+      },
+      {
+        "t_s": 9.95703125,
+        "rel_state_error_scaled_2norm": 0.00213113007243849,
+        "rel_error_PSS_states_unscaled": 0.0025026321181721113,
+        "norm_sim_scaled": 0.19066838583783402
+      },
+      {
+        "t_s": 49.97265625,
+        "rel_state_error_scaled_2norm": 0.00032968688194977963,
+        "rel_error_PSS_states_unscaled": 0.006740640214587586,
+        "norm_sim_scaled": 0.17350603325425104
+      },
+      {
+        "t_s": 100.04296875,
+        "rel_state_error_scaled_2norm": 0.001982149188582749,
+        "rel_error_PSS_states_unscaled": 0.007158019942250205,
+        "norm_sim_scaled": 0.1541993649418712
+      },
+      {
+        "t_s": 199.98046875,
+        "rel_state_error_scaled_2norm": 0.0053664423155667254,
+        "rel_error_PSS_states_unscaled": 0.012367275500338703,
+        "norm_sim_scaled": 0.1217394802631134
+      },
+      {
+        "t_s": 399.95703125,
+        "rel_state_error_scaled_2norm": 0.009943614604492033,
+        "rel_error_PSS_states_unscaled": 0.014568321631076636,
+        "norm_sim_scaled": 0.07578886309314056
+      },
+      {
+        "t_s": 699.97265625,
+        "rel_state_error_scaled_2norm": 0.013463170577357958,
+        "rel_error_PSS_states_unscaled": 0.02548423181815094,
+        "norm_sim_scaled": 0.037209332543947655
+      },
+      {
+        "t_s": 999.98828125,
+        "rel_state_error_scaled_2norm": 0.01514343464935327,
+        "rel_error_PSS_states_unscaled": 0.04198545374870983,
+        "norm_sim_scaled": 0.01828765843077118
+      }
+    ]
+  },
+  "GATE_A": {
+    "A1_equivalence_symbolic": true,
+    "A1_forced_rows_zero_residual": true,
+    "A1_only_dependence_is_LL2_x_on_LL1_y": true,
+    "A2_symmetry_invariance_to_roundoff": true,
+    "A3_algebraic_block_nonsingular_validated_for_floating_matrix": true,
+    "fidelity_max_relative_state_error_over_runs_and_times": 0.015895366589311344,
+    "GATE_A": "PASSED"
+  }
+}
