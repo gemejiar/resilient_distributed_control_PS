@@ -494,3 +494,26 @@ Blockers or limitations: P+ only; privileged information; no specified rate limi
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator reviews B3-P+; Q+ only after approval.
+
+## DEC-041
+Date: 2026-10-26
+Gate: B3-P+ review and authorization of B3-Q+
+Decision: The investigator approved B3-P+ as a result with findings (no convergence to xi* in 200 s, residual Qset drift, SG31 transient excess of 0.0699 pu persists, privileged information) and authorized B3-Q+ under frozen conditions (C2t, B3-A weights, graph, gains, E8 actuators, 200 s, B3-A v2 reference without re-optimization, no new limiters, rate limiters or compensations, B2 reproduced and checked against E8 first, same indicators and the same predeclared convergence thresholds). Commit 493b237 (DEC-040) was pushed to review/b3-equilibrium only; it contains the summary, figures, code and records, no raw series; main untouched, nothing merged. No weight sensitivity, E9 or extended-horizon tests.
+Justification: Authorization recorded as given; nothing was changed in the controller or the thresholds.
+Evidence reviewed: DEC-040, IEEE39_B3_C2t_Pplus_summary.json and its six figures.
+Blockers or limitations: OPEN-SG31-PMAX open; no proof of convergence to xi*; residual Qset drift; no dynamic-safety certification; privileged information.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Run B3-Q+ (DEC-042) and stop for review.
+
+## DEC-042
+Date: 2026-10-26
+Gate: B3-Q+ (centered RDC, +17.345 MVAr at bus 21, t = 5 s) on C2t
+Decision: B3-Q+ was run once under the DEC-041 conditions and assigned FINDINGS_WAIT_HUMAN; the run stops at human review. No weight sensitivity, E9 or extended horizon.
+Justification: Script run_b3_pplus.py, parametrized by the scenario (B3_SCEN=Q+); the P+ code path and results are unchanged (the P+ summary records the runner hash used for P+ in commit 493b237). Reference xi*(d) = B3-A v2 Q+ without re-optimization (privileged information, available from t = 5 s). B2 replicated with the same code reproduces the stored E8 Q+ series with 0.0 differences (51 203 samples). Results (B3 | B2): max frequency deviation 1.21 | 1.21 mHz (nadir 59.99879 Hz both; it never exceeds 2 mHz, so there is no settling time); final frequency error -3.3e-5 | -5.2e-5 Hz; final max |P-P*| 0.0080 | 0.129 pu, |Q-Q*| 0.154 | 0.294 pu, |V-V*| 0.0067 | 0.0143 pu; final max |Pset-Pset_eff| 0.0058 | 0.129 pu, |Qset-Qset_eff| 0.209 | 0.470 pu. Frequency passes its predeclared threshold; P, Q, V, Pset and Qset do not (thresholds 5e-3, 5e-2, 5e-3, 5e-3, 5e-2 pu), for B3 and B2 alike, and Qset still drifts in the last 20 s (up to 0.039 pu; Pset up to 0.0006 pu). The final B3 errors in Q, V and Qset are almost identical to those of P+, which is consistent with a residual Q/V mode not tied to the scenario (not diagnosed here; no extended horizon authorized). Jumps at the update: offset change xi_pre -> xi*(d) up to 0.1815 pu/s in P and 0.0154 pu/s in Q; max dPset/dt 0.195 pu/s (19.5 MW/s; B2 0.043), max dQset/dt 0.0154 pu/s; Pset and Qset continuous at the event (max one-step change 7.6e-4 and 6.0e-5 pu); max physical dP/dt 12.4 pu/s in both runs. No rate limit is specified in the E8 realization, so rates are reported only. Actuators: no exciter clamp hit (max |z| 0.055 of 0.100), references inside W_i (min g_P 0.0026, g_Q 0.200), GFM PIplim/PIqlim tracking error max 0.023 / 0.152 pu (B2 0.023 / 0.120). Margins: SG31 physical margin to pmax 0.0355 pu (B2 0.0346), no transient excess in Q+ (the 0.0699 pu excess is specific to P+); SG31 reference margin 0.040 pu; SG35 physical margin 0.070 pu (B2 0.095), reference margin 0.047 pu, Pset_eff margin 0.044 pu (below the 1 % of range imposed on physical P*). Final bus voltages 0.980-1.045 pu (none outside 0.95-1.05). Raw series IEEE39_B3_C2t_Qplus_timeseries.npz local only (gitignored), hashes in the summary JSON; S0, B2 and P+ artifacts untouched.
+Reading of the result: as in P+, the centered RDC ends much closer to the selected equilibrium than the original RDC in P, Q, V and the setpoint states, with equivalent frequency behaviour (the Q+ event barely moves frequency), but it does not converge to xi* in 200 s and Qset keeps drifting. No claim of dynamic safety, regional stability or superiority; xi*(d) uses exact disturbance knowledge in B3 only.
+Evidence reviewed: IEEE39_B3_C2t_Qplus_summary.json, six figures (frequency, voltage, power, rdc_action, references, errors), B3-A v2, E8 raw series (read only).
+Blockers or limitations: Q+ one scenario; privileged information; no specified rate limits; no convergence to xi*; Qset drift undiagnosed; OPEN-SG31-PMAX open; E9 blocked.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator reviews B3-Q+; nothing further runs without a new authorization.

@@ -1,16 +1,17 @@
-"""B3-P+ (centered RDC, +58.564 MW at bus 4, t = 5 s) on C2t versus the B2 replica of E8 (DEC-040).
+"""B3-P+ / B3-Q+ (centered RDC, +58.564 MW at bus 4 or +17.345 MVAr at bus 21, t = 5 s) on C2t versus the B2 replica of E8 (DEC-040, DEC-041).
 
 Reuses the B3 runner (``run_b3_ieee39``): same plant, graph, gains, E8 actuator maps and 200 s horizon.  The only
 difference with S0 is the reference equilibrium of the centering offset: xi*(d) of B3-A (v2 file, selected in
 advance and never re-optimized), v_nom = v_RDC(xi, d) - v_RDC(xi*(d), d) with Pset_eff/Qset_eff as the reference
 setpoints.  xi*(d) uses the exact disturbance (privileged information, available from the event at t = 5 s, which is
-also the activation time).  Only P+ is executed here; Q+, weight sensitivity and E9 are not authorized.
+also the activation time).  One scenario per run (B3_SCEN); weight sensitivity and E9 are not authorized.
 """
 
 from __future__ import annotations
 
 import csv
 import json
+import os
 import platform
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,8 +32,11 @@ from run_e0_ieee39 import (  # noqa: E402
 )
 from variant import CASE_LABEL  # noqa: E402
 
-SCEN = "P+"
-PREFIX = "IEEE39_B3_C2t_Pplus"
+SCEN = os.environ.get("B3_SCEN", "P+")  # P+ (DEC-040) or Q+ (DEC-041)
+TAG = {"P+": "Pplus", "Q+": "Qplus"}[SCEN]
+LABEL = f"B3-{SCEN}"
+EVDESC = {"P+": "+58.564 MW at bus 4", "Q+": "+17.345 MVAr at bus 21"}[SCEN]
+PREFIX = f"IEEE39_B3_C2t_{TAG}"
 RAW_FILE = ARTIFACTS_DIR / f"{PREFIX}_timeseries.npz"
 SUMMARY_FILE = ARTIFACTS_DIR / f"{PREFIX}_summary.json"
 FIG = {k: FIGURES_DIR / f"{PREFIX}_{k}.png" for k in ("frequency", "voltage", "power", "rdc_action", "references", "errors")}
@@ -137,7 +141,7 @@ def post_metrics(d: dict[str, np.ndarray], ref: dict[str, np.ndarray]) -> dict[s
 
 
 def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, np.ndarray]) -> None:
-    names = ("B2 (original RDC; replica of E8)", "B3-P+ (centered RDC, reference xi*(d))")
+    names = ("B2 (original RDC; replica of E8)", f"{LABEL} (centered RDC, reference xi*(d))")
     runs = (b2, b3)
     n_sg = b3["sg_p_pu"].shape[1]
     label = lambda i, bus: f"{'SG' if i < n_sg else 'GFM'}{bus}"  # noqa: E731
@@ -154,7 +158,7 @@ def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, n
         for r in range(2):
             ax[r, c].axvline(EVENT, **ev); ax[r, c].grid(alpha=.25); ax[r, c].set_xlabel("Time [s]")
     ax[0, 0].set_ylabel("Frequency [Hz]"); ax[1, 0].set_ylabel("f - 60 Hz [mHz]"); ax[0, 0].legend(fontsize=7)
-    fig.suptitle("B3-P+ on C2t (+58.564 MW at bus 4, t = 5 s = activation): bus frequency"); fig.tight_layout()
+    fig.suptitle(f"{LABEL} on C2t ({EVDESC}, t = 5 s = activation): bus frequency"); fig.tight_layout()
     fig.savefig(FIG["frequency"], dpi=300, bbox_inches="tight"); plt.close(fig)
     # 2 voltage of the 39 buses + unit-bus error to V*
     fig, ax = plt.subplots(2, 2, figsize=(13, 8))
@@ -169,7 +173,7 @@ def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, n
         for r in range(2):
             ax[r, c].axvline(EVENT, **ev); ax[r, c].grid(alpha=.25); ax[r, c].set_xlabel("Time [s]")
     ax[0, 0].set_ylabel("|V| [pu]"); ax[1, 0].set_ylabel("V - V* [pu]"); ax[1, 0].legend(ncol=3, fontsize=6)
-    fig.suptitle("B3-P+ on C2t: bus voltages and unit-bus error to V*"); fig.tight_layout()
+    fig.suptitle(f"{LABEL} on C2t: bus voltages and unit-bus error to V*"); fig.tight_layout()
     fig.savefig(FIG["voltage"], dpi=300, bbox_inches="tight"); plt.close(fig)
     # 3 physical power with targets
     fig, ax = plt.subplots(2, 2, figsize=(13, 8))
@@ -183,7 +187,7 @@ def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, n
         for r in range(2):
             ax[r, c].axvline(EVENT, **ev); ax[r, c].grid(alpha=.25); ax[r, c].set_xlabel("Time [s]")
     ax[0, 0].legend(ncol=3, fontsize=6)
-    fig.suptitle("B3-P+ on C2t: physical power of the ten units (triangles at the right: targets P*, Q*; own axes)"); fig.tight_layout()
+    fig.suptitle(f"{LABEL} on C2t: physical power of the ten units (triangles at the right: targets P*, Q*; own axes)"); fig.tight_layout()
     fig.savefig(FIG["power"], dpi=300, bbox_inches="tight"); plt.close(fig)
     # 4 RDC actions
     fig, ax = plt.subplots(2, 3, figsize=(16, 8))
@@ -197,7 +201,7 @@ def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, n
         for c in range(3):
             ax[r, c].axvline(EVENT, **ev); ax[r, c].grid(alpha=.25); ax[r, c].set_xlabel("Time [s]")
     ax[0, 0].legend(ncol=3, fontsize=6)
-    fig.suptitle("B3-P+ on C2t: original and centered RDC actions (own axes; v_nom = dPset/dt, dQset/dt)"); fig.tight_layout()
+    fig.suptitle(f"{LABEL} on C2t: original and centered RDC actions (own axes; v_nom = dPset/dt, dQset/dt)"); fig.tight_layout()
     fig.savefig(FIG["rdc_action"], dpi=300, bbox_inches="tight"); plt.close(fig)
     # 5 references and actuator signals
     fig, ax = plt.subplots(2, 4, figsize=(20, 8))
@@ -218,7 +222,7 @@ def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, n
         for c in range(4):
             ax[r, c].axvline(EVENT, **ev); ax[r, c].grid(alpha=.25); ax[r, c].set_xlabel("Time [s]")
     ax[0, 0].legend(ncol=3, fontsize=6); ax[0, 3].legend(ncol=2, fontsize=6)
-    fig.suptitle("B3-P+ on C2t: control references and actuator signals (own axes)"); fig.tight_layout()
+    fig.suptitle(f"{LABEL} on C2t: control references and actuator signals (own axes)"); fig.tight_layout()
     fig.savefig(FIG["references"], dpi=300, bbox_inches="tight"); plt.close(fig)
     # 6 errors to the target equilibrium (both runs against the same xi*)
     fig, ax = plt.subplots(2, 3, figsize=(16, 8))
@@ -231,27 +235,27 @@ def plots(b2: dict[str, np.ndarray], b3: dict[str, np.ndarray], ref: dict[str, n
         for c in range(3):
             ax[r, c].axvline(EVENT, **ev); ax[r, c].grid(alpha=.25); ax[r, c].set_xlabel("Time [s]"); ax[r, c].axhline(0, color="k", ls=":", lw=.8)
     ax[0, 0].legend(ncol=3, fontsize=6)
-    fig.suptitle("B3-P+ on C2t: error with respect to the selected target equilibrium xi*(d) (both runs against the same xi*; own axes)"); fig.tight_layout()
+    fig.suptitle(f"{LABEL} on C2t: error with respect to the selected target equilibrium xi*(d) (both runs against the same xi*; own axes)"); fig.tight_layout()
     fig.savefig(FIG["errors"], dpi=300, bbox_inches="tight"); plt.close(fig)
 
 
 def update_matrix(summary: dict[str, Any]) -> None:
-    stage = "B3_Pplus"
+    stage = f"B3_{TAG}"
     with MATRIX_FILE.open("r", newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream); fields = list(reader.fieldnames or [])
         rows = [row for row in reader if row.get("stage") != stage]
     m = summary["metrics"]
     row = {k: "" for k in fields}
     row.update({
-        "run_id": summary["run_id"], "stage": stage, "case": CASE_LABEL, "scenario": "P+_centered_RDC_xi_star_B3A", "baseline": "E8_C2t_P+",
+        "run_id": summary["run_id"], "stage": stage, "case": CASE_LABEL, "scenario": f"{SCEN}_centered_RDC_xi_star_B3A", "baseline": f"E8_C2t_{SCEN}",
         "source_sha256": summary["case_sha256"], "variant_sha256": summary["case_sha256"], "andes_version": summary["andes_version"],
         "git_commit": summary["git_commit"], "seed": "not_applicable_deterministic", "simulation_t0": 0.0, "simulation_tf": TF,
-        "solver_settings": json.dumps(summary["solver"], sort_keys=True), "event_time": EVENT, "event_bus": "4(P)", "event_P_MW": e8.SCENARIOS[SCEN]["p_mw"],
+        "solver_settings": json.dumps(summary["solver"], sort_keys=True), "event_time": EVENT, "event_bus": {"P+": "4(P)", "Q+": "21(Q)"}[SCEN], "event_P_MW": e8.SCENARIOS[SCEN].get("p_mw", ""), "event_Q_MVAr": e8.SCENARIOS[SCEN].get("q_mvar", ""),
         "fn_Hz": NOMINAL_FREQUENCY_HZ, "bus_freq_set": "1-39", "bus_volt_set": "1-39", "f_nadir_Hz": m["frequency_nadir_hz"],
         "dae_residual": summary["diagnostics"]["B3"]["final_residual"], "status_auto": summary["status_auto"], "status_human": "PENDING",
         "frequency_figure": FIG["frequency"].relative_to(PROJECT_ROOT).as_posix(), "voltage_figure": FIG["voltage"].relative_to(PROJECT_ROOT).as_posix(),
         "raw_file": RAW_FILE.relative_to(PROJECT_ROOT).as_posix(),
-        "decision_note": "B3-P+ awaits human review; Q+, weight sensitivity and E9 stay blocked (DEC-040)."})
+        "decision_note": f"{LABEL} awaits human review; weight sensitivity and E9 stay blocked ({'DEC-040' if SCEN == 'P+' else 'DEC-041'})."})
     with MATRIX_FILE.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields); writer.writeheader(); writer.writerows(rows + [row])
 
@@ -310,9 +314,9 @@ def main() -> int:
         "reporting_thresholds_not_tuned": TOL, "checks": checks,
         "S0_note": {"b3_s0_pre_event_max_bus_voltage_pu": s0_vmax, "b3_s0_final_max_bus_voltage_pu": s0_vmax_final, "ac_selection_band_pu": [0.95, 1.05],
                     "text": "B3-S0 preserves the validated pre-event equilibrium, whose bus voltages exceed the 1.05 pu band used by the AC selection; S0 is not a safety certification."},
-        "limitations": ["P+ only; the centered action and xi*(d) use exact disturbance knowledge (privileged information).",
+        "limitations": [f"{SCEN} only; the centered action and xi*(d) use exact disturbance knowledge (privileged information).",
                         "No explicit rate limit exists in the E8 realization, so rates are reported, not checked against a limit.",
-                        "No stability, regional-stability or dynamic-safety claim; OPEN-SG31-PMAX stays open; Q+, weight sensitivity and E9 not run."]}
+                        "No stability, regional-stability or dynamic-safety claim; OPEN-SG31-PMAX stays open; weight sensitivity, E9 and extended horizons not run."]}
     SUMMARY_FILE.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     update_matrix(summary)
     print(status, json.dumps(checks))
