@@ -1,0 +1,21 @@
+# DEC-054-R3 — Mathematical/implementation corrections applied before any execution
+
+Addendum to `IEEE39_DEC054_preliminary_policy_design_v2.md` (v1/v2 untouched). Each item is implemented in `Paper_manuscript/src/dec054_*.py` and covered by `test_dec054_core.py` (synthetic tests; no plant run).
+
+| ID | v2 statement | Correction | Where |
+|---|---|---|---|
+| F1 | post-event horizon `T=200 s` after `t_e` | **Event at 5 s, run to 200 s ⇒ post-event horizon `T_post = 195 s`.** All predictor grids end at 195 s; Proposition S is stated on `[t_e, t_e+195 s]` | `dec054_common.T_POST`, `dec054_predictor.time_grid`, test `test_time_horizon_is_195` |
+| F2 | lower margin with `min(0, ΔP^jump)` | **Signed jump on both sides**: `M⁻ = P⁻ + ΔP^jump − Pmin − Ē⁻ − ε` (consistent with the symmetric hypothesis `H_err` on the jump; `min(0,·)` was conservative but not the quantity the proposition bounds) | `dec054_opf.Problem.margins_d` |
+| F3 | `ε_{i,d}` per (unit, event) | `ε` is calibrated **per unit** (vectors `ε^J`, `ε^E`) from DESIGN/TUNE residuals; `ε = max(1e-3, κ·max positive residual)` (proposal `κ=1.5`); conformal rank `⌈(n+1)(1−α)⌉` is tested to be non-finite for `n=8, α=0.10` and is **not** used | `dec054_calib` |
+| F4 | excursion by "matrix exponential/Schur" | implemented as the action of `expm` of the augmented matrix `[[A⁺,f⁺],[0,0]]` on `e_{n+1}` (`scipy.sparse.linalg.expm_multiply`), three uniform segments `(0–1 s, 101 pts)`, `(1–10 s, 91)`, `(10–195 s, 186)`, golden-section refinement around grid maxima, and a **sampling-error estimate** from a grid twice as dense; verified against `solve_ivp` (rtol 1e-10) | `dec054_predictor`, test `test_matches_ode_and_zero_initial_condition` |
+| F5 | `D̂(0⁺)=0` | verified numerically (`|D0| < 1e-14`): the algebraic jump is **not** recomputed by the linear model | same test |
+| F6 | objective | `C_disp` with scales `Pmax−Pmin` (PV units) and `0.05 pu` (voltage); `C_pat` with frozen design shares `π_i, κ_i` from `z_ref`; identical `J` for M0–M3. `C_pat(z_ref)=0` by construction but varies with `z` (non-degenerate); the v1 penalty is shown to be `≡0` whenever `pn=P⁻` | `dec054_opf.Problem`, test `test_v1_share_penalty_is_identically_zero_and_v2_is_not` |
+| F7 | `I(z)` | `init_map` reproduces `capability_factors`, `gref`, `k_ip`, `d_p`, `d_q`; arithmetic **identical** to `run_e8_ieee39.capability_factors` (test imports the executor module and compares with `atol=0`); raises where the executor raises (`gp0≤0`, `gq0≤0`) or where `d_p=1/pn` is undefined | `dec054_rdcinit`, tests in `TestRdcInit` |
+| F8 | algorithm exit states | `FEASIBLE_PREDICTED`, `LOCAL_OPTIMUM_FOUND` (KKT residual by NNLS ≤ `1e-3(1+|J|)`), `STAGNATED_EXISTING_CUT`, `ITERATION_BUDGET_EXHAUSTED`, `SOLVER_FAILED` (also for any exception of plant/predictor), `INFEASIBLE_NOT_DEMONSTRATED` (SLSQP status 4); cut deduplication; no re-insertion | `dec054_opf.algorithm1`, `TestOpf` |
+| F9 | dynamic (TDS) cuts | stored as local additive corrections inside a trust region; outside it they are dropped (test `test_dynamic_cut_is_local_to_trust_region`) | `Problem.dyn_cuts` |
+| F10 | gate | the TDS ledger refuses every request while `backup_manifest.status ≠ BACKUP_VERIFIED` or `independent_backup_verified ≠ true`; 8/16/24/48 budgets; failures keep their budget; duplicate run ids refused; ANDES adapter refuses instantiation | `dec054_common.TdsLedger`, `dec054_plant.AndesPlant`, `TestLedgerAndGate` |
+| F11 | frozen design | `write_frozen` creates `design_frozen.json` exclusively; `verify_frozen` recomputes code hashes and aborts on mismatch; the runner needs gate + frozen file + ledger id before any ANDES import | `dec054_runner`, `TestFrozen`, `TestDynamicCutAndFrozen` |
+| F12 | initial working set | the `k0=2` scenarios with the largest static jump-only exceedance at `z_ref` (no TDS data), all units both sides | `dec054_opf.initial_working_set` |
+
+## Still open (not resolvable without the plant; unchanged from v2 §9)
+Callback/event ordering at `t=5 s`; GFM initial dynamic residuals; Euler-vs-continuous mismatch; whether a fixed `A⁺` is adequate over 195 s; the real-plant adapter `dec054_plant.py` is **UNTESTED_ON_PLANT** (its predictor assembly reuses `e9h_predictor.LinearPredictor.build`: `M`, forcing `[xdot; RDC rates]`, `P` rows of `Cz`).
