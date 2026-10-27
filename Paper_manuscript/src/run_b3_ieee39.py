@@ -57,8 +57,11 @@ TOL_F_HZ, TOL_V_PU, TOL_PQ_PU, TOL_REF_PU, TOL_VNOM_ACTIVATION = 1.0e-4, 1.0e-3,
 TOL_REPLICATION = {"f_hz": 1.0e-6, "v_pu": 1.0e-6, "pq_pu": 1.0e-6, "ref_pu": 1.0e-6}
 
 
-def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict[str, np.ndarray] | None = None):
+def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict[str, np.ndarray] | None = None,
+        probe=None, init_hook=None):
     system, ctx = e8.configure(scenario, time_step_s)
+    if init_hook is not None:  # E9-A: independent initial-condition variant (the historical runs never pass a hook)
+        init_hook(system, ctx)
     lim = ctx["lim"]
     n_sg = ctx["n_sg"]
     unit_bus = ctx["unit_bus"]
@@ -113,6 +116,8 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict
         p_now, q_now = np.asarray(y[st["a_p"]], float), np.asarray(y[st["a_q"]], float)
         vp, vq, gp, gq = field(st["pset"], st["qset"], p_now, q_now, volt, omega)
         vnom_p, vnom_q = vp - st["off_p"], vq - st["off_q"]
+        if probe is not None:  # E9-A diagnostic hook: read-only use of the state before the references are updated
+            probe(t, sys_, ctx, st, vnom_p, vnom_q)
         active = t >= EVENT_TIME_S
         if active:
             st["pset"] = st["pset"] + dt * vnom_p
