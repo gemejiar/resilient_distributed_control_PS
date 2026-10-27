@@ -319,12 +319,10 @@ class TestLedgerAndGate(unittest.TestCase):
     def _art(self, verified: bool):
         return K.make_art(verified)
 
-    def test_real_repository_gate_is_blocked(self):
+    def test_real_repository_gate_is_never_reported_independent(self):
         g = COM.backup_gate()
-        self.assertFalse(g["verified"])
-        self.assertEqual(g["gate0"], "STOP_BACKUP_NOT_VERIFIED")
-        lines = (COM.ART / "IEEE39_DEC054_tds_ledger.csv").read_text().strip().splitlines()
-        self.assertEqual(len(lines), 1)                                         # header only: 0/48
+        self.assertFalse(g["independent"])
+        self.assertTrue((COM.ART / "IEEE39_DEC054_tds_ledger.csv").read_text().splitlines()[0].startswith("tds_id,block"))
 
     def test_ledger_refuses_when_blocked(self):
         art = self._art(False)
@@ -357,9 +355,11 @@ class TestLedgerAndGate(unittest.TestCase):
         self.assertEqual(len(rows), 1 + 48 + 1)                                 # header + 48 requests + 1 completion (append-only)
 
     def test_plant_adapter_refuses_before_backup(self):
+        import unittest.mock as M
         import dec054_plant as PL
-        with self.assertRaises(RuntimeError):
-            PL.AndesPlant()
+        with M.patch.object(PL, "backup_gate", return_value={"verified": False}):
+            with self.assertRaises(RuntimeError):
+                PL.AndesPlant()
 
 
 class TestFrozen(unittest.TestCase):

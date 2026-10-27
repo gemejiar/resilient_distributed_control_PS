@@ -75,6 +75,7 @@ class GateError(RuntimeError):
 
 INDEP_EVIDENCE = "IEEE39_DEC054_independent_backup_verification.json"
 INDEP_KINDS = ("other_physical_drive", "authorized_remote_readback")
+WAIVER_FILE = "IEEE39_DEC054_g0_waiver.json"
 
 
 def _default_dev_of(p) -> int:
@@ -95,7 +96,7 @@ def backup_gate(art_dir: Path | None = None, dev_of=None) -> dict:
     evp = art_dir / INDEP_EVIDENCE
     if not evp.exists():
         out["reasons"].append(f"{INDEP_EVIDENCE} does not exist")
-        return out
+        return _waiver_gate(art_dir, out)
     reasons = []
     try:
         ev = json.loads(evp.read_text(encoding="utf-8"))
@@ -141,6 +142,41 @@ def backup_gate(art_dir: Path | None = None, dev_of=None) -> dict:
         out.update({"verified": True, "status": "BACKUP_VERIFIED", "gate0": "PASS", "independent": True})
     else:
         out["status"] = "INDEPENDENT_EVIDENCE_INVALID"
+        return _waiver_gate(art_dir, out)
+    return out
+
+
+def _waiver_gate(art_dir: Path, out: dict) -> dict:
+    """Explicit, documented waiver of the INDEPENDENCE requirement by the investigator.  It never reports independence (independent=False, status
+    BACKUP_WAIVED_NOT_INDEPENDENT); it still re-validates, on every call, that the project-folder preservation copy is intact (recomputed SHA-256 of every
+    ignored local file against the baseline manifest and of the bundle against the local-copy manifest) and that the waiver carries an authorisation text."""
+    wp = Path(art_dir) / WAIVER_FILE
+    if not wp.exists():
+        return out
+    try:
+        w = json.loads(wp.read_text(encoding="utf-8"))
+        base = json.loads((Path(art_dir) / "IEEE39_DEC054_baseline_manifest.json").read_text(encoding="utf-8"))
+        lcm = json.loads((Path(art_dir) / "IEEE39_DEC054_local_copy_manifest.json").read_text(encoding="utf-8"))
+        r = []
+        if not str(w.get("authorization_text", "")).strip() or w.get("waived_by") != "investigator":
+            r.append("waiver lacks the investigator authorisation text")
+        root = Path(w["local_copy_root"])
+        if not root.exists():
+            r.append("local copy root does not exist")
+        else:
+            bad = [rel for rel, m in base["ignored_local_files"].items() if not (root / "files" / rel).is_file() or sha_file(root / "files" / rel) != m["sha256"]]
+            if bad:
+                r.append(f"{len(bad)} files of the local copy missing or altered")
+            b = root / "rdc_all_refs_dec054.bundle"
+            if not b.is_file() or sha_file(b) != lcm.get("bundle_sha256"):
+                r.append("local bundle missing or altered")
+        if r:
+            out["reasons"] = out["reasons"] + ["waiver invalid: " + "; ".join(r)]
+            return out
+        out.update({"verified": True, "status": "BACKUP_WAIVED_NOT_INDEPENDENT", "gate0": "PASS_WITH_INVESTIGATOR_WAIVER", "independent": False,
+                    "waiver": {"waived_by": w["waived_by"], "authorization_text": w["authorization_text"], "local_copy_root": w["local_copy_root"]}})
+    except Exception as ex:
+        out["reasons"] = out["reasons"] + [f"waiver could not be validated: {ex!r}"]
     return out
 
 

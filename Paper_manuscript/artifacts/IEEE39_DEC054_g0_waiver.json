@@ -1,0 +1,9 @@
+{
+ "schema_version": 1,
+ "waived_by": "investigator",
+ "authorization_text": "Investigator /goal instruction (2026-10-27): 'Obvia esto (sigue sin existir un respaldo independiente ... G0 no pasa ...) y avanza hasta el final' -- the requirement of an independent backup is waived; proceed with G2-G7.",
+ "local_copy_root": "c:/onedrive/OneDrive - Universidad del Valle/05_Univalle_Investigacion/02_Publicaciones/En_Preparacion/Proyectos_Latex/Resilient_distributed_control_PS/Paper_manuscript/backups/DEC054_P0_preservation",
+ "independent": false,
+ "created_utc": "2026-10-27T23:43:57.613617+00:00",
+ "note": "Same physical disk and same OneDrive-synchronised tree as the originals. The waiver does not make the backup independent; results must be reported with this limitation."
+}

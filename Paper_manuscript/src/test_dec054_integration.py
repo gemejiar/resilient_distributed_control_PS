@@ -86,8 +86,10 @@ class TestVariablesAndZref(unittest.TestCase):
             self.assertAlmostEqual(float(sys.PV.v0.v[k]), z[9 + COM.UNIT_BUS.index(int(b))])
 
     def test_adapter_refuses_without_backup(self):
-        with self.assertRaises(RuntimeError):
-            PL.AndesPlant()
+        import unittest.mock as M
+        with M.patch.object(PL, "backup_gate", return_value={"verified": False}):
+            with self.assertRaises(RuntimeError):
+                PL.AndesPlant()
 
 
 class TestInitValidity(unittest.TestCase):
@@ -341,10 +343,11 @@ class TestRunnerPersistence(unittest.TestCase):
 
 
 class TestRealRepositoryStateUnchanged(unittest.TestCase):
-    def test_gate_blocked_and_ledger_empty(self):
-        self.assertFalse(COM.backup_gate()["verified"])
+    def test_gate_never_independent_and_ledger_has_header(self):
+        self.assertFalse(COM.backup_gate()["independent"])
         lines = (COM.ART / "IEEE39_DEC054_tds_ledger.csv").read_text().strip().splitlines()
-        self.assertEqual(len(lines), 1)
+        self.assertTrue(lines[0].startswith("tds_id,block"))
+        self.assertLessEqual(sum(1 for l in lines[1:] if ",REQUESTED," in l), 48)
 
     def test_runs_dir_is_inside_the_paper_folder(self):
         self.assertIn("Paper_manuscript", str(COM.RUNS_DIR).replace("\\", "/"))

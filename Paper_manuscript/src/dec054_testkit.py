@@ -70,3 +70,42 @@ def make_art(verified: bool, tamper: str | None = None, same_device: bool = Fals
     if not same_device:
         _DEST_ROOTS.append(ev["destination_root"] if tamper != "overlap" else str(dest))
     return art
+
+
+def make_waiver_art(tamper: str | None = None, text: str = "investigator: proceed without the independent backup") -> Path:
+    """Artifacts dir with a baseline manifest, a local-copy manifest and a waiver pointing at a self-consistent local copy (same device)."""
+    art = make_art(False)
+    base = json.loads((art / "IEEE39_DEC054_baseline_manifest.json").read_text())
+    # reuse the 'dest' tree created by make_art as the local copy root
+    import re
+    root = None
+    for rel, m in base["ignored_local_files"].items():
+        pass
+    # locate the dest folder: make_art placed files under <root>/dest/files/...; find via a sibling search of tempdir is brittle, so rebuild explicitly
+    root = Path(tempfile.mkdtemp()) / "localcopy"
+    for rel, m in base["ignored_local_files"].items():
+        f = root / "files" / rel
+        f.parent.mkdir(parents=True, exist_ok=True)
+        if rel.endswith(".npz"):
+            np.savez_compressed(f, x=np.arange(7))
+        else:
+            f.write_text("log")
+        m["sha256"], m["bytes"] = COM.sha_file(f), f.stat().st_size
+    (art / "IEEE39_DEC054_baseline_manifest.json").write_text(json.dumps(base))
+    bundle = root / "rdc_all_refs_dec054.bundle"
+    bundle.write_bytes(b"fake-bundle")
+    (art / "IEEE39_DEC054_local_copy_manifest.json").write_text(json.dumps({"bundle_sha256": COM.sha_file(bundle)}))
+    w = {"schema_version": 1, "waived_by": "investigator", "authorization_text": text, "local_copy_root": str(root)}
+    if tamper == "no_text":
+        w["authorization_text"] = " "
+    elif tamper == "not_investigator":
+        w["waived_by"] = "codex"
+    (art / COM.WAIVER_FILE).write_text(json.dumps(w))
+    if tamper == "bad_file":
+        next(iter((root / "files").rglob("*.npz"))).write_bytes(b"altered")
+    elif tamper == "bad_bundle":
+        bundle.write_bytes(b"altered bundle")
+    elif tamper == "missing_root":
+        import shutil
+        shutil.rmtree(root)
+    return art

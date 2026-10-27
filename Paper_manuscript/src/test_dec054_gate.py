@@ -17,11 +17,13 @@ class TestGateFromEvidence(unittest.TestCase):
     def setUp(self):
         K.install_stub(self)
 
-    def test_real_repository_is_blocked_and_says_why(self):
+    def test_real_repository_gate_is_waived_and_never_independent(self):
         g = COM.backup_gate()
-        self.assertFalse(g["verified"])
-        self.assertEqual(g["gate0"], "STOP_BACKUP_NOT_VERIFIED")
-        self.assertTrue(any("does not exist" in r for r in g["reasons"]))
+        self.assertFalse(g["independent"])                                    # no independent backup exists
+        self.assertIn(g["status"], ("BACKUP_WAIVED_NOT_INDEPENDENT", "INDEPENDENT_EVIDENCE_INVALID", "NO_INDEPENDENT_EVIDENCE"))
+        if g["verified"]:
+            self.assertEqual(g["gate0"], "PASS_WITH_INVESTIGATOR_WAIVER")
+        self.assertTrue(any("independent_backup_verification" in r for r in g["reasons"]))
 
     def test_old_p0_booleans_cannot_unlock(self):
         art = K.make_art(False)
@@ -78,6 +80,41 @@ class TestGateFromEvidence(unittest.TestCase):
         art2 = K.make_art(True)
         led2 = COM.TdsLedger(art2 / "l.csv", art_dir=art2)
         self.assertEqual(led2.request("P3-A", "s", "M3", "r1", "audit"), "TDS01")
+
+
+class TestWaiver(unittest.TestCase):
+    def setUp(self):
+        K.install_stub(self)
+
+    def test_waiver_unlocks_but_never_claims_independence(self):
+        g = COM.backup_gate(K.make_waiver_art())
+        self.assertTrue(g["verified"], g["reasons"])
+        self.assertEqual(g["status"], "BACKUP_WAIVED_NOT_INDEPENDENT")
+        self.assertEqual(g["gate0"], "PASS_WITH_INVESTIGATOR_WAIVER")
+        self.assertFalse(g["independent"])
+        self.assertIn("authorization_text", g["waiver"])
+
+    def test_invalid_waivers_do_not_unlock(self):
+        for t in ("no_text", "not_investigator", "bad_file", "bad_bundle", "missing_root"):
+            g = COM.backup_gate(K.make_waiver_art(tamper=t))
+            self.assertFalse(g["verified"], t)
+
+    def test_waiver_is_revalidated_after_corruption(self):
+        art = K.make_waiver_art()
+        self.assertTrue(COM.backup_gate(art)["verified"])
+        w = json.loads((art / COM.WAIVER_FILE).read_text())
+        f = next(iter((Path(w["local_copy_root"]) / "files").rglob("*.npz")))
+        f.write_bytes(b"bit rot")
+        self.assertFalse(COM.backup_gate(art)["verified"])
+
+    def test_real_independent_evidence_takes_precedence(self):
+        art = K.make_art(True)
+        g = COM.backup_gate(art)
+        self.assertEqual(g["status"], "BACKUP_VERIFIED")
+        self.assertTrue(g["independent"])
+
+    def test_no_waiver_no_evidence_blocked(self):
+        self.assertFalse(COM.backup_gate(K.make_art(False))["verified"])
 
 
 def _git(cwd, *a):
