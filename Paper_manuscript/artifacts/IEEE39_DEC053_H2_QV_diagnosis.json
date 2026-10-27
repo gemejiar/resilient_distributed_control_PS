@@ -1,0 +1,15 @@
+{
+ "horizon_s": 1999.9922875,
+ "sample_dt_s": 0.390625,
+ "unit_bus_V_err_vs_1pu_mean": 0.003217082950833594,
+ "unit_bus_V_err_vs_1pu_max": 0.008345629033298496,
+ "all39_V_err_vs_1pu_mean": 0.013953765983016307,
+ "all39_V_err_vs_1pu_max": 0.04057113896295017,
+ "unit_V_at_relative_equilibrium_vs_1pu_mean": 0.0032214118296838845,
+ "unit_V_at_relative_equilibrium_vs_1pu_max": 0.00840586799774945,
+ "unit_V_t1999_minus_equilibrium_max": 6.023896445095378e-05,
+ "DEC050_reported_mean_V_err": 0.0032,
+ "DEC050_reported_max_V_err": 0.0083,
+ "tau_fit_s_unit_V_deviation_100_1200s": 396.33106215276126,
+ "note": "V error vs 1 pu is a regulation-quality metric; V error vs the real RDC equilibrium measures non-convergence. The equilibrium lies away from 1 pu by construction (Q consensus/leakage trade-off); both reported separately."
+}

@@ -1,0 +1,35 @@
+{
+ "stage": "DEC-053",
+ "base_commit": "a290e87ecff031b0ba7887b41595e471a2978e65",
+ "protocol_sha256": "bb512856fc296e0d9424a94a2ca758fdb048e1c814473934e1c9b8ae64173bdb",
+ "tds_budget": {
+  "max": 4,
+  "executed_new": 0,
+  "failed_new": 0,
+  "counter_before": 0,
+  "counter_after": 0,
+  "reason": "controller contrast available (C2t B0/B1/B2 matched); candidate policy not defined; B1 x R35_040 cell judged not worth a TDS"
+ },
+ "gates": {
+  "A": "PASSED: 51-row inventory, 10 comparability pairs, SHA-256 of all 21 files > 10 MB recorded; recorded series hashes match (7/7)",
+  "B": "PASSED_WITH_FINDINGS: H2 classified by sub-objective (see report); pairs CAUSALLY_COMPARABLE only for same plant/dispatch/event; factorial MISSING",
+  "C": "PASSED_WITH_FINDINGS: historical rule replayed exactly; empirical predictor; no prospective policy validated",
+  "D": "PASSED: constraints dictionary and 10-unit/39-bus compliance table; no TDS needed; GATE D budget unused",
+  "E": "PASSED: claims_final (24), master metrics, evidence map, gaps"
+ },
+ "task_status": {
+  "A": "PASS",
+  "B": "PASS_WITH_FINDINGS",
+  "C": "PARTIAL",
+  "D": "PASS_WITH_FINDINGS",
+  "E": "PASS"
+ },
+ "series_hash_mismatches": [],
+ "protected_files_diff_vs_a290e87": "none",
+ "limitations": [
+  "20 raw series > 10 MB are local-only (AT_RISK_LOCAL_ONLY)",
+  "no prospective reserve policy frozen/validated",
+  "B1 x R35_040 cell missing",
+  "DEC-052 limitations on H4 unchanged"
+ ]
+}

@@ -1,0 +1,142 @@
+{
+ "E8_P+": {
+  "label": "C2t B2 P+",
+  "violating_unit_quantities": [
+   "SG31:P"
+  ],
+  "min_margin": {
+   "P": {
+    "unit": "SG31",
+    "margin_pu": -0.0699477953653016,
+    "t_s": 5.00400625
+   },
+   "Q": {
+    "unit": "SG30",
+    "margin_pu": 0.46675393601379933,
+    "t_s": 5.00400625
+   },
+   "S": {
+    "unit": "GFM32",
+    "margin_pu": 0.8693195951018247,
+    "t_s": 200.0
+   }
+  },
+  "V_min_pu_all_39_after_start": 0.980543284425219,
+  "n_buses_ever_outside_band": 21
+ },
+ "E9B0_Vsafe_R35_040_P+": {
+  "label": "R35_040 B2 P+",
+  "violating_unit_quantities": [],
+  "min_margin": {
+   "P": {
+    "unit": "SG35",
+    "margin_pu": 0.024535226735743265,
+    "t_s": 7.78135
+   },
+   "Q": {
+    "unit": "SG30",
+    "margin_pu": 0.5092691812896188,
+    "t_s": 5.00400625
+   },
+   "S": {
+    "unit": "SG31",
+    "margin_pu": 0.8990391170901306,
+    "t_s": 5.00400625
+   }
+  },
+  "V_min_pu_all_39_after_start": 0.9728535622493032,
+  "n_buses_ever_outside_band": 0
+ },
+ "E9B0_Vsafe_R35_040_Q+": {
+  "label": "R35_040 B2 Q+",
+  "violating_unit_quantities": [],
+  "min_margin": {
+   "P": {
+    "unit": "SG35",
+    "margin_pu": 0.09935749448018338,
+    "t_s": 5.34775625
+   },
+   "Q": {
+    "unit": "SG30",
+    "margin_pu": 0.5906319314021852,
+    "t_s": 5.03525625
+   },
+   "S": {
+    "unit": "SG31",
+    "margin_pu": 1.015413991200644,
+    "t_s": 5.0079125
+   }
+  },
+  "V_min_pu_all_39_after_start": 0.9748824197911924,
+  "n_buses_ever_outside_band": 0
+ },
+ "E8_Q+": {
+  "label": "C2t B2 Q+",
+  "violating_unit_quantities": [],
+  "min_margin": {
+   "P": {
+    "unit": "SG31",
+    "margin_pu": 0.0345707976376346,
+    "t_s": 5.3751
+   },
+   "Q": {
+    "unit": "SG30",
+    "margin_pu": 0.549687810103513,
+    "t_s": 5.015725
+   },
+   "S": {
+    "unit": "GFM32",
+    "margin_pu": 0.9537289984264694,
+    "t_s": 200.0
+   }
+  },
+  "V_min_pu_all_39_after_start": 0.9805513884320188,
+  "n_buses_ever_outside_band": 21
+ },
+ "DEC051_H3_sim1": {
+  "label": "R35_040 B2 P+ 64.4204 MW bus 4",
+  "violating_unit_quantities": [],
+  "min_margin": {
+   "P": {
+    "unit": "SG31",
+    "margin_pu": 0.013696257331728745,
+    "t_s": 5.00400625
+   },
+   "Q": {
+    "unit": "SG30",
+    "margin_pu": 0.4938984090852925,
+    "t_s": 5.00400625
+   },
+   "S": {
+    "unit": "SG31",
+    "margin_pu": 0.8859982173300649,
+    "t_s": 5.00400625
+   }
+  },
+  "V_min_pu_all_39_after_start": 0.9721466131783657,
+  "n_buses_ever_outside_band": 0
+ },
+ "DEC051_H3_sim2": {
+  "label": "R35_040 B2 P+ 58.564 MW bus 18",
+  "violating_unit_quantities": [],
+  "min_margin": {
+   "P": {
+    "unit": "SG35",
+    "margin_pu": 0.022959720050960364,
+    "t_s": 7.78515625
+   },
+   "Q": {
+    "unit": "SG30",
+    "margin_pu": 0.5415142810694362,
+    "t_s": 6.17578125
+   },
+   "S": {
+    "unit": "SG31",
+    "margin_pu": 0.9640286907956375,
+    "t_s": 5.00390625
+   }
+  },
+  "V_min_pu_all_39_after_start": 0.972470708006814,
+  "n_buses_ever_outside_band": 0
+ }
+}

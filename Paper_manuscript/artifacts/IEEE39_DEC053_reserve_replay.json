@@ -1,0 +1,166 @@
+{
+ "mode": "HISTORICAL_RULE_REPLAY",
+ "git_commit": "a290e87ecff031b0ba7887b41595e471a2978e65",
+ "tds_steps": 0,
+ "rule": "Vsafe initial condition (B3-A d=0 AC selection v1 S0, imposed on PV p0/v0) then p0[SG35] -= delta; p0[GFM_b] += delta*w_b; w_b = max(minPmargin_b(B2,P+,C2t_Vsafe),0)/sum, margins read from IEEE39_E9B0_variant.json",
+ "weights_recomputed": {
+  "32": 0.09201962832066363,
+  "37": 0.7671226417463219,
+  "34": 0.12181160989376492,
+  "36": 0.01904612003924949
+ },
+ "weights_stored_search": {
+  "32": 0.09201962832066363,
+  "37": 0.7671226417463219,
+  "34": 0.12181160989376492,
+  "36": 0.01904612003924949
+ },
+ "weights_max_abs_diff": 0.0,
+ "inputs_sha256": {
+  "IEEE39_E9B0_variant.json": "d8324195e6f008408adf548f4a7b6cddc648e51ad4c9d4f602a9e59e10e9924e",
+  "IEEE39_E9B0_redispatch_search.json": "2daca3c8685d43b0c05de9c8798be17afb8b1a6a63d246d3c4bfcc901b00ecbd",
+  "IEEE39_E9B0_variant_R35_040.json": "f22e0253c4dafd1bdd7663e95e34728c9e5a271c6bbe357f95b9f1dfc68201f9",
+  "IEEE39_E9B0_initial_condition_R35_040_units.csv": "8eb05ed6536cb8d5d535791916cd6162a249d2aca5f77db33bac8b8893d4ae9e"
+ },
+ "code_sha256": {
+  "e9b_variant.py": "556b6d893871978d2337999d7e5b570560a4e9d380c076b3f10200a84d208ba8",
+  "run_e9b0_redispatch.py": "c1505f8c22dd72a611b95da8767c5ec8a6c885822ea1694c90795be1828bec95",
+  "run_dec051_h3_jump.py": "bbf958fef26b00eec70760c61e2df1c73ad536e51683cc71814d2b6313370116"
+ },
+ "provenance": {
+  "delta_min_bisection_pu": 0.01458984375,
+  "delta_R35_frozen_by_rule_pu": 0.015,
+  "rule_for_R35": "frozen delta = delta_min rounded up to the next multiple of 0.005 pu (declared before running); the investigator can replace it",
+  "delta_R35_040": "0.040 pu was NOT produced by the bisection rule: it is an investigator-selected increase (DEC-044/045) that raises the SG35 transient margin from 4.1e-4 to 2.45e-2 pu (required >= 0.020 pu). It is not an automatic optimum.",
+  "simulation_dependence": "(i) the receiver weights use minimum P margins of the GFMs observed in a TDS of the SAME event (P+ 58.564 MW at bus 4) on C2t_Vsafe; (ii) delta_min comes from a 30 s B2 TDS bisection on that event. For that event the rule is in-sample (calibration = event); it is not a pre-event-data-only rule.",
+  "separation": {
+   "Vsafe": "voltage set-points v0 and P dispatch of the B3-A AC selection (ANDES PFlow initial condition)",
+   "SG31_correction": "inside Vsafe: SG31 pre-event P lowered from 6.46 to 6.361 pu by the B3-A equilibrium (reserve 0.040 -> 0.1389 pu); no separate hook",
+   "R35": "incremental SG35 -> GFM transfer (delta=0.015 by bisection), R35_040 delta=0.040 (chosen)"
+  }
+ },
+ "replay": {
+  "R35_040": {
+   "unit": [
+    "SG30",
+    "SG31",
+    "SG33",
+    "SG35",
+    "SG38",
+    "SG39",
+    "GFM32",
+    "GFM37",
+    "GFM34",
+    "GFM36"
+   ],
+   "P_pre_Vsafe_pu": [
+    4.470895483426772,
+    6.361085508216943,
+    6.459039491221805,
+    6.900299999999998,
+    7.74013660902378,
+    5.752134334112395,
+    7.125882480047935,
+    3.263415554041843,
+    5.067352582257093,
+    5.832555515227655
+   ],
+   "P_pre_replayed_pu": [
+    4.470895483426771,
+    6.361085508216943,
+    6.459039491221807,
+    6.8603,
+    7.740136609023779,
+    5.751857356257235,
+    7.129563265180761,
+    3.2941004597116956,
+    5.072225046652844,
+    5.833317360029225
+   ],
+   "dP0_pu": [
+    -8.881784197001252e-16,
+    0.0,
+    1.7763568394002505e-15,
+    -0.03999999999999826,
+    -1.7763568394002505e-15,
+    -0.0002769778551607871,
+    0.0036807851328264363,
+    0.030684905669852824,
+    0.004872464395750953,
+    0.000761844801569822
+   ],
+   "P_pre_stored_csv_pu": [
+    4.470895483426771,
+    6.361085508216943,
+    6.459039491221807,
+    6.8603,
+    7.740136609023779,
+    5.751857356257235,
+    7.129563265180761,
+    3.2941004597116956,
+    5.072225046652844,
+    5.833317360029225
+   ],
+   "max_abs_diff_replay_vs_stored_pu": 0.0,
+   "expected_dP0_pu": [
+    0.0,
+    0.0,
+    0.0,
+    -0.04,
+    0.0,
+    0.0,
+    0.003680785132826545,
+    0.03068490566985288,
+    0.004872464395750597,
+    0.0007618448015699796
+   ],
+   "slack_and_losses_absorb_difference_pu": 0.0002769778551607871,
+   "reserve_R_i_pu": [
+    5.929104516573229,
+    0.1389144917830567,
+    0.3609605087781933,
+    0.10970000000000013,
+    0.9098633909762217,
+    5.248142643742765,
+    0.370436734819239,
+    2.345899540288304,
+    0.4277749533471562,
+    0.11668263997077499
+   ]
+  },
+  "R35": {
+   "P_pre_replayed_pu": [
+    4.470895483426771,
+    6.361085508216941,
+    6.459039491221805,
+    6.885299999999999,
+    7.740136609023777,
+    5.752028682379153,
+    7.127262774472745,
+    3.274922393668038,
+    5.069179756405499,
+    5.8328412070282445
+   ],
+   "reserve_R_i_pu": [
+    5.929104516573229,
+    0.13891449178305937,
+    0.3609605087781951,
+    0.08470000000000066,
+    0.9098633909762235,
+    5.247971317620847,
+    0.3727372255272554,
+    2.365077606331962,
+    0.4308202435945008,
+    0.11715879297175569
+   ]
+  }
+ },
+ "reproduced": true,
+ "diagnostic_static_headroom_weights_NOT_A_CANDIDATE": {
+  "32": 0.11334167926412346,
+  "37": 0.7200038962420339,
+  "34": 0.13107374619224135,
+  "36": 0.035580678301601276
+ },
+ "status": "REPLAYED_FROM_IDENTIFIED_INPUTS"
+}

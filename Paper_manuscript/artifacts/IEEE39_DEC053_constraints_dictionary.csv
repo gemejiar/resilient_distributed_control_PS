@@ -1,0 +1,66 @@
+row_type,id,description,scope,source,status,implementation_note,claim_limit,Pn_pu,Pmin_pu,Pmax_pu,Qmin_pu,Qmax_pu,Smax_pu,device_model,pu_base
+constraint,C-P-max,P <= Pmax_i,10 units,"case PV/Slack pmax (e.g. SG31 6.50, SG35 6.97 pu)",APPROXIMATED,"Checked in post-processing against the case data; ANDES TGOV1N VMAX (1.05 Sn: SG31 8.778 pu) and REGF1 internal Pmax=Sn/100 are 1.1-2.0x looser, so ANDES itself does not enforce the case Pmax.",violation_simulated is a statement about this case limit only,,,,,,,,system base 100 MVA
+constraint,C-P-min,P >= Pmin_i,10 units,case pmin = 0,APPROXIMATED,Same as Pmax (post-processing); GFM REGF1 allows negative P (-Sn/100).,,,,,,,,,system base 100 MVA
+constraint,C-Q-max-min,Qmin_i <= Q <= Qmax_i,10 units,case qmax/qmin,APPROXIMATED,Checked in post-processing; SG excitation limited only through IEEEX1 VRMAX/VRMIN; REGF1 internal Q limit Sn/100.,,,,,,,,,system base 100 MVA
+constraint,C-S-max,sqrt(P^2+Q^2) <= Smax_i = Sn_i/100,10 units,GENROU/REGF1 Sn,APPROXIMATED,Apparent power of the bus injection; not a stator-current/field-current capability curve.,S margin does not prove capability-curve compliance,,,,,,,,system base 100 MVA
+constraint,C-V-band,0.95 <= V_b <= 1.05 pu,39 buses,original band,MODELLED,Assessed for every bus of the simulated plant (positive sequence RMS). Pre-event: historical C2t 0.9808-1.0730 pu (21 buses > 1.05); C2t_Vsafe_R35_040 0.9794-1.0444 pu.,"Band compliance is a simulated outcome, not a protection function",,,,,,,,system base 100 MVA
+constraint,C-Pref-Qref,Pset/Qset reference margins,10 units,RDC internal references,MODELLED,References are RDC states; margins of references are reported separately and are never used to claim physical compliance.,,,,,,,,,system base 100 MVA
+constraint,C-RoCoF-rate,unit ramp-rate / governor rate limits,10 units,-,NOT_MODELLED,Rates (e.g. max dPset/dt 0.6 pu/s) are reported; no rate limit is defined in the E8 realisation.,,,,,,,,,system base 100 MVA
+constraint,C-field-OEL,"field-current / over-excitation limiter, UEL, stator thermal",6 SG,-,NOT_MODELLED,GENROU+IEEEX1 without OEL/UEL; Q limits are not capability-curve based.,No claim on SG capability curves,,,,,,,,system base 100 MVA
+constraint,C-converter-I,"converter current limit, sub-cycle behaviour",4 GFM,-,NOT_OBSERVABLE,REGF1 is a positive-sequence RMS model; sub-cycle/EMT current limiting is invisible.,No EMT protection claim,,,,,,,,system base 100 MVA
+constraint,C-SoC-energy,BESS state of charge / energy / DC link,4 GFM,-,NOT_MODELLED,REGF1 has no energy storage state; energy and SoC indicators are not available.,Do not assume unlimited energy as a result,,,,,,,,system base 100 MVA
+constraint,C-protection,"frequency/voltage relays, tripping, load shedding",system,-,NOT_MODELLED,No protection or tripping logic in the plant.,,,,,,,,,system base 100 MVA
+constraint,C-unbalance,unbalanced faults / negative sequence,system,-,NOT_MODELLED,Positive-sequence only.,,,,,,,,,system base 100 MVA
+constraint,C-N-1,N-1 contingencies and topology changes,system,-,NOT_MODELLED,Topology fixed; no N-1 tested.,,,,,,,,,system base 100 MVA
+constraint,C-comm-delay,communication delay / loss,RDC graph,"ring buffer (E15, DEC-050 C)",APPROXIMATED,"Fixed delays 0.2, 0.5 (ok), 0.75 (degraded: 22 buses outside band), 1.0 (violated), 5 s (diverged); no packet loss or time-varying delay.",,,,,,,,,system base 100 MVA
+constraint,C-sampling,between-sample compliance,all,dt = 2^-8 s,NOT_OBSERVABLE,Violations between stored samples cannot be excluded; fixed-step trapezoid.,No safety-between-samples claim,,,,,,,,system base 100 MVA
+constraint,C-cert,certified forward invariance of the safe set,system,-,NOT_MODELLED,No CLF/HOCBF certificate exists (DEC-052: region NOT_CERTIFIED); only simulated and predicted compliance.,Distinguish simulated violation from unavailable certificate,,,,,,,,system base 100 MVA
+unit_limits,SG30,"unit P/Q/S limits (case data, system base)",SG30,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,4.360863850000001,0.0,10.4,-0.58084,1.5318,10.4,GENROU+TGOV1N+IEEEX1+IEEEST (PSS),system base 100 MVA
+unit_limits,SG31,"unit P/Q/S limits (case data, system base)",SG31,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,6.459999979999998,0.0,6.5,-1.22665,4.298039999999999,8.36,GENROU+TGOV1N+IEEEX1+IEEEST (PSS),system base 100 MVA
+unit_limits,SG33,"unit P/Q/S limits (case data, system base)",SG33,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,6.5199999800000015,0.0,6.82,-2.1378,5.48208,11.748,GENROU+TGOV1N+IEEEX1+IEEEST (PSS),system base 100 MVA
+unit_limits,SG35,"unit P/Q/S limits (case data, system base)",SG35,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,6.869999980000001,0.0,6.97,-2.34972,5.93788,10.857000000000001,GENROU+TGOV1N+IEEEX1+IEEEST (PSS),system base 100 MVA
+unit_limits,SG38,"unit P/Q/S limits (case data, system base)",SG38,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,7.64783381,0.0,8.65,-3.56889,8.34775,16.840999999999998,GENROU+TGOV1N+IEEEX1+IEEEST (PSS),system base 100 MVA
+unit_limits,SG39,"unit P/Q/S limits (case data, system base)",SG39,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,5.731104244528378,0.0,11.0,-1.73261,5.7485,11.99,GENROU+TGOV1N+IEEEX1+IEEEST (PSS),system base 100 MVA
+unit_limits,GFM32,"unit P/Q/S limits (case data, system base)",GFM32,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,7.24999998,0.0,7.5,-1.80218,4.46722,8.437000000000001,REGF1 (GFM),system base 100 MVA
+unit_limits,GFM37,"unit P/Q/S limits (case data, system base)",GFM37,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,3.21521338,0.0,5.64,-2.16122,4.43468,9.702,REGF1 (GFM),system base 100 MVA
+unit_limits,GFM34,"unit P/Q/S limits (case data, system base)",GFM34,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,5.07999998,0.0,5.5,-1.88028,6.11495,10.802,REGF1 (GFM),system base 100 MVA
+unit_limits,GFM36,"unit P/Q/S limits (case data, system base)",GFM36,E8 unit arrays / PV-Slack / GENROU-REGF1 Sn,APPROXIMATED,,,5.79999998,0.0,5.95,-2.49132,5.683719999999999,10.252,REGF1 (GFM),system base 100 MVA
+bus_limits,bus1,0.95 <= V <= 1.05 pu,bus1,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus2,0.95 <= V <= 1.05 pu,bus2,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus3,0.95 <= V <= 1.05 pu,bus3,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus4,0.95 <= V <= 1.05 pu,bus4,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus5,0.95 <= V <= 1.05 pu,bus5,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus6,0.95 <= V <= 1.05 pu,bus6,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus7,0.95 <= V <= 1.05 pu,bus7,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus8,0.95 <= V <= 1.05 pu,bus8,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus9,0.95 <= V <= 1.05 pu,bus9,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus10,0.95 <= V <= 1.05 pu,bus10,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus11,0.95 <= V <= 1.05 pu,bus11,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus12,0.95 <= V <= 1.05 pu,bus12,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus13,0.95 <= V <= 1.05 pu,bus13,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus14,0.95 <= V <= 1.05 pu,bus14,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus15,0.95 <= V <= 1.05 pu,bus15,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus16,0.95 <= V <= 1.05 pu,bus16,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus17,0.95 <= V <= 1.05 pu,bus17,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus18,0.95 <= V <= 1.05 pu,bus18,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus19,0.95 <= V <= 1.05 pu,bus19,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus20,0.95 <= V <= 1.05 pu,bus20,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus21,0.95 <= V <= 1.05 pu,bus21,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus22,0.95 <= V <= 1.05 pu,bus22,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus23,0.95 <= V <= 1.05 pu,bus23,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus24,0.95 <= V <= 1.05 pu,bus24,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus25,0.95 <= V <= 1.05 pu,bus25,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus26,0.95 <= V <= 1.05 pu,bus26,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus27,0.95 <= V <= 1.05 pu,bus27,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus28,0.95 <= V <= 1.05 pu,bus28,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus29,0.95 <= V <= 1.05 pu,bus29,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus30,0.95 <= V <= 1.05 pu,bus30,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus31,0.95 <= V <= 1.05 pu,bus31,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus32,0.95 <= V <= 1.05 pu,bus32,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus33,0.95 <= V <= 1.05 pu,bus33,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus34,0.95 <= V <= 1.05 pu,bus34,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus35,0.95 <= V <= 1.05 pu,bus35,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus36,0.95 <= V <= 1.05 pu,bus36,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus37,0.95 <= V <= 1.05 pu,bus37,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus38,0.95 <= V <= 1.05 pu,bus38,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal
+bus_limits,bus39,0.95 <= V <= 1.05 pu,bus39,original band,MODELLED,,,,,,,,,positive-sequence bus,pu nominal

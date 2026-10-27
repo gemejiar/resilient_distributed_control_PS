@@ -1,0 +1,103 @@
+{
+ "stored_B2_P+_series_metrics": {
+  "C2t": {
+   "SG31": {
+    "pre_margin_pu": 0.040000020288557536,
+    "first_sample_after_event_margin_pu": -0.04525861713664181,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": -0.0699477953653016,
+    "t_worst_s": 5.00400625,
+    "violation_duration_s": 5.9765625
+   },
+   "SG35": {
+    "pre_margin_pu": 0.10000001999999864,
+    "first_sample_after_event_margin_pu": 0.07647883861591165,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": 0.015006052362968703,
+    "t_worst_s": 7.671975,
+    "violation_duration_s": 0.0
+   }
+  },
+  "C2t_Vsafe": {
+   "SG31": {
+    "pre_margin_pu": 0.1389144917830567,
+    "first_sample_after_event_margin_pu": 0.050833440556580456,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": 0.025014278063643758,
+    "t_worst_s": 5.00400625,
+    "violation_duration_s": 0.0
+   },
+   "SG35": {
+    "pre_margin_pu": 0.06970000000000187,
+    "first_sample_after_event_margin_pu": 0.0486889775901691,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": -0.014057897586826407,
+    "t_worst_s": 7.77744375,
+    "violation_duration_s": 1.47265625
+   }
+  },
+  "C2t_Vsafe_R35": {
+   "SG31": {
+    "pre_margin_pu": 0.13891449178305937,
+    "first_sample_after_event_margin_pu": 0.050834783062931876,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": 0.02501957933255028,
+    "t_worst_s": 5.00400625,
+    "violation_duration_s": 0.0
+   },
+   "SG35": {
+    "pre_margin_pu": 0.08470000000000066,
+    "first_sample_after_event_margin_pu": 0.06365962297967354,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": 0.00041168016092374415,
+    "t_worst_s": 7.77744375,
+    "violation_duration_s": 0.0
+   }
+  },
+  "C2t_Vsafe_R35_040": {
+   "SG31": {
+    "pre_margin_pu": 0.1389144917830567,
+    "first_sample_after_event_margin_pu": 0.05083699927761298,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": 0.025028381317233617,
+    "t_worst_s": 5.00400625,
+    "violation_duration_s": 0.0
+   },
+   "SG35": {
+    "pre_margin_pu": 0.10970000000000013,
+    "first_sample_after_event_margin_pu": 0.08861075492226078,
+    "t_first_sample_s": 5.0001,
+    "worst_temporal_margin_pu": 0.024535226735743265,
+    "t_worst_s": 7.78135,
+    "violation_duration_s": 0.0
+   }
+  }
+ },
+ "algebraic_jump_margins_after_jump": {
+  "C2t": {
+   "SG31": -0.04647414614773915,
+   "SG35": 0.07550380770378418
+  },
+  "C2t + Vsafe voltages only": {
+   "SG31": -0.04904005295122982,
+   "SG35": 0.07785191938172442
+  },
+  "C2t + Vsafe dispatch only": {
+   "SG31": 0.052153291140899505,
+   "SG35": 0.045276011386633286
+  },
+  "C2t_Vsafe": {
+   "SG31": 0.04954865523540608,
+   "SG35": 0.04763606626244066
+  },
+  "C2t_Vsafe_R35 (0.015)": {
+   "SG31": 0.049549996592659795,
+   "SG35": 0.06260855635453755
+  },
+  "C2t_Vsafe_R35_040": {
+   "SG31": 0.049552210480891645,
+   "SG35": 0.08756276335468538
+  }
+ },
+ "reading": "SG31 (C2t): algebraic jump margin -0.0465 pu at t=0+ (fast) vs worst temporal margin -0.0699 pu (fast + 0.15 s after); SG35 worst margin occurs ~7.8 s (slow electromechanical). Voltage-only Vsafe does not change SG31 (-0.0490); dispatch-only gives +0.0522: the SG31 benefit is dispatch. R35 adds SG35 margin only. OPEN-SG31-PMAX (original C2t) remains open."
+}

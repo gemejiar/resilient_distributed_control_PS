@@ -1,0 +1,257 @@
+{
+ "stage": "DEC-053 A/E5",
+ "git_head": "a290e87ecff031b0ba7887b41595e471a2978e65",
+ "base_commit": "a290e87ecff031b0ba7887b41595e471a2978e65",
+ "branch": "review/dec053-methodology-closure",
+ "remote_main_expected": "1a023d8fa333e62eb716e57a4d67561bb63ea3d0",
+ "protocol_sha256": "bb512856fc296e0d9424a94a2ca758fdb048e1c814473934e1c9b8ae64173bdb",
+ "python": "3.12.10",
+ "andes": "2.0.0",
+ "numpy": "2.5.4",
+ "scipy": "1.18.1",
+ "platform": "Windows-11-10.0.26200-SP0",
+ "seeds": "none (deterministic ANDES trapezoid TDS; SLSQP start points recorded in stage JSONs)",
+ "tds_new_executed": 0,
+ "tds_new_failed": 0,
+ "tds_budget_max": 4,
+ "pairing_consistency": {
+  "E7t_P+__E8_P+": {
+   "max_abs_preP_diff_pu": 0.0,
+   "max_abs_preV_diff_pu": 0.0,
+   "dt_equal": true
+  },
+  "E5t_P+__E8_P+": {
+   "max_abs_preP_diff_pu": 8.881784197001252e-16,
+   "max_abs_preV_diff_pu": 0.0,
+   "dt_equal": true
+  },
+  "E6t_P+__E8_P+": {
+   "max_abs_preP_diff_pu": 0.0,
+   "max_abs_preV_diff_pu": 0.0,
+   "dt_equal": true
+  },
+  "E7t_Q+__E8_Q+": {
+   "max_abs_preP_diff_pu": 0.0,
+   "max_abs_preV_diff_pu": 0.0,
+   "dt_equal": true
+  },
+  "E5t_Q+__E8_Q+": {
+   "max_abs_preP_diff_pu": 8.881784197001252e-16,
+   "max_abs_preV_diff_pu": 0.0,
+   "dt_equal": true
+  }
+ },
+ "missing_files": [],
+ "big_series": [
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E6_C2t_timeseries.npz",
+   "bytes": 10716802,
+   "sha256": "7221b68b47f41f32cdf9a9ae1120c8ffcfd4fa6429204024fbbe188deba21d61",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e6_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E7_C2t_timeseries.npz",
+   "bytes": 60267725,
+   "sha256": "cd4be2572c05cec8665c3a274d653919bd9a4e139e13e810b29b78833218e23c",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e7_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E8_C2t_timeseries.npz",
+   "bytes": 116882987,
+   "sha256": "fe59f362ceb3f96a17e4dc90249031c5cb7d37a495da8786f886d5d5547f2422",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e8_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_series.npz",
+   "bytes": 66686764,
+   "sha256": "3ae85aa4377e51d4d6745220a2aea643f1cdf664f9258b6e3cbb57e8046b8253",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e9b0_variant.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_R35_series.npz",
+   "bytes": 66686873,
+   "sha256": "e535e941b3aa4b466e6b6ba680cd6e04c47a03799abc6ae161a4556c2877fe8b",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e9b0_variant.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E9B0_Vsafe_R35_040_series.npz",
+   "bytes": 66696953,
+   "sha256": "8bc40cddbe5d290552162d9ff5d18ff6a6c137beea329e8613c0bc9954453f65",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e9b0_variant.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_DEC050_B_B2QV1_series.npz",
+   "bytes": 145405791,
+   "sha256": "2a55ffa42d29a279189fc5b7274bdec50bf088523a88efcd3b07c390b9ce04d5",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_dec050_b_qv1.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_B3_C2t_S0_timeseries.npz",
+   "bytes": 67588989,
+   "sha256": "d34a55e50effbb0c3f0873757242df82ab551663872141d5bafa213e8dd19efa",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_b3_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_B3_C2t_Pplus_timeseries.npz",
+   "bytes": 112901940,
+   "sha256": "ea5364c6ff1c71a88aaebd7b19bf1b389764999864a33a31aae9b8ff682afef7",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_b3_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_B3_C2t_Qplus_timeseries.npz",
+   "bytes": 110972560,
+   "sha256": "a90724f8ee38b0ee1c693a9fed44b6c1d8d6eec8697d56f438789c1c65acb430",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_b3_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E3_C0a_timeseries.npz",
+   "bytes": 10018594,
+   "sha256": "30034b851ecebf59e2f1485285c989e73e2b53e2b5612ffce48e5bd9990ecf81",
+   "in_git": true,
+   "backup": "git tracked",
+   "status": "TRACKED",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E4_C1_timeseries.npz",
+   "bytes": 10567023,
+   "sha256": "0c4b774c59a5177f0d734e0cd74fff457fce53ca45310dc8677dead86336f80e",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E4_1_C1a_timeseries.npz",
+   "bytes": 11027907,
+   "sha256": "4b7717bb51ee9348e5150d157741aea140a45f67f1f12eee4b2525e5d4f0c27f",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E4_2_C2_timeseries.npz",
+   "bytes": 11586204,
+   "sha256": "9f3f508003f7ed6d566e8c5f720fb3db0b0117bf6f78a12ad41f9dc40f54ea2f",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E6_C2_timeseries.npz",
+   "bytes": 11085459,
+   "sha256": "6e02d7bc97d17a3507ad62e44bcaa9a0e1f62ea4f8dafa83826adbf52d7cb3f0",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e6_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E7L_C2_timeseries.npz",
+   "bytes": 48010205,
+   "sha256": "168cf1f60f707a76a2f1d0620912d048afb15283a8a2fce7895c1cdf33ac64e3",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/run_e7_ieee39.py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_E9A_replay_series.npz",
+   "bytes": 41272753,
+   "sha256": "99a0205eb690820d5c79f2598b4eccae0ea029d1b35f87507737ad66105c0f11",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_DEC051_H3_sim1_series.npz",
+   "bytes": 15208738,
+   "sha256": "02cc2f245649f60f3f5d78deabdde7c29e7fd42f281049eee6fd7e972781810f",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_DEC051_H3_sim2_series.npz",
+   "bytes": 15238735,
+   "sha256": "c9140a4c1c04c65ea021ec1a47754f32ae6b4f4054993735967e295dc6f81b89",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_DEC051_H4_perturb_plus.npz",
+   "bytes": 18077449,
+   "sha256": "fe873d06a38d33ce0d2af15e5d188dc2d40ee364fc07c864a0de0fed20042385",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  },
+  {
+   "path": "Paper_manuscript/artifacts/IEEE39_DEC051_H4_perturb_minus.npz",
+   "bytes": 18116074,
+   "sha256": "38d67cddccce633fa1ef55350ac24f88bc5493d8a94dad158ec448df71cf2cd0",
+   "in_git": false,
+   "backup": "none verified: gitignored, no remote copy; the folder lies in a OneDrive-synchronised directory (sync state not verified here)",
+   "status": "AT_RISK_LOCAL_ONLY",
+   "regenerable": "yes in principle: deterministic re-run of the stage runner with the frozen case xlsx and ANDES; byte-identical equality not asserted",
+   "reproduce_cmd": "python Paper_manuscript/src/(stage runner).py"
+  }
+ ]
+}
