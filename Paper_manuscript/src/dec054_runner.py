@@ -134,7 +134,7 @@ def run_prospective_scenario(ledger: TdsLedger, frozen_path: Path, src_dir: Path
     """One scenario x M0-M3.  Verifies the gate, the frozen file (incl. one dispatch per method) and the ledger budget BEFORE any ANDES import.
     dry_run=True returns the plan only.  dry_run=False requests one ledger id per method, executes with the FROZEN dispatch of that method, persists the run
     exclusively (also on failure) and only then writes the ledger completion row."""
-    gate = backup_gate(ledger.art_dir)
+    gate = backup_gate(ledger.art_dir, ledger.dev_of)
     if not gate["verified"]:
         raise GateError("STOP_BACKUP_NOT_VERIFIED")
     frozen = verify_frozen(frozen_path, src_dir)

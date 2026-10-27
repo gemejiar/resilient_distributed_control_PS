@@ -73,13 +73,75 @@ class GateError(RuntimeError):
     pass
 
 
-def backup_gate(art_dir: Path | None = None) -> dict:
-    """The only source of truth for the independent-backup gate: backup manifest + preservation test of P0."""
-    art_dir = art_dir or ART
-    bm = json.loads((art_dir / "IEEE39_DEC054_backup_manifest.json").read_text(encoding="utf-8"))
-    pt = json.loads((art_dir / "IEEE39_DEC054_preservation_test.json").read_text(encoding="utf-8"))
-    ok = bm.get("status") == "BACKUP_VERIFIED" and pt.get("independent_backup_verified") is True
-    return {"verified": bool(ok), "status": bm.get("status"), "gate0": bm.get("gate0"), "independent": pt.get("independent_backup_verified")}
+INDEP_EVIDENCE = "IEEE39_DEC054_independent_backup_verification.json"
+INDEP_KINDS = ("other_physical_drive", "authorized_remote_readback")
+
+
+def _default_dev_of(p) -> int:
+    return os.stat(p).st_dev
+
+
+def backup_gate(art_dir: Path | None = None, dev_of=None) -> dict:
+    """Independent-backup gate.  It is NOT a boolean in a P0 manifest: it re-validates, every time it is called, a NEW evidence file
+    (IEEE39_DEC054_independent_backup_verification.json) against the baseline manifest by
+      * requiring a destination on a different device than the source (other physical drive / authorised remote read back to a mounted path),
+      * requiring an explicit authorisation string,
+      * RECOMPUTING the SHA-256 of every ignored local file and of the Git bundle at the destination and comparing them with the baseline manifest,
+      * requiring a recorded restore test (>= 2 NPZ read back + bundle verify/clone).
+    Same-disk copies (even inside the paper folder) cannot satisfy it.  The historical P0 manifests are not consulted."""
+    art_dir = Path(art_dir or ART)
+    dev_of = dev_of or _default_dev_of
+    out = {"verified": False, "status": "NO_INDEPENDENT_EVIDENCE", "gate0": "STOP_BACKUP_NOT_VERIFIED", "independent": False, "reasons": []}
+    evp = art_dir / INDEP_EVIDENCE
+    if not evp.exists():
+        out["reasons"].append(f"{INDEP_EVIDENCE} does not exist")
+        return out
+    reasons = []
+    try:
+        ev = json.loads(evp.read_text(encoding="utf-8"))
+        base = json.loads((art_dir / "IEEE39_DEC054_baseline_manifest.json").read_text(encoding="utf-8"))
+        files = base["ignored_local_files"]
+        if ev.get("destination_kind") not in INDEP_KINDS:
+            reasons.append(f"destination_kind must be one of {INDEP_KINDS}")
+        if not str(ev.get("authorized_by", "")).strip():
+            reasons.append("authorized_by is empty")
+        dest, src = Path(ev["destination_root"]), Path(ev["source_root"])
+        if not dest.exists():
+            reasons.append("destination_root does not exist")
+        else:
+            if dev_of(dest) == dev_of(src):
+                reasons.append("destination is on the same device as the source (not independent)")
+            rd, rs = dest.resolve(), src.resolve()
+            if rd == rs or rs in rd.parents or rd in rs.parents:
+                reasons.append("destination overlaps the source tree")
+            missing, bad = [], []
+            for rel, m in files.items():
+                f = dest / "files" / rel
+                if not f.is_file():
+                    missing.append(rel)
+                elif sha_file(f) != m["sha256"]:
+                    bad.append(rel)
+            if missing or bad:
+                reasons.append(f"{len(missing)} files missing and {len(bad)} with SHA-256 mismatch at the destination")
+            bundle = dest / "rdc_all_refs_dec054.bundle"
+            rt = ev.get("restore_test", {})
+            if not bundle.is_file() or sha_file(bundle) != rt.get("bundle", {}).get("sha256"):
+                reasons.append("bundle missing or SHA-256 differs from the evidence")
+            b = rt.get("bundle", {})
+            if not (b.get("verify_rc") == 0 and b.get("clone_rc") == 0 and b.get("clone_head_ok") is True):
+                reasons.append("bundle verify/clone restore test not recorded as successful")
+            npz = rt.get("npz", [])
+            ok_npz = [n for n in npz if n.get("readable") is True and n.get("sha256_restored") == n.get("sha256_expected") == files.get(n.get("path"), {}).get("sha256")]
+            if len(ok_npz) < 2:
+                reasons.append("fewer than two NPZ restore tests consistent with the baseline manifest")
+    except Exception as ex:              # malformed evidence is never a pass
+        reasons.append(f"evidence could not be validated: {ex!r}")
+    out["reasons"] = reasons
+    if not reasons:
+        out.update({"verified": True, "status": "BACKUP_VERIFIED", "gate0": "PASS", "independent": True})
+    else:
+        out["status"] = "INDEPENDENT_EVIDENCE_INVALID"
+    return out
 
 
 LEDGER_COLS = ["tds_id", "block", "scenario", "method", "run_id", "purpose", "status", "t_start", "dt", "solver", "notes"]   # same header as the P0 ledger file (header only)
@@ -91,6 +153,7 @@ class TdsLedger:
     are recorded by `complete` (a second append-only row); nothing is ever edited or deleted."""
     path: Path
     art_dir: Path | None = None
+    dev_of: object = None
     rows: list = field(default_factory=list)
 
     def __post_init__(self):
@@ -120,7 +183,7 @@ class TdsLedger:
             raise GateError(f"unknown block {block}")
         if not purpose.strip() or not run_id.strip():
             raise GateError("a TDS needs a run_id and a justification before launch")
-        if not backup_gate(self.art_dir)["verified"]:
+        if not backup_gate(self.art_dir, self.dev_of)["verified"]:
             raise GateError("STOP_BACKUP_NOT_VERIFIED: no TDS may be requested before BACKUP_VERIFIED")
         if any(r["run_id"] == run_id and r["status"] == "REQUESTED" for r in self.rows):
             raise GateError(f"run_id {run_id} already requested (no silent retries)")

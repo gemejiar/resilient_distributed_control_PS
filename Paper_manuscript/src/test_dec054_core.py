@@ -20,6 +20,7 @@ import dec054_predictor as PRD
 import dec054_rdcinit as RI
 import dec054_runner as RUN
 import dec054_synth as SYN
+import dec054_testkit as K
 
 LIM = SYN.LIM
 
@@ -312,11 +313,11 @@ class TestMetrics(unittest.TestCase):
 
 
 class TestLedgerAndGate(unittest.TestCase):
+    def setUp(self):
+        K.install_stub(self)
+
     def _art(self, verified: bool):
-        d = Path(tempfile.mkdtemp())
-        (d / "IEEE39_DEC054_backup_manifest.json").write_text(json.dumps({"status": "BACKUP_VERIFIED" if verified else "BACKUP_BLOCKED", "gate0": "PASS" if verified else "STOP_BACKUP_NOT_VERIFIED"}))
-        (d / "IEEE39_DEC054_preservation_test.json").write_text(json.dumps({"independent_backup_verified": verified}))
-        return d
+        return K.make_art(verified)
 
     def test_real_repository_gate_is_blocked(self):
         g = COM.backup_gate()
@@ -362,17 +363,18 @@ class TestLedgerAndGate(unittest.TestCase):
 
 
 class TestFrozen(unittest.TestCase):
+    def setUp(self):
+        K.install_stub(self)
+
     def test_runner_refuses_without_gate_or_frozen_file(self):
-        art = Path(tempfile.mkdtemp())
-        (art / "IEEE39_DEC054_backup_manifest.json").write_text(json.dumps({"status": "BACKUP_BLOCKED"}))
-        (art / "IEEE39_DEC054_preservation_test.json").write_text(json.dumps({"independent_backup_verified": False}))
+        art = K.make_art(False)
         led = COM.TdsLedger(art / "l.csv", art_dir=art)
         with self.assertRaises(COM.GateError):
             RUN.run_prospective_scenario(led, art / "none.json", Path("."), {"name": "s", "bus": 3})
-        (art / "IEEE39_DEC054_backup_manifest.json").write_text(json.dumps({"status": "BACKUP_VERIFIED"}))
-        (art / "IEEE39_DEC054_preservation_test.json").write_text(json.dumps({"independent_backup_verified": True}))
+        art2 = K.make_art(True)
+        led2 = COM.TdsLedger(art2 / "l.csv", art_dir=art2)
         with self.assertRaises(RUN.FrozenError):
-            RUN.run_prospective_scenario(led, art / "none.json", Path("."), {"name": "s", "bus": 3})
+            RUN.run_prospective_scenario(led2, art2 / "none.json", Path("."), {"name": "s", "bus": 3})
 
     def test_hash_mismatch_detected(self):
         src = Path(tempfile.mkdtemp())

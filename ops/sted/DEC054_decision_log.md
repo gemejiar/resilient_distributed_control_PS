@@ -29,3 +29,12 @@ Blockers: independent backup not verified (STOP_BACKUP_NOT_VERIFIED); 0/48 TDS; 
 Responsible: Integrator
 Status: BLOCKED_AT_BACKUP_GATE (integration corrections and tests delivered)
 Next action: Investigator decision on the backup gate; then P2 technical checks.
+
+## DEC-054 / Campaign S3-S8 — stopped at G0
+Date: 2026-10-27
+Gate: Authorization "DEC-054 — Auditoría ANDES y experimentación prospectiva" (reference commit 6ba6306 named; work continued from remote HEAD f1baf54, its descendant). Attached protocol unavailable; message instructions used.
+Decision: G0 cannot pass: single physical disk, no external drive and no expressly authorised remote destination. Campaign stopped at G0 with 0/48 TDS and no ANDES/PF/TDS/optimisation on IEEE-39. G0 gate logic corrected: backup_gate() now validates NEW independent evidence (recomputed SHA-256 of all files and bundle at a destination on another device, authorisation, NPZ/bundle restore tests); P0 manifests untouched and no longer consulted. Added dec054_independent_backup.py (not run), dec054_testkit.py, test_dec054_gate.py; adapted existing tests. Synthetic battery 82 tests, 0 failures (IEEE39_DEC054_unit_test_report_R5.json).
+Blockers: independent backup destination (investigator).
+Responsible: Integrator
+Status: BLOCKED_AT_G0
+Next action: provide destination + authorisation; run dec054_independent_backup.py; then G2-G7 as authorised.

@@ -1,0 +1,14 @@
+{
+ "stage": "DEC-054 R5 G0/G1: full synthetic battery (core + integration + gate)",
+ "python": "3.12.10",
+ "numpy": "2.5.4",
+ "scipy": "1.18.1",
+ "tests_run": 82,
+ "failures": [],
+ "errors": [],
+ "skipped": [],
+ "seconds": 481.6,
+ "tds_used": 0,
+ "andes_stepping": false,
+ "plant_runs": false
+}

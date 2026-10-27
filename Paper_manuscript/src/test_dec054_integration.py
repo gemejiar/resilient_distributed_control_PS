@@ -15,6 +15,7 @@ import dec054_plant as PL
 import dec054_runner as RUN
 import dec054_store as ST
 import dec054_synth as SYN
+import dec054_testkit as K
 
 
 def ns_arr(v):
@@ -174,10 +175,7 @@ class TestCacheInvalidation(unittest.TestCase):
 
 
 def _art(verified: bool):
-    d = Path(tempfile.mkdtemp())
-    (d / "IEEE39_DEC054_backup_manifest.json").write_text(json.dumps({"status": "BACKUP_VERIFIED" if verified else "BACKUP_BLOCKED"}))
-    (d / "IEEE39_DEC054_preservation_test.json").write_text(json.dumps({"independent_backup_verified": verified}))
-    return d
+    return K.make_art(verified)
 
 
 def _frozen(src, disp):
@@ -263,6 +261,7 @@ class TestStore(unittest.TestCase):
 
 class TestRunnerPersistence(unittest.TestCase):
     def setUp(self):
+        K.install_stub(self)
         self.art = _art(True)
         self.src = Path(tempfile.mkdtemp())
         self.disp = disp_ok()
