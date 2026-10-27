@@ -1,0 +1,36 @@
+{
+ "stage": "DEC-054 local project copy",
+ "location_logical": "Paper_manuscript/backups/DEC054_P0_preservation (inside the paper folder; excluded from Git via .git/info/exclude)",
+ "authorised_by": "investigator instruction: store locally inside the paper folder",
+ "files_in_source": 91,
+ "files_in_copy": 91,
+ "files_verified": 89,
+ "files_bad": 0,
+ "bundle_identical_to_source": true,
+ "bundle_sha256": "2c96669750cf0f644a0a89bb9dbe45b954978b5b31e790dca0f4b77d8fb8b2ab",
+ "bundle_verify_rc": 0,
+ "restore_test": {
+  "Paper_manuscript/artifacts/IEEE39_DEC050_B_B2QV1_series.npz": {
+   "sha256_ok": true,
+   "readable": true,
+   "first_array": "S0__time_s"
+  },
+  "Paper_manuscript/artifacts/IEEE39_E8_C2t_timeseries.npz": {
+   "sha256_ok": true,
+   "readable": true,
+   "first_array": "S0_time_s"
+  },
+  "Paper_manuscript/artifacts/IEEE39_B3_C2t_Pplus_timeseries.npz": {
+   "sha256_ok": true,
+   "readable": true,
+   "first_array": "B3_time_s"
+  }
+ },
+ "bundle_clone_rc": 0,
+ "bundle_clone_dec053_head": "04e082b26054bf046bd5421ceb275b582a0547a5",
+ "bundle_head_ok": true,
+ "independent_of_original_disk": false,
+ "independent_backup_verified": false,
+ "status": "LOCAL_PROJECT_COPY_VERIFIED_NOT_INDEPENDENT",
+ "note": "same physical disk and same OneDrive-synchronised tree as the originals; OneDrive sync state not verified; BACKUP_VERIFIED not declared; gate unchanged"
+}
