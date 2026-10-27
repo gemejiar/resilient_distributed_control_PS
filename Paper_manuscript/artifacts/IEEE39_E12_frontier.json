@@ -1,0 +1,796 @@
+{
+  "stage": "E12",
+  "git_commit": "fd21b147daadb0d9b3cc385bf445e3807e8ccc9b",
+  "variant_dynamic": "C2t_Vsafe_R35_040",
+  "static_plant": "C2t (historical case dispatch as pre-event reference, B3-A AC problem)",
+  "static_frontier_multiples": {
+    "P": 1.998046875,
+    "Q": 15.984375
+  },
+  "static_frontier_amplitudes": {
+    "P_MW": 117.0136171875,
+    "Q_MVAr": 277.24898437499996
+  },
+  "dynamic_runs": [
+    {
+      "kind": "P",
+      "multiple": 0.19980468750000002,
+      "amplitude": 11.701361718750004,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.9943424690089,
+      "frequency_final_error_hz": -0.00014835197508489273,
+      "bus_voltage_min_pu": 0.9781753911751944,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.897906405520641,
+        0.11607879403986487,
+        0.3376311145843376,
+        0.09265472260866847,
+        0.8680612309820326,
+        5.159956297104166,
+        0.35039073466414994,
+        2.3272843008661797,
+        0.41407974598314734,
+        0.10658733797073427
+      ],
+      "final_residual": 2.496808848562182e-08,
+      "class": "(iii) equilibrium exists and the run respects the limits",
+      "fraction_of_static_frontier": 0.1
+    },
+    {
+      "kind": "P",
+      "multiple": 0.49951171875,
+      "amplitude": 29.253404296875,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.98585576677824,
+      "frequency_final_error_hz": -0.00037534419129059415,
+      "bus_voltage_min_pu": 0.9762475810817604,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.850903684610698,
+        0.08190012230761479,
+        0.3025893858007649,
+        0.06710248165415145,
+        0.8056168683943721,
+        5.027971839998645,
+        0.3203448504474329,
+        2.2993171362336278,
+        0.393482246912205,
+        0.09246528317398983
+      ],
+      "final_residual": 1.8535459500590434e-08,
+      "class": "(iii) equilibrium exists and the run respects the limits",
+      "fraction_of_static_frontier": 0.25
+    },
+    {
+      "kind": "P",
+      "multiple": 0.9990234375,
+      "amplitude": 58.50680859375,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.971705969587234,
+      "frequency_final_error_hz": -0.0007771134034300076,
+      "bus_voltage_min_pu": 0.9728604160919928,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.772144073056847,
+        0.025139098193551312,
+        0.24405215161759664,
+        0.024618175290417987,
+        0.7022040371775162,
+        4.808843132774234,
+        0.2703306134022476,
+        2.252600868201497,
+        0.3588622414720506,
+        0.07168622555769844
+      ],
+      "final_residual": 2.9573686610717687e-08,
+      "class": "(iii) equilibrium exists and the run respects the limits",
+      "fraction_of_static_frontier": 0.5
+    },
+    {
+      "kind": "P",
+      "multiple": 1.49853515625,
+      "amplitude": 87.76021289062501,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [
+        1,
+        3
+      ],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.957546993322,
+      "frequency_final_error_hz": -0.0012108220598463504,
+      "bus_voltage_min_pu": 0.9692223460181226,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.693035146779845,
+        -0.0313612137852628,
+        0.18533387487506658,
+        -0.01773514545311272,
+        0.5997022445174522,
+        4.59095136593898,
+        0.2203951679926126,
+        2.20578135689059,
+        0.3238391609907314,
+        0.054383295510073815
+      ],
+      "final_residual": 1.3257491993101667e-08,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails",
+      "fraction_of_static_frontier": 0.75
+    },
+    {
+      "kind": "P",
+      "multiple": 1.7982421875,
+      "amplitude": 105.31225546875001,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [
+        1,
+        3
+      ],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.94904608897003,
+      "frequency_final_error_hz": -0.0014877716182439826,
+      "bus_voltage_min_pu": 0.9668989470138302,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.6454925672916625,
+        -0.06513298917610477,
+        0.15000895571316164,
+        -0.04307517144790918,
+        0.5386771298655848,
+        4.460920947112928,
+        0.1904722148036333,
+        2.177653839867867,
+        0.30261764854358386,
+        0.04560566878002614
+      ],
+      "final_residual": 5.152689830367763e-09,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails",
+      "fraction_of_static_frontier": 0.9
+    },
+    {
+      "kind": "Q",
+      "multiple": 1.5984375000000002,
+      "amplitude": 27.724898437500002,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.997149823138066,
+      "frequency_final_error_hz": -8.370832411230822e-06,
+      "bus_voltage_min_pu": 0.9720206784935316,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.900154834306303,
+        0.1277549883256679,
+        0.3285136440618004,
+        0.09266022136509822,
+        0.8894743752194367,
+        5.188437986123783,
+        0.35993498093048526,
+        2.3373149709466587,
+        0.41766010349380256,
+        0.09121075808802548
+      ],
+      "final_residual": 3.3208805483297965e-08,
+      "class": "(iii) equilibrium exists and the run respects the limits",
+      "fraction_of_static_frontier": 0.1
+    },
+    {
+      "kind": "Q",
+      "multiple": 3.99609375,
+      "amplitude": 69.31224609374999,
+      "tds_failed": false,
+      "t_end_s": 40.0,
+      "violating_units": [],
+      "n_buses_outside_band": 0,
+      "frequency_nadir_hz": 59.9921906425974,
+      "frequency_final_error_hz": -1.646625261741974e-05,
+      "bus_voltage_min_pu": 0.9589990993770633,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        5.849437893141444,
+        0.10635010543932477,
+        0.27891737240265524,
+        0.06033925831587528,
+        0.8557524713442826,
+        5.083149451589374,
+        0.34443843407067654,
+        2.3242452913385514,
+        0.4024263591305184,
+        0.05369257842213848
+      ],
+      "final_residual": 2.2300593371937794e-08,
+      "class": "(iii) equilibrium exists and the run respects the limits",
+      "fraction_of_static_frontier": 0.25
+    },
+    {
+      "kind": "Q",
+      "multiple": 7.9921875,
+      "amplitude": 138.62449218749998,
+      "tds_failed": true,
+      "t_end_s": 5.20864544456838,
+      "violating_units": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        9
+      ],
+      "n_buses_outside_band": 38,
+      "frequency_nadir_hz": 59.88186688849617,
+      "frequency_final_error_hz": -0.0008621137239970267,
+      "bus_voltage_min_pu": 0.225189452651859,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        4.055000689435477,
+        0.10578853971317859,
+        -1.4709892717901685,
+        0.10970000000000013,
+        -0.14271731242459218,
+        1.8620645324383585,
+        0.3194895104329536,
+        1.8881218167710894,
+        0.3277102429911958,
+        -0.006605432939838174
+      ],
+      "final_residual": 238.3583038903501,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails",
+      "fraction_of_static_frontier": 0.5
+    },
+    {
+      "kind": "Q",
+      "multiple": 11.98828125,
+      "amplitude": 207.93673828125,
+      "tds_failed": true,
+      "t_end_s": 5.068400440657485,
+      "violating_units": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "n_buses_outside_band": 38,
+      "frequency_nadir_hz": 59.85260124169042,
+      "frequency_final_error_hz": -0.0006695567016663517,
+      "bus_voltage_min_pu": 0.22164105043024995,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        3.859588731080982,
+        0.08867077730125406,
+        -1.578051140917534,
+        0.10970000000000013,
+        -0.24714046061716743,
+        1.7420418916699916,
+        0.29605831268179283,
+        1.8448230831941261,
+        0.3217045329023849,
+        -0.06327647844011963
+      ],
+      "final_residual": 0.09239352684085045,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails",
+      "fraction_of_static_frontier": 0.75
+    },
+    {
+      "kind": "Q",
+      "multiple": 14.3859375,
+      "amplitude": 249.5240859375,
+      "tds_failed": true,
+      "t_end_s": 5.0543742105942835,
+      "violating_units": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "n_buses_outside_band": 37,
+      "frequency_nadir_hz": 59.85462094971701,
+      "frequency_final_error_hz": -0.0005645074720135312,
+      "bus_voltage_min_pu": 0.2591357634781388,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "min_P_margin_pu": [
+        3.9681194337038237,
+        0.07821292811231473,
+        -1.416211979252589,
+        0.10970000000000013,
+        -0.16870663570665734,
+        1.9270991576563645,
+        0.283001502801401,
+        1.9205610193466498,
+        0.33584121047321513,
+        -0.0949966452735298
+      ],
+      "final_residual": 0.03646344228149806,
+      "class": "(ii) equilibrium exists, run violates a limit/band or fails",
+      "fraction_of_static_frontier": 0.9
+    }
+  ],
+  "class_i_examples": [
+    {
+      "kind": "P",
+      "multiple": 2.09794921875,
+      "class": "(i) no AC equilibrium exists (above the static frontier; first infeasible bracket in the log)"
+    },
+    {
+      "kind": "Q",
+      "multiple": 16.78359375,
+      "class": "(i) no AC equilibrium exists (above the static frontier; first infeasible bracket in the log)"
+    }
+  ],
+  "static_logs": {
+    "P": [
+      {
+        "kind": "P",
+        "multiple": 1.0,
+        "amplitude": 58.56400000000001,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.0,
+        "eq_residual": 8.698597397938101e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@35"
+        ],
+        "time_s": 0.042478300048969686,
+        "V_bus_min_max": [
+          0.9792615197728108,
+          1.0437218720191497
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 2.0,
+        "amplitude": 117.12800000000001,
+        "pflow_ok": true,
+        "feasible": false,
+        "ineq_min": -1.7763568394002505e-15,
+        "eq_residual": 2.0490731899868299e-13,
+        "message": "Iteration limit reached",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.7206938000163063,
+        "V_bus_min_max": [
+          0.9791003225689555,
+          1.0430052871469422
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.5,
+        "amplitude": 87.846,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -1.7763568394002505e-15,
+        "eq_residual": 9.872578033172544e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35"
+        ],
+        "time_s": 0.03835919999983162,
+        "V_bus_min_max": [
+          0.9791821692468768,
+          1.0433631895948852
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.75,
+        "amplitude": 102.48700000000002,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -1.7763568394002505e-15,
+        "eq_residual": 8.959499808725013e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.19148190005216748,
+        "V_bus_min_max": [
+          0.9791413111050784,
+          1.0431855704049247
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.875,
+        "amplitude": 109.80750000000002,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.0,
+        "eq_residual": 1.1344037982376835e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.032930999994277954,
+        "V_bus_min_max": [
+          0.9791208849238368,
+          1.0430958202981506
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.9375,
+        "amplitude": 113.46775,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -2.6645352591003757e-15,
+        "eq_residual": 1.1091931826402057e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.034803900052793324,
+        "V_bus_min_max": [
+          0.9791106207771538,
+          1.0430506516465474
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.96875,
+        "amplitude": 115.29787500000002,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -8.881784197001252e-16,
+        "eq_residual": 1.1552051641842947e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.040651699993759394,
+        "V_bus_min_max": [
+          0.9791054754540088,
+          1.0430279936589963
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.984375,
+        "amplitude": 116.21293750000001,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -2.6645352591003757e-15,
+        "eq_residual": 1.1009397712011542e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.03831009997520596,
+        "V_bus_min_max": [
+          0.9791028999386475,
+          1.0430166463220263
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.9921875,
+        "amplitude": 116.67046875,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.0,
+        "eq_residual": 1.1104029034981743e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.03650249994825572,
+        "V_bus_min_max": [
+          0.9791016116265016,
+          1.0430109683991176
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.99609375,
+        "amplitude": 116.899234375,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -3.552713678800501e-15,
+        "eq_residual": 1.184411312731279e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.035768500063568354,
+        "V_bus_min_max": [
+          0.9791009671225381,
+          1.0430081281483778
+        ]
+      },
+      {
+        "kind": "P",
+        "multiple": 1.998046875,
+        "amplitude": 117.0136171875,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -8.881784197001252e-16,
+        "eq_residual": 1.1618863285758937e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@31",
+          "P<=pmax-eps@35",
+          "P<=pmax-eps@36"
+        ],
+        "time_s": 0.03739269997458905,
+        "V_bus_min_max": [
+          0.9791006448062605,
+          1.0430067076831253
+        ]
+      }
+    ],
+    "Q": [
+      {
+        "kind": "Q",
+        "multiple": 1.0,
+        "amplitude": 17.345,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": -8.881784197001252e-16,
+        "eq_residual": 1.1524954777097987e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@35"
+        ],
+        "time_s": 0.3601655999664217,
+        "V_bus_min_max": [
+          0.9792067518443929,
+          1.0441605463065253
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 2.0,
+        "amplitude": 34.69,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.0,
+        "eq_residual": 1.170175067954915e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [
+          "P<=pmax-eps@35"
+        ],
+        "time_s": 0.03535090002696961,
+        "V_bus_min_max": [
+          0.9789996435647217,
+          1.0439106247764702
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 4.0,
+        "amplitude": 69.38,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.006591092004147425,
+        "eq_residual": 1.1840528557627295e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.04307609994430095,
+        "V_bus_min_max": [
+          0.9785847485555255,
+          1.0434089079958526
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 8.0,
+        "amplitude": 138.76,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.00760821757850727,
+        "eq_residual": 1.187766275310451e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.035689700045622885,
+        "V_bus_min_max": [
+          0.9766873471556505,
+          1.0423917824214928
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 16.0,
+        "amplitude": 277.52,
+        "pflow_ok": true,
+        "feasible": false,
+        "ineq_min": 0.0073599707013445315,
+        "eq_residual": 5.449085627162731e-12,
+        "message": "Iteration limit reached",
+        "active_constraints": [],
+        "time_s": 0.7868707999587059,
+        "V_bus_min_max": [
+          0.9573599707013445,
+          1.040290877591577
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 12.0,
+        "amplitude": 208.14,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.008647139764048628,
+        "eq_residual": 1.177239081245551e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.03516099997796118,
+        "V_bus_min_max": [
+          0.9671240093941821,
+          1.0413528602359514
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 14.0,
+        "amplitude": 242.83,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.009175164756217047,
+        "eq_residual": 6.04656962642795e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.0420837999554351,
+        "V_bus_min_max": [
+          0.9622678490541619,
+          1.040824835243783
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.0,
+        "amplitude": 260.175,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.009441391036632885,
+        "eq_residual": 8.573697307667771e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.5738668000558391,
+        "V_bus_min_max": [
+          0.9598204755248912,
+          1.0405586089633672
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.5,
+        "amplitude": 268.84749999999997,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.008591877413876348,
+        "eq_residual": 1.1463813320093775e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.05923289991915226,
+        "V_bus_min_max": [
+          0.9585918774138763,
+          1.0404249327861042
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.75,
+        "amplitude": 273.18375,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.007976339330237114,
+        "eq_residual": 1.2555757408141155e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.40490640001371503,
+        "V_bus_min_max": [
+          0.9579763393302371,
+          1.0403579527731557
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.875,
+        "amplitude": 275.351875,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.007668259169772984,
+        "eq_residual": 7.599476603559197e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.06053840008098632,
+        "V_bus_min_max": [
+          0.9576682591697729,
+          1.040324427074169
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.9375,
+        "amplitude": 276.43593749999997,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.007514141099741134,
+        "eq_residual": 6.082106079164074e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.04130550008267164,
+        "V_bus_min_max": [
+          0.9575141410997411,
+          1.0403076553231145
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.96875,
+        "amplitude": 276.97796875,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.007437062541322037,
+        "eq_residual": 1.0637554116545817e-13,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.04140819993335754,
+        "V_bus_min_max": [
+          0.957437062541322,
+          1.0402992672084561
+        ]
+      },
+      {
+        "kind": "Q",
+        "multiple": 15.984375,
+        "amplitude": 277.24898437499996,
+        "pflow_ok": true,
+        "feasible": true,
+        "ineq_min": 0.007398518331629744,
+        "eq_residual": 5.876758382788766e-14,
+        "message": "Optimization terminated successfully",
+        "active_constraints": [],
+        "time_s": 0.04813740006648004,
+        "V_bus_min_max": [
+          0.9573985183316297,
+          1.0402950725627007
+        ]
+      }
+    ]
+  },
+  "fractions": [
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9
+  ],
+  "horizon_s": 40.0
+}

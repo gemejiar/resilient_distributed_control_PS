@@ -1,0 +1,310 @@
+{
+  "stage": "E15",
+  "git_commit": "fd21b147daadb0d9b3cc385bf445e3807e8ccc9b",
+  "variant": "C2t_Vsafe_R35_040",
+  "horizon_s": 100.0,
+  "n1_line": {
+    "bus_pair": [
+      21,
+      22
+    ],
+    "approx_flow_pu": 6.411587802389551,
+    "line_position": 26,
+    "line_idx": "Line_27"
+  },
+  "runs": [
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 3.2814409856030125e-08,
+      "frequency_nadir_hz": 59.97167829765243,
+      "frequency_max_dev_hz": 0.02832170234756859,
+      "frequency_final_error_hz": -0.00022708552469907772,
+      "frequency_oscillation_last_20s_hz": 8.306550988379513e-06,
+      "bus_voltage_min_pu": 0.9728535622493032,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.771989688910377,
+        0.025028381317233617,
+        0.2439375371954764,
+        0.024535226735743265,
+        0.7020027021772481,
+        4.808415836442028,
+        0.27023291064784605,
+        2.2525094252342184,
+        0.3587941757675681,
+        0.05912939292518704
+      ],
+      "qset_drift_last_20s_pu": 0.019875402981286927,
+      "max_abs_z": 0.009897043693036504,
+      "label": "nominal P+"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 3.2747262679322375e-08,
+      "frequency_nadir_hz": 59.97734466542661,
+      "frequency_max_dev_hz": 0.022655334573393304,
+      "frequency_final_error_hz": -0.00017975812906456667,
+      "frequency_oscillation_last_20s_hz": 7.02121282358803e-06,
+      "bus_voltage_min_pu": 0.9742377336455863,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.803577755039934,
+        0.047723910211685094,
+        0.26739630518301727,
+        0.04152931228952372,
+        0.7433017907651625,
+        4.896016837518258,
+        0.2902487069907469,
+        2.2712284664309825,
+        0.37270246922661254,
+        0.06969758256649339
+      ],
+      "qset_drift_last_20s_pu": 0.019537358614548972,
+      "max_abs_z": 0.009834488803083486,
+      "label": "U1 load x0.8"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 3.2918073600285425e-08,
+      "frequency_nadir_hz": 59.96601036759364,
+      "frequency_max_dev_hz": 0.033989632406360215,
+      "frequency_final_error_hz": -0.0002747385941077596,
+      "frequency_oscillation_last_20s_hz": 9.545660574872272e-06,
+      "bus_voltage_min_pu": 0.9714292931544016,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.740346519297943,
+        0.002374641842804337,
+        0.22044977259225274,
+        0.007560331897863648,
+        0.6608450665054191,
+        4.721010971191028,
+        0.25022974544854737,
+        2.233773741943048,
+        0.3448213229572099,
+        0.04936850091478551
+      ],
+      "qset_drift_last_20s_pu": 0.02021230635877941,
+      "max_abs_z": 0.009958944850175329,
+      "label": "U2 load x1.2"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 6.962261256404645e-08,
+      "frequency_nadir_hz": 59.97148215061068,
+      "frequency_max_dev_hz": 0.028517849389317007,
+      "frequency_final_error_hz": -0.00022686861849052775,
+      "frequency_oscillation_last_20s_hz": 7.778969283833703e-06,
+      "bus_voltage_min_pu": 0.972872108532595,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.7328460287288605,
+        0.025028358901554526,
+        0.24393557345220263,
+        0.02743014038393543,
+        0.6954005099609253,
+        4.7779307786618705,
+        0.2702329106476702,
+        2.2362575490816226,
+        0.35844167846819364,
+        0.05908368335567893
+      ],
+      "qset_drift_last_20s_pu": 0.019935770382735418,
+      "max_abs_z": 0.009905288744776463,
+      "label": "D1 delay 0.2 s"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 1.3870131709836642e-08,
+      "frequency_nadir_hz": 59.96892207993134,
+      "frequency_max_dev_hz": 0.09281944979405665,
+      "frequency_final_error_hz": 0.0007257825635278436,
+      "frequency_oscillation_last_20s_hz": 0.007191841363400897,
+      "bus_voltage_min_pu": 0.892988548746027,
+      "bus_voltage_max_pu": 1.0870620702833873,
+      "n_buses_outside_band": 14,
+      "units_crossing_limits": {
+        "0": [
+          "Q+",
+          "Q-"
+        ],
+        "5": [
+          "P+"
+        ]
+      },
+      "min_P_margin_pu": [
+        3.127934779052903,
+        0.025028358901554526,
+        0.19527866366998747,
+        0.019385245171466003,
+        0.6607669342553679,
+        -0.18953887195308816,
+        0.2702329106476702,
+        1.364382599131214,
+        0.17297628303355594,
+        0.048606530108834534
+      ],
+      "qset_drift_last_20s_pu": 0.03096285640313201,
+      "max_abs_z": 0.01835276212724154,
+      "label": "D2 delay 1.0 s"
+    },
+    {
+      "tds_ok": false,
+      "t_end_s": 33.5940780400544,
+      "final_residual": 74.23442007850684,
+      "frequency_nadir_hz": 59.72892205154156,
+      "frequency_max_dev_hz": 0.2710779484584407,
+      "frequency_final_error_hz": -0.0020701541912444554,
+      "frequency_oscillation_last_20s_hz": 0.3324550210774788,
+      "bus_voltage_min_pu": 0.28495576215632945,
+      "bus_voltage_max_pu": 1.0549372446041683,
+      "n_buses_outside_band": 39,
+      "units_crossing_limits": {
+        "0": [
+          "Q+",
+          "Q-",
+          "S"
+        ],
+        "1": [
+          "Q+",
+          "S"
+        ],
+        "2": [
+          "P+",
+          "Q+",
+          "S"
+        ],
+        "4": [
+          "Q+"
+        ],
+        "5": [
+          "P+",
+          "Q+",
+          "S"
+        ],
+        "7": [
+          "P-",
+          "Q-"
+        ]
+      },
+      "min_P_margin_pu": [
+        0.6967554798853985,
+        0.025028358901554526,
+        -1.752795548301238,
+        0.021380748986174147,
+        0.15232271983920675,
+        -1.5236305474416305,
+        0.2702329106476702,
+        1.8678304480861376,
+        0.22008296293270035,
+        0.06589920812692096
+      ],
+      "qset_drift_last_20s_pu": 0.2185246965773131,
+      "max_abs_z": 0.014274417770925847,
+      "label": "D3 delay 5.0 s"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 3.287682481811771e-08,
+      "frequency_nadir_hz": 59.97031110932634,
+      "frequency_max_dev_hz": 0.029688890673661206,
+      "frequency_final_error_hz": -0.00022718979960245633,
+      "frequency_oscillation_last_20s_hz": 8.760935081397747e-06,
+      "bus_voltage_min_pu": 0.9728257584387069,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.781538444050523,
+        0.025042808225232527,
+        0.2440672543752136,
+        0.026455470594319408,
+        0.714954036709111,
+        4.810844921937136,
+        0.27023290786928644,
+        2.2554020572413473,
+        0.3588081225934294,
+        0.059129996299332355
+      ],
+      "qset_drift_last_20s_pu": 0.019875193726465235,
+      "max_abs_z": 0.009897068414444639,
+      "label": "I1 inertia x0.8"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 4.7538208036712604e-08,
+      "frequency_nadir_hz": 59.999992578755176,
+      "frequency_max_dev_hz": 7.42124482400186e-06,
+      "frequency_final_error_hz": 4.439749346829558e-06,
+      "frequency_oscillation_last_20s_hz": 8.315415271908932e-07,
+      "bus_voltage_min_pu": 0.9785764758241341,
+      "bus_voltage_max_pu": 1.0444148623364493,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.929072223136054,
+        0.13871263376066345,
+        0.36093001257367874,
+        0.10963693340938097,
+        0.9098074301293924,
+        5.248099630478226,
+        0.37039807962468263,
+        2.34587441418049,
+        0.42774274193560036,
+        0.1166599611500363
+      ],
+      "qset_drift_last_20s_pu": 0.018188490351755682,
+      "max_abs_z": 0.0095794265444325,
+      "label": "N1 line outage (S0)"
+    },
+    {
+      "tds_ok": true,
+      "t_end_s": 100.0,
+      "final_residual": 4.7538208036712604e-08,
+      "frequency_nadir_hz": 59.999992578755176,
+      "frequency_max_dev_hz": 7.42124482400186e-06,
+      "frequency_final_error_hz": 4.439749346829558e-06,
+      "frequency_oscillation_last_20s_hz": 8.315415271908932e-07,
+      "bus_voltage_min_pu": 0.9785764758241341,
+      "bus_voltage_max_pu": 1.0444148623364493,
+      "n_buses_outside_band": 0,
+      "units_crossing_limits": {},
+      "min_P_margin_pu": [
+        5.929072223136054,
+        0.13871263376066345,
+        0.36093001257367874,
+        0.10963693340938097,
+        0.9098074301293924,
+        5.248099630478226,
+        0.37039807962468263,
+        2.34587441418049,
+        0.42774274193560036,
+        0.1166599611500363
+      ],
+      "qset_drift_last_20s_pu": 0.018188490351755682,
+      "max_abs_z": 0.0095794265444325,
+      "label": "nominal S0"
+    }
+  ],
+  "GFL_extension": {
+    "status": "not run",
+    "reason": "no grid-following case exists in the repository (C3 was never built) and a GFL resource (e.g. REGCA1 with REECA1) would need a new validated case, initialisation, flat/P/Q/EIG gates and its own limits; this is a new development line and is outside the closing scope",
+    "classification": "not applicable / pending"
+  },
+  "doc": "E15 (Option B): robustness of B2 (original RDC) on the frozen variant C2t_Vsafe_R35_040 to uncertainties, delays and a selected N-1 contingency.\n\nFixed list, declared before running, no search:\n  U1/U2  load uncertainty: the P+ event with amplitude 0.8x and 1.2x;\n  D1-D3  delay of the RDC reference-rate command (applied rates equal the rates computed D seconds earlier; zero before the activation) D = 0.2, 1.0, 5.0 s, P+ event;\n  I1     inertia uncertainty: all GENROU inertias M x 0.8 (runtime change of the parameter before initialisation; the case file is untouched), P+ event;\n  N1     N-1: the line with the largest approximate flow among the lines whose removal keeps the network connected is opened at t = 5 s, without load event;\n  GFL    extension to a grid-following resource: technically evaluated, not run (see the report in the JSON).\nEach run is 100 s with B2 only.  Reported: TDS convergence, frequency, 39-bus voltages, units crossing P/Q/S limits, minimum P margins, setpoint drift (Qset) and the comparison with the\nnominal B2 run of the same variant.  Negative results are reported; nothing is tuned and no controller parameter is changed.\n"
+}

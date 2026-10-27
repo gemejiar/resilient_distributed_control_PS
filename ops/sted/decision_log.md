@@ -601,3 +601,22 @@ Blockers or limitations: no closed-loop safety result; the empirical bound is no
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator reviews the adoption of Option B and the scope reduction of the manuscript.
+
+## DEC-048
+Date: 2026-10-27
+Gate: Authorization "DEC-048 — cierre experimental con Opción B" (E10-E16), branch review/e10-e16-option-b created from fd21b14
+Decision: E10-E16 executed sequentially on the frozen variant C2t_Vsafe_R35_040 and on reused historical runs, with no new HOCBF, CLF-HOCBF or predictive development and no change of capacities, gains, limits or historical results. The attached protocol file INSTRUCCIONES_CODEX_E10_E16_OPCION_B.md could not be located; the text of the authorization was used as the specification (to be confirmed by the Investigator). main untouched; nothing pushed.
+Results (artifacts IEEE39_E10..E16 *.json/csv, figures IEEE39_E10..E16 *.png; scripts run_e10..run_e15, finalize_e16):
+E10 convergence: 1 of 9 runs meets all declared tail tolerances (B3-S0, by construction); frequency converges (final error <= 3e-4 Hz, tau 15-57 s), Qset and voltage keep drifting in 200 s.
+E11 limits: >= 2 units within 5 % of a limit throughout every run; only SG31 crosses (P+ in C2t; not in the frozen variant); P+Q+ simultaneous event on the frozen variant crosses no limit.
+E12 frontier: static AC P x1.998 (117 MW), Q x15.98 (277 MVAr); dynamic B2 frontier smaller (P violates SG31/SG35 at 88 MW, none up to 58.5 MW; Q loses convergence between 69 and 139 MVAr).
+E13 local stability: no unstable modes at four points, one marginal rotor-angle mode, RDC slow modes 540-650 s, Lyapunov equation on the stable subspace (positive definite, very weak decay bound). Local linear only.
+E14 transition: A<->B quintic 30 s transitions with primary control only, no limit violations or jumps.
+E15 robustness: tolerates load +-20 %, 0.2 s delay, inertia -20 %; fails with 1 s delay (limits and band) and 5 s delay (TDS divergence at 33.6 s) and with N-1 Line_27 (21-22) (TDS failure at 5.12 s); GFL extension not run (no validated GFL case exists; a new development line). Negative results were not turned into new campaigns.
+E16 consolidation: IEEE39_E16_consolidation.json, stage table CSV, status figure; 7 stages satisfactory, 9 with findings, 2 negative (E9, E15), none pending. Hypotheses: H1 supported; H2 partial; H3 and H4 not demonstrated.
+Disclosures: (1) first E15 N-1 attempt (changing Line.u from a callback) had no effect and is kept as IEEE39_E15_robustness_firstattempt.json (invalid); N-1 now uses an ANDES Toggle event; (2) run_e8_ieee39.py gained an optional scenario key toggle_line, run_b3_ieee39.py optional parameters (probe, init_hook, freeze_t, ramp, qp_filter, dist_fn) and e9a/e9h_predictor optional caches/vectorisation, all inactive by default; recorded raw hashes of E8, B3-S0 and E9-B0 series were rechecked and unchanged; (3) E15 delays use the qp_filter hook as a command buffer; (4) E13 thresholds (|Re| <= 1e-6 marginal), E10 tolerances and E11 NEAR = 5 % were declared before running.
+Evidence reviewed: all E10-E16 artifacts listed above and the integrity audit in IEEE39_E16_consolidation.json.
+Blockers or limitations: no closed-loop safety, regional stability, or real-time claim; OPEN-SG31-PMAX still open for the original C2t; voltage/Qset convergence of the RDC not observed in 200 s; GFL extension pending as a separate line.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: Investigator reviews the consolidated E0-E16 report and decides on publication of the branch.

@@ -97,6 +97,8 @@ def configure(scenario: str, time_step_s: float) -> tuple[Any, dict[str, Any]]:
                 raise RuntimeError(f"Expected one PQ at bus {bus}; found {dev}.")
             system.add("Alter", idx=f"E8_{channel}", t=EVENT_TIME_S, model="PQ", dev=dev[0], src=src,
                        attr="v", method="+", amount=spec[key] / BASE_MVA)
+    if "toggle_line" in spec:   # E15 (N-1): optional line outage at the event time; historical scenarios never carry this key
+        system.add("Toggle", idx="E15_N1", model="Line", dev=spec["toggle_line"], t=EVENT_TIME_S)
     system.setup()
     system.TDS.config.tf = FINAL_TIME_S
     system.TDS.config.tstep = time_step_s

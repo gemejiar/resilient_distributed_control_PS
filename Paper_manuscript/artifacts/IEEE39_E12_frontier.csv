@@ -1,0 +1,11 @@
+kind,multiple,amplitude,fraction_of_static_frontier,class,tds_failed,violating_units,n_buses_outside_band,frequency_nadir_hz,bus_voltage_min_pu,bus_voltage_max_pu
+P,0.19980468750000002,11.701361718750004,0.1,(iii) equilibrium exists and the run respects the limits,False,,0,59.9943424690089,0.9781753911751944,1.044414827684715
+P,0.49951171875,29.253404296875,0.25,(iii) equilibrium exists and the run respects the limits,False,,0,59.98585576677824,0.9762475810817604,1.044414827684715
+P,0.9990234375,58.50680859375,0.5,(iii) equilibrium exists and the run respects the limits,False,,0,59.971705969587234,0.9728604160919928,1.044414827684715
+P,1.49853515625,87.76021289062501,0.75,"(ii) equilibrium exists, run violates a limit/band or fails",False,1;3,0,59.957546993322,0.9692223460181226,1.044414827684715
+P,1.7982421875,105.31225546875001,0.9,"(ii) equilibrium exists, run violates a limit/band or fails",False,1;3,0,59.94904608897003,0.9668989470138302,1.044414827684715
+Q,1.5984375000000002,27.724898437500002,0.1,(iii) equilibrium exists and the run respects the limits,False,,0,59.997149823138066,0.9720206784935316,1.044414827684715
+Q,3.99609375,69.31224609374999,0.25,(iii) equilibrium exists and the run respects the limits,False,,0,59.9921906425974,0.9589990993770633,1.044414827684715
+Q,7.9921875,138.62449218749998,0.5,"(ii) equilibrium exists, run violates a limit/band or fails",True,0;1;2;4;5;9,38,59.88186688849617,0.225189452651859,1.044414827684715
+Q,11.98828125,207.93673828125,0.75,"(ii) equilibrium exists, run violates a limit/band or fails",True,0;1;2;3;4;5;9,38,59.85260124169042,0.22164105043024995,1.044414827684715
+Q,14.3859375,249.5240859375,0.9,"(ii) equilibrium exists, run violates a limit/band or fails",True,0;1;2;3;4;5;9,37,59.85462094971701,0.2591357634781388,1.044414827684715

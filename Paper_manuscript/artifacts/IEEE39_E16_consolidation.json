@@ -1,0 +1,247 @@
+{
+  "stage": "E16",
+  "git_commit": "fd21b147daadb0d9b3cc385bf445e3807e8ccc9b",
+  "stages": [
+    {
+      "stage": "E0",
+      "description": "C0 10 SG, sin perturbaci\u00f3n",
+      "classification": "SATISFACTORIO",
+      "result": "Flujo de potencia y simulaci\u00f3n plana sin deriva; instrumentaci\u00f3n validada.",
+      "evidence": "matriz experimental, DEC-001..",
+      "flag": "-"
+    },
+    {
+      "stage": "E1",
+      "description": "C0, escal\u00f3n de P",
+      "classification": "SATISFACTORIO",
+      "result": "f cae y los gobernadores responden; nuevo equilibrio.",
+      "evidence": "IEEE39_E1_C0_summary.json",
+      "flag": "-"
+    },
+    {
+      "stage": "E2",
+      "description": "C0, escal\u00f3n de Q",
+      "classification": "SATISFACTORIO",
+      "result": "Respuesta local de V coherente.",
+      "evidence": "IEEE39_E2_C0_summary.json",
+      "flag": "-"
+    },
+    {
+      "stage": "E3/E4/E4.1",
+      "description": "C0a, C1, C1a: sustituci\u00f3n secuencial SG\u2192GFM",
+      "classification": "SATISFACTORIO",
+      "result": "Inicializaci\u00f3n, simulaci\u00f3n plana y respuestas P/Q con signos correctos; un recurso por prueba.",
+      "evidence": "IEEE39_E3..E4_1 summaries",
+      "flag": "-"
+    },
+    {
+      "stage": "E4.2",
+      "description": "C2 (6 SG + 4 GFM)",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "C2 congelada; modo oscilatorio de REGF1 poco amortiguado (\u03b6 0.123) que motiva C2t (KPv \u00d71.5).",
+      "evidence": "IEEE39_E4_2_C2_summary.json; DEC-018/019",
+      "flag": "\u03b6 0.123 en C2"
+    },
+    {
+      "stage": "E5/E5t",
+      "description": "Primario P-f y Q-V por separado",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "Respuesta de droop acorde; en C2t \u03b6 0.141; exceso transitorio de P de SG31 de 0.070 pu sobre el pmax del caso (hallazgo OPEN-SG31-PMAX).",
+      "evidence": "IEEE39_E5_C2(t)_summary.json",
+      "flag": "SG31 +0.070 pu"
+    },
+    {
+      "stage": "E6/E6t",
+      "description": "Secundario PI/consenso convencional",
+      "classification": "SATISFACTORIO",
+      "result": "f restaurada (\u22125.2e-7 Hz en C2t); reparto como en el primario.",
+      "evidence": "IEEE39_E6_C2(t)_summary.json",
+      "flag": "-"
+    },
+    {
+      "stage": "E7/E7t/E7L",
+      "description": "Secundario P/Q coordinado",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "Dos intentos fallidos conservados (K_V 0.5 y 0.1: inestabilidad); E7t regula f a 0 Hz y V a \u22640.0139 pu de 1.0; E7L como referencia limitada en C2.",
+      "evidence": "IEEE39_E7*_summary.json; DEC-026..029",
+      "flag": "2 intentos FAIL"
+    },
+    {
+      "stage": "E8",
+      "description": "RDC original sobre C2t",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "f restaurada a \u22643e-4 Hz; Qset sin converger y V sin alcanzar 1.0 pu en 200 s; tres intentos fallidos conservados.",
+      "evidence": "IEEE39_E8_C2t_summary.json; DEC-030..036",
+      "flag": "3 intentos FAIL"
+    },
+    {
+      "stage": "B3-A/S0/P+/Q+",
+      "description": "RDC centrado con equilibrio \u03be*(d)",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "S0 invariante a precisi\u00f3n num\u00e9rica (por construcci\u00f3n); P+ y Q+ se acercan a \u03be* m\u00e1s que B2 pero no convergen en 200 s y Qset sigue derivando.",
+      "evidence": "IEEE39_B3_*; DEC-037..042",
+      "flag": "no convergencia"
+    },
+    {
+      "stage": "E9 (A,B0,B1,C,D,F,H)",
+      "description": "Filtro HOCBF de seguridad (CLF apagada)",
+      "classification": "NEGATIVO",
+      "result": "Grados relativos 4 (SG) y 3 (GFM); HOCBF de grado 3 inutilizable en este DAE r\u00edgido; filtro factible solo 1-15 s tras el evento; predictivo consistente en S0 pero sin escenario que lo active; sin demostraci\u00f3n de seguridad en lazo cerrado (opci\u00f3n B).",
+      "evidence": "IEEE39_E9*_summary.json; DEC-043..047",
+      "flag": "sin lazo cerrado"
+    },
+    {
+      "stage": "E10",
+      "description": "Convergencia y errores residuales del RDC (opci\u00f3n B)",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "1 de 9 corridas cumplen todas las tolerancias de cola; frecuencia converge (\u03c4 15-57 s, error final \u22643e-4 Hz) pero Qset y la tensi\u00f3n siguen derivando; el \u00fanico caso convergente es B3-S0 (invariancia por construcci\u00f3n).",
+      "evidence": "IEEE39_E10_summary.json",
+      "flag": "1/9 convergen"
+    },
+    {
+      "stage": "E11",
+      "description": "L\u00edmites simult\u00e1neos y redistribuci\u00f3n de potencia (opci\u00f3n B)",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "Dos o m\u00e1s unidades est\u00e1n a menos del 5 % de un l\u00edmite durante toda la corrida en todos los casos (SG31 y SG33/SG35); solo SG31 cruza un l\u00edmite (P+ en C2t con E5t, B2 y B3; no en la variante congelada R35_040); el evento simult\u00e1neo P+Q+ en la variante congelada se completa sin cruzar l\u00edmites; la parte del \u0394P entregada por los GFM es 5-50 % (el cociente de B3 Q+ no es interpretable porque el \u0394Q neto es casi nulo).",
+      "evidence": "IEEE39_E11_summary.json",
+      "flag": "SG31 cruza pmax en C2t"
+    },
+    {
+      "stage": "E12",
+      "description": "Frontera de factibilidad (opci\u00f3n B)",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "Frontera est\u00e1tica AC: P 117 MW (l\u00edmites de SG31 y SG35) y Q 277 MVAr; la frontera din\u00e1mica con B2 es menor: P viola SG31/SG35 ya con 88 MW (sin violaci\u00f3n hasta 59 MW) y Q pierde convergencia con colapso de tensi\u00f3n entre 28 y 69 MVAr (clase ii).",
+      "evidence": "IEEE39_E12_frontier.json",
+      "flag": "frontera din\u00e1mica < est\u00e1tica"
+    },
+    {
+      "stage": "E13",
+      "description": "Estabilidad local de la linealizaci\u00f3n (opci\u00f3n B)",
+      "classification": "SATISFACTORIO CON HALLAZGOS",
+      "result": "Sin modos inestables en los cuatro puntos; un modo marginal (\u00e1ngulo de rotor); \u03b6 m\u00ednimo planta 0.14 y lazo con RDC 0.074; modos lentos del RDC de 540-650 s (consistentes con Qset sin converger en 200 s); Lyapunov positiva definida en el subespacio estable con cota de decaimiento muy d\u00e9bil (2e-8 1/s). Sin certificado regional.",
+      "evidence": "IEEE39_E13_stability.json",
+      "flag": "sin regi\u00f3n certificada"
+    },
+    {
+      "stage": "E14",
+      "description": "Transici\u00f3n entre despachos admisibles (opci\u00f3n B)",
+      "classification": "SATISFACTORIO",
+      "result": "Transiciones A\u2194B de 30 s sin violar l\u00edmites ni saltos (\u0394 paso m\u00e1x. P 9e-06 pu); error final de P 2.7e-3 pu (p\u00e9rdidas de armadura); desviaci\u00f3n de f 0.15 mHz.",
+      "evidence": "IEEE39_E14_transition.json",
+      "flag": "-"
+    },
+    {
+      "stage": "E15",
+      "description": "Robustez (opci\u00f3n B)",
+      "classification": "NEGATIVO",
+      "result": "Robusto a carga \u00b120 % (el margen de SG31/SG35 llega a 0.002 pu con +20 %), a retardo de 0.2 s y a inercia \u221220 %; con retardo de 1.0 s oscila y viola l\u00edmites (V 0.89-1.09 pu), con 5 s la simulaci\u00f3n diverge; el N-1 de la l\u00ednea 21-22 (la de mayor flujo sin aislar la red) hace perder la convergencia a los 5.12 s; extensi\u00f3n GFL no factible dentro del cierre (no existe caso C3).",
+      "evidence": "IEEE39_E15_robustness.json",
+      "flag": "retardo \u22651 s y N-1 fallan"
+    },
+    {
+      "stage": "E16",
+      "description": "Consolidaci\u00f3n y cierre",
+      "classification": "SATISFACTORIO",
+      "result": "Informe, tabla de etapas, auditor\u00eda de integridad y trazabilidad.",
+      "evidence": "IEEE39_E16_consolidation.json",
+      "flag": "-"
+    }
+  ],
+  "hypotheses": {
+    "H1 integridad f\u00edsica y control primario": {
+      "estado": "RESPALDADA",
+      "evidencia": "E0-E5t: inicializaciones sin deriva, signos y reservas coherentes; salvedad: C2 requiri\u00f3 KPv \u00d71.5 (C2t) y SG31 supera pmax de forma transitoria.",
+      "no_demostrado": "estabilidad de C2 con par\u00e1metros por defecto (\u03b6 0.123, inestable al mover tensiones)"
+    },
+    "H2 regulaci\u00f3n nominal y reparto": {
+      "estado": "PARCIALMENTE RESPALDADA",
+      "evidencia": "f se restaura a \u22643e-4 Hz con RDC original y centrado y a 0 Hz con E7t; reparto P por reserva en E7t; E13 explica la lentitud de Q/V (modos de 540-650 s).",
+      "no_demostrado": "convergencia de Qset y tensi\u00f3n a objetivos en 200 s (E10); equivalencia con el equilibrio \u03be* (B3)"
+    },
+    "H3 seguridad incremental (HOCBF)": {
+      "estado": "NO DEMOSTRADA",
+      "evidencia": "E9: relaciones estructurales (grados 3/4, autoridad) y monitor predictivo consistente en S0; E15 y E12 muestran fronteras de seguridad f\u00edsica sin filtro.",
+      "no_demostrado": "reducci\u00f3n de violaciones por un filtro en lazo cerrado en el IEEE 39; no hay escenario donde B4 act\u00fae y B2 viole"
+    },
+    "H4 recuperaci\u00f3n y convergencia regional (CLF-HOCBF)": {
+      "estado": "NO DEMOSTRADA",
+      "evidencia": "E13: estabilidad local de la linealizaci\u00f3n \u00fanicamente; E12: fronteras est\u00e1tica y din\u00e1mica.",
+      "no_demostrado": "CLF-HOCBF no implementado; no hay regi\u00f3n certificada ni convergencia regional"
+    }
+  },
+  "integrity": {
+    "traceability_rows": 38,
+    "traceability_status_counts": {
+      "FAIL": 1,
+      "OPEN": 1,
+      "PARTIALLY_VERIFIED": 27,
+      "PENDING_EVIDENCE": 1,
+      "VERIFIED": 8
+    },
+    "missing_evidence_paths": [],
+    "n_missing_evidence_paths": 0,
+    "historical_raw_hashes_unchanged": {
+      "E8 raw": true,
+      "B3-S0 raw": true,
+      "Vsafe B0 raw": true,
+      "Vsafe_R35 B0 raw": true,
+      "Vsafe_R35_040 B0 raw": true
+    },
+    "hashes": {
+      "E8 raw": [
+        "FE59F362CEB3F96A17E4DC90249031C5CB7D37A495DA8786F886D5D5547F2422",
+        "FE59F362CEB3F96A17E4DC90249031C5CB7D37A495DA8786F886D5D5547F2422"
+      ],
+      "B3-S0 raw": [
+        "D34A55E50EFFBB0C3F0873757242DF82AB551663872141D5BAFA213E8DD19EFA",
+        "D34A55E50EFFBB0C3F0873757242DF82AB551663872141D5BAFA213E8DD19EFA"
+      ],
+      "Vsafe B0 raw": [
+        "3AE85AA4377E51D4D6745220A2AEA643F1CDF664F9258B6E3CBB57E8046B8253",
+        "3AE85AA4377E51D4D6745220A2AEA643F1CDF664F9258B6E3CBB57E8046B8253"
+      ],
+      "Vsafe_R35 B0 raw": [
+        "E535E941B3AA4B466E6B6BA680CD6E04C47A03799ABC6AE161A4556C2877FE8B",
+        "E535E941B3AA4B466E6B6BA680CD6E04C47A03799ABC6AE161A4556C2877FE8B"
+      ],
+      "Vsafe_R35_040 B0 raw": [
+        "8BC40CDDBE5D290552162D9FF5D18FF6A6C137BEEA329E8613C0BC9954453F65",
+        "8BC40CDDBE5D290552162D9FF5D18FF6A6C137BEEA329E8613C0BC9954453F65"
+      ]
+    },
+    "experiment_matrix_rows": 33,
+    "matrix_failed_rows_kept": [
+      "E5_S1_screening",
+      "E7_attempt2",
+      "E8_attempt1",
+      "E8_attempt2",
+      "E8_attempt3"
+    ],
+    "numerical_integrity": {
+      "B3-S0 dae residual": 4e-09,
+      "E10-E15 runs converged": {
+        "E14": true,
+        "E15 nominal": true
+      }
+    },
+    "code_changes_to_historical_runners": [
+      "run_b3_ieee39.py (optional parameters probe, init_hook, freeze_t, ramp, qp_filter, dist_fn; defaults None)",
+      "run_e8_ieee39.py (optional scenario key toggle_line used only by E15)",
+      "e9a_linear.py (optional parameter cache)"
+    ]
+  },
+  "open_items": [
+    "OPEN-SG31-PMAX (C2t original): transient 0.07 pu jump not preventable by reference actions; reserve variants provide margin as separate configurations",
+    "closed-loop safety enforcement: not demonstrated (Option B)",
+    "regional stability certificate: none; only local linear stability",
+    "GFL extension: not feasible within the closure (no C3 case)",
+    "RDC voltage/Qset convergence: slow modes of 540-650 s not observed to converge in 200 s"
+  ],
+  "counts": {
+    "SATISFACTORIO": 7,
+    "SATISFACTORIO CON HALLAZGOS": 9,
+    "NEGATIVO": 2,
+    "NO APLICABLE / NO FACTIBLE": 0,
+    "PENDIENTE": 0
+  }
+}
