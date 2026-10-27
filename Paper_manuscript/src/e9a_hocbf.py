@@ -106,7 +106,7 @@ def evaluate(lin: dict[str, Any], rowset: dict[str, np.ndarray], p: np.ndarray, 
         rhs = -(sum(comb(r, k) * lam ** (r - k) * d[k] for k in range(r)) + d[r])
         A_rows.append(lead_vec.copy())
         b_vec.append(rhs)
-        meta.append({"name": bar["name"], "kind": kind, "r": r, "h0": float(h0), "psi_min": float(min(psi)), "psi_outside": bool(min(psi) < 0.0), "unit": bar.get("unit"),
+        meta.append({"name": bar["name"], "kind": kind, "r": r, "h0": float(h0), "psi_min": float(min(psi)), "psi": [float(x) for x in psi], "d": [float(x) for x in d], "lead_norm": float(np.linalg.norm(lead_vec)), "psi_outside": bool(min(psi) < 0.0), "unit": bar.get("unit"),
                      "bus": bar.get("bus")})
     # reference barriers (relative degree one, direct in v)
     ref_rows, ref_b, ref_meta = [], [], []
