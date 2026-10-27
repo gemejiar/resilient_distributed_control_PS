@@ -1,0 +1,814 @@
+{
+  "stage": "E9-C/E9-D",
+  "status_auto": "FINDINGS_WAIT_HUMAN",
+  "status_human": "PENDING",
+  "git_commit": "3544b0ce070bc23910f9411eec53b7ca662b6f39",
+  "python": "3.12.10",
+  "phase1_variant": {
+    "variant": "C2t_Vsafe_R35_040",
+    "delta_pu": 0.04,
+    "SG35_min_margin_P+_pu": 0.024535226735743265,
+    "required_pu": 0.02,
+    "SG35_requirement_met": true,
+    "violating_units": {
+      "S0": [],
+      "P+": [],
+      "Q+": []
+    },
+    "bus_voltage": {
+      "S0": {
+        "min_pu": 0.9783837312703251,
+        "max_pu": 1.0444148623364493,
+        "n_buses_ever_outside_band": 0
+      },
+      "P+": {
+        "min_pu": 0.9728535622493032,
+        "max_pu": 1.044414827684715,
+        "n_buses_ever_outside_band": 0
+      },
+      "Q+": {
+        "min_pu": 0.9748824197911924,
+        "max_pu": 1.044414827684715,
+        "n_buses_ever_outside_band": 0
+      }
+    },
+    "AC_DAE": {
+      "pflow_residual": 6.242508732157148e-10,
+      "init_max_abs_f": 4.440892098500626e-16,
+      "init_max_abs_g": 6.242508732157148e-10,
+      "power_balance": {
+        "sum_P_gen_pu": 58.97252057972106,
+        "sum_P_load_pu": 58.564,
+        "loss_from_generation_minus_load_pu": 0.40852057972106337,
+        "loss_from_Ybus_pu": 0.4085150519930665,
+        "residual_pu": 5.527727996890164e-06
+      },
+      "bus_voltage_min_pu": 0.979421206387759,
+      "bus_voltage_max_pu": 1.044414827684715,
+      "n_buses_outside_band": 0
+    },
+    "flat_run_20s": {
+      "converged": true,
+      "t_end_s": 20.0,
+      "n_steps": 5121,
+      "max_abs_frequency_drift_hz": 0.0,
+      "max_abs_voltage_drift_pu": 0.0,
+      "max_abs_dynamic_state_drift": 1.2227117343332893e-09,
+      "max_abs_unit_P_drift_pu": 0.0,
+      "max_abs_state_step_change": 3.1133787596492115e-10,
+      "final_residual": 6.242508732157148e-10
+    },
+    "frozen_reference_variants_untouched": [
+      "C2t_Vsafe",
+      "C2t_Vsafe_R35"
+    ],
+    "min_P_margin_by_unit_P+": {
+      "SG30": 5.771989688910377,
+      "SG31": 0.025028381317233617,
+      "SG33": 0.2439375371954764,
+      "SG35": 0.024535226735743265,
+      "SG38": 0.7020027021772481,
+      "SG39": 4.808415836442028,
+      "GFM32": 0.27023291064784605,
+      "GFM37": 2.2525094252342184,
+      "GFM34": 0.3587941757675681,
+      "GFM36": 0.05745148638136932
+    },
+    "all_checks_pass": true
+  },
+  "phase2_amplitude_search": {
+    "criteria": "C1-C4 declared in run_e9c_amplitudes.py before running",
+    "horizon_s": 30.0,
+    "fractions": [
+      0.005,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "selected": {
+      "P+": null,
+      "Q+": null
+    },
+    "interpretation": {
+      "P+": "no fraction meets the criteria",
+      "Q+": "no fraction meets the criteria"
+    },
+    "table": "IEEE39_E9C_amplitude_search_R35_040.csv",
+    "finding": "worst psi right after the jump scales with the amplitude (S barrier: -7e3 at 0.5 % to -1.6e6 at 100 % in P+); the number of barriers outside C_H is almost amplitude independent (64-75 in P+, 62-80 in Q+). A relative-degree-3 set with lambda = 2 s^-1 cannot contain a state immediately after an algebraic step of the load for any practical amplitude; C_H and the QP recover 0.25-2 s after the event",
+    "post_transient_information_not_a_selection": [
+      {
+        "family": "P+",
+        "fraction": 0.005,
+        "CH_recovered_from_s": 0.25009999999999977,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "P+",
+        "fraction": 0.01,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "P+",
+        "fraction": 0.02,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "P+",
+        "fraction": 0.05,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "P+",
+        "fraction": 0.1,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "P+",
+        "fraction": 0.2,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "P+",
+        "fraction": 0.5,
+        "CH_recovered_from_s": 1.0000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": null
+      },
+      {
+        "family": "P+",
+        "fraction": 1.0,
+        "CH_recovered_from_s": 2.0000999999999998,
+        "QP_feasible_from_s": 2.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 5.0001
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.005,
+        "CH_recovered_from_s": 0.25009999999999977,
+        "QP_feasible_from_s": 0.5000999999999998,
+        "nominal_satisfies_constraints_from_s": 0.5000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.01,
+        "CH_recovered_from_s": 0.25009999999999977,
+        "QP_feasible_from_s": 0.5000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.02,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 0.5000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.05,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.1,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.2,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 0.5,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 1.0000999999999998
+      },
+      {
+        "family": "Q+",
+        "fraction": 1.0,
+        "CH_recovered_from_s": 0.5000999999999998,
+        "QP_feasible_from_s": 1.0000999999999998,
+        "nominal_satisfies_constraints_from_s": 2.0000999999999998
+      }
+    ]
+  },
+  "phase3_lie_validation": {
+    "cases": [
+      {
+        "scenario": "S0",
+        "t0_s": 30.0,
+        "membership": {
+          "n_barriers": 128,
+          "inside_CH_truth": 128,
+          "inside_CH_frozen": 128,
+          "inside_CH_frozen_curv": 128,
+          "decisions_differing_frozen": 0,
+          "decisions_differing_frozen_curv": 0,
+          "examples_differing_frozen": [],
+          "rhs_activation_sign_differences": {
+            "frozen": 0,
+            "frozen_curv": 0
+          }
+        },
+        "gate_S0_criteria": {
+          "psi_same_sign_and_positive_all_barriers": true,
+          "h_derivatives_1_3_consistent_all_barriers": false,
+          "both": false
+        },
+        "median_rel_err_by_order_frozen_all_kinds": {
+          "order_1": 0.0011815347363105227,
+          "order_2": 6.486844023797041,
+          "order_3": 22.831987228773773,
+          "order_4": 5601.572286746385
+        },
+        "S_curvature_effect_order2_median_rel_err": {
+          "gradient_only": 10.622993231148659,
+          "with_curvature": 10.597755646709995
+        },
+        "output_derivatives": {
+          "order_1": {
+            "median_rel_err": 0.0012310790973361861,
+            "max_abs_diff": 5.71798622799307e-06,
+            "truth_abs_max": 0.004303403277645232
+          },
+          "order_2": {
+            "median_rel_err": 2.6806576679530982,
+            "max_abs_diff": 0.0005587692342765287,
+            "truth_abs_max": 0.00013727084679372362
+          },
+          "order_3": {
+            "median_rel_err": 16.2831209069194,
+            "max_abs_diff": 0.8453062830104449,
+            "truth_abs_max": 0.011933453083941083
+          },
+          "order_4": {
+            "median_rel_err": 9170.302950084722,
+            "max_abs_diff": 1553.935951242525,
+            "truth_abs_max": 0.6244395863326996
+          }
+        },
+        "decoupling_ramp_rel_err": {
+          "Pset_SG31": {
+            "0.05": 0.31514204899999027,
+            "0.1": 0.13998574669456765,
+            "0.2": 0.09847294973804577
+          },
+          "Pset_GFM32": {
+            "0.05": 0.18520009938005982,
+            "0.1": 0.08309103580753663,
+            "0.2": 0.066512551315821
+          },
+          "Qset_GFM36": {
+            "0.05": 0.20162917011946488,
+            "0.1": 0.08023409769395985,
+            "0.2": 0.05588737508778852
+          }
+        },
+        "cost_s": {
+          "linearize": 0.3159995999885723,
+          "assemble_hocbf": 0.03384529997128993,
+          "audit_lp_qp": 0.38126930000726134,
+          "qp_slsqp": 0.0006783000426366925,
+          "qp_trust_constr": 0.3710663999663666
+        },
+        "scaling": {
+          "row_norm_min": 0.03296834776658817,
+          "row_norm_max": 27417.134216992567,
+          "decoupling_condition_number": Infinity,
+          "decoupling_rank_1e-8": 8,
+          "n_rows": 128,
+          "lead_coefficient_min_abs": 2.971425014062967e-16,
+          "lead_coefficient_max_abs": 27314.35870494936
+        }
+      },
+      {
+        "scenario": "S0",
+        "t0_s": 100.0,
+        "membership": {
+          "n_barriers": 128,
+          "inside_CH_truth": 128,
+          "inside_CH_frozen": 128,
+          "inside_CH_frozen_curv": 128,
+          "decisions_differing_frozen": 0,
+          "decisions_differing_frozen_curv": 0,
+          "examples_differing_frozen": [],
+          "rhs_activation_sign_differences": {
+            "frozen": 0,
+            "frozen_curv": 0
+          }
+        },
+        "gate_S0_criteria": {
+          "psi_same_sign_and_positive_all_barriers": true,
+          "h_derivatives_1_3_consistent_all_barriers": false,
+          "both": false
+        },
+        "median_rel_err_by_order_frozen_all_kinds": {
+          "order_1": 0.002759570721586553,
+          "order_2": 2.793428049950997,
+          "order_3": 126.01253550744974,
+          "order_4": 4702.72960133991
+        },
+        "S_curvature_effect_order2_median_rel_err": {
+          "gradient_only": 17.21209012551728,
+          "with_curvature": 17.212927428282416
+        },
+        "output_derivatives": {
+          "order_1": {
+            "median_rel_err": 0.0027977485444656836,
+            "max_abs_diff": 1.9796849920235412e-06,
+            "truth_abs_max": 0.0008045987494625103
+          },
+          "order_2": {
+            "median_rel_err": 1.0096208139851248,
+            "max_abs_diff": 0.00039916979698750025,
+            "truth_abs_max": 7.351539390737494e-05
+          },
+          "order_3": {
+            "median_rel_err": 106.32093074914485,
+            "max_abs_diff": 0.620752060328784,
+            "truth_abs_max": 0.004729721256701286
+          },
+          "order_4": {
+            "median_rel_err": 2159.670374508897,
+            "max_abs_diff": 1141.756611441684,
+            "truth_abs_max": 0.15081850742250266
+          }
+        },
+        "decoupling_ramp_rel_err": {
+          "Pset_SG31": {
+            "0.05": 0.3152434641649393,
+            "0.1": 0.1400324670050431,
+            "0.2": 0.09846376577339072
+          },
+          "Pset_GFM32": {
+            "0.05": 0.18517401429893224,
+            "0.1": 0.08309663617716492,
+            "0.2": 0.06655292618018056
+          },
+          "Qset_GFM36": {
+            "0.05": 0.20214177785153967,
+            "0.1": 0.08073638978178861,
+            "0.2": 0.05664735713179823
+          }
+        },
+        "cost_s": {
+          "linearize": 0.37917379999998957,
+          "assemble_hocbf": 0.03389030008111149,
+          "audit_lp_qp": 0.6530349999666214,
+          "qp_slsqp": 0.000467300065793097,
+          "qp_trust_constr": 0.6441608000313863
+        },
+        "scaling": {
+          "row_norm_min": 0.032992847253460064,
+          "row_norm_max": 27396.262889895766,
+          "decoupling_condition_number": Infinity,
+          "decoupling_rank_1e-8": 8,
+          "n_rows": 128,
+          "lead_coefficient_min_abs": 4.642985071857118e-15,
+          "lead_coefficient_max_abs": 27293.069455977387
+        }
+      },
+      {
+        "scenario": "P+",
+        "t0_s": 5.5001,
+        "membership": {
+          "n_barriers": 128,
+          "inside_CH_truth": 127,
+          "inside_CH_frozen": 126,
+          "inside_CH_frozen_curv": 126,
+          "decisions_differing_frozen": 1,
+          "decisions_differing_frozen_curv": 1,
+          "examples_differing_frozen": [
+            "P9+"
+          ],
+          "rhs_activation_sign_differences": {
+            "frozen": 55,
+            "frozen_curv": 55
+          }
+        },
+        "gate_S0_criteria": {
+          "psi_same_sign_and_positive_all_barriers": false,
+          "h_derivatives_1_3_consistent_all_barriers": false,
+          "both": false
+        },
+        "median_rel_err_by_order_frozen_all_kinds": {
+          "order_1": 0.06878515313364027,
+          "order_2": 0.8660617540089117,
+          "order_3": 140.17376833805577,
+          "order_4": 77853.52239487937
+        },
+        "S_curvature_effect_order2_median_rel_err": {
+          "gradient_only": 0.8327981434089275,
+          "with_curvature": 0.8340793089737357
+        },
+        "output_derivatives": {
+          "order_1": {
+            "median_rel_err": 0.18541305434986421,
+            "max_abs_diff": 0.013064542562324588,
+            "truth_abs_max": 0.4726645811061412
+          },
+          "order_2": {
+            "median_rel_err": 0.22171181328785436,
+            "max_abs_diff": 2.4905098795069853,
+            "truth_abs_max": 3.3594187557721034
+          },
+          "order_3": {
+            "median_rel_err": 235.8569150356866,
+            "max_abs_diff": 4079.3226316266037,
+            "truth_abs_max": 33.25826302375102
+          },
+          "order_4": {
+            "median_rel_err": 61519.54911822611,
+            "max_abs_diff": 7147729.52140906,
+            "truth_abs_max": 115.43777598734789
+          }
+        },
+        "decoupling_ramp_rel_err": {
+          "Pset_SG31": {
+            "0.05": 0.3145127611789334,
+            "0.1": 0.1389103711653642,
+            "0.2": 0.09603307330394052
+          },
+          "Pset_GFM32": {
+            "0.05": 0.18627892176432978,
+            "0.1": 0.08772344243003205,
+            "0.2": 0.08103557770718962
+          },
+          "Qset_GFM36": {
+            "0.05": 0.1993978027182141,
+            "0.1": 0.08439460154238312,
+            "0.2": 0.07310145841298005
+          }
+        },
+        "cost_s": {
+          "linearize": 0.4164121999638155,
+          "assemble_hocbf": 0.026084900018759072,
+          "audit_lp_qp": 5.51993389998097,
+          "qp_slsqp": 0.00429519999306649,
+          "qp_trust_constr": 5.511400799965486
+        },
+        "scaling": {
+          "row_norm_min": 0.035508284464679386,
+          "row_norm_max": 27417.673253553978,
+          "decoupling_condition_number": Infinity,
+          "decoupling_rank_1e-8": 8,
+          "n_rows": 128,
+          "lead_coefficient_min_abs": 1.7866649945968586e-15,
+          "lead_coefficient_max_abs": 27314.859209910937
+        }
+      },
+      {
+        "scenario": "P+",
+        "t0_s": 7.72275625,
+        "membership": {
+          "n_barriers": 128,
+          "inside_CH_truth": 128,
+          "inside_CH_frozen": 128,
+          "inside_CH_frozen_curv": 128,
+          "decisions_differing_frozen": 0,
+          "decisions_differing_frozen_curv": 0,
+          "examples_differing_frozen": [],
+          "rhs_activation_sign_differences": {
+            "frozen": 2,
+            "frozen_curv": 2
+          }
+        },
+        "gate_S0_criteria": {
+          "psi_same_sign_and_positive_all_barriers": true,
+          "h_derivatives_1_3_consistent_all_barriers": false,
+          "both": false
+        },
+        "median_rel_err_by_order_frozen_all_kinds": {
+          "order_1": 0.018464625011894255,
+          "order_2": 0.02008658611036527,
+          "order_3": 2.408889607847782,
+          "order_4": 559.2308444568393
+        },
+        "S_curvature_effect_order2_median_rel_err": {
+          "gradient_only": 0.021095772995151182,
+          "with_curvature": 0.021662606366442606
+        },
+        "output_derivatives": {
+          "order_1": {
+            "median_rel_err": 0.017665360080253524,
+            "max_abs_diff": 0.0037912173517556935,
+            "truth_abs_max": 0.05145293827229564
+          },
+          "order_2": {
+            "median_rel_err": 0.019850976645714696,
+            "max_abs_diff": 0.02117089630549046,
+            "truth_abs_max": 0.970979781486861
+          },
+          "order_3": {
+            "median_rel_err": 1.0328881064136979,
+            "max_abs_diff": 17.174283374004084,
+            "truth_abs_max": 2.6551611323678035
+          },
+          "order_4": {
+            "median_rel_err": 558.5280326294481,
+            "max_abs_diff": 45145.04761214947,
+            "truth_abs_max": 29.87367632409364
+          }
+        },
+        "decoupling_ramp_rel_err": {
+          "Pset_SG31": {
+            "0.05": 0.3149487751839137,
+            "0.1": 0.14038972570834538,
+            "0.2": 0.09943856501610106
+          },
+          "Pset_GFM32": {
+            "0.05": 0.18515005214740815,
+            "0.1": 0.08137062534216283,
+            "0.2": 0.06207375208235944
+          },
+          "Qset_GFM36": {
+            "0.05": 0.19944022292495905,
+            "0.1": 0.07700501634659021,
+            "0.2": 0.050336861017778796
+          }
+        },
+        "cost_s": {
+          "linearize": 0.37933430005796254,
+          "assemble_hocbf": 0.024656500085256994,
+          "audit_lp_qp": 5.307894399971701,
+          "qp_slsqp": 0.004576599923893809,
+          "qp_trust_constr": 5.294703499996103
+        },
+        "scaling": {
+          "row_norm_min": 0.03271450980226677,
+          "row_norm_max": 27283.628626535905,
+          "decoupling_condition_number": Infinity,
+          "decoupling_rank_1e-8": 8,
+          "n_rows": 128,
+          "lead_coefficient_min_abs": 3.5343003369915592e-15,
+          "lead_coefficient_max_abs": 27181.481872097458
+        }
+      },
+      {
+        "scenario": "P+",
+        "t0_s": 20.0001,
+        "membership": {
+          "n_barriers": 128,
+          "inside_CH_truth": 128,
+          "inside_CH_frozen": 128,
+          "inside_CH_frozen_curv": 128,
+          "decisions_differing_frozen": 0,
+          "decisions_differing_frozen_curv": 0,
+          "examples_differing_frozen": [],
+          "rhs_activation_sign_differences": {
+            "frozen": 0,
+            "frozen_curv": 0
+          }
+        },
+        "gate_S0_criteria": {
+          "psi_same_sign_and_positive_all_barriers": true,
+          "h_derivatives_1_3_consistent_all_barriers": false,
+          "both": false
+        },
+        "median_rel_err_by_order_frozen_all_kinds": {
+          "order_1": 0.011677216795265576,
+          "order_2": 0.02845389709645986,
+          "order_3": 7.736827637474268,
+          "order_4": 469.9643689991853
+        },
+        "S_curvature_effect_order2_median_rel_err": {
+          "gradient_only": 0.4480280455985656,
+          "with_curvature": 0.45227048011692983
+        },
+        "output_derivatives": {
+          "order_1": {
+            "median_rel_err": 0.030757505444000407,
+            "max_abs_diff": 4.5081842164044e-05,
+            "truth_abs_max": 0.007135065543935628
+          },
+          "order_2": {
+            "median_rel_err": 0.017204878741087667,
+            "max_abs_diff": 0.0007980009681965682,
+            "truth_abs_max": 0.011379638526374119
+          },
+          "order_3": {
+            "median_rel_err": 7.472208312625458,
+            "max_abs_diff": 0.8016717242113245,
+            "truth_abs_max": 0.08938742866376248
+          },
+          "order_4": {
+            "median_rel_err": 489.73927850026337,
+            "max_abs_diff": 1316.3676529829936,
+            "truth_abs_max": 2.634262627624478
+          }
+        },
+        "decoupling_ramp_rel_err": {
+          "Pset_SG31": {
+            "0.05": 0.3147465889452297,
+            "0.1": 0.1399459272694224,
+            "0.2": 0.09849462127505601
+          },
+          "Pset_GFM32": {
+            "0.05": 0.18583937141193288,
+            "0.1": 0.08344520877716043,
+            "0.2": 0.06694372505016366
+          },
+          "Qset_GFM36": {
+            "0.05": 0.20038433532466424,
+            "0.1": 0.0789177794738478,
+            "0.2": 0.05515999697871758
+          }
+        },
+        "cost_s": {
+          "linearize": 0.6174604999832809,
+          "assemble_hocbf": 0.5243514999747276,
+          "audit_lp_qp": 0.5313612000318244,
+          "qp_slsqp": 0.0006428000051528215,
+          "qp_trust_constr": 0.519740599906072
+        },
+        "scaling": {
+          "row_norm_min": 0.03336326124234454,
+          "row_norm_max": 27570.010276737852,
+          "decoupling_condition_number": Infinity,
+          "decoupling_rank_1e-8": 8,
+          "n_rows": 128,
+          "lead_coefficient_min_abs": 2.5124674343240587e-16,
+          "lead_coefficient_max_abs": 27467.096996599415
+        }
+      }
+    ],
+    "gate_S0": {
+      "criteria": "declared in run_e9c_lie_validation.py: (i) frozen and true psi_k same sign and positive for all barriers; (ii) frozen h^(1..3) consistent with the truth within 3 fit uncertainties or below 1e-3 of the margin scale",
+      "met_at_all_S0_probes": false
+    },
+    "structural_findings": [
+      "decoupling matrix of the relative-degree-3 constraints has rank 8 (the four GFM Pset and four GFM Qset channels); SG channels enter at order 4 only, so the r = 3 HOCBF cannot use the SG references (SG31 own channel has the largest authority over P31)",
+      "row norms of the constraint matrix span 0.03 to 2.7e4 (ratio about 8e5)"
+    ]
+  },
+  "phase4_shadow_S0": {
+    "mode": "shadow (filter output discarded; trajectory = plain B2)",
+    "n_steps": 51201,
+    "n_nominal_feasible": 50513,
+    "n_would_activate_qp": 688,
+    "fraction_active": 0.013437237553954024,
+    "n_qp_infeasible": 2,
+    "violated_constraint_counts_top": [
+      [
+        "P+8",
+        626
+      ],
+      [
+        "P+9",
+        48
+      ],
+      [
+        "V+5",
+        8
+      ],
+      [
+        "V+9",
+        8
+      ],
+      [
+        "V+10",
+        6
+      ],
+      [
+        "P+6",
+        5
+      ],
+      [
+        "V+4",
+        2
+      ],
+      [
+        "V+36",
+        2
+      ],
+      [
+        "V+18",
+        1
+      ],
+      [
+        "V+11",
+        1
+      ],
+      [
+        "Q+0",
+        1
+      ],
+      [
+        "V-36",
+        1
+      ]
+    ],
+    "activation_time_histogram_10s_bins": [
+      14,
+      19,
+      7,
+      3,
+      0,
+      1,
+      0,
+      0,
+      0,
+      7,
+      28,
+      252,
+      161,
+      27,
+      13,
+      1,
+      4,
+      9,
+      46,
+      96
+    ],
+    "equivalence_check_vs_evaluate": {
+      "done": true,
+      "t_s": 6.0,
+      "max_abs_diff_A": 0.0,
+      "max_abs_A": 27333.116386074318,
+      "max_abs_diff_b": 4.004326330849722,
+      "max_abs_b": 1778.9463025408827,
+      "xdot_from_dae_f_vs_refresh_max_abs_diff": 0.0012511355581162342,
+      "relative_degree_3_for_all_outputs": false
+    },
+    "cost_s": {
+      "control_period_s": 0.00390625,
+      "step_mean": 0.000956932282816255,
+      "step_median": 0.00032240001019090414,
+      "step_p95": 0.0005592000670731068,
+      "step_p99": 0.0014845000114291906,
+      "step_max": 1.7456123000010848,
+      "fraction_of_steps_over_period": 0.008085779574617683,
+      "n_refresh": 41,
+      "refresh_mean": 0.571092831703448,
+      "refresh_max": 1.7450141999870539,
+      "qp_mean": 0.0013429510199361979,
+      "qp_max": 0.06521909998264164
+    },
+    "real_time_statement": "NOT demonstrated: Python/SciPy on a desktop; the figures above are the measured costs, no real-time capability is claimed"
+  },
+  "closed_loop_S0_executed": false,
+  "closed_loop_S0_reason": "the Phase 3 gate declared before running is not met at the S0 probes (frozen order-3 derivatives are not consistent with the nonlinear truth), and in shadow mode the filter would act in 1.3 % of the S0 steps (2 infeasible), mainly through the pmax barrier of GFM34 which has 0.43 pu of margin: spurious activations from the derivative terms; the investigator's condition 'after passing the previous verifications' is not satisfied",
+  "figures": {
+    "margins": "Paper_manuscript/figures_main/IEEE39_E9B0_margins_R35_040.png",
+    "amplitude_search": "Paper_manuscript/figures_main/IEEE39_E9C_amplitude_search_R35_040.png",
+    "lie_validation": "Paper_manuscript/figures_main/IEEE39_E9C_lie_validation_R35_040.png",
+    "shadow_S0": "Paper_manuscript/figures_main/IEEE39_E9D_shadow_R35_040.png"
+  },
+  "tables": [
+    "IEEE39_E9B0_initial_condition_R35_040_units.csv",
+    "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "IEEE39_E9C_margins_all_variants.csv",
+    "IEEE39_E9C_amplitude_search_R35_040.csv"
+  ],
+  "raw_sha256": {
+    "IEEE39_E9B0_Vsafe_series.npz": "3AE85AA4377E51D4D6745220A2AEA643F1CDF664F9258B6E3CBB57E8046B8253",
+    "IEEE39_E9B0_Vsafe_R35_series.npz": "E535E941B3AA4B466E6B6BA680CD6E04C47A03799ABC6AE161A4556C2877FE8B",
+    "IEEE39_E9B0_Vsafe_R35_040_series.npz": "8BC40CDDBE5D290552162D9FF5D18FF6A6C137BEEA329E8613C0BC9954453F65"
+  },
+  "artifacts_sha256": {
+    "IEEE39_E9C_amplitude_search_R35_040.csv": "A304C372C17CBDE2D92353A05A5359A682B9C37925CA225FB1686C873EED3E5C",
+    "IEEE39_E9C_amplitude_search_R35_040.json": "C33E602FD6A6D246B9D4C1F6C7CC5231CDA25C9DCB434E6CB9E65D74E6E9924F",
+    "IEEE39_E9C_lie_validation_R35_040.json": "548CF02EAB758A2D4445A5B15A3B85F6C4B0A244F9330108DD148210E6C328F0",
+    "IEEE39_E9C_margins_all_variants.csv": "2BB055B8A4A5F653180A2A20B0B843F0145BAC2B1E30F7D651732B49573D0BD9",
+    "IEEE39_E9D_shadow_R35_040.json": "9A8C548DD156521D29E6DAE55DE16FF6F3C4518489D0A82D96EC7B76A45782BB"
+  },
+  "code_sha256": {
+    "e9b_variant.py": "556B6D893871978D2337999D7E5B570560A4E9D380C076B3F10200A84D208BA8",
+    "e9b_tools.py": "FCFA4C4BDBF733E13045CA3121DD862480D230884A1CDECC929139CBBF435A0C",
+    "e9d_filter.py": "646493BC86613AE54ABCD4BAC42DAF85C59CAC907623E69C3D4FFFB8A423731A",
+    "run_e9b0_variant.py": "F5FE81DA573617C518E7DBAA2190EAE77F942D910EC77DA5B52301B2A94A3F6B",
+    "run_e9c_amplitudes.py": "EC61019957837D6389CFC952595073E4BCA91D69D09B5675B2AB760E3EA4D3EA",
+    "run_e9c_lie_validation.py": "37EC24D077B504EFD1DF6EA061514410EBEA0DFB7F6F88F2F442DA03E1E3864A",
+    "run_e9d_shadow.py": "4D66A4CE5FD6C9277BF0190817C1DC6CAE8524A374E4A5A9E0692E60B60ED84E",
+    "finalize_e9c.py": "72B711F8D9A1ED40DC103832605AD50EFD09DAA0DFABAB2FA00669C4CF54B463",
+    "run_b3_ieee39.py": "1D7094916D47F5E2AA457DEE89049AE9DA390ABF7BC648D3A301F22740E81671"
+  },
+  "open": [
+    "OPEN-SG31-PMAX open for the original C2t",
+    "no perturbation frozen for the B2-versus-filter comparison",
+    "E9-B2 closed loop not executed; P+/Q+ with QP not executed; E10-E15 and weight sensitivity not run",
+    "no certificate: frozen-Jacobian derivatives, assumed rate envelope, sampled controller not validated, no real-time capability demonstrated"
+  ]
+}

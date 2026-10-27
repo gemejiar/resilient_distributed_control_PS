@@ -58,7 +58,7 @@ TOL_REPLICATION = {"f_hz": 1.0e-6, "v_pu": 1.0e-6, "pq_pu": 1.0e-6, "ref_pu": 1.
 
 
 def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict[str, np.ndarray] | None = None,
-        probe=None, init_hook=None):
+        probe=None, init_hook=None, freeze_t=None, ramp=None, qp_filter=None):
     system, ctx = e8.configure(scenario, time_step_s)
     if init_hook is not None:  # E9-A: independent initial-condition variant (the historical runs never pass a hook)
         init_hook(system, ctx)
@@ -118,10 +118,15 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict
         vnom_p, vnom_q = vp - st["off_p"], vq - st["off_q"]
         if probe is not None:  # E9-A diagnostic hook: read-only use of the state before the references are updated
             probe(t, sys_, ctx, st, vnom_p, vnom_q)
-        active = t >= EVENT_TIME_S
+        active = t >= EVENT_TIME_S and (freeze_t is None or t < freeze_t)   # freeze_t: E9-C validation only (references held constant afterwards)
+        if qp_filter is not None and (active or qp_filter.get("also_before_event", False)):   # E9-B2: filtered rates (nominal B2 command in, safe command out)
+            vnom_p, vnom_q = qp_filter["fn"](t, sys_, ctx, st, vnom_p, vnom_q)
         if active:
             st["pset"] = st["pset"] + dt * vnom_p
             st["qset"] = st["qset"] + dt * vnom_q
+        if ramp is not None and t >= ramp[0]:   # E9-C decoupling test: constant rate on one reference channel (0..9 Pset, 10..19 Qset)
+            ch, rate = ramp[1], ramp[2]
+            (st["pset"] if ch < 10 else st["qset"])[ch % 10] += dt * rate
         sys_.TGOV1N.paux0.v[ctx["tg_pos"]] = (st["pset"] - st["pn"])[:n_sg]
         paux = e8.KC_GFM * (st["y0"] + (st["pset"] - st["pn"])[n_sg:] - np.asarray(y[st["a_y"]], float))
         sys_.REGF1.Paux0.v[:] = paux

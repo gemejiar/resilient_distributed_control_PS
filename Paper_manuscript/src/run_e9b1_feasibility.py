@@ -48,9 +48,9 @@ if os.environ.get("E9B1_PROBES"):   # smoke tests only
 
 
 class Prober:
-    def __init__(self, scenario: str, series: dict[str, np.ndarray]):
+    def __init__(self, scenario: str, series: dict[str, np.ndarray] | None, vref: tuple[float, float] | None = None):
         self.sc, self.series, self.done, self.rows = scenario, series, set(), []
-        self.vref = H.scale_channels(*V_REF[scenario])
+        self.vref = H.scale_channels(*(vref if vref is not None else V_REF[scenario]))
         self.rowset = None
         self.base_rd = None
 
@@ -84,9 +84,10 @@ class Prober:
             pgen = float(np.asarray(y[np.concatenate([np.asarray(sys_.GENROU.Pe.a), np.asarray(sys_.REGF1.Pe.a)])], float).sum())
             rec["power_balance_residual_pu"] = abs(pgen - float(np.sum(sys_.PQ.Ppf.v)) - loss)
             # model error against the stored nonlinear series
-            errs = T.predict_outputs(lin, rs, y, t, self.series)
-            rec["prediction_error"] = {tau: {**{k: v for k, v in e.items() if k.startswith("max_abs")}, "window_crosses_load_step": bool(t < EVENT <= t + float(tau))} for tau, e in errs.items()}
-            if t >= EVENT + 0.4 or t <= EVENT - 0.05:
+            errs = T.predict_outputs(lin, rs, y, t, self.series) if self.series is not None else None
+            if errs is not None:
+                rec["prediction_error"] = {tau: {**{k: v for k, v in e.items() if k.startswith("max_abs")}, "window_crosses_load_step": bool(t < EVENT <= t + float(tau))} for tau, e in errs.items()}
+            if self.series is not None and (t >= EVENT + 0.4 or t <= EVENT - 0.05):
                 ud = (T._interp_u(self.series["cmd_t"], self.series["cmd_pset"], self.series["cmd_qset"], t + 0.004) - T._interp_u(self.series["cmd_t"], self.series["cmd_pset"], self.series["cmd_qset"], t - 0.004)) / 0.008
                 rec["derivative_check"] = T.derivative_check(lin, rs, t, self.series, ud)
                 rec["derivative_check_wide_window"] = T.derivative_check(lin, rs, t, self.series, ud, half=20, deg=6)

@@ -1,0 +1,163 @@
+{
+  "variant": "C2t_Vsafe_R35_040",
+  "scenario": "S0",
+  "mode": "shadow (filter output discarded; trajectory = plain B2)",
+  "git_commit": "3544b0ce070bc23910f9411eec53b7ca662b6f39",
+  "lambda": 2.0,
+  "rate_envelope_pu_per_s": [
+    0.616,
+    0.0154
+  ],
+  "n_steps": 51201,
+  "n_nominal_feasible": 50513,
+  "n_would_activate_qp": 688,
+  "fraction_active": 0.013437237553954024,
+  "n_qp_infeasible": 2,
+  "first_activation_times_s": [
+    5.01171875,
+    5.04296875,
+    5.046875,
+    5.0546875,
+    5.0703125,
+    5.078125,
+    5.08203125,
+    5.08984375,
+    6.27734375,
+    6.28515625,
+    6.296875,
+    6.33203125,
+    7.0234375,
+    7.6796875,
+    10.01171875,
+    10.015625,
+    10.02734375,
+    13.10546875,
+    13.1171875,
+    14.41796875,
+    14.4375,
+    14.46875,
+    14.48828125,
+    15.01171875,
+    15.015625,
+    15.01953125,
+    15.02734375,
+    15.03125,
+    15.03515625,
+    15.046875
+  ],
+  "violated_constraint_counts_top": [
+    [
+      "P+8",
+      626
+    ],
+    [
+      "P+9",
+      48
+    ],
+    [
+      "V+5",
+      8
+    ],
+    [
+      "V+9",
+      8
+    ],
+    [
+      "V+10",
+      6
+    ],
+    [
+      "P+6",
+      5
+    ],
+    [
+      "V+4",
+      2
+    ],
+    [
+      "V+36",
+      2
+    ],
+    [
+      "V+18",
+      1
+    ],
+    [
+      "V+11",
+      1
+    ],
+    [
+      "Q+0",
+      1
+    ],
+    [
+      "V-36",
+      1
+    ]
+  ],
+  "activation_time_histogram_10s_bins": [
+    14,
+    19,
+    7,
+    3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    7,
+    28,
+    252,
+    161,
+    27,
+    13,
+    1,
+    4,
+    9,
+    46,
+    96
+  ],
+  "activation_time_range_s": [
+    5.01171875,
+    199.96484375
+  ],
+  "max_qp_deviation_norm_if_applied": 4.013428633519589,
+  "equivalence_check_vs_evaluate": {
+    "done": true,
+    "t_s": 6.0,
+    "max_abs_diff_A": 0.0,
+    "max_abs_A": 27333.116386074318,
+    "max_abs_diff_b": 4.004326330849722,
+    "max_abs_b": 1778.9463025408827,
+    "xdot_from_dae_f_vs_refresh_max_abs_diff": 0.0012511355581162342,
+    "relative_degree_3_for_all_outputs": false
+  },
+  "cost_s": {
+    "control_period_s": 0.00390625,
+    "step_mean": 0.000956932282816255,
+    "step_median": 0.00032240001019090414,
+    "step_p95": 0.0005592000670731068,
+    "step_p99": 0.0014845000114291906,
+    "step_max": 1.7456123000010848,
+    "fraction_of_steps_over_period": 0.008085779574617683,
+    "n_refresh": 41,
+    "refresh_mean": 0.571092831703448,
+    "refresh_max": 1.7450141999870539,
+    "qp_mean": 0.0013429510199361979,
+    "qp_max": 0.06521909998264164
+  },
+  "real_time_statement": "NOT demonstrated: Python/SciPy on a desktop; the figures above are the measured costs, no real-time capability is claimed",
+  "diag": {
+    "pflow_ok": true,
+    "tds_ok": true,
+    "final_residual": 3.3641541108409e-08,
+    "t_end_s": 200.0,
+    "k_ip": 57.474368649055265
+  },
+  "code_sha256": {
+    "e9d_filter.py": "646493BC86613AE54ABCD4BAC42DAF85C59CAC907623E69C3D4FFFB8A423731A",
+    "run_e9d_shadow.py": "4D66A4CE5FD6C9277BF0190817C1DC6CAE8524A374E4A5A9E0692E60B60ED84E",
+    "e9a_hocbf.py": "CB7415D60353496ADA8FEB2F8BA8424E1BE388E32C6315C8F6F93042D0C29CE0",
+    "e9a_linear.py": "6D8E3F596F24D20A8551D6C7E45E8A9521E9D30F95B5386540A43A58D86DE6FA"
+  }
+}
