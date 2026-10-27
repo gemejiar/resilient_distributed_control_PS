@@ -58,7 +58,7 @@ TOL_REPLICATION = {"f_hz": 1.0e-6, "v_pu": 1.0e-6, "pq_pu": 1.0e-6, "ref_pu": 1.
 
 
 def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict[str, np.ndarray] | None = None,
-        probe=None, init_hook=None, freeze_t=None, ramp=None, qp_filter=None):
+        probe=None, init_hook=None, freeze_t=None, ramp=None, qp_filter=None, dist_fn=None):
     system, ctx = e8.configure(scenario, time_step_s)
     if init_hook is not None:  # E9-A: independent initial-condition variant (the historical runs never pass a hook)
         init_hook(system, ctx)
@@ -107,6 +107,8 @@ def run(mode: str, scenario: str, time_step_s: float = e8.TIME_STEP_S, ref: dict
             if mode == "B3" and ref is not None:  # post-event reference xi*(d), selected in advance (B3-A v2), not re-optimized
                 st["off_p"], st["off_q"], _, _ = field(ref["pset_eff"], ref["qset_eff"], ref["p_star"], ref["q_star"], ref["v_star"], 1.0)
             st["init"] = True
+        if dist_fn is not None:   # E9-F: smooth load ramp applied through the load parameters (same mechanism as the Alter events of the historical steps)
+            dist_fn(t, sys_)
         if t <= st["last_t"]:
             return
         st["last_t"] = t

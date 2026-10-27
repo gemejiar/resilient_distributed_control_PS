@@ -44,8 +44,8 @@ import run_e8_ieee39 as e8  # noqa: E402
 from e9b_variant import HOOK, TAG, VARIANT  # noqa: E402
 from run_e0_ieee39 import ARTIFACTS_DIR, FIGURES_DIR, git_commit, sha256  # noqa: E402
 
-OUT = ARTIFACTS_DIR / f"IEEE39_E9C_lie_validation{TAG}.json"
-FIG = FIGURES_DIR / f"IEEE39_E9C_lie_validation{TAG}.png"
+OUT = ARTIFACTS_DIR / os.environ.get("E9C_OUT", f"IEEE39_E9C_lie_validation{TAG}.json")
+FIG = FIGURES_DIR / os.environ.get("E9C_FIG", f"IEEE39_E9C_lie_validation{TAG}.png")
 HALF = 0.0625
 LAM = 2.0
 RAMPS = {"Pset_SG31": (1, 0.5), "Pset_GFM32": (6, 0.5), "Qset_GFM36": (19, 0.2)}   # (channel, rate pu/s)
@@ -117,6 +117,9 @@ def run_free(scenario: str, t0: float, ramp=None, probe: FreeProbe | None = None
     def hook(system, ctx):
         HOOK(system, ctx)
         system.TDS.config.tf = t0 + 0.32
+        if os.environ.get("E9C_TOL"):   # solver-tolerance experiment (DEC-046): tighter Newton tolerance of the TDS
+            system.TDS.config.tol = float(os.environ["E9C_TOL"])
+            system.TDS.config.max_iter = int(os.environ.get("E9C_ITERS", system.TDS.config.max_iter))
 
     _, data, diag = b.run("B2", scenario, probe=probe, init_hook=hook, freeze_t=t0 - HALF, ramp=ramp)
     return data, diag
