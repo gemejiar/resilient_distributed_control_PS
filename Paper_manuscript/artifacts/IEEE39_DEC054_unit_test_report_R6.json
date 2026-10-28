@@ -1,0 +1,14 @@
+{
+ "stage": "DEC-054 R6 pre-freeze: full synthetic battery (core + integration + gate + p3a)",
+ "python": "3.12.10",
+ "numpy": "2.5.4",
+ "scipy": "1.18.1",
+ "tests_run": 91,
+ "failures": [],
+ "errors": [],
+ "skipped": [],
+ "seconds": 20.0,
+ "tds_used": 0,
+ "andes_stepping": false,
+ "plant_runs": false
+}

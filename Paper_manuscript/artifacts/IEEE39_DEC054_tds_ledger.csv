@@ -31,3 +31,11 @@ TDS15,P3-B,P3B1_b16P_M3,M3_verification,P3B1_b16P_M3,"dynamic verification of th
 TDS15,P3-B,P3B1_b16P_M3,M3_verification,P3B1_b16P_M3,"dynamic verification of the M3 dispatch, TUNE bus 16",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
 TDS16,P3-B,P3B1_b24P_M3,M3_verification,P3B1_b24P_M3,"dynamic verification of the M3 dispatch, TUNE bus 24",REQUESTED,,0.00390625,trapezoid dt=2^-8,
 TDS16,P3-B,P3B1_b24P_M3,M3_verification,P3B1_b24P_M3,"dynamic verification of the M3 dispatch, TUNE bus 24",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS17,P3-B,P3B2_b7P_M3,M3_verification,P3B2_b7P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 7",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS17,P3-B,P3B2_b7P_M3,M3_verification,P3B2_b7P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 7",TDS_SAFE_OBSERVED,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS18,P3-B,P3B2_b8P_M3,M3_verification,P3B2_b8P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 8",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS18,P3-B,P3B2_b8P_M3,M3_verification,P3B2_b8P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 8",TDS_SAFE_OBSERVED,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS19,P3-B,P3B2_b23P_M3,M3_verification,P3B2_b23P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 23",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS19,P3-B,P3B2_b23P_M3,M3_verification,P3B2_b23P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 23",TDS_SAFE_OBSERVED,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS20,P3-B,P3B2_b20P_M3,M3_verification,P3B2_b20P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 20",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS20,P3-B,P3B2_b20P_M3,M3_verification,P3B2_b20P_M3,"re-verification of the redesigned M3 (v_margin 0.005 pu), bus 20",TDS_SAFE_OBSERVED,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
