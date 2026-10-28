@@ -86,7 +86,10 @@ def excursion(A, f, C, segments=None, refine: bool = True, check_density: int = 
     _, D2, _ = propagate(A, f, C, seg2)
     e_up2, e_dn2 = np.maximum(D2.max(axis=1), 0.0), np.maximum((-D2).max(axis=1), 0.0)
     E_up, E_dn = np.array([u[0] for u in up]), np.array([d[0] for d in dn])
-    return {"E_up": E_up, "E_dn": E_dn, "t_up": np.array([u[1] for u in up]), "t_dn": np.array([d[1] for d in dn]),
+    ok = bool(np.all(np.isfinite(D)) and np.abs(D).max() <= 50.0)          # a predicted excursion of 50 pu is a model failure (unstable linearisation), never a margin
+    if not ok:
+        E_up, E_dn = np.zeros_like(E_up), np.zeros_like(E_dn)
+    return {"ok": ok, "E_up": E_up, "E_dn": E_dn, "t_up": np.array([u[1] for u in up]), "t_dn": np.array([d[1] for d in dn]),
             "sampling_error_up": np.abs(np.maximum(E_up, e_up2) - E_up), "sampling_error_dn": np.abs(np.maximum(E_dn, e_dn2) - E_dn),
             "D0": D[:, 0].copy(), "t": t, "D": D}
 

@@ -222,4 +222,4 @@ class AndesPlant:
         except InitInvalid as ex:
             return {"ok": False, "reason": "INIT_INVALID", "init_report": ex.args[0]}
         x = PRD.excursion(A, f, C)
-        return {"ok": True, "E_up": x["E_up"], "E_dn": x["E_dn"], "t_up": x["t_up"], "sampling_error": x["sampling_error_up"], "horizon_s": T_POST}
+        return {"ok": x["ok"], "E_up": x["E_up"], "E_dn": x["E_dn"], "t_up": x["t_up"], "sampling_error": x["sampling_error_up"], "horizon_s": T_POST}

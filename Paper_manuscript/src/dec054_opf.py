@@ -55,7 +55,7 @@ class Problem:
         self.pi_p = self.P_ref / self.P_ref.sum()                       # frozen design shares (a priori, from z_ref)
         self.q_rng = self.lim["qmax"] - self.lim["qmin"]
         self.pi_q = self.Q_ref / self.q_rng
-        self.p_scale = (self.lim["pmax"] - self.lim["pmin"])[PV_IDX]
+        self.p_scale = np.full(N_PV, float(self.cfg["p_scale_pu"]))                  # 50 MW: displacement cost scale, strictly positive, independent of z
         self._cache: dict = {}
         self.dyn_cuts: list = []
         self.calls = 0
@@ -83,7 +83,8 @@ class Problem:
         P, Q, V, lim = e["P"], e["Q"], e["V"], self.lim
         S = np.hypot(P, Q)
         floor = np.maximum(lim["pmin"], self.cfg["P_floor_pu"])
-        return np.concatenate([V - VLO, VHI - V, P - floor, lim["pmax"] - P, Q - lim["qmin"], lim["qmax"] - Q, lim["smax"] - S])
+        cm = self.cfg["cap_margin_pu"]                                                     # interior of the capability set W_i (gp, gq > 0 with margin)
+        return np.concatenate([V - VLO, VHI - V, P - floor, lim["pmax"] - cm - P, Q - lim["qmin"] - cm, lim["qmax"] - cm - Q, lim["smax"] - cm - S])
 
     def margins_d(self, z, d_idx):
         """(10 upper, 10 lower) design margins for scenario d at z; M2: jump only; M3: jump + excursion."""
@@ -132,7 +133,13 @@ class Problem:
         self.dyn_cuts.append({"d": int(d), "i": int(i), "cls": cls, "delta": float(delta), "z_c": np.asarray(z_c, float).copy(), "r": np.broadcast_to(np.asarray(r, float), (len(z_c),)).copy()})
         self._cache.clear()
 
+    def _pf(self, zs, dset):
+        """Batch pre-computation of the event responses (parallel plants); a no-op for plants without `prefetch`."""
+        if self.mode in ("M2", "M3") and hasattr(self.plant, "prefetch") and dset:
+            self.plant.prefetch(zs, [self.sc[d] for d in sorted(dset)], exc=(self.mode == "M3"))
+
     def constraints(self, z, W=()):
+        self._pf([z], {d for (d, _, _) in W})
         parts = [self.base(z)]
         if self.mode == "M1":
             e = self.plant.evaluate(z)
@@ -148,9 +155,11 @@ class Problem:
         return np.concatenate(parts)
 
     def all_margins(self, z):
+        self._pf([z], set(range(len(self.sc))))
         return {d: self.margins_d(z, d) for d in range(len(self.sc))}
 
     def most_violated(self, z):
+        self._pf([z], set(range(len(self.sc))))
         worst = (np.inf, None)
         for d in range(len(self.sc)):
             up, dn, info = self.margins_d(z, d)
@@ -200,11 +209,45 @@ def kkt_residual(problem: Problem, z, W, tol_active: float = 1e-6, h: float = 1e
     return float(rn), len(rows)
 
 
+def _fd_jac(fun, z, lo, hi, h=1e-4):
+    """Forward finite differences (backward when the step would leave the bounds); fun may return a scalar or a vector."""
+    f0 = np.atleast_1d(fun(z))
+    cols = []
+    for k in range(len(z)):
+        zz = z.copy()
+        sgn = 1.0 if z[k] + h <= hi[k] else -1.0
+        zz[k] += sgn * h
+        cols.append(sgn * (np.atleast_1d(fun(zz)) - f0) / h)
+    return np.array(cols).T
+
+
 def solve_nlp(problem: Problem, W, z0, z_c=None, r=None):
-    cons = [{"type": "ineq", "fun": lambda z: problem.constraints(z, W)}]
+    plant = problem.plant
+    bnds = _bounds(plant, z_c, r)
+    lo, hi = np.array([b[0] for b in bnds]), np.array([b[1] for b in bnds])
+    cons = {"type": "ineq", "fun": lambda z: problem.constraints(z, W)}
+    kw = {}
+    if hasattr(plant, "prefetch"):                       # expensive plant: Jacobians by finite differences with batch (parallel) pre-computation
+        events = {d for (d, _, _) in W}
+
+        def jac_c(z):
+            zs = [z]
+            for k in range(len(z)):
+                zz = z.copy()
+                zz[k] += 1e-4 if z[k] + 1e-4 <= hi[k] else -1e-4
+                zs.append(zz)
+            problem._pf(zs, events)
+            return _fd_jac(lambda x: problem.constraints(x, W), z, lo, hi)
+        cons["jac"] = jac_c
+        kw["jac"] = lambda z: _fd_jac(lambda x: problem.J(x), z, lo, hi)[0]
+    it = [0]
+
+    def _cb(xk):
+        it[0] += 1
+        if problem.cfg.get("verbose", False):
+            print(f"    slsqp it {it[0]} J={problem.J(xk):.5f} min_con={problem.constraints(xk, W).min():.2e}", flush=True)
     try:
-        res = minimize(problem.J, np.asarray(z0, float), method="SLSQP", bounds=_bounds(problem.plant, z_c, r), constraints=cons,
-                       options={"maxiter": problem.cfg["N_it"], "ftol": 1e-10})
+        res = minimize(problem.J, np.asarray(z0, float), method="SLSQP", bounds=bnds, constraints=[cons], callback=_cb, options={"maxiter": problem.cfg["N_it"], "ftol": problem.cfg.get("ftol", 1e-10)}, **kw)
     except Exception as ex:        # solver exception: never read as infeasibility
         return {"ok": False, "kind": "SOLVER_FAILED", "z": np.asarray(z0, float), "msg": repr(ex)}
     z = np.asarray(res.x, float)
@@ -220,6 +263,7 @@ def solve_nlp(problem: Problem, W, z0, z_c=None, r=None):
 def initial_working_set(problem: Problem, k0: int = 2):
     """D_0: the k0 scenarios with the largest STATIC jump-only exceedance at z_ref (rule, no TDS data); all units, both sides."""
     z = problem.plant.z_ref
+    problem._pf([z], set(range(len(problem.sc))))
     sev = []
     for d, sc in enumerate(problem.sc):
         e, j = problem.plant.evaluate(z), problem.plant.jump(z, sc)
@@ -233,18 +277,18 @@ def initial_working_set(problem: Problem, k0: int = 2):
     return W
 
 
-def algorithm1(plant, mode: str, scenarios: list, eps_J, eps_E, cfg: dict | None = None, z_seeds=None, k0: int = 2) -> OPFResult:
+def algorithm1(plant, mode: str, scenarios: list, eps_J, eps_E, cfg: dict | None = None, z_seeds=None, k0: int = 2, eps_E_dn=None, log=None) -> OPFResult:
     """Algorithm 1 for M2/M3; exit states per OPF_STATUS (no success guarantee).  Any exception raised by the plant/predictor is SOLVER_FAILED
     (never read as infeasibility)."""
     assert mode in ("M2", "M3")
     try:
-        return _algorithm1(plant, mode, scenarios, eps_J, eps_E, cfg, z_seeds, k0)
+        return _algorithm1(plant, mode, scenarios, eps_J, eps_E, cfg, z_seeds, k0, eps_E_dn, log)
     except Exception as ex:
         return OPFResult(mode, "SOLVER_FAILED", None, None, 0, detail=repr(ex))
 
 
-def _algorithm1(plant, mode, scenarios, eps_J, eps_E, cfg, z_seeds, k0) -> OPFResult:
-    pb = Problem(plant, mode, scenarios, eps_J, eps_E, cfg=cfg)
+def _algorithm1(plant, mode, scenarios, eps_J, eps_E, cfg, z_seeds, k0, eps_E_dn=None, log=None) -> OPFResult:
+    pb = Problem(plant, mode, scenarios, eps_J, eps_E, cfg=cfg, eps_E_dn=eps_E_dn)
     cfg = pb.cfg
     W = initial_working_set(pb, k0)
     res = OPFResult(mode, "ITERATION_BUDGET_EXHAUSTED", None, None, 0)
@@ -270,6 +314,8 @@ def _algorithm1(plant, mode, scenarios, eps_J, eps_E, cfg, z_seeds, k0) -> OPFRe
         z_prev = z
         m, key = pb.most_violated(z)
         res.log.append({"k": k, "W": len(W), "min_margin": m, "most_violated": key, "J": pb.J(z), "solver_viol": sol["viol"]})
+        if log:
+            log(res.log[-1])
         best = (z, m)
         if m >= -cfg["tau_cut_pu"]:
             kk, nact = kkt_residual(pb, z, W)
