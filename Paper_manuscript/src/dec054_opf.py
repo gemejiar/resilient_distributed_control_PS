@@ -84,7 +84,8 @@ class Problem:
         S = np.hypot(P, Q)
         floor = np.maximum(lim["pmin"], self.cfg["P_floor_pu"])
         cm = self.cfg["cap_margin_pu"]                                                     # interior of the capability set W_i (gp, gq > 0 with margin)
-        return np.concatenate([V - VLO, VHI - V, P - floor, lim["pmax"] - cm - P, Q - lim["qmin"] - cm, lim["qmax"] - cm - Q, lim["smax"] - cm - S])
+        vm = self.cfg.get("v_margin_pu", 0.0)                                              # design margin for the (unmodelled) post-event voltage dynamics
+        return np.concatenate([V - (VLO + vm), (VHI - vm) - V, P - floor, lim["pmax"] - cm - P, Q - lim["qmin"] - cm, lim["qmax"] - cm - Q, lim["smax"] - cm - S])
 
     def margins_d(self, z, d_idx):
         """(10 upper, 10 lower) design margins for scenario d at z; M2: jump only; M3: jump + excursion."""

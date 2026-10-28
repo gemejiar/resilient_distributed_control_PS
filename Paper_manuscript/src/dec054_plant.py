@@ -181,10 +181,18 @@ class AndesPlant:
             return {"ok": False, "reason": "JUMP_NOT_CONVERGED", "residual": out["residual"]}
         return {"ok": True, "dP": out["P"] - st["pn"], "dQ": out["Q"] - st["qn"], "P_plus": out["P"], "Q_plus": out["Q"], "V_plus": out["Vbus"], "residual": out["residual"]}
 
-    def affine(self, z, sc, diag: bool = False):
+    def stale_state(self, z_stale):
+        """RDC initial state (pn, qn, pset, qset, k_ip, gref, d_p, y0, vref0) of ANOTHER dispatch: used only by the I(z) ablation (A5, the DEC-051 stale-reference hazard)."""
+        system, ctx, _ = self._make(z_stale)
+        return self.K.rdc_state(system, ctx)
+
+    def affine(self, z, sc, diag: bool = False, stale=None):
         """(A+, f+, C) at the post-jump point with the RDC active (v2 sec 2.4): M of e9h_predictor.build, forcing = [plant xdot; RDC rates at the post-jump point]."""
         system, ctx, rep = self._make(z)
         st = self.K.rdc_state(system, ctx)
+        if stale is not None:               # ablation A5 only: wrong (stale) RDC initialisation on the candidate's plant state
+            for k in ("pn", "qn", "pset", "qset", "k_ip", "gref_p", "gref_q", "d_p", "d_q", "y0", "y0q", "vref0_sg"):
+                st[k] = stale[k].copy() if hasattr(stale[k], "copy") else stale[k]
         ix = self.K.index_sets(system)
         pred = self.PR.LinearPredictor(ctx)
         pred.lim = ctx["lim"]
@@ -216,9 +224,9 @@ class AndesPlant:
                                           "d_idx_original": np.asarray(lin2["d_idx_original"]).tolist(), "z_idx_original": np.asarray(lin2["z_idx_original"]).tolist(), "ix_pss": {k: v for k, v in ix["pss"].items()}})
         return M, f, C
 
-    def excursion(self, z, sc):
+    def excursion(self, z, sc, stale=None):
         try:
-            A, f, C = self.affine(z, sc)
+            A, f, C = self.affine(z, sc, stale=stale)
         except InitInvalid as ex:
             return {"ok": False, "reason": "INIT_INVALID", "init_report": ex.args[0]}
         x = PRD.excursion(A, f, C)

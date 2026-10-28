@@ -16,6 +16,8 @@ import dec054_p3a_audit as P3A
 import dec054_store as ST
 
 PLAN = COM.ART / "IEEE39_DEC054_p3b_round1_plan.json"
+PLAN2 = COM.ART / "IEEE39_DEC054_p3b_round2_plan.json"
+ROUND2_BUSES = [7, 8, 23, 20]      # round-1 events with the smallest observed P margin (7, 8) and the post-event voltage overshoot (23, 20)
 STATE = COM.RUNS_DIR.parent / "DEC054_g4_state"
 AMP = 0.58564
 BUSES = COM.DESIGN + COM.TUNE
@@ -39,11 +41,12 @@ def build_plan():
     print("plan written", len(tests))
 
 
-def run():
+def run(plan_path=None):
     import dec054_plant as PL
     import dec054_predictor as PRD
     import dec054_runner as RUN
-    plan = json.loads(PLAN.read_text(encoding="utf-8"))
+    plan_path = plan_path or PLAN
+    plan = json.loads(plan_path.read_text(encoding="utf-8"))
     ledger = COM.TdsLedger(COM.ART / "IEEE39_DEC054_tds_ledger.csv")
     P = PL.AndesPlant()
     for t in plan["tests"]:
@@ -62,7 +65,7 @@ def run():
         except Exception as ex:
             err = ex
         tid = ledger.request("P3-B", rid, "M3_verification", rid, t["purpose"])
-        cfg = {"run_id": rid, "tds_id": tid, "test": t, "prediction": pred, "plan_sha256": COM.sha_file(PLAN)}
+        cfg = {"run_id": rid, "tds_id": tid, "test": t, "prediction": pred, "plan_sha256": COM.sha_file(plan_path)}
         res, tds_err = None, None
         try:
             res = RUN.execute_tds(z, {"bus": t["bus"], "kind": t["kind"], "amp": t["amp"]})
@@ -77,8 +80,8 @@ def run():
         print(rid, status, flush=True)
 
 
-def analyze1():
-    plan = json.loads(PLAN.read_text(encoding="utf-8"))
+def analyze1(plan_path=None, tag="round1"):
+    plan = json.loads((plan_path or PLAN).read_text(encoding="utf-8"))
     lim = None
     rows, summ = [], {}
     p3a = json.loads((COM.ART / "IEEE39_DEC054_p3a_analysis.json").read_text(encoding="utf-8"))
@@ -116,14 +119,31 @@ def analyze1():
     ok = all(s.get("n_violating_pairs_P", 1) == 0 and s.get("V_outside_buses_post", 1) == 0 and not any(s.get("violating_Qmax", [True])) and not any(s.get("violating_Smax", [True])) for s in summ.values())
     out = {"stage": "DEC-054 P3-B round 1 analysis", "verification_success": bool(ok), "n_runs": len(summ), "runs": summ, "violating_unit_events": [{k: r[k] for k in ("run_id", "bus", "unit", "min_margin_Pmax_obs_pu", "min_margin_Pmin_obs_pu")} for r in viol],
            "eps_updated_candidates": eps_new, "tds_used_P3B": sum(1 for r in COM.TdsLedger(COM.ART / "IEEE39_DEC054_tds_ledger.csv").rows if r["status"] == "REQUESTED" and r["block"] == "P3-B")}
-    with open(COM.ART / "IEEE39_DEC054_p3b_round1_analysis.json", "x", encoding="utf-8") as f:
+    with open(COM.ART / f"IEEE39_DEC054_p3b_{tag}_analysis.json", "x", encoding="utf-8") as f:
         json.dump(out, f, indent=1, default=float)
-    with open(COM.ART / "IEEE39_DEC054_p3b_round1_validation.csv", "x", newline="", encoding="utf-8") as f:
+    with open(COM.ART / f"IEEE39_DEC054_p3b_{tag}_validation.csv", "x", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, list(rows[0].keys()))
         w.writeheader()
         w.writerows(rows)
     print("verification_success", ok, "violating unit-events", len(viol))
 
 
+def build_plan2():
+    """Round 2: re-verification of the REDESIGNED M3 (voltage design margin) at four DESIGN/TUNE events chosen from the round-1 evidence (declared here, before any round-2 TDS)."""
+    import dec054_runner as RUN
+    m3 = json.loads((STATE / "m3.json").read_text(encoding="utf-8"))
+    assert m3["status"] in ("FEASIBLE_PREDICTED", "LOCAL_OPTIMUM_FOUND") and "describe" in m3
+    z = np.array(m3["describe"]["z"])
+    tests = [{"run_id": f"P3B2_b{b}P_M3", "bus": b, "kind": "P", "amp": AMP, "dispatch": "M3_round2", "z": z.tolist(), "z_sha256": RUN.z_digest(z), "time_step_s": None,
+              "purpose": f"re-verification of the redesigned M3 (v_margin 0.005 pu), bus {b}"} for b in ROUND2_BUSES]
+    plan = {"stage": "DEC-054 P3-B round 2", "sealed": True, "block": "P3-B", "budget_tds_round2": len(tests), "partition_used": {"DESIGN": COM.DESIGN, "TUNE": COM.TUNE}, "tests": tests,
+            "criteria": CRITERIA, "reason": "round 1 had no P/Q/S violations but post-event voltage overshoot above 1.05 pu (design voltages at the band edge); redesign with a 0.005 pu design margin on all 39 pre-event voltages (identical for M0-M3)",
+            "m3_status": m3["status"], "m3_J": m3["J"], "gate0": COM.backup_gate()["status"]}
+    with open(PLAN2, "x", encoding="utf-8") as f:
+        json.dump(plan, f, indent=1)
+    print("plan2 written", len(tests))
+
+
 if __name__ == "__main__":
-    {"plan1": build_plan, "run1": run, "analyze1": analyze1}[sys.argv[1]]()
+    st = sys.argv[1]
+    {"plan1": build_plan, "run1": run, "analyze1": analyze1, "plan2": build_plan2, "run2": lambda: run(PLAN2), "analyze2": lambda: analyze1(PLAN2, "round2")}[st]()

@@ -24,7 +24,12 @@ RHO_REFINE = [0.065, 0.07, 0.075]       # predeclared refinement between the las
 def eps_vectors():
     a = json.loads((COM.ART / "IEEE39_DEC054_p3a_analysis.json").read_text(encoding="utf-8"))["eps_calibration"]["P_events"]
     fl = COM.PROPOSED["eps_floor_pu"]
-    return (np.full(10, fl), np.array([a[u]["eps_E_up"] for u in COM.UNITS]), np.array([a[u]["eps_E_dn"] for u in COM.UNITS]))
+    up, dn = np.array([a[u]["eps_E_up"] for u in COM.UNITS]), np.array([a[u]["eps_E_dn"] for u in COM.UNITS])
+    pb = COM.ART / "IEEE39_DEC054_p3b_round1_analysis.json"
+    if pb.exists():                       # eps updated with the P3-B round-1 DESIGN/TUNE errors (max over P3-A and P3-B)
+        e = json.loads(pb.read_text(encoding="utf-8"))["eps_updated_candidates"]
+        up, dn = np.maximum(up, [e[u]["eps_E_up"] for u in COM.UNITS]), np.maximum(dn, [e[u]["eps_E_dn"] for u in COM.UNITS])
+    return (np.full(10, fl), up, dn)
 
 
 def scenarios():
