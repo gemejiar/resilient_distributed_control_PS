@@ -1,0 +1,3 @@
+method,k,scenario,unit,class,margin,note
+M2,0,,,,-1.3328559610170654e-11,"round: W=160 J=1.2986 most_violated=[1, 3, 'P+']"
+M3,0,,,,-9.355025094564401e-07,"round: W=160 J=1.4783 most_violated=[5, 1, 'P+']"

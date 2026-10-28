@@ -38,3 +38,13 @@ Blockers: independent backup destination (investigator).
 Responsible: Integrator
 Status: BLOCKED_AT_G0
 Next action: provide destination + authorisation; run dec054_independent_backup.py; then G2-G7 as authorised.
+
+## DEC-054 / Campaign G0 waiver and G2–G7 execution
+Date: 2026-10-27
+Gate: `/goal` instruction of the investigator: proceed to the end ignoring the missing independent backup (recorded as BACKUP_WAIVED_NOT_INDEPENDENT; gate logic recomputes hashes on every call).
+Decision: G2 adapter audit PASS; G3 predictor audit PASS (8 TDS); G4 offline designs M0–M3 and dynamic verification of M3 at DESIGN/TUNE events (12 TDS). Design corrections made after DESIGN/TUNE evidence only: p scale 0.5 pu and capability margin 0.01 pu (M0 pilot cost scale); pre-event voltage margin 0.005 pu for all 39 buses and all methods (round-1 overshoot to 1.0522 pu); predictor guard against unstable linearisations; process pool with single BLAS thread. Discarded attempts are kept in DEC054_g4_state. Design frozen (14007fb) before G6; G6 ran 24 TDS (6 frozen scenarios × M0–M3), no failures, no repeats, no changes after observing results.
+Results: observed P violations in the prospective cohort: M0 7 pairs (6/6 scenarios), M1 0, M2 1 pair (0.0096 pu), M3 0; no Q/S/V violations in any method. M3 min Pmax margin 0.0103 pu. M3 J=1.478 (43 MW redispatch) vs M1 J=3.32 (153 MW): same observed compliance with 55 % lower J; equal-cost contrast NOT_MATCHED. Status NUMERICALLY_SUPPORTED in this cohort only (6 clusters, one amplitude, no inference). TDS used 44/48.
+Blockers: none for the campaign; open caveats: no independent backup, thin M3 margin, empirical epsilon, Q/S/V not modelled by the predictor, frequency metrics use the 39-bus mean (not COI), SLSQP gives feasible points not KKT-certified optima.
+Responsible: Integrator
+Status: COMPLETED_NUMERICALLY_SUPPORTED (no certification claims)
+Next action: investigator review; any extension (more buses/amplitudes, independent backup) needs new authorisation.

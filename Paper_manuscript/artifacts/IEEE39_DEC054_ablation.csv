@@ -1,0 +1,4 @@
+ablation,from,to,violating_pairs_P_from,violating_pairs_P_to,scenarios_with_P_violation_from,scenarios_with_P_violation_to,total_P_excess_from_pu,total_P_excess_to_pu,design_J_from,design_J_to
+A1 value of modelling the algebraic jump (M0 -> M2),M0,M2,7,1,6,1,0.2554380433342791,0.009580810057613576,1.2606612015141092,1.2986291679973883
+A2 value of the excursion + multi-contingency (M2 -> M3),M2,M3,1,0,1,0,0.009580810057613576,0.0,1.2986291679973883,1.4783203849020248
+A3 static reserve vs M3 (M1 -> M3),M1,M3,0,0,0,0,0.0,0.0,3.3205293809340017,1.4783203849020248
