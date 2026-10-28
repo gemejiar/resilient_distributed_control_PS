@@ -98,7 +98,7 @@ def write_frozen(path: Path, src_dir: Path, code_files, partition: dict, params:
     return d
 
 
-def execute_tds(z, scenario) -> dict:
+def execute_tds(z, scenario, time_step_s: float | None = None) -> dict:
     """B2 original, 200 s, dt=2^-8, load step at t=5 s through the dist_fn mechanism of run_dec051_h3_sim.py.  UNTESTED_ON_PLANT; ANDES imported lazily.
     A TDS failure returns TDS_NUMERICAL_FAILURE with its diagnostics (it does not raise)."""
     import os
@@ -114,14 +114,15 @@ def execute_tds(z, scenario) -> dict:
             k = [int(x) for x in s.PQ.bus.v].index(bus)
             (s.PQ.Ppf if kind == "P" else s.PQ.Qpf).v[k] += amp
             state["done"] = True
-    system, d, diag = b.run("B2", "S0", init_hook=hook_for_z(z), dist_fn=step)
+    kw = {} if time_step_s is None else {"time_step_s": float(time_step_s)}
+    system, d, diag = b.run("B2", "S0", init_hook=hook_for_z(z), dist_fn=step, **kw)
     if not diag["tds_ok"]:
         return {"status": "TDS_NUMERICAL_FAILURE", "notes": json.dumps(diag, default=float), "diag": diag, "series": None, "metrics": None}
     t = d["time_s"]
     P = np.hstack([d["sg_p_pu"], d["gfm_p_pu"]])
     Q = np.hstack([d["sg_q_pu"], d["gfm_q_pu"]])
     lim = {k: d[f"unit_{k}"] for k in ("pmax", "pmin", "qmax", "qmin", "smax")}
-    v = violations(t, P, Q, d["bus_voltage_pu"], lim, d["unit_pn"])
+    v = violations(t, P, Q, d["bus_voltage_pu"], lim, d["unit_pn"], include_event_sample=True)
     bad = v["n_violating_pairs_P"] > 0 or v["V_outside_buses"] > 0 or any(v["unit"][k]["violates"].any() for k in ("Qmax", "Qmin", "Smax"))
     series = {"t": t, "P": P, "Q": Q, "V": d["bus_voltage_pu"], "f_bus_hz": d["bus_frequency_hz"], "unit_pn": d["unit_pn"], "unit_qn": d["unit_qn"],
               "cmd_pset": d.get("cmd_pset", np.zeros(0)), "cmd_qset": d.get("cmd_qset", np.zeros(0)), "cmd_t": d.get("cmd_t", np.zeros(0))}

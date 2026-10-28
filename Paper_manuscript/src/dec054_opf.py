@@ -41,11 +41,12 @@ class OPFResult:
 
 
 class Problem:
-    def __init__(self, plant, mode: str, scenarios: list, eps_J=None, eps_E=None, rho: float = 0.0, cfg: dict | None = None, kappa_pat: float | None = None):
+    def __init__(self, plant, mode: str, scenarios: list, eps_J=None, eps_E=None, rho: float = 0.0, cfg: dict | None = None, kappa_pat: float | None = None, eps_E_dn=None):
         assert mode in ("M0", "M1", "M2", "M3")
         self.plant, self.mode, self.sc, self.cfg = plant, mode, list(scenarios), dict(PROPOSED if cfg is None else cfg)
         self.eps_J = np.zeros(NU) if eps_J is None else np.asarray(eps_J, float)
         self.eps_E = np.zeros(NU) if eps_E is None else np.asarray(eps_E, float)
+        self.eps_E_dn = self.eps_E if eps_E_dn is None else np.asarray(eps_E_dn, float)      # lower-side excursion margin (defaults to the upper-side vector)
         self.rho = rho
         self.lim = plant.limits
         ref = plant.evaluate(plant.z_ref)
@@ -105,13 +106,13 @@ class Problem:
                 self._cache[key] = out
                 return out
             Eup, Edn = x["E_up"], x["E_dn"]
-            epsE = self.eps_E
+            epsE, epsEd = self.eps_E, self.eps_E_dn
         else:
             Eup = Edn = np.zeros(NU)
-            epsE = np.zeros(NU)
+            epsE = epsEd = np.zeros(NU)
         lim = self.lim
         up = lim["pmax"] - e["P"] - dP - Eup - self.eps_J - epsE
-        dn = e["P"] + dP - lim["pmin"] - Edn - self.eps_J - epsE
+        dn = e["P"] + dP - lim["pmin"] - Edn - self.eps_J - epsEd
         for c in self.dyn_cuts:      # local empirical corrections (P3-B): only inside their trust region
             if c["d"] == d_idx and np.max(np.abs(z - c["z_c"]) / c["r"]) <= 1.0:
                 (up if c["cls"] == "P+" else dn)[c["i"]] -= c["delta"]
@@ -123,7 +124,7 @@ class Problem:
         """Signature of everything the cached margins depend on besides (z, d): dynamic cuts and the eps vectors.  Mutating `dyn_cuts` or `eps_*` therefore
         changes the cache key (regression: stale margins after a new cut)."""
         cuts = tuple((c["d"], c["i"], c["cls"], float(c["delta"]), tuple(np.round(np.asarray(c["z_c"], float), 12)), tuple(np.round(np.broadcast_to(np.asarray(c["r"], float), (len(c["z_c"]),)), 12))) for c in self.dyn_cuts)
-        return (cuts, tuple(np.round(self.eps_J, 15)), tuple(np.round(self.eps_E, 15)))
+        return (cuts, tuple(np.round(self.eps_J, 15)), tuple(np.round(self.eps_E, 15)), tuple(np.round(self.eps_E_dn, 15)))
 
     def add_dynamic_cut(self, d: int, i: int, cls: str, delta: float, z_c, r):
         """Register a local empirical correction (P3-B) inside a trust region and invalidate the cache."""
