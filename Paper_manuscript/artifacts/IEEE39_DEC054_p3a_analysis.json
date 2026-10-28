@@ -1,0 +1,314 @@
+{
+ "stage": "DEC-054 P3-A analysis",
+ "verdict": "PREDICTOR_AUDIT_PASS",
+ "reason": "all units within the predeclared tolerances",
+ "unit_results": {
+  "SG30": {
+   "n_events": 5,
+   "max_peak_error": 0.005775600563499572,
+   "max_trough_error": 0.0005229114137829116,
+   "pass": true
+  },
+  "SG31": {
+   "n_events": 5,
+   "max_peak_error": 9.768781402796911e-05,
+   "max_trough_error": 0.0004935755620183724,
+   "pass": true
+  },
+  "SG33": {
+   "n_events": 5,
+   "max_peak_error": 0.0011652432707909277,
+   "max_trough_error": 0.00015134949270989573,
+   "pass": true
+  },
+  "SG35": {
+   "n_events": 5,
+   "max_peak_error": 0.00098822060423287,
+   "max_trough_error": 0.00039145955384084496,
+   "pass": true
+  },
+  "SG38": {
+   "n_events": 5,
+   "max_peak_error": 0.0012678755879481085,
+   "max_trough_error": 0.0011144066424162435,
+   "pass": true
+  },
+  "SG39": {
+   "n_events": 5,
+   "max_peak_error": 0.002650185941524441,
+   "max_trough_error": 0.002223310855124172,
+   "pass": true
+  },
+  "GFM32": {
+   "n_events": 5,
+   "max_peak_error": -0.012840272948469789,
+   "max_trough_error": -0.004196442445304066,
+   "pass": true
+  },
+  "GFM37": {
+   "n_events": 5,
+   "max_peak_error": 0.0025714225716737538,
+   "max_trough_error": -0.005836978148381168,
+   "pass": true
+  },
+  "GFM34": {
+   "n_events": 5,
+   "max_peak_error": -0.016607977312382616,
+   "max_trough_error": -0.002338879616233613,
+   "pass": true
+  },
+  "GFM36": {
+   "n_events": 5,
+   "max_peak_error": -0.01860158563455805,
+   "max_trough_error": -0.003490133199187867,
+   "pass": true
+  }
+ },
+ "fidelity": {
+  "max_abs_peak_obs_diff": 0.004448886765881177,
+  "max_abs_trough_obs_diff": 0.008338597950838356,
+  "tolerance": 0.01,
+  "ok": true
+ },
+ "eps_calibration": {
+  "source": "P3-A DESIGN events only (buses 8,23,28,25). eps_E calibrated on the TOTAL peak/trough error (jump proxy included: the true algebraic jump is not observable), eps_J = floor. Rule eps = max(floor, kappa*max positive error), kappa=1.5, floor=1e-3 (PROPOSED, EMPIRICAL_LOCATION_AWARE_MARGIN; no coverage claim)",
+  "P_events": {
+   "SG30": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.008663400845249358,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 0.005775600563499572,
+    "max_signed_trough_error": 0.0005229114137829116,
+    "n": 5
+   },
+   "SG31": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 9.768781402796911e-05,
+    "max_signed_trough_error": 0.0004935755620183724,
+    "n": 5
+   },
+   "SG33": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.0017478649061863916,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 0.0011652432707909277,
+    "max_signed_trough_error": 0.00015134949270989573,
+    "n": 5
+   },
+   "SG35": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001482330906349305,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 0.00098822060423287,
+    "max_signed_trough_error": 0.00039145955384084496,
+    "n": 5
+   },
+   "SG38": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.0019018133819221628,
+    "eps_E_dn": 0.0016716099636243653,
+    "max_signed_peak_error": 0.0012678755879481085,
+    "max_signed_trough_error": 0.0011144066424162435,
+    "n": 5
+   },
+   "SG39": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.003975278912286662,
+    "eps_E_dn": 0.003334966282686258,
+    "max_signed_peak_error": 0.002650185941524441,
+    "max_signed_trough_error": 0.002223310855124172,
+    "n": 5
+   },
+   "GFM32": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.012840272948469789,
+    "max_signed_trough_error": -0.004196442445304066,
+    "n": 5
+   },
+   "GFM37": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.0038571338575106306,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 0.0025714225716737538,
+    "max_signed_trough_error": -0.005836978148381168,
+    "n": 5
+   },
+   "GFM34": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.016607977312382616,
+    "max_signed_trough_error": -0.002338879616233613,
+    "n": 5
+   },
+   "GFM36": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.01860158563455805,
+    "max_signed_trough_error": -0.003490133199187867,
+    "n": 5
+   }
+  },
+  "Q_events": {
+   "SG30": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.004754618949221263,
+    "max_signed_trough_error": 0.0002070759478974421,
+    "n": 2
+   },
+   "SG31": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 0.00018126834143692913,
+    "max_signed_trough_error": -0.0006403570737661835,
+    "n": 2
+   },
+   "SG33": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.008189682250048012,
+    "max_signed_trough_error": -0.00025863808995289436,
+    "n": 2
+   },
+   "SG35": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.002192038869117896,
+    "max_signed_trough_error": -0.0018374712713864292,
+    "n": 2
+   },
+   "SG38": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.0002157303705071778,
+    "max_signed_trough_error": 0.00014839842479621307,
+    "n": 2
+   },
+   "SG39": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.0008743999181555877,
+    "max_signed_trough_error": 0.00018919267734352624,
+    "n": 2
+   },
+   "GFM32": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": 0.0002055194009210953,
+    "max_signed_trough_error": -0.006462883431921711,
+    "n": 2
+   },
+   "GFM37": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.0013851991573437866,
+    "max_signed_trough_error": -0.002900941801242443,
+    "n": 2
+   },
+   "GFM34": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.0005620538394458521,
+    "max_signed_trough_error": -0.0028309774701731245,
+    "n": 2
+   },
+   "GFM36": {
+    "eps_J": 0.001,
+    "eps_E_up": 0.001,
+    "eps_E_dn": 0.001,
+    "max_signed_peak_error": -0.0024683312621933684,
+    "max_signed_trough_error": -0.005024189821790023,
+    "n": 2
+   }
+  },
+  "n_P_events": 5,
+  "n_Q_events": 2
+ },
+ "runs": {
+  "P3A_01_b8P_zref": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.980563678494035,
+   "V_max": 1.0729898322851823,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_02_b23P_zref": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.9808418434399853,
+   "V_max": 1.0736741601787045,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_03_b28P_zref": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.980599260925615,
+   "V_max": 1.0729898322851823,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_04_b25P_zref": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.9805743356679046,
+   "V_max": 1.0729898322851823,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_05_b8Q_zref": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.9807291203055826,
+   "V_max": 1.0729898322851823,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_06_b23Q_zref": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.9806991945122984,
+   "V_max": 1.0729898322851823,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_07_b28P_zC": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.9806135116062037,
+   "V_max": 1.0730242986373122,
+   "final_residual": null,
+   "error": null
+  },
+  "P3A_08_b8P_zref_dt_half": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "V_min": 0.980563764942491,
+   "V_max": 1.0729898322851823,
+   "final_residual": null,
+   "error": null
+  }
+ },
+ "criteria": {
+  "peak_positive_error_max_pu": 0.03,
+  "trough_positive_error_max_pu": 0.03,
+  "first_sample_error_reported_only_pu": 0.05,
+  "binding_units": [
+   "SG31",
+   "SG35"
+  ],
+  "max_failing_units": 3,
+  "fidelity_peak_diff_max_pu": 0.01,
+  "verdict_rule": "PREDICTOR_AUDIT_PASS if every unit meets both tolerances over the DESIGN P events (T1-T4, T7); PARTIAL if SG31 and SG35 pass and at most 3 units fail; PREDICTOR_AUDIT_FAILED if SG31 or SG35 fails, more than 3 units fail, or a P event produced no observation.  Q/S/V outputs have no predictor (only P rows are modelled): verification metrics only.",
+  "stop_rule": "PREDICTOR_AUDIT_FAILED stops the campaign (no P3-B/P3-C)."
+ },
+ "tds_used": 8
+}

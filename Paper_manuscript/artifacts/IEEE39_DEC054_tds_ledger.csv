@@ -1,1 +1,17 @@
 tds_id,block,scenario,method,run_id,purpose,status,t_start,dt,solver,notes
+TDS01,P3-A,P3A_01_b8P_zref,predictor_audit,P3A_01_b8P_zref,"P step, DESIGN bus 8",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS01,P3-A,P3A_01_b8P_zref,predictor_audit,P3A_01_b8P_zref,"P step, DESIGN bus 8",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS02,P3-A,P3A_02_b23P_zref,predictor_audit,P3A_02_b23P_zref,"P step, DESIGN bus 23",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS02,P3-A,P3A_02_b23P_zref,predictor_audit,P3A_02_b23P_zref,"P step, DESIGN bus 23",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS03,P3-A,P3A_03_b28P_zref,predictor_audit,P3A_03_b28P_zref,"P step, DESIGN bus 28",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS03,P3-A,P3A_03_b28P_zref,predictor_audit,P3A_03_b28P_zref,"P step, DESIGN bus 28",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS04,P3-A,P3A_04_b25P_zref,predictor_audit,P3A_04_b25P_zref,"P step, DESIGN bus 25",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS04,P3-A,P3A_04_b25P_zref,predictor_audit,P3A_04_b25P_zref,"P step, DESIGN bus 25",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS05,P3-A,P3A_05_b8Q_zref,predictor_audit,P3A_05_b8Q_zref,"Q step, DESIGN bus 8",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS05,P3-A,P3A_05_b8Q_zref,predictor_audit,P3A_05_b8Q_zref,"Q step, DESIGN bus 8",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS06,P3-A,P3A_06_b23Q_zref,predictor_audit,P3A_06_b23Q_zref,"Q step, DESIGN bus 23",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS06,P3-A,P3A_06_b23Q_zref,predictor_audit,P3A_06_b23Q_zref,"Q step, DESIGN bus 23",TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS07,P3-A,P3A_07_b28P_zC,predictor_audit,P3A_07_b28P_zC,P step on a redispatched point: audit of the I(z)-dependent predictor,REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS07,P3-A,P3A_07_b28P_zC,predictor_audit,P3A_07_b28P_zC,P step on a redispatched point: audit of the I(z)-dependent predictor,TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
+TDS08,P3-A,P3A_08_b8P_zref_dt_half,predictor_audit,P3A_08_b8P_zref_dt_half,numerical fidelity: same as T1 with step 2^-9 s,REQUESTED,,0.00390625,trapezoid dt=2^-8,
+TDS08,P3-A,P3A_08_b8P_zref_dt_half,predictor_audit,P3A_08_b8P_zref_dt_half,numerical fidelity: same as T1 with step 2^-9 s,TDS_PHYSICAL_VIOLATION,,0.00390625,,stored-sample classification at dt=2^-8 s; not continuous-time safety
