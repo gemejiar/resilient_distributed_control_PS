@@ -132,5 +132,39 @@ def fig_oc3():
     _save(fig, "F5_targets_OC3")
 
 
+def fig_tune():
+    plt = _plt()
+    tr = json.loads((C55.ART / "IEEE39_DEC059_TUNE_results.json").read_text(encoding="utf-8"))
+    fig, ax = plt.subplots(1, 2, figsize=(7.2, 3.0))
+    a = ax[0]
+    lo, hi = -0.45, 0.7
+    a.axvspan(-0.0109, 0.0109, color=GRID, zorder=0)
+    a.axhspan(-0.0109, 0.0109, color=GRID, zorder=0)
+    a.plot([lo, hi], [lo, hi], color=INK2, lw=0.8, ls="--")
+    mk = {"S2": "o", "S3": "s"}
+    for oc, col in (("OC1", BLUE), ("OC2", ORANGE)):
+        for r in tr[oc]["cells"]:
+            a.scatter(r["pred"]["pred_pmax_margin_min"], r["tds"]["m50"], s=22, color=col, marker=mk[r["cell"].split("_")[1]], label=oc if r["cell"] == "b7P_S2" else None,
+                      edgecolor=INK if r["tds"]["class"] == "UNSAFE" else "none", linewidth=0.9)
+    a.set(xlim=(lo, hi), ylim=(lo, hi), xlabel="predicted min Pmax margin (pu)", ylabel="TDS min Pmax margin, 50 ms (pu)", title="(a) circle S2, square S3, outline UNSAFE")
+    a.legend(fontsize=6.5, loc="upper left")
+    b = ax[1]
+    names, errs, cols = [], [], []
+    for oc, col in (("OC1", BLUE), ("OC2", ORANGE)):
+        for r in tr[oc]["cells"]:
+            names.append(f"{oc[-1]}:{r['cell'][:-3]}{r['cell'][-3:]}")
+            errs.append(r["errors"]["OS_predictor_error_pmax_margin(tds-pred)"] * 1e3)
+            cols.append(col)
+    b.bar(range(len(errs)), errs, color=cols, width=0.7)
+    b.axhline(1.0, color=INK2, lw=0.8, ls="--")
+    b.axhline(0.0, color=INK2, lw=0.8)
+    b.set_xticks(range(len(names)))
+    b.set_xticklabels(names, rotation=90, fontsize=6)
+    b.set(ylabel="TDS - predicted margin (10$^{-3}$ pu)", title="(b) dashed: 1e-3 criterion")
+    fig.suptitle("TUNE: prediction (pre-TDS) vs TDS, B5' at M3+OS", fontsize=9)
+    fig.tight_layout()
+    _save(fig, "F6_TUNE_prediction_vs_TDS")
+
+
 if __name__ == "__main__":
-    {"os": fig_os, "smoke": fig_smoke, "oc3": fig_oc3}[sys.argv[1]]()
+    {"os": fig_os, "smoke": fig_smoke, "oc3": fig_oc3, "tune": fig_tune}[sys.argv[1]]()

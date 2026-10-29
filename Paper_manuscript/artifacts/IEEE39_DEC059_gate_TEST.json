@@ -1,0 +1,159 @@
+{
+ "gate": "TUNE -> TEST",
+ "per_OC": {
+  "OC1": {
+   "G3_pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": false,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor_within_1e-3": false,
+    "iv_B5_conditions_GR3": false
+   },
+   "eligible_cells": [
+    "b7P_S2",
+    "b7P_S3",
+    "b20P_S2",
+    "b16P_S2",
+    "b16P_S3",
+    "b24P_S2",
+    "b24P_S3"
+   ],
+   "n_SAFE": 3,
+   "n_INDETERMINATE": 1,
+   "n_UNSAFE": 3,
+   "unsafe_eligible_cells": [
+    "b20P_S2",
+    "b16P_S3",
+    "b24P_S3"
+   ],
+   "predictor": {
+    "signed_error_min": 0.00014097035663418467,
+    "signed_error_max": 0.0025789044105692938,
+    "n_underpredicted": 0,
+    "n_over_1e-3": 2,
+    "class_agreement": "8/8",
+    "eps_OS_up": 0.000388
+   },
+   "cells_failing_GR3_convergence": [
+    "b7P_S3",
+    "b16P_S3",
+    "b24P_S3"
+   ],
+   "cut_cycle": {
+    "state": "static design done; TDS recheck not run",
+    "status": "FEASIBLE_PREDICTED",
+    "J": 1.8764386792521015,
+    "min_margin": -7.401659077310718e-10,
+    "cut_scenarios": [
+     "b20P_S2",
+     "b16P_S3",
+     "b24P_S3"
+    ]
+   }
+  },
+  "OC2": {
+   "G3_pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": true,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor_within_1e-3": false,
+    "iv_B5_conditions_GR3": true
+   },
+   "eligible_cells": [
+    "b7P_S2",
+    "b7P_S3",
+    "b20P_S2",
+    "b20P_S3",
+    "b16P_S2",
+    "b16P_S3",
+    "b24P_S2",
+    "b24P_S3"
+   ],
+   "n_SAFE": 8,
+   "n_INDETERMINATE": 0,
+   "n_UNSAFE": 0,
+   "unsafe_eligible_cells": [],
+   "predictor": {
+    "signed_error_min": 7.297804688111142e-05,
+    "signed_error_max": 0.003194461915286162,
+    "n_underpredicted": 0,
+    "n_over_1e-3": 3,
+    "class_agreement": "8/8",
+    "eps_OS_up": 0.000388
+   },
+   "cells_failing_GR3_convergence": [],
+   "cut_cycle": {
+    "state": "not run"
+   }
+  }
+ },
+ "rules_unchanged_since_TUNE_plan": {
+  "protocol_sha256_plan": "d59495f9c8a41ea428ea212af3e221d7ecac8a7a8a0d46a2fbfc7d5160870828",
+  "protocol_sha256_now": "d59495f9c8a41ea428ea212af3e221d7ecac8a7a8a0d46a2fbfc7d5160870828",
+  "pass": true,
+  "classification": "rule M3V-1 / Addendum B item 1, applied literally",
+  "U_D8_pu": 0.0109,
+  "predictor_tolerance_pu": 0.001
+ },
+ "registry": {
+  "git_head": "24f28b5ceff1544e00d7d9952c3c5a63da7d5a14",
+  "git_branch": "review/dec059-scientific-reorientation",
+  "python": "3.12.10",
+  "executable": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\venv\\Scripts\\python.exe",
+  "andes": "2.0.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "kvxopt": "v1.3.3.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tds_config": {
+   "method": "trapezoid",
+   "dt": 0.00390625,
+   "tol": 0.0001,
+   "reset_tiny": 0,
+   "honest": 0,
+   "max_iter": 15,
+   "refine": "dt/16 on [t_e - dt, t_e + 0.5 s]"
+  },
+  "protocol_sha256": "d59495f9c8a41ea428ea212af3e221d7ecac8a7a8a0d46a2fbfc7d5160870828",
+  "theory_sha256": "3f99e7aaf6aa6aebdfdc24ea371016844b576960a4ef68979b60b30915c4c459",
+  "code_sha256": {
+   "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+   "dec059_eq.py": "8869a4ce51ad17335faacb25389f1fecf260c6e7b28c42e1bdef15a6e33119da",
+   "dec059_tds.py": "0723a15aa68388f7d1668c59af8bcbce036645a7c68a5656a07ea74527fbc180",
+   "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+   "dec059_pred.py": "39d26242422bf015a3dac5f73507db667c21a89d84cf70d7ed4cc16927a2ab70",
+   "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+   "dec059_gate.py": "228581eb30e2737f25447709f7aca12a1542eeeee830419270c6732bb8e9506b",
+   "test_dec059.py": "bb3dcc39ae7ddcce57378d637e9e51bc4dc503fbb523af80faf3310c4872e297"
+  },
+  "andes_source_modified": false,
+  "parameters": {
+   "v_bar_frac_of_rating_per_s": 0.01,
+   "alpha_per_s": 1.0,
+   "R": "diag(v_bar^-2)",
+   "rho_s": 1000000.0,
+   "tau_info_s": 1.0,
+   "eps_sel": 0.01,
+   "Q_L": "I",
+   "lambda": "1/(2 lmax(H_r))",
+   "U_D8_pu": 0.0109,
+   "eps_floor_pu": 0.001,
+   "tau_cut_pu": 0.0001,
+   "seeds": "none (deterministic; no random numbers in controller or targets)"
+  }
+ },
+ "TEST_intact": {
+  "scanned": 184,
+  "test_buses": [
+   21,
+   31,
+   39
+  ],
+  "violations": [],
+  "pass": true
+ },
+ "ledger_used": 32,
+ "TEST_cohort_OCs": [],
+ "verdict": "REJECTED",
+ "test_opened": false
+}

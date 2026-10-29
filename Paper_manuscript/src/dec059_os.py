@@ -146,13 +146,21 @@ def stage_calib(write=False):
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------- design
-def stage_design(oc, workers="3"):
+def stage_design(oc, workers="3", cut=None):
     import dec054_g4_design as G4
     import dec054_opf as OPF
     import dec055_l0 as L0
     t0 = time.time()
     cal = json.loads((C55.ART / "IEEE39_DEC059_OS_calibration.json").read_text(encoding="utf-8"))["summary"]
     m3 = json.loads((C55.STATE / f"m3_{oc}.json").read_text(encoding="utf-8"))
+    scen = L0.design_scenarios()
+    seed_z = m3["z"]
+    if cut == "cut":      # the single dynamic cut cycle of the protocol (Addendum B item 4): eligible UNSAFE TUNE cells of this OC are added, same formulation / cfg / eps, seed = current M3+OS
+        tr = json.loads((C55.ART / "IEEE39_DEC059_TUNE_results.json").read_text(encoding="utf-8"))[oc]
+        for c in tr["cells"]:
+            if c["eligible_for_G3"] and c["tds"]["class"] == "UNSAFE":
+                scen.append(OPF.Scenario(c["cell"], int(c["cell"].split("P_")[0][1:]), "P", float(c["pred"].get("amp", 0) or C55.oc_amp(c["cell"].split("_")[1]))))
+        seed_z = json.loads((STATE / f"m3os_{oc}.json").read_text(encoding="utf-8"))["z"]
     OCM._init_worker = _init_worker_os                      # pool workers (also after a rebuild) use the OS-augmented excursion
     plant = OCM.OCPooledPlant(oc, int(workers))
     eJ, eEu, eEd = G4.eps_vectors()
@@ -160,9 +168,9 @@ def stage_design(oc, workers="3"):
     eEd2 = eEd + cal["eps_OS_dn"] + U_D8
     cfg = dict(C54.PROPOSED, K_max=8, N_it=int(os.environ.get("DEC059_NIT", "25")), ftol=1e-6, verbose=False)
     try:
-        r = OPF.algorithm1(plant, "M3", L0.design_scenarios(), eJ, eEu2, cfg=cfg, z_seeds=[np.array(m3["z"])], k0=4, eps_E_dn=eEd2,
+        r = OPF.algorithm1(plant, "M3", scen, eJ, eEu2, cfg=cfg, z_seeds=[np.array(seed_z)], k0=4, eps_E_dn=eEd2,
                            log=lambda x: print(oc, "  iter", {k: x[k] for k in ("k", "W", "min_margin", "J")}, flush=True))
-        out = {"oc": oc, "method": "M3+OS", "status": r.status, "J": r.J, "kkt": r.kkt_residual, "iterations": r.iterations, "detail": r.detail, "cuts": r.cuts, "log": r.log,
+        out = {"oc": oc, "method": "M3+OS" + ("+cut" if cut else ""), "cut_scenarios": [x.name for x in scen[12:]], "status": r.status, "J": r.J, "kkt": r.kkt_residual, "iterations": r.iterations, "detail": r.detail, "cuts": r.cuts, "log": r.log,
                "z": None if r.z is None else r.z.tolist(), "seed": "DEC-055 M3 of the OC", "J_M3_DEC055": m3["J"],
                "eps": {"J": eJ.tolist(), "E_up": eEu2.tolist(), "E_dn": eEd2.tolist(), "eps_OS_up": cal["eps_OS_up"], "eps_OS_dn": cal["eps_OS_dn"], "eps_D8": U_D8},
                "T_OS": T_OS, "H_OS": H_OS, "event_tasks": plant.n_event_tasks, "plant_evaluations": plant.n_eval, "seconds": round(time.time() - t0, 1)}
@@ -171,7 +179,7 @@ def stage_design(oc, workers="3"):
             out.update({"init_ok": bool(e["ok"]), "redispatch_MW_abs_sum_vs_case": float(np.abs(r.z[:9] - plant.z_ref[:9]).sum() * 100),
                         "redispatch_MW_abs_sum_vs_M3_DEC055": float(np.abs(r.z[:9] - np.array(m3["z"])[:9]).sum() * 100)})
         STATE.mkdir(parents=True, exist_ok=True)
-        with open(STATE / f"m3os_{oc}.json", "x", encoding="utf-8") as f:
+        with open(STATE / (f"m3os_cut_{oc}.json" if cut else f"m3os_{oc}.json"), "x", encoding="utf-8") as f:
             json.dump(out, f, indent=1, default=lambda o: o.tolist() if hasattr(o, "tolist") else float(o))
         print(oc, "M3+OS", r.status, r.J, round(time.time() - t0, 1), "s", flush=True)
     finally:

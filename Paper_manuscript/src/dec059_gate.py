@@ -143,5 +143,42 @@ def r4_tune():
     return acta
 
 
+def test_gate():
+    """Gate TUNE -> TEST.  APPROVED only if at least one OC passes G3 in full (criteria i-iv of Addendum B item 4, evaluated literally) and the rules are unchanged since the TUNE plan."""
+    tr = json.loads((C55.ART / "IEEE39_DEC059_TUNE_results.json").read_text(encoding="utf-8"))
+    plan = json.loads((C55.ART / "IEEE39_DEC059_R4T_plan.json").read_text(encoding="utf-8"))
+    acta = {"gate": "TUNE -> TEST", "per_OC": {}}
+    for oc in ("OC1", "OC2"):
+        g = tr[oc]["G3"]
+        signed = [r["errors"]["OS_predictor_error_pmax_margin(tds-pred)"] for r in tr[oc]["cells"]]
+        cls_match = [r["pred"]["pred_class_pmax"] == r["tds"]["class"] or (r["pred"]["pred_class_all"] == r["tds"]["class"]) for r in tr[oc]["cells"]]
+        d = {"G3_pass": g["pass"], "criteria": g["criteria"], "eligible_cells": g["eligible_cells"], "n_SAFE": g["n_SAFE"], "n_INDETERMINATE": g["n_INDETERMINATE"], "n_UNSAFE": g["n_UNSAFE"],
+             "unsafe_eligible_cells": g["unsafe_eligible_cells"],
+             "predictor": {"signed_error_min": min(signed), "signed_error_max": max(signed), "n_underpredicted": int(sum(x < 0 for x in signed)), "n_over_1e-3": int(sum(abs(x) > 1e-3 for x in signed)),
+                           "class_agreement": f"{sum(cls_match)}/{len(cls_match)}", "eps_OS_up": 3.88e-4},
+             "cells_failing_GR3_convergence": [r["cell"] for r in tr[oc]["cells"] if not all(v for k, v in r["G_R3"].items() if not (k.startswith("converged") or k.startswith("sharing")) or (r["target_labels"] or {}).get("H5_continuous", False))]}
+        cp = ST59 / f"m3os_cut_{oc}.json"
+        if cp.exists():
+            cj = json.loads(cp.read_text(encoding="utf-8"))
+            d["cut_cycle"] = {"state": "static design done; TDS recheck not run", "status": cj["status"], "J": cj["J"], "min_margin": cj["log"][-1]["min_margin"], "cut_scenarios": cj.get("cut_scenarios")}
+        else:
+            d["cut_cycle"] = {"state": "not run"}
+        acta["per_OC"][oc] = d
+    acta["rules_unchanged_since_TUNE_plan"] = {"protocol_sha256_plan": plan["protocol_sha256"], "protocol_sha256_now": sha(C55.ROOT / "ops/sted/DEC059_protocol.md"),
+                                               "pass": plan["protocol_sha256"] == sha(C55.ROOT / "ops/sted/DEC059_protocol.md"), "classification": "rule M3V-1 / Addendum B item 1, applied literally",
+                                               "U_D8_pu": 0.0109, "predictor_tolerance_pu": 1e-3}
+    acta["registry"] = registry()
+    acta["TEST_intact"] = tests_intact()
+    acta["ledger_used"] = T.Ledger(T.LEDGER).used()
+    ok = [oc for oc, d in acta["per_OC"].items() if d["G3_pass"]]
+    acta["TEST_cohort_OCs"] = ok
+    acta["verdict"] = "APPROVED" if ok and acta["rules_unchanged_since_TUNE_plan"]["pass"] and acta["TEST_intact"]["pass"] else "REJECTED"
+    acta["test_opened"] = False
+    with open(C55.ART / "IEEE39_DEC059_gate_TEST.json", "x", encoding="utf-8") as f:
+        json.dump(acta, f, indent=1, default=float)
+    print(acta["verdict"], {oc: (d["G3_pass"], d["criteria"]) for oc, d in acta["per_OC"].items()}, "ledger", acta["ledger_used"])
+    return acta
+
+
 if __name__ == "__main__":
-    {"r4_tune": r4_tune}[sys.argv[1]]()
+    {"r4_tune": r4_tune, "test": test_gate}[sys.argv[1]]()
