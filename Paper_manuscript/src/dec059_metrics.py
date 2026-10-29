@@ -62,6 +62,7 @@ def metrics(run, lim=None):
     out["pmax_margin_min"] = float(mp[post].min())
     out["pmax_margin_min_50ms"] = float(mp[k50].min()) if k50.any() else None
     out["pmax_margin_min_after_50ms"] = float(mp[t > TE + 0.05].min())
+    out["pmin_margin_min"] = float((P - lim["pmin"][None, :])[post].min())
     out["qmax_margin_min"] = float((lim["qmax"][None, :] - Q)[post].min())
     out["qmin_margin_min"] = float((Q - lim["qmin"][None, :])[post].min())
     out["s_margin_min"] = float((lim["smax"][None, :] - np.hypot(P, Q))[post].min())
@@ -94,6 +95,28 @@ def metrics(run, lim=None):
     return out
 
 
+def classify(m):
+    """Addendum B item 1.  Returns (class, reasons).  TDS failure is reported apart."""
+    if m["status"] == "TDS_NUMERICAL_FAILURE" or m["t_end"] < 199.99:
+        return "TDS_NUMERICAL_FAILURE", ["run did not reach 200 s"]
+    why = []
+    m50 = m["pmax_margin_min_50ms"]
+    cls = "SAFE"
+    if m50 <= -U_D8:
+        cls = "UNSAFE"
+        why.append(f"P peak margin within 50 ms {m50:.4f} <= -U_D8")
+    elif m50 < U_D8:
+        cls = "NUMERICALLY_INDETERMINATE"
+        why.append(f"|P peak margin within 50 ms| {m50:.4f} < U_D8")
+    binary = {"Pmax after 50 ms": m["pmax_margin_min_after_50ms"], "Pmin": m["pmin_margin_min"], "Qmax": m["qmax_margin_min"], "Qmin": m["qmin_margin_min"], "S": m["s_margin_min"],
+              "Vmin-0.95": m["V_bus_min"] - 0.95, "1.05-Vmax": 1.05 - m["V_bus_max"]}
+    for k, v in binary.items():
+        if v < 0:
+            cls = "UNSAFE"
+            why.append(f"{k} margin {v:.4f} < 0")
+    return cls, why
+
+
 def gr3(m):
     """G-R3 acceptance on one smoke run (protocol)."""
     c = {"no_tds_failure": m["status"] != "TDS_NUMERICAL_FAILURE" and m["t_end"] >= 199.99,
@@ -111,6 +134,7 @@ def collect(runs, out_name):
     for r in runs:
         m = metrics(r)
         m["G_R3"] = gr3(m)
+        m["class"], m["class_reasons"] = classify(m)
         res[r] = m
     with open(C55.ART / f"{out_name}.json", "x", encoding="utf-8") as f:
         json.dump(res, f, indent=1, default=float)
