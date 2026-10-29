@@ -1,0 +1,45 @@
+{
+ "stage": "DEC-056 reserve plan 1 (sealed before its TDS)",
+ "block": "RES",
+ "runs": [
+  {
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.0
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "run_id": "D56RES_presettle_OC3_M0_partial",
+   "oc": "OC3",
+   "z": [
+    4.794189018463799,
+    6.480625784300054,
+    6.80261867032691,
+    6.95009540735048,
+    8.411374793547191,
+    7.4840143918377,
+    3.5350544469951837,
+    5.480364056872168,
+    5.930583389254651,
+    1.0284984158638324,
+    0.9931338496245659,
+    0.9966165531721546,
+    1.045000000000001,
+    1.0450000000000024,
+    1.0218934407184166,
+    1.0020347178470437,
+    1.0116595023374586,
+    1.0109430564414812,
+    1.0449999999999962
+   ],
+   "tf": 600.0,
+   "activation_s": 0.0,
+   "purpose": "RESERVE (logged justification): D56T012 failed at t = 343.4 s without a stored trajectory; identical re-run that keeps the partial series to discriminate slow closed-loop divergence (linearised mode +0.02 1/s, Qset SG30) from a discrete limiter event",
+   "keep_partial": true
+  }
+ ],
+ "justification": "RESERVE (logged justification): D56T012 failed at t = 343.4 s without a stored trajectory; identical re-run that keeps the partial series to discriminate slow closed-loop divergence (linearised mode +0.02 1/s, Qset SG30) from a discrete limiter event"
+}

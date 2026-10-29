@@ -73,8 +73,18 @@ def plan_d7a():
             "selfc2_OC2_sha256": C54.sha_file(RUNS.parent / "DEC056_state" / "d7_selfc2_OC2_M0_v0.json"), "protocol_sha256": C54.sha_file(C55.ROOT / "ops/sted/DEC056_protocol.md")}
 
 
+def plan_res1():
+    p = json.loads(plan_path("D7a").read_text(encoding="utf-8"))
+    r = dict(next(x for x in p["runs"] if x["run_id"] == "D56D7_presettle_OC3_M0"))
+    r.pop("tds_id", None)
+    r.update(run_id="D56RES_presettle_OC3_M0_partial", keep_partial=True,
+             purpose="RESERVE (logged justification): D56T012 failed at t = 343.4 s without a stored trajectory; identical re-run that keeps the partial series "
+                     "to discriminate slow closed-loop divergence (linearised mode +0.02 1/s, Qset SG30) from a discrete limiter event")
+    return {"stage": "DEC-056 reserve plan 1 (sealed before its TDS)", "block": "RES", "runs": [r], "justification": r["purpose"]}
+
+
 def plan(lot, extra=None):
-    p = {"D8": plan_d8, "D7a": plan_d7a}[lot]() if extra is None else extra
+    p = {"D8": plan_d8, "D7a": plan_d7a, "RES1": plan_res1}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -87,7 +97,19 @@ def execute(r):
     import run_b3_ieee39 as b
     import run_e8_ieee39 as e8
     OCM.select(r["oc"])
-    saved = (e8.FINAL_TIME_S, b.EVENT_TIME_S, e8.configure)
+    saved = (e8.FINAL_TIME_S, b.EVENT_TIME_S, e8.configure, b.run)
+    partial = {}
+    if r.get("keep_partial"):                  # RES lot: keep the trajectory up to a numerical failure (dec054_runner drops it); read-only capture
+        orig_run = b.run
+
+        def run_keep(*a, **k):
+            system, d, diag = orig_run(*a, **k)
+            if not diag.get("tds_ok"):
+                partial.update({"t": d["time_s"], "P": np.hstack([d["sg_p_pu"], d["gfm_p_pu"]]), "Q": np.hstack([d["sg_q_pu"], d["gfm_q_pu"]]), "V": d["bus_voltage_pu"],
+                                "f_bus_hz": d["bus_frequency_hz"], "cmd_t": d.get("cmd_t"), "cmd_qset": d.get("cmd_qset"), "cmd_pset": d.get("cmd_pset"),
+                                "cmd_vrdc_q": d.get("cmd_vrdc_q"), "cmd_gq": d.get("cmd_gq"), "cmd_z": d.get("cmd_z")})
+            return system, d, diag
+        b.run = run_keep
     inner = e8.configure
 
     def configure(scenario, time_step_s, _inner=inner):
@@ -103,7 +125,10 @@ def execute(r):
         OCM.select = lambda oc: None            # keep the wrapped configure (execute_tds_oc calls select again)
         res = R.execute_tds_oc(r["oc"], np.asarray(r["z"], float), r["scenario"], r["time_step_s"], pflow_tol=r["pflow_tol"])
     finally:
-        e8.FINAL_TIME_S, b.EVENT_TIME_S, e8.configure = saved
+        e8.FINAL_TIME_S, b.EVENT_TIME_S, e8.configure, b.run = saved
+    if partial and res.get("series") is None:
+        res["series"] = {k: v for k, v in partial.items() if v is not None}
+        res["notes"] = "PARTIAL series up to the numerical failure; " + str(res.get("notes", ""))
     res.setdefault("diag", {}).update({"method": r["method"], "tds_tol": r["tol"], "tf": r["tf"], "activation_s": r.get("activation_s")})
     return res
 
