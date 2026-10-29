@@ -1,0 +1,138 @@
+# DEC-059 — Scientific reorientation: proposed controller B5′, corrected theorems, minimal evidence (pre-registered)
+
+Status: registered 2026-10-29 before any DEC-059 TDS and before the B5′ implementation.
+- Branch: `review/dec059-scientific-reorientation`, from 000eb9f.
+- Authorization: the investigator messages "DEC-059 — Aprobación condicionada del plan científico" and "DEC-059 — Aprobación científica condicionada" (decisions DA–DF, sequence R0–R7).
+- Mathematical specification: `Paper_manuscript/artifacts/IEEE39_DEC059_theory.md` (T1, T1-F, Lemma 0, Lemma C, rule E*, T2, Proposition OS, P3).
+- Matrix: `Paper_manuscript/artifacts/IEEE39_DEC059_contribution_matrix.csv`.
+
+## Frozen
+
+- Plant and topology.
+- Case files, OC1–OC3, limits and partitions DESIGN/TUNE/TEST (DEC-055).
+- B2 law and gains; B3 definition.
+- Physical acceptance criteria:
+  - P, Q, S, V margins;
+  - instantaneous Pmax criterion;
+  - U_D8 = 0.0109 pu;
+  - G1 drift thresholds 0.005 Hz and 1e-3 pu in 20 s;
+  - AC-05: 0.01 Hz.
+- All results of DEC-050 to DEC-057.
+- ANDES 2.0.0 source.
+- `main`, `main.tex` and the directory structure.
+
+## Numerical configuration (DE), applied to every DEC-059 TDS
+
+- Interpreter: `<repo>/venv/Scripts/python.exe` (ANDES 2.0.0, numpy 2.5.4, scipy 1.18.1, kvxopt 1.3.3.3). The system `python` on PATH is not used.
+- Integrator settings:
+  - trapezoid, fixed step dt = 2⁻⁸ s, Newton tol 1e-4, `max_iter` 15;
+  - `honest` = 0;
+  - **`reset_tiny = 0`** (explicit);
+  - PQ loads constant power as in the runners.
+- Event runs: local refinement dt/16 on [t_e − dt, t_e + 0.5 s] (DEC-057 wrapper, unchanged).
+- Peak margins with |m| < U_D8 are NUMERICALLY_INDETERMINATE. Convergence of instantaneous peaks is not claimed.
+- Comparison with earlier (reset_tiny = 1) results is made only where lot R2 shows the difference is negligible for the quantity in question.
+
+## Gates
+
+| Gate | Object | Acceptance (frozen) | Effect of failure |
+|---|---|---|---|
+| G1-P | Plant without secondary control, per OC and dispatch used later | PFlow converged; init residual ≤ 1e-8; 20-s flat drift ≤ 0.005 Hz and ≤ 1e-3 pu; buses in band | That OC/dispatch is not used |
+| G1-C | B5′ at d = 0 (flat, 200 s) | Same drift criteria; QP hard-feasible at all samples; v* = v_nom when inactive; min c_j ≥ 0 | B5′ line stops at R3 |
+| G-R3 | B5′ smoke (≤ 6 TDS) | Unit tests pass. In every smoke run: E* residual ≤ 1e-10 and E4 holds or the cell is labelled; T2 hypotheses evaluated; no hard-constraint QP infeasibility; min c_j ≥ 0; no TDS failure; convergence to ξ*(d⁺) within AC-05 at 200 s, \|V_i − V_i*\| ≤ 1e-3 pu, sharing std ≤ 1e-3 | Stop the B5′ line; mathematics and R4 static work continue |
+| B2/B3 | Comparators | Reported, never gating (DC) | — |
+| G-TUNE | Before any TUNE TDS | M3 with the overshoot term frozen per OC (formulation, parameters, code hashes); M3 dispatch passes G1-P; B5′ parameters frozen | No TUNE |
+| G-TEST | Before any TEST TDS | TUNE: no UNSAFE cell (a single DEC-055 cut cycle allowed); predictor errors within the declared bound; freeze file with hashes committed and pushed to rdc | No TEST |
+
+B5′ parameters (declared now; frozen at G-TUNE unless the smoke reveals an implementation defect, which is recorded):
+- v̄ = 0.01·Sn_i/100 pu/s;
+- α = 1 s⁻¹ (γ = α h);
+- R = diag(v̄⁻²), ρ_s = 1e6;
+- Q_L = I, λ = 1/(2 λ_max(H_r));
+- τ_info = 1.0 s;
+- ε_sel = 0.01.
+
+## R2 — numerical closure (cap 12 TDS including 2 reserve; predictions declared now)
+
+| Run | Configuration (reset_tiny = 0 unless stated) | Purpose | Prediction / rule |
+|---|---|---|---|
+| N1 | P3B2_b8P_M3 (OC1), trapezoid, local dt/16, 20 s | Effect of reset_tiny on the D8 transient | \|ΔP\| ≤ 1e-6 pu against D57D8_b8_trapezoid_loc16 on [t_e, t_e + 0.5]; if larger, the D8 and M3V margins are recomputed only in the runs that use them |
+| N2 | N1 repeated | Reproducibility | Bit-identical series |
+| N3 | D57M3V_B2_b8P_S3 (OC3 M3, B2, dt/16, 200 s) | Robustness of the OC3 refutation | SG31 margin −0.0140 ± 1e-4 pu, still ≤ −U_D8 (UNSAFE) |
+| N4–N6 | Plant only (no secondary), OC1/OC2/OC3 M0, 20 s | G1-P | Drift criteria met |
+| N7–N8 | B3 flat, OC1/OC2 M0, 200 s | Audit of the DEC-057 "drift 0.0" (dead zone) | Deviation from ξ(z) ≤ 1e-6 pu over 200 s (R7 stable) |
+| N9 | B3 flat, OC3 M0, 2000 s, storage 1/16 | Audit of the DEC-057 R7 prediction | Growth at 0.0198 s⁻¹ ± 15 % from round-off; deviation > 1e-3 pu before 2000 s, or TDS failure |
+| N10 | RES4 configuration (B2 from t = 0, OC3 M0) at dt/2, 160 s | Step sensitivity of the OC3 instability | Growth rate within ±15 % of RES4; failure time within ±10 s |
+
+Retrospective audit without TDS (argument recorded in the report):
+- DEC-050 long run: the references move every step by ≥ 1e-8 pu ≫ 1e-10, so the dead zone does not freeze the approach.
+- DEC-051 ± validation: the decay ratio matched the linear prediction.
+- DEC-051/052 equilibria: Newton solves, independent of the TDS.
+
+## R3 — B5′ (after T1/T2 are written; unit tests first)
+
+- Code:
+  - `src/dec059_eq.py` (rule E*, T2 hypothesis checks, H_r, λ, first-order radii, static, 0 TDS);
+  - `src/dec059_b5.py` (QP layer as a `qp_filter` of `run_b3_ieee39.run`, mode B3 so that the pre-event offset equals ξ*(d⁻));
+  - `src/dec059_tds.py` (ledger D59Txxx, plans, runner reusing `dec057_tds.execute` unchanged);
+  - `src/test_dec059.py` (no ANDES).
+- Unit tests:
+  - T1 invariance on random affine/disc instances;
+  - 0 ∈ 𝒰_k on W;
+  - fast path equals the solver solution;
+  - uniqueness;
+  - v* = 0 at the target;
+  - the CLF row sign convention;
+  - the offset switch at t_e + τ_info.
+- Smoke (≤ 6 TDS), in this order:
+  1. G1-C: B5′ flat OC1 M0 200 s;
+  2. B5′ on the DESIGN cell b8P_S2 OC1 M0, 200 s, with the dt/16 local refinement;
+  3. idem OC2 M0;
+  4. B5′ OC3 M0 flat (demanding: the target is TARGET_UNSTABLE if R7 fails; the outcome is reported);
+  5–6. reserve for one implementation repair and its repeat.
+
+  Each step is executed only if the previous one passed G-R3 or was a pre-declared demanding case.
+
+## R4–R7 (plans are sealed later, before their TDS)
+
+- **R4.** Static M3 with the overshoot term (DD):
+  - The term is calibrated only on DESIGN and TUNE data.
+  - It must carry a declared physical model (dense-time response of the post-jump linearisation in [t_e, t_e + 50 ms], plus an empirical model-error bound).
+  - Report its scenario dependence, conservatism (cost and MW against M3 without the term) and computation time.
+  - Then G1-P at the new dispatches (2 TDS) and TUNE (16 TDS).
+- **R5.**
+  - TEST OC1/OC2: 3 buses × 3 severities × {M0, M3} × B5′ (36).
+  - Comparison on the TEST S2 cells, M3 × {B1s, B2, B3} (18).
+  - OC3 demanding: M0 × S2 × 3 TEST buses × {B2, B5′} (6).
+  - τ_info check on one TEST S2 cell: τ and 4τ (2).
+  - No redesign after the first TEST TDS.
+- **R6.** E* with |𝒜| ≥ 2 (static), and the B5′ frontier at one OC1 location by bisection (≤ 8).
+- **K4 illustration.** 4 TDS from perturbed initial states (±e along the slowest mode, two amplitudes). Presented as illustration, not proof.
+
+Predefined comparison metrics (K7):
+- f_COI nadir;
+- RoCoF (100 ms window from t_e);
+- frequency error at 120 s and at 200 s;
+- settling time to |Δf| ≤ 0.01 Hz;
+- unit voltage error |V_i − V_i,set| at 200 s (mean and max), with V_set the dispatch set-point; B2 is also reported against its own target of 1.0 pu;
+- bus V min/max;
+- P-sharing error: the std of (P_i − Pⁿ_i)/Pⁿ_i over the units not in 𝒜, at 200 s;
+- physical P/Q/S/V margins;
+- reference margins min c_j;
+- QP status and slack incidence;
+- CPU time per step.
+
+## Budget (maximum 120 TDS)
+
+| Line | TDS |
+|---|---|
+| R2 numerical closure | 10 + 2 reserve |
+| R3 smoke | 6 |
+| R4 G1-P of the new M3 dispatches + TUNE | 2 + 16 |
+| R5 TEST + comparison + OC3 + τ_info | 36 + 18 + 6 + 2 |
+| K4 illustration | 4 |
+| R6 frontier | 8 |
+| Unassigned reserve (logged justification) | 10 |
+| **Total** | **120** |
+
+Unassigned resources are kept as reserve and are used only with a ledger justification. No line may borrow from another without being recorded.
