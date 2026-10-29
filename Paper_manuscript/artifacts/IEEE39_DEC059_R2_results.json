@@ -1,0 +1,100 @@
+{
+ "stage": "DEC-059 R2 numerical closure (reset_tiny = 0)",
+ "N1_reset_tiny_effect_D8": {
+  "same_time_grid": true,
+  "max_abs_dP_window_te_te+0.5": 3.113092592599287e-07,
+  "max_abs_dP_whole_20s": 1.5848590237510507e-05,
+  "max_abs_dV_whole": 1.775363919209738e-07,
+  "pmax_margin_50ms_rt0": -0.0030351103514139055,
+  "pmax_margin_50ms_rt1": -0.003035111951787073,
+  "prediction": "|dP| <= 1e-6 pu on [t_e, t_e+0.5]",
+  "verdict": "CONFIRMED"
+ },
+ "N2_reproducibility": {
+  "t": true,
+  "P": true,
+  "Q": true,
+  "V": true,
+  "verdict": "CONFIRMED (bit-identical)"
+ },
+ "N3_OC3_M3_refutation": {
+  "status": "TDS_PHYSICAL_VIOLATION",
+  "min_pmax_margin_50ms": -0.01394668083394457,
+  "unit": "SG31",
+  "t_after_event_ms": 2.197265625,
+  "DEC057_value_reset_tiny1": -0.013946683527024106,
+  "difference": 2.6930795371526983e-09,
+  "verdict": "CONFIRMED (UNSAFE beyond U_D8)"
+ },
+ "G1P_plant_flat_M0": {
+  "OC1": {
+   "status": "TDS_SAFE_OBSERVED",
+   "max_abs_df_hz": 1.4210854715202004e-14,
+   "max_abs_dV_pu": 1.6653345369377348e-14,
+   "V_min": 0.9806149395746496,
+   "V_max": 1.0450000000000061,
+   "cmd_ref_change": 0.0,
+   "G1_P": "PASS"
+  },
+  "OC2": {
+   "status": "TDS_SAFE_OBSERVED",
+   "max_abs_df_hz": 0.0,
+   "max_abs_dV_pu": 1.0658141036401503e-14,
+   "V_min": 0.9694459189245663,
+   "V_max": 1.0450000000000033,
+   "cmd_ref_change": 0.0,
+   "G1_P": "PASS"
+  },
+  "OC3": {
+   "status": "TDS_SAFE_OBSERVED",
+   "max_abs_df_hz": 1.4210854715202004e-14,
+   "max_abs_dV_pu": 1.0658141036401503e-14,
+   "V_min": 0.9861455161690232,
+   "V_max": 1.0450000000000024,
+   "cmd_ref_change": 0.0,
+   "G1_P": "PASS"
+  }
+ },
+ "B3_flat_audit": {
+  "OC1": {
+   "status": "TDS_SAFE_OBSERVED",
+   "max_abs_dV_pu": 1.8096635301390052e-14,
+   "max_abs_dP_pu": 9.50350909079134e-14,
+   "max_abs_df_hz": 1.4210854715202004e-14,
+   "max_abs_dPset": 9.325873406851315e-15,
+   "max_abs_dQset": 1.502270530195915e-14,
+   "verdict": "CONFIRMED (<= 1e-6)",
+   "G1_drift_20s_criteria": "PASS"
+  },
+  "OC2": {
+   "status": "TDS_SAFE_OBSERVED",
+   "max_abs_dV_pu": 1.176836406102666e-14,
+   "max_abs_dP_pu": 9.237055564881302e-14,
+   "max_abs_df_hz": 0.0,
+   "max_abs_dPset": 2.7045032879868813e-13,
+   "max_abs_dQset": 0.0,
+   "verdict": "CONFIRMED (<= 1e-6)",
+   "G1_drift_20s_criteria": "PASS"
+  }
+ },
+ "OC3_B3_2000s": {
+  "status": "TDS_SAFE_OBSERVED",
+  "t_end": 2000.0,
+  "dev_max": 1.127986593019159e-13,
+  "dev_at_200s": 1.509903313490213e-14,
+  "dev_at_1000s": 1.9539925233402755e-14,
+  "growth_rate_fit_1e-11_to_1e-4": null,
+  "t_dev_gt_1e-3": null,
+  "predicted_rate": 0.0198,
+  "verdict": "REFUTED / SEE VALUES"
+ },
+ "N10_OC3_instability_dthalf": {
+  "status": "TDS_NUMERICAL_FAILURE",
+  "t_end_dthalf": 146.97734947709955,
+  "t_end_RES4_dt": 147.53672273125827,
+  "growth_rate_dthalf": 0.44732971270599337,
+  "growth_rate_RES4_dt": 0.4506674272059903,
+  "rate_rel_diff": 0.007406158729264735,
+  "verdict": "CONFIRMED"
+ }
+}

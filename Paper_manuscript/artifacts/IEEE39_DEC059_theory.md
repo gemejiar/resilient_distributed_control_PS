@@ -115,7 +115,9 @@ In particular u_k ∈ W for all k, and u_k ∈ int W if u₀ ∈ int W.
 **Rule E*.** Given the pre-event dispatch z, the post-event load d⁺ (constant-power PQ at the event bus), and the parameters of the running system (`rdc_state` at t = 0), find (x_d*, u*) with:
 
 - (E1) plant equilibrium: f(x*, y*, θ(u*, y*), d⁺) = 0 and g(…) = 0 (quasi-algebraic and algebraic variables from `inner_solve`), with one SG rotor angle anchored at its pre-event value.
-- (E2) Proportional active sharing, which is the zero set of the RDC consensus term L_P D_P P with D_P = diag(1/Pⁿ): P_i* = (1 + α) Pⁿ_i for i ∉ 𝒜. For i ∈ 𝒜 (the active-limit set), P_i* = p̄_i − ε_sel(p̄_i − p̲_i), with ε_sel = 0.01 (the frozen B3-A interior margin). 𝒜 is obtained by iteratively pinning units whose proportional share would leave [p̲ + ε_sel, p̄ − ε_sel].
+- (E2) Proportional active sharing, which is the zero set of the RDC consensus term L_P D_P P with D_P = diag(1/Pⁿ): P_i* = (1 + α) Pⁿ_i for i ∉ 𝒜. For i ∈ 𝒜 (the active-limit set), P_i* is pinned at the boundary of the band [min(p̲_i + ε_sel·rng_i, Pⁿ_i), max(p̄_i − ε_sel·rng_i, Pⁿ_i)], with rng_i = p̄_i − p̲_i and ε_sel = 0.01 (the frozen B3-A interior margin). 𝒜 is obtained by iteratively pinning units whose proportional share would leave that band.
+
+*Amendment (before any use, found in the first static test):* the band contains the pre-event value Pⁿ_i. A unit dispatched inside the ε_sel margin (SG31 in OC1 M0) therefore takes no further share toward its limit, and d = 0 returns ξ(0) exactly. The same widening applies to the Q band of E3.
 - (E3) Voltage restoration to the dispatch set-points: V_i* = V_i(0) at the 10 unit buses, except units in a reactive active set 𝒜_Q, whose Q^s is pinned at its ε_sel-interior limit (PV→PQ switching).
 - (E4) Admissibility, checked after solving: u* ∈ int W; delivered P, Q, S inside the case limits; 0.95 ≤ V_b ≤ 1.05 at all 39 buses; no discrete limiter flag active. If E4 fails, no target exists under E*: the cell is classified, never forced.
 

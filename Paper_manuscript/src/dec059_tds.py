@@ -74,8 +74,40 @@ def plan_r2():
     return {"stage": "DEC-059 lot R2 plan (sealed before any TDS of the lot)", "block": "R2", "runs": runs, "protocol_sha256": proto}
 
 
+def _tgt(tag):
+    p = ST59 / f"target_{tag}.npz"
+    if not p.exists():
+        raise C54.GateError(f"missing supervisory target {p.name} (run dec059_eq.py target first)")
+    js = json.loads((ST59 / f"target_{tag}.json").read_text(encoding="utf-8"))
+    return str(p), C54.sha_file(p), js
+
+
+def b5_run(oc, scenario, run_id, purpose, pre_tag, post_tag=None, tf=200.0, refine=True):
+    z = json.loads((C55.STATE / f"m0_{oc}.json").read_text(encoding="utf-8"))["z"]
+    pre, pre_sha, pre_js = _tgt(pre_tag)
+    b5 = {"pre_target": pre, "pre_sha256": pre_sha, "t_e": TE, "tau_info": 1.0, "event": post_tag is not None}
+    if post_tag is not None:
+        post, post_sha, post_js = _tgt(post_tag)
+        b5.update(post_target=post, post_sha256=post_sha, post_labels={"E4": post_js["E4"]["pass"], "T2": {k: v["pass"] for k, v in post_js["T2"].items()}})
+    return {"oc": oc, "z": z, "scenario": scenario, "pflow_tol": None, "method": "trapezoid", "tol": 1e-4, "time_step_s": None, "activation_s": None, "tf": tf,
+            "controller": "B5P", "reset_tiny": 0, "refine": {"k": 16, "t_on": TE, "t_off": TE + 0.5} if refine and scenario["amp"] != 0 else None, "dump_end": True,
+            "b5": b5, "run_id": run_id, "purpose": purpose}
+
+
+def plan_r3():
+    s2 = {"bus": 8, "kind": "P", "amp": 0.58564}
+    runs = [b5_run("OC1", FLAT, "D59S1_B5P_flat_OC1_M0", "R3 smoke 1 / G1-C: B5' at d = 0 (target xi(0)), OC1 M0, 200 s; frozen drift criteria; QP inactive expected", "r2_OC1_M0_d0"),
+            b5_run("OC1", s2, "D59S2_B5P_OC1_M0_b8P_S2", "R3 smoke 2: B5' on DESIGN b8P_S2, OC1 M0, tau_info 1 s, local dt/16; G-R3 criteria (convergence to xi*(d+))", "r2_OC1_M0_d0", "r2_OC1_M0_b8P_0.58564"),
+            b5_run("OC2", s2, "D59S3_B5P_OC2_M0_b8P_S2", "R3 smoke 3: B5' on DESIGN b8P_S2, OC2 M0; G-R3 criteria", "r2_OC2_M0_d0", "r2_OC2_M0_b8P_0.58564"),
+            b5_run("OC3", s2, "D59S4_B5P_OC3_M0_b8P_S2",
+                   "R3 smoke 4 (pre-declared demanding case): B5' on DESIGN b8P_S2, OC3 M0. Replaces the protocol's OC3 flat run: at an unstable target (+0.0198 1/s) a 200-s flat run "
+                   "starts from round-off and cannot show the instability; the event run does. Outcome reported with the target labels (TARGET_UNSTABLE if H4/H5 fail)", "r2_OC3_M0_d0", "r2_OC3_M0_b8P_0.58564")]
+    return {"stage": "DEC-059 lot R3 smoke plan (sealed before any TDS of the lot; runs 5-6 reserved for one implementation repair and its repeat)", "block": "R3", "runs": runs,
+            "protocol_sha256": C54.sha_file(C55.ROOT / "ops/sted/DEC059_protocol.md"), "code_sha256": {f: C54.sha_file(C55.SRC / f) for f in ("dec059_b5.py", "dec059_eq.py", "dec059_tds.py")}}
+
+
 def plan(lot, extra=None):
-    p = {"R2": plan_r2}[lot]() if extra is None else extra
+    p = {"R2": plan_r2, "R3": plan_r3}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -92,15 +124,17 @@ def execute(r):
 
     def run_b5(mode, *a, **k):
         k["qp_filter"] = filt.spec
-        system, d, diag = orig("B3", *a, **k)
-        d.update(filt.log_arrays())
-        diag.update(filt.summary())
-        return system, d, diag
+        return orig("B3", *a, **k)
     b.run = run_b5
     try:
-        return T.execute(dict(r, controller="B3"))
+        res = T.execute(dict(r, controller="B3", keep_partial=True))
     finally:
         b.run = orig
+    if filt.log["t"]:                                  # the runner keeps a fixed series subset: the filter log is added here
+        res["series"] = dict(res.get("series") or {}, **filt.log_arrays())
+    res.setdefault("diag", {}).update(filt.summary())
+    res["diag"]["controller"] = "B5P"
+    return res
 
 
 def _child(run_json):
