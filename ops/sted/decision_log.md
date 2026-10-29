@@ -671,3 +671,14 @@ Blockers or limitations: raw series local-only; no prospective policy validation
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: Investigator reviews DEC053_consolidated_report.md and IEEE39_DEC053_claims_final.csv; no new campaign is proposed.
+
+## DEC-055
+Date: 2026-10-28
+Gate: Authorization "DEC-055 — Ejecución L0 y cierre del gate G0" (architecture B approved); branch review/dec055-architecture-b from 3c58634 (DEC-054 branch), remote rdc only. Protocol: ops/sted/DEC055_protocol.md.
+Decision: L0 executed with zero TDS (PFlow, TDS.init without steps, algebraic jump solves, linearisations, static OPF). Contributions reformulated (C1 instantaneous post-event admissibility T-A; C2 evaluated transient security of M3, no invariance; C3 conditional local stability T-B in three levels; C4 feasibility classification T-C in three objects; C5 RDC coordination, full factorial M0/M3 x B1/B2 kept with the B1 arm deferred; C6 HOCBF/CLF obstruction analysis). OC1/OC2/OC3 = loads 100/90/110 % with power factor preserved (new case files; frozen C2t case unchanged, SHA-256 rechecked). TEST buses {21,31,39}; DESIGN {8,23,28,25}; TUNE {7,20,16,24}; DEC-054 cohort and buses 4/18 excluded from TEST.
+Results: init valid for the three OCs (PFlow tol 1e-10, |g| <= 2.3e-13); T-C: 87/87 disturbances AC_FEASIBLE (ANDES verified, |g| <= 2.7e-13), none PROVEN_INFEASIBLE; M0: OC1 LOCAL_OPTIMUM_FOUND J 1.2607 (reproduces DEC-054), OC2/OC3 FEASIBLE_PREDICTED; provisional M3: OC1 FEASIBLE_PREDICTED J 1.681, OC2 FEASIBLE_PREDICTED J 2.127, OC3 attempt 1 SOLVER_FAILED (N_it 25), attempt 2 with N_it 200 running at the freeze (D6); T-A (pre-TDS predictions): M0 not admissible at t_e+ in many OC1/OC3 cells (SG31 Pmax); M3 OC1 not admissible at TEST b31 S2/S3 and TUNE b20 S3; M3 OC2 admissible in all cells. TEST-bus audit: no P-step TDS at 21/31/39; bus 21 used for every earlier Q step; all three screened algebraically by DEC-051/052 (declared exposure). Independence audit PASS. 22 unit tests pass.
+Discrepancies: D1 PFlow tolerance; D2 case reference points outside the voltage band; D3 SG39 dominates f_COI; D4 bus 39 weak / bus 31 strong test; D5 provisional eps; D6 OC3 iteration budget (protocol section 11).
+Gate handling: the investigator's subsequent instruction for an autonomous session (/goal, 2026-10-28) replaces the human approvals between gates G1-G6; all acceptance criteria and stop rules of the protocol remain in force; commits and pushes go only to review/dec055-architecture-b on rdc as authorized for DEC-055.
+Responsible: Integrator
+Status: PARTIALLY_VERIFIED
+Next action: L1 (5 TDS) under the frozen protocol; OC3 M3 attempt 2 result recorded as a G0 addendum before the L2 plan.

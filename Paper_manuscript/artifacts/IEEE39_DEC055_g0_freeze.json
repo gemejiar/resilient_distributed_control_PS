@@ -1,0 +1,157 @@
+{
+ "stage": "DEC-055 G0 freeze (L0, 0 TDS)",
+ "git_parent_commit": "3c58634ba64d60661dd81aef57bd6218b653f07d",
+ "protocol": {
+  "path": "ops/sted/DEC055_protocol.md",
+  "sha256": "a7293c1e85963b5d10d923183ce1aa065dac06bd6d314592671b2be4d815f94a"
+ },
+ "thresholds": {
+  "init_residual": 1e-08,
+  "flat_drift_hz": 0.005,
+  "flat_drift_pu": 0.001,
+  "flat_horizon_s": 20.0,
+  "violation_tol_pu": 0.0,
+  "ac_eq_residual": 1e-08,
+  "ac_ineq_tol": 1e-09,
+  "jump_newton_tol": 1e-09,
+  "jump_gy_min_sv": 1e-08,
+  "jump_vs_first_sample_pu": 0.005,
+  "one_step_attribution_pu": 1e-06,
+  "f_restore_hz": 0.01,
+  "f_restore_t_s": [
+   120.0,
+   200.0
+  ],
+  "rocof_window_s": 0.1,
+  "tb_root_residual": 1e-10,
+  "sign_test_alpha": 0.05
+ },
+ "partitions": {
+  "DESIGN": [
+   8,
+   23,
+   28,
+   25
+  ],
+  "TUNE": [
+   7,
+   20,
+   16,
+   24
+  ],
+  "TUNE_SEVERITIES": [
+   "S2",
+   "S3"
+  ],
+  "TEST": [
+   21,
+   31,
+   39
+  ],
+  "SEEN_NOT_TEST": {
+   "3": "DEC-054 TEST (observed)",
+   "29": "DEC-054 TEST (observed)",
+   "15": "DEC-054 TEST (observed)",
+   "12": "DEC-054 TEST (observed)",
+   "27": "DEC-054 TEST (observed)",
+   "26": "DEC-054 TEST (observed)",
+   "4": "historical P+ event (E1-E16, DEC-050..053)",
+   "18": "DEC-051 H3-2 validation run"
+  }
+ },
+ "severities": {
+  "S1": 0.5,
+  "S2": 1.0,
+  "S3": 1.5
+ },
+ "dp_ref_pu": 0.58564,
+ "strategies": {
+  "M0B2": "SCHEDULED",
+  "M3B2": "SCHEDULED",
+  "M0B1": "DEFERRED",
+  "M3B1": "DEFERRED"
+ },
+ "oc_rule": {
+  "pv_cap_backoff_pu": 0.02,
+  "pflow_tol": 1e-10
+ },
+ "cases": {
+  "OC1": {
+   "path": "Paper_manuscript\\cases\\ieee39_C2t_6SG_4GFM_KPv1p5.xlsx",
+   "sha256": "c8bfa9dacde751e58499b32dc52c3cd93124f075d576bab5c362b2aac066589f",
+   "load_scale": 1.0
+  },
+  "OC2": {
+   "path": "Paper_manuscript\\cases\\ieee39_C2t_6SG_4GFM_KPv1p5_DEC055_OC2_load090.xlsx",
+   "sha256": "e4bcd4c90bfea903d3832563ed3ce73ca78c1386736b1a59199ef69530821197",
+   "load_scale": 0.9
+  },
+  "OC3": {
+   "path": "Paper_manuscript\\cases\\ieee39_C2t_6SG_4GFM_KPv1p5_DEC055_OC3_load110.xlsx",
+   "sha256": "e08bab65b32fe4219abc013d81f15c1b94ee1732f0675f7b55f0e08bbe220d19",
+   "load_scale": 1.1
+  }
+ },
+ "code": {
+  "dec055_audit.py": "815518d38b0d1e1a76b2c9fa3638bce1c473c97e3558925293cbf8800983e388",
+  "dec055_common.py": "f3a55bee79f57c0371e6088494892cf5c988578c25b98dc7e28e4fdd6372372f",
+  "dec055_exec.py": "832ed04df5751b5bcbafcd74e0d6dd1d0a577c686532f3f8fa9d9685d4d66134",
+  "dec055_g0.py": "7e8fc56a6c66c92ca630645073cd85a6037dd15626b041b858e95195b2aa9786",
+  "dec055_l0.py": "0c1719a534be2bd998fc57bf6dd54c7d912a403fcb0a9eaf35f9adf3b382df54",
+  "dec055_l1.py": "b10de72d8bbc386cef1eab70b3584d6e272c950e549101cd427c55aa54b04f59",
+  "dec055_l2.py": "bd5b301bbce339d81ac40ab93bb6c03068b3fec625618e0d9ed5f311cc655c4c",
+  "dec055_l3.py": "67f71ee8153a846064a10094656cc042fc10d66903ff7227e2630f766a0f19cb",
+  "dec055_oc.py": "82c109f1fb792e2f8235a00f73f1f3c7630ed39a62607acd4d2b530ca70b7430",
+  "dec055_runner.py": "09ea6df00935e5ec4e2b408bab54751b870560808d24a27fa4ba5c2bcc8af9de",
+  "test_dec055.py": "70f163bf37ecb9cf9a3b464eb85a7429b575f516e4db1df4d0e4a5bafa89350e",
+  "dec054_common.py": "da0ccf5a9db13c785f07a71ab206a00d5727b7f4e7ee24d2e601ef399fe90429",
+  "dec054_opf.py": "3a56c4e41445585580d24d37f8130b3f335b2adbf0723367f50ce46ee7b04f5f",
+  "dec054_plant.py": "93d6f5aa1daddfc85f564c662bf2320a226e19a66a8102df7c68a68253221306",
+  "dec054_pool.py": "992b6c87d4fdbaddfe44e408da6bd986192bbbf27f1eb74906b5bbacda6c105f",
+  "dec054_predictor.py": "4435805313164f43de11dd422f75ec893199cb160854bc6631468326a035e1f3",
+  "dec054_rdcinit.py": "228c56f6ea69f6f29195575fd44656c0695fc152547b4a70bf7a90478181c6d6",
+  "dec054_runner.py": "85a578549244f92528d264cf86bef3397bec33f3a09586b86e8b1e80f042d372",
+  "dec054_metrics.py": "1b614eb6912fa573fb3ff553c74e3bdee1d15c930351dbedbcf2cc4fa90297e6",
+  "dec054_store.py": "d7dcae9a7b7d1b3e2d6c948023dcd72f62b6840b6ff6657bcb02ff35284394c7",
+  "dec054_g4_design.py": "d3d395a66dd56b22949f8748752d14a54a0b4443eb341c0913727e4c255b9c88",
+  "run_e8_ieee39.py": "87a84a0b393441109af751f00dd3ffa284ca25dcd1ae4c2f3ef5668b6e400b93",
+  "run_b3_ieee39.py": "11350e40fdea6ab91ef9fbce90ca0359b4814421abb0814e74b70c8ab1dace3b",
+  "run_dec051_h3_jump.py": "bbf958fef26b00eec70760c61e2df1c73ad536e51683cc71814d2b6313370116",
+  "dec051_core.py": "8d1b84d7e888cfb3d1404090a119179a5c6715c90c38eba3f8a072816607931e",
+  "e9h_predictor.py": "809e0cbd669ab41cd71c5c53641f3359e83e42a19a1fe1b2d01ed2788e1d7d42",
+  "e9a_linear.py": "f7175f37148e6ab797460d764ecac86d3fe9591945421556df439de8df0f9b26",
+  "run_dec051_equilibrium.py": "245e2bdb1b8c2f61ed00fb94992aa561c09087f9a84410a18fb9256fdff8fbdc",
+  "select_equilibrium_b3.py": "67b8cc8b6e2bb382c79a88a470c897a374246bcc28bcc3910793d5d523f0e4bb",
+  "run_e7_ieee39.py": "20030063c1d005f52f0242e3f704103d5834e514dcd414c4106206846b131396",
+  "run_e5_ieee39.py": "50857bc3e1b6070ecc6c23b8bf58d12354f8df18158cc4362d04d47d3133d0aa",
+  "variant.py": "f184d6bfa95f23218adfbf6ab10ee94280196b1a4baefb72ff249f952f61e8dc"
+ },
+ "artifacts": {
+  "IEEE39_DEC055_cells.csv": "8c30a377538d030c28c548226343d7c5d304c5ee4c13c4cc2996923fb63456c8",
+  "IEEE39_DEC055_independence_audit.json": "47929decb46fde8aa8b4a666d0fec515fbc16f7b43dcc21067a3c6f95c8a66a5",
+  "IEEE39_DEC055_oc_cases.json": "8f0711d77054a3bf2329376fbd58027103e91d93f91288639ff614181ee54bf3",
+  "IEEE39_DEC055_static_summary.json": "4056d60f644d2efbf2272e89f57eeadf518dfb6b8b36012e78ebfb529f34c616",
+  "IEEE39_DEC055_test_bus_audit.json": "0751ad99af2ccb095d862c463c38bfba1bb3deb6a4cd6eb4097e87f58c61d7b0",
+  "IEEE39_DEC055_unit_test_report.json": "30f1f939c0c80c33fd2ba8986c889cc2189ec41403d7e9fa30c316f30830d6bc"
+ },
+ "local_state": {
+  "init.json": "bfdacacb8399d5dfc0898e5683d31aee7a39eee032dd049641a4f66abf33c17a",
+  "init_attempt1_pflow_tol_1e-6.json": "9d6ead963be59d13b37f6ec3d1987e614470e23fc51f8a57bfac1254ae1e8b82",
+  "m0_OC1.json": "66bf06f8ffa7fd56bdc84fc24d4f2e92be02003765879321662a8a40478e4a49",
+  "m0_OC2.json": "185c460002df2bb150376bf0c1abb9e1b82be97aac573fc0c3dc183d8f8df5f1",
+  "m0_OC3.json": "c3916d5a1653555b1b2c4d962bff4029f8225287892b918f2fade2dae51de6a6",
+  "m3_OC1.json": "ca035daa10a9a3c2df04a9aad0cdffa8823c1e4b95793f3b95852f3245a4c4b6",
+  "m3_OC2.json": "38c50c0857a817bd842b531cd5d5704a3b29b5c25f61cd343818f60e92fd757b",
+  "m3_OC3_attempt1_Nit25_SOLVER_FAILED.json": "b4b3bac415e34242b232f6fb1c8d25cd6e55385400449c7da3095add1fd1b098",
+  "ta_OC1_M0.json": "54e4fe509f0731dd62955860f7b09130d39cb3e9d04b762d75b471f0c5daa0dd",
+  "ta_OC1_M3.json": "94d1eae965c40626bc0ac4a52f06eb762193209f7e3a521dbbc79b967c709fbc",
+  "ta_OC2_M0.json": "d445d41e3572a9fee11ed359c00109afa7647c1e4450b5f5eefd6708287fd0f1",
+  "ta_OC2_M3.json": "a286a7c9ce700615224d8d75b5cf5b073359a201aab77aa785f7e029495bf756",
+  "ta_OC3_M0.json": "b36dc020f0822fc47c1fdbc386bb513de8441bee4e193467ec698be344e12d50",
+  "tc_OC1.json": "bd0be98952c89df977766e70073d38705dbc648a94ce40dff68d667c1e0cf0e0",
+  "tc_OC2.json": "b7bf239bb8c6abae11c55ff6ddee1fdfe9ad583699f131709ffdfdfc1cdbca58",
+  "tc_OC3.json": "6e19789a954c6b80bf3ad9f5ba442585b256164887e5847833f2e12f216c26d3"
+ },
+ "tds_used": 0,
+ "provisional": "M0/M3 dispatches and T-A labels of L0 are provisional; the dispatch freeze is G4 (after L2)"
+}

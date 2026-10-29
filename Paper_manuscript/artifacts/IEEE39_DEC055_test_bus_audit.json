@@ -1,0 +1,799 @@
+{
+ "stage": "DEC-055 L0 TEST-bus audit (static)",
+ "test_buses": [
+  21,
+  31,
+  39
+ ],
+ "buses": {
+  "21": {
+   "loads": {
+    "OC1": {
+     "p0_pu": 2.74,
+     "q0_pu": 1.15,
+     "pf": 0.9220781944803617
+    },
+    "OC2": {
+     "p0_pu": 2.466,
+     "q0_pu": 1.035,
+     "pf": 0.9220781944803618
+    },
+    "OC3": {
+     "p0_pu": 3.014000000000001,
+     "q0_pu": 1.265,
+     "pf": 0.9220781944803618
+    }
+   },
+   "units_at_bus": [],
+   "load_model": "constant power in PFlow and TDS (PQ.config p2p=q2q=1, p2z=q2z=0, run_e8_ieee39.configure)",
+   "disturbance_mechanism": "P step added to PQ.Ppf of the existing load at t_e (dist_fn before the step 4.99609375 -> 5.0 s, dec054_runner.execute_tds); no new load device, no topology change",
+   "previous_P_TDS": [],
+   "previous_Q_TDS": [
+    {
+     "source": "run_e7_ieee39.SCENARIOS (E5-E16, B3, E9, DEC-050..053 runners)",
+     "scenario": "Q+",
+     "bus": 21,
+     "kind": "Q"
+    }
+   ],
+   "algebraic_or_selection_exposure_files": [
+    "IEEE39_DEC051_H3_predictions.json",
+    "IEEE39_DEC052_H3_location_scan.csv",
+    "IEEE39_DEC052_H3_voltage_audit.csv",
+    "IEEE39_DEC053_inventory.csv",
+    "IEEE39_E2_C0_summary.json",
+    "IEEE39_E9A_hocbf_diagnostic.json",
+    "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "IEEE39_E9B0_initial_condition_R35_buses.csv",
+    "IEEE39_E9B0_variant.json",
+    "IEEE39_E9B0_variant_R35.json",
+    "IEEE39_E9B0_variant_R35_040.json",
+    "experiment_matrix.csv"
+   ],
+   "status": "EXPOSED_NOT_P_TDS",
+   "interaction": "load bus between generator groups; used for all earlier Q steps (+17.345 MVAr) including the realisation and gain choice of the RDC Q channel (DEC-032/DEC-034 E8 attempts)",
+   "sensitivity_OC1_M0_S2": {
+    "dPjump_per_pu": {
+     "SG30": 0.09789,
+     "SG31": 0.04188,
+     "SG33": 0.20577,
+     "SG35": 0.1845,
+     "SG38": 0.06793,
+     "SG39": 0.07478,
+     "GFM32": 0.05708,
+     "GFM37": 0.04061,
+     "GFM34": 0.06223,
+     "GFM36": 0.17889
+    },
+    "dPjump_SG31_share": 0.041883443120655964,
+    "dPjump_SG35_share": 0.18449799592322616,
+    "V_plus_min": 0.9800206545399712,
+    "V_plus_max": 1.044670067646287
+   }
+  },
+  "31": {
+   "loads": {
+    "OC1": {
+     "p0_pu": 0.8,
+     "q0_pu": 0.4,
+     "pf": 0.8944271909999159
+    },
+    "OC2": {
+     "p0_pu": 0.7200000000000001,
+     "q0_pu": 0.36,
+     "pf": 0.8944271909999159
+    },
+    "OC3": {
+     "p0_pu": 0.8800000000000001,
+     "q0_pu": 0.4400000000000001,
+     "pf": 0.8944271909999159
+    }
+   },
+   "units_at_bus": [
+    "PV idx 2"
+   ],
+   "load_model": "constant power in PFlow and TDS (PQ.config p2p=q2q=1, p2z=q2z=0, run_e8_ieee39.configure)",
+   "disturbance_mechanism": "P step added to PQ.Ppf of the existing load at t_e (dist_fn before the step 4.99609375 -> 5.0 s, dec054_runner.execute_tds); no new load device, no topology change",
+   "previous_P_TDS": [],
+   "previous_Q_TDS": [],
+   "algebraic_or_selection_exposure_files": [
+    "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "IEEE39_DEC051_H3_predictions.json",
+    "IEEE39_DEC052_H3_location_scan.csv",
+    "IEEE39_DEC052_H3_voltage_audit.csv",
+    "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "IEEE39_E9B0_initial_condition_R35_040_units.csv",
+    "IEEE39_E9B0_initial_condition_R35_buses.csv",
+    "IEEE39_E9B0_initial_condition_R35_units.csv",
+    "IEEE39_E9B0_variant.json",
+    "IEEE39_E9B0_variant_R35.json",
+    "IEEE39_E9B0_variant_R35_040.json"
+   ],
+   "status": "EXPOSED_NOT_P_TDS",
+   "interaction": "terminal bus of SG31 (the unit whose case Pmax binds in every earlier campaign): the load step is delivered mostly by SG31 through the algebraic jump; DEC-052 location scan dP_jump_SG31 = 0.316 pu for 0.586 pu (54 %); a very strong test of the SG31 limit",
+   "sensitivity_OC1_M0_S2": {
+    "dPjump_per_pu": {
+     "SG30": 0.06507,
+     "SG31": 0.52343,
+     "SG33": 0.04961,
+     "SG35": 0.01981,
+     "SG38": 0.02594,
+     "SG39": 0.14054,
+     "GFM32": 0.11997,
+     "GFM37": 0.02358,
+     "GFM34": 0.01497,
+     "GFM36": 0.02277
+    },
+    "dPjump_SG31_share": 0.5234310112544592,
+    "dPjump_SG35_share": 0.019811986801228046,
+    "V_plus_min": 0.9793629370701002,
+    "V_plus_max": 1.0448656773587903
+   }
+  },
+  "39": {
+   "loads": {
+    "OC1": {
+     "p0_pu": 4.0,
+     "q0_pu": 2.5,
+     "pf": 0.847998304005088
+    },
+    "OC2": {
+     "p0_pu": 3.6,
+     "q0_pu": 2.25,
+     "pf": 0.847998304005088
+    },
+    "OC3": {
+     "p0_pu": 4.4,
+     "q0_pu": 2.75,
+     "pf": 0.847998304005088
+    }
+   },
+   "units_at_bus": [
+    "Slack idx 10"
+   ],
+   "load_model": "constant power in PFlow and TDS (PQ.config p2p=q2q=1, p2z=q2z=0, run_e8_ieee39.configure)",
+   "disturbance_mechanism": "P step added to PQ.Ppf of the existing load at t_e (dist_fn before the step 4.99609375 -> 5.0 s, dec054_runner.execute_tds); no new load device, no topology change",
+   "previous_P_TDS": [],
+   "previous_Q_TDS": [],
+   "algebraic_or_selection_exposure_files": [
+    "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "IEEE39_DEC051_H3_predictions.json",
+    "IEEE39_DEC052_H3_location_scan.csv",
+    "IEEE39_DEC052_H3_voltage_audit.csv",
+    "IEEE39_E0_C0_summary.json",
+    "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "IEEE39_E9B0_initial_condition_R35_040_units.csv",
+    "IEEE39_E9B0_initial_condition_R35_buses.csv",
+    "IEEE39_E9B0_initial_condition_R35_units.csv",
+    "IEEE39_E9B0_variant.json",
+    "IEEE39_E9B0_variant_R35.json",
+    "IEEE39_E9B0_variant_R35_040.json"
+   ],
+   "status": "EXPOSED_NOT_P_TDS",
+   "interaction": "terminal bus of SG39 = PFlow Slack and the large-inertia equivalent (M = 100 s on 1199 MVA); in TDS SG39 is an ordinary GENROU (the Slack exists only in PFlow); DEC-052 location scan dP_jump_SG31 = 0.0005 pu: the step is taken almost entirely by SG39 itself, a weak test of SG31/SG35 limits",
+   "sensitivity_OC1_M0_S2": {
+    "dPjump_per_pu": {
+     "SG30": 0.00188,
+     "SG31": 0.00076,
+     "SG33": 0.00051,
+     "SG35": 0.00018,
+     "SG38": 0.00045,
+     "SG39": 0.99455,
+     "GFM32": 0.00071,
+     "GFM37": 0.00064,
+     "GFM34": 0.00015,
+     "GFM36": 0.00021
+    },
+    "dPjump_SG31_share": 0.0007581080323560163,
+    "dPjump_SG35_share": 0.00017951633076104974,
+    "V_plus_min": 0.980600817538884,
+    "V_plus_max": 1.044996886231131
+   }
+  }
+ },
+ "exposure_hits": {
+  "json": [
+   {
+    "file": "IEEE39_DEC051_H3_predictions.json",
+    "path": "/H3_2/selection_scan_sorted_worst_first[0]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_DEC051_H3_predictions.json",
+    "path": "/H3_2/selection_scan_sorted_worst_first[2]/bus",
+    "bus": 21
+   },
+   {
+    "file": "IEEE39_DEC051_H3_predictions.json",
+    "path": "/H3_2/selection_scan_sorted_worst_first[17]/bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E0_C0_summary.json",
+    "path": "/counts/Bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E0_C0_summary.json",
+    "path": "/expected_counts/Bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E2_C0_summary.json",
+    "path": "/event/bus",
+    "bus": 21
+   },
+   {
+    "file": "IEEE39_E9A_hocbf_diagnostic.json",
+    "path": "/static/C2t/pre_event_bus_voltage/n_above_1p05",
+    "bus": 21
+   },
+   {
+    "file": "IEEE39_E9B0_variant.json",
+    "path": "/initial_condition/units[1]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_E9B0_variant.json",
+    "path": "/initial_condition/units[5]/bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E9B0_variant.json",
+    "path": "/initial_condition/bus_voltages_39[20]/bus",
+    "bus": 21
+   },
+   {
+    "file": "IEEE39_E9B0_variant.json",
+    "path": "/initial_condition/bus_voltages_39[30]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_E9B0_variant.json",
+    "path": "/initial_condition/bus_voltages_39[38]/bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35.json",
+    "path": "/initial_condition/units[1]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35.json",
+    "path": "/initial_condition/units[5]/bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35.json",
+    "path": "/initial_condition/bus_voltages_39[20]/bus",
+    "bus": 21
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35.json",
+    "path": "/initial_condition/bus_voltages_39[30]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35.json",
+    "path": "/initial_condition/bus_voltages_39[38]/bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35_040.json",
+    "path": "/initial_condition/units[1]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35_040.json",
+    "path": "/initial_condition/units[5]/bus",
+    "bus": 39
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35_040.json",
+    "path": "/initial_condition/bus_voltages_39[20]/bus",
+    "bus": 21
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35_040.json",
+    "path": "/initial_condition/bus_voltages_39[30]/bus",
+    "bus": 31
+   },
+   {
+    "file": "IEEE39_E9B0_variant_R35_040.json",
+    "path": "/initial_condition/bus_voltages_39[38]/bus",
+    "bus": 39
+   }
+  ],
+  "csv": [
+   {
+    "file": "experiment_matrix.csv",
+    "row": 2,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "IEEE39_E2_C0_20261025T173514Z",
+     "stage": "E2",
+     "case": "C0_10SG",
+     "scenario": "reactive_load_step_1pct_bus21",
+     "baseline": "E0_C0"
+    }
+   },
+   {
+    "file": "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "row": 1,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "scenario": "S0",
+     "unit": "SG31",
+     "bus": "31",
+     "P_pre": "6.459999979999998",
+     "P_star": "6.361085508216943"
+    }
+   },
+   {
+    "file": "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "row": 5,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "scenario": "S0",
+     "unit": "SG39",
+     "bus": "39",
+     "P_pre": "5.731104244528378",
+     "P_star": "5.752128150289244"
+    }
+   },
+   {
+    "file": "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "row": 11,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "scenario": "P+",
+     "unit": "SG31",
+     "bus": "31",
+     "P_pre": "6.459999979999998",
+     "P_star": "6.413440008899538"
+    }
+   },
+   {
+    "file": "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "row": 15,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "scenario": "P+",
+     "unit": "SG39",
+     "bus": "39",
+     "P_pre": "5.731104244528378",
+     "P_star": "5.914002172691373"
+    }
+   },
+   {
+    "file": "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "row": 21,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "scenario": "Q+",
+     "unit": "SG31",
+     "bus": "31",
+     "P_pre": "6.459999979999998",
+     "P_star": "6.363875855840671"
+    }
+   },
+   {
+    "file": "IEEE39_B3_C2t_equilibrium_selection.csv",
+    "row": 25,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "scenario": "Q+",
+     "unit": "SG39",
+     "bus": "39",
+     "P_pre": "5.731104244528378",
+     "P_star": "5.766590817535385"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_location_scan.csv",
+    "row": 10,
+    "column": "bus",
+    "bus": 21,
+    "context": {
+     "bus": "21",
+     "amplitude_MW": "58.56400000000001",
+     "dP_jump_SG31_pu": "0.026900877858183847",
+     "dP_jump_SG35_pu": "0.10236951304336106",
+     "DEC051_predicted_min_margin_pu": "-0.055697049662303044"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_location_scan.csv",
+    "row": 18,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "bus": "31",
+     "amplitude_MW": "58.56400000000001",
+     "dP_jump_SG31_pu": "0.3158396436829678",
+     "dP_jump_SG35_pu": "0.01028764204572763",
+     "DEC051_predicted_min_margin_pu": "-0.20144898106356912"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_location_scan.csv",
+    "row": 19,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "bus": "39",
+     "amplitude_MW": "58.56400000000001",
+     "dP_jump_SG31_pu": "0.00048379147529953315",
+     "dP_jump_SG35_pu": "9.449114586690399e-05",
+     "DEC051_predicted_min_margin_pu": "0.04657797223519111"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 34,
+    "column": "bus_of_disturbance",
+    "bus": 21,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "21",
+     "amplitude_MW": "58.56400000000001",
+     "source": "static power flow, historical C2t (DEC-051 screening plant)",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 35,
+    "column": "bus_of_disturbance",
+    "bus": 21,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "21",
+     "amplitude_MW": "58.56400000000001",
+     "source": "static power flow, C2t_Vsafe_R35_040",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 36,
+    "column": "bus_of_disturbance",
+    "bus": 21,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "21",
+     "amplitude_MW": "58.56400000000001",
+     "source": "algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 58,
+    "column": "bus_of_disturbance",
+    "bus": 31,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "31",
+     "amplitude_MW": "58.56400000000001",
+     "source": "static power flow, historical C2t (DEC-051 screening plant)",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 59,
+    "column": "bus_of_disturbance",
+    "bus": 31,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "31",
+     "amplitude_MW": "58.56400000000001",
+     "source": "static power flow, C2t_Vsafe_R35_040",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 60,
+    "column": "bus_of_disturbance",
+    "bus": 31,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "31",
+     "amplitude_MW": "58.56400000000001",
+     "source": "algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 61,
+    "column": "bus_of_disturbance",
+    "bus": 39,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "39",
+     "amplitude_MW": "58.56400000000001",
+     "source": "static power flow, historical C2t (DEC-051 screening plant)",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 62,
+    "column": "bus_of_disturbance",
+    "bus": 39,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "39",
+     "amplitude_MW": "58.56400000000001",
+     "source": "static power flow, C2t_Vsafe_R35_040",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC052_H3_voltage_audit.csv",
+    "row": 63,
+    "column": "bus_of_disturbance",
+    "bus": 39,
+    "context": {
+     "state": "post-event",
+     "bus_of_disturbance": "39",
+     "amplitude_MW": "58.56400000000001",
+     "source": "algebraic post-jump (differential states continuous), C2t_Vsafe_R35_040",
+     "converged": "True"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 1,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "E5t_Q+",
+     "source_stage": "E5",
+     "commit": "9f9f89593f6ab3ee010cf350a1c2db00efd02bd6",
+     "case_variant": "C2t",
+     "controller": "B0"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 7,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "E7t_Q+",
+     "source_stage": "E7",
+     "commit": "9f9f89593f6ab3ee010cf350a1c2db00efd02bd6",
+     "case_variant": "C2t",
+     "controller": "B1_PQ"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 8,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "E8_Q+",
+     "source_stage": "E8",
+     "commit": "18dc1637ad145df78d4c4b9fad400a88d350e7f2",
+     "case_variant": "C2t",
+     "controller": "B2"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 11,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "E9B0_Vsafe_Q+",
+     "source_stage": "E9-B0",
+     "commit": "acab954a35cc313a489b7a13fe5f37b727750cb6",
+     "case_variant": "C2t_Vsafe",
+     "controller": "B2"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 14,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "E9B0_Vsafe_R35_Q+",
+     "source_stage": "E9-B0",
+     "commit": "acab954a35cc313a489b7a13fe5f37b727750cb6",
+     "case_variant": "C2t_Vsafe_R35",
+     "controller": "B2"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 17,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "E9B0_Vsafe_R35_040_Q+",
+     "source_stage": "E9-B0",
+     "commit": "3544b0ce070bc23910f9411eec53b7ca662b6f39",
+     "case_variant": "C2t_Vsafe_R35_040",
+     "controller": "B2"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 22,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "B2QV1_Q+",
+     "source_stage": "DEC050-B",
+     "commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+     "case_variant": "C2t_Vsafe_R35_040",
+     "controller": "B2_QV1"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 23,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "B3_Q+",
+     "source_stage": "B3",
+     "commit": "493b237cccf6f7f82f9da835773ee43be23a2496",
+     "case_variant": "C2t",
+     "controller": "B3"
+    }
+   },
+   {
+    "file": "IEEE39_DEC053_inventory.csv",
+    "row": 24,
+    "column": "event_bus",
+    "bus": 21,
+    "context": {
+     "run_id": "DEC050A_Q+",
+     "source_stage": "DEC050-A",
+     "commit": "4710e76f1cfea6df76b3540d436a002fe419335a",
+     "case_variant": "C2t_Vsafe_R35_040",
+     "controller": "B2"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "row": 20,
+    "column": "bus",
+    "bus": 21,
+    "context": {
+     "bus": "21",
+     "V_pu": "0.99541013848167",
+     "angle_rad": "-0.18112991882679175",
+     "in_band": "True"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "row": 30,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "bus": "31",
+     "V_pu": "0.9989464891902361",
+     "angle_rad": "-0.12149102953980558",
+     "in_band": "True"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_040_buses.csv",
+    "row": 38,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "bus": "39",
+     "V_pu": "1.0001857359369095",
+     "angle_rad": "-0.1912880860184719",
+     "in_band": "True"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_040_units.csv",
+    "row": 1,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "unit": "SG31",
+     "bus": "31",
+     "AC_selection_P_star_pu": "6.361085508216943",
+     "AC_selection_Q_star_pu": "3.644113461990502",
+     "AC_selection_V_star_pu": "0.9989464891893326"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_040_units.csv",
+    "row": 5,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "unit": "SG39",
+     "bus": "39",
+     "AC_selection_P_star_pu": "5.752128150289244",
+     "AC_selection_Q_star_pu": "-0.09513089029103083",
+     "AC_selection_V_star_pu": "1.00018573593639"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_buses.csv",
+    "row": 20,
+    "column": "bus",
+    "bus": 21,
+    "context": {
+     "bus": "21",
+     "V_pu": "0.995351793260139",
+     "angle_rad": "-0.18056207586288917",
+     "in_band": "True"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_buses.csv",
+    "row": 30,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "bus": "31",
+     "V_pu": "0.9989464891902367",
+     "angle_rad": "-0.1213929194175674",
+     "in_band": "True"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_buses.csv",
+    "row": 38,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "bus": "39",
+     "V_pu": "1.00018573593691",
+     "angle_rad": "-0.1912880860184718",
+     "in_band": "True"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_units.csv",
+    "row": 1,
+    "column": "bus",
+    "bus": 31,
+    "context": {
+     "unit": "SG31",
+     "bus": "31",
+     "AC_selection_P_star_pu": "6.361085508216943",
+     "AC_selection_Q_star_pu": "3.644113461990502",
+     "AC_selection_V_star_pu": "0.9989464891893326"
+    }
+   },
+   {
+    "file": "IEEE39_E9B0_initial_condition_R35_units.csv",
+    "row": 5,
+    "column": "bus",
+    "bus": 39,
+    "context": {
+     "unit": "SG39",
+     "bus": "39",
+     "AC_selection_P_star_pu": "5.752128150289244",
+     "AC_selection_Q_star_pu": "-0.09513089029103083",
+     "AC_selection_V_star_pu": "1.00018573593639"
+    }
+   }
+  ]
+ },
+ "note": "DEC-051 H3-2 screened all 19 PQ buses algebraically (static PF and post-jump) and applied a selection rule (bus 18 selected); DEC-052 repeated the scan (IEEE39_DEC052_H3_location_scan.csv). The TEST buses were therefore exposed to algebraic screening and to a selection rule, never to a P-step TDS."
+}

@@ -1,0 +1,64 @@
+{
+ "stage": "DEC-055 L0 independence audit",
+ "checks": {
+  "design_tune_disjoint": true,
+  "design_test_disjoint": true,
+  "tune_test_disjoint": true,
+  "test_not_in_seen_set": true,
+  "test_not_in_dec054_partitions": true,
+  "eps_sources_free_of_test_buses": true
+ },
+ "eps_and_cut_inputs": {
+  "IEEE39_DEC054_p3a_analysis.json": {
+   "sha256": "10a2a91eaf25b5d384facc73bc996df9a91053565d6ecba8d9c67604ff43f49a",
+   "event_buses_in_plan": null,
+   "mentions_test_bus_as_event": false
+  },
+  "IEEE39_DEC054_p3b_round1_analysis.json": {
+   "sha256": "a69fa488ae5bea7794c865bc422c114b51bda062a06dc83d437284f6b4a67aeb",
+   "event_buses_in_plan": null,
+   "mentions_test_bus_as_event": false
+  },
+  "IEEE39_DEC054_p3a_plan.json": {
+   "sha256": "eb91dc4aa362cf9a6261e75f9bb7e39f63ca2094ad7abde5d0edcf9f666968d2",
+   "event_buses_in_plan": [
+    8,
+    23,
+    25,
+    28
+   ],
+   "mentions_test_bus_as_event": false
+  },
+  "IEEE39_DEC054_p3b_round1_plan.json": {
+   "sha256": "1c3b37b952a30506ee420ba4c1381cabe80a9e1d3e0545b6603a121635c6b8ea",
+   "event_buses_in_plan": [
+    7,
+    8,
+    16,
+    20,
+    23,
+    24,
+    25,
+    28
+   ],
+   "mentions_test_bus_as_event": false
+  }
+ },
+ "design_parameters": {
+  "values": {
+   "p_scale_pu": 0.5,
+   "cap_margin_pu": 0.01,
+   "v_margin_pu": 0.005,
+   "kappa": 1.5,
+   "eps_floor_pu": 0.001
+  },
+  "provenance": "DEC-054 (set from DEC-054 DESIGN/TUNE pilots, frozen in IEEE39_DEC054_design_frozen.json); no TEST bus involved"
+ },
+ "selection_rules": {
+  "TEST": "PQ buses with an existing load never stepped in P in a TDS (rule fixed before any DEC-055 computation); no dynamic result at 21/31/39 used",
+  "location_criteria": "jump sensitivity, post-jump voltage change: computed at OC1 with the M0 dispatch (static) and used only to document coverage"
+ },
+ "dec054_reuse": "DEC-054 P3-A/P3-B/P3-C data enter only as TUNE-OC1 calibration (eps); the DEC-054 cohort is not TEST evidence",
+ "exposures_declared": "TEST buses were screened algebraically by DEC-051/052 (static PF, post-jump) and bus 21 was used for Q steps (incl. RDC Q-channel realisation, DEC-032/034): see IEEE39_DEC055_test_bus_audit.json",
+ "pass": true
+}
