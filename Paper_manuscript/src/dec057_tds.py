@@ -118,8 +118,15 @@ def plan_res1():
     return {"stage": "DEC-057 reserve plan 1 (sealed before its TDS)", "block": "RES", "runs": [run], "justification": run["purpose"]}
 
 
+def plan_res2():
+    r = dict(plan_res1()["runs"][0], run_id="D57RES_smoke_features_2")
+    r["purpose"] = ("RESERVE (logged justification): D57T001 failed in the wrapper (dae.t assigned a Python float; ANDES needs the ndarray, dae.store calls t.tolist()); "
+                    "code fixed (in-place update of dae.t), identical smoke test repeated")
+    return {"stage": "DEC-057 reserve plan 2 (sealed before its TDS)", "block": "RES", "runs": [r], "justification": r["purpose"]}
+
+
 def plan(lot, extra=None):
-    p = {"D8": plan_d8, "D7": plan_d7, "INS": plan_ins, "M3V": plan_m3v, "RES1": plan_res1}[lot]() if extra is None else extra
+    p = {"D8": plan_d8, "D7": plan_d7, "INS": plan_ins, "M3V": plan_m3v, "RES1": plan_res1, "RES2": plan_res2}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -202,11 +209,12 @@ def execute(r):
                     else:
                         new = None
                     if new is not None:
+                        dae.t -= tds.h                  # in place: dae.t stays an ndarray (ANDES calls dae.t.tolist()); exact for dyadic steps
+                        dae.t += new
                         tds.h = new
                         tds.deltat = new
                         tds.config.tstep = new
                         ctx["h"] = new
-                        dae.t = t_prev + new
                 if snaps or r.get("flags_log"):
                     fv, fn = flag_vector(sys_)
                     if r.get("flags_log"):

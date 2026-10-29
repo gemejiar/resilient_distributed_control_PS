@@ -1,0 +1,60 @@
+{
+ "stage": "DEC-057 reserve plan 2 (sealed before its TDS)",
+ "block": "RES",
+ "runs": [
+  {
+   "z": [
+    4.359071088866878,
+    6.36563334781314,
+    6.371402257897015,
+    6.7429053013612394,
+    7.651652043024458,
+    7.2582776410360035,
+    3.214558171423346,
+    5.08341925946419,
+    5.755133843953389,
+    1.023263184613197,
+    0.9804817401806822,
+    0.992139744130901,
+    1.0449999999999093,
+    1.0389160564122184,
+    1.0171620990496058,
+    0.9967912650052896,
+    1.0100246562573865,
+    1.009188044238684,
+    1.0449999999999342
+   ],
+   "scenario": {
+    "bus": 7,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "oc": "OC1",
+   "pflow_tol": 1e-06,
+   "tf": 5.6,
+   "activation_s": null,
+   "tol": 0.0001,
+   "time_step_s": 0.00390625,
+   "method": "trapezoid",
+   "controller": "B3",
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "snapshots": [
+    4.0,
+    5.0,
+    5.25,
+    5.55
+   ],
+   "flags_log": true,
+   "dump_end": true,
+   "log_every": 1,
+   "save_every": 1,
+   "run_id": "D57RES_smoke_features_2",
+   "purpose": "RESERVE (logged justification): D57T001 failed in the wrapper (dae.t assigned a Python float; ANDES needs the ndarray, dae.store calls t.tolist()); code fixed (in-place update of dae.t), identical smoke test repeated"
+  }
+ ],
+ "justification": "RESERVE (logged justification): D57T001 failed in the wrapper (dae.t assigned a Python float; ANDES needs the ndarray, dae.store calls t.tolist()); code fixed (in-place update of dae.t), identical smoke test repeated"
+}
