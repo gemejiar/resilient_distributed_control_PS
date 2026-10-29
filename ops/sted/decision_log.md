@@ -692,3 +692,26 @@ Diagnosis: D7 the OPF dispatches are AC-feasible points but not closed-loop RDC 
 Responsible: Integrator
 Status: BLOCKED_AT_G1 (investigator decision)
 Next action: investigator chooses among the alternatives of IEEE39_DEC055_G1_diagnosis.md (recommended: D7 (a) or (b); D8 convergence study + uncertainty band + dt->0 jump comparison, declared before any TEST TDS).
+
+## DEC-055 / G0 addendum (OC3 M3) and G2 status
+Date: 2026-10-29
+Gate: G0 addendum (static design, 0 TDS) and G2 criterion "M3 FEASIBLE_PREDICTED or LOCAL_OPTIMUM over DESIGN" for OC3.
+Decision: OC3 M3 = SOLVER_FAILED in all attempts, so by the G2 stop rule OC3 has no M3 TEST cohort. The status is INFEASIBLE_NOT_DEMONSTRATED: the T-C classification (all OC3 disturbances AC_FEASIBLE) and the capacity condition do not prove that a jump-admissible dispatch is impossible. No further optimizer changes (start point, iteration limit, algorithm) were made, because these would be design changes outside the frozen protocol.
+Attempts:
+- Attempt 1: N_it 25, 3193.7 s, "Iteration limit reached". State m3_OC3_attempt1_Nit25_SOLVER_FAILED.json (SHA-256 b4b3bac415e34242b232f6fb1c8d25cd6e55385400449c7da3095add1fd1b098).
+- Attempt 2: N_it 200, run as a harness background task. The parent process terminated externally after about 1.8 h with no traceback and no state. The 7 orphaned workers were stopped (no file deleted). Log: C:\Users\gemej\dec055_logs\m3_OC3_attempt2_parent_terminated.log.
+- Attempt 3: N_it 200, detached process, 8840.9 s, 7248 plant evaluations, "Iteration limit reached". State m3_OC3.json (SHA-256 02933fec1c616efec97653f6f8b6e37ba9301a4ea5d62d0b5e9c692abdac2f6b).
+- The final z of attempts 1 and 3 agrees to about 1e-6. Redispatch from M0 is 1.40 MW: the optimizer stalls next to the M0 point.
+Results (T-A at the attempt-3 z, ta_OC3_M3.json, SHA-256 787dd7ad0f4eda8c9fa967b8cc6b8092e7ce6178a4c27c1e617d4d432fdea800):
+- Post-jump admissible in 5 of 29 cells: DESIGN b28 S1, DESIGN b25 S1, TEST b39 S1–S3 (worst margin 0.0153 pu, GFM32). Not admissible elsewhere, always on Pmax.
+- Pre-event Pmax margins: SG31 0.0194 pu, SG33 0.0174 pu, GFM36 0.0194 pu.
+- Worst post-jump margins: TEST b31 S3 −0.449 pu (SG31); TUNE b20 S3 −0.342 pu (SG33); DESIGN b28 S3 −0.351 pu (SG38).
+- Aggregate Pmax headroom at the pre-event point: 10.05 pu, concentrated in SG30, GFM37 and SG39. So the failure is one of distribution and design, not of total capacity.
+Alternatives for the investigator (not executed):
+- (a) Accept OC3 without M3 and report M0 only (descriptive). This follows the frozen protocol.
+- (b) Authorize a redesign protocol (feasibility-first phase from a heuristic start that shifts P from SG31/SG33/GFM36 to SG30/GFM37/SG39), declared before any OC3 TDS.
+- (c) Drop S3 from the OC3 design set, since S3 is a stress class.
+- Recommendation: (a) for the current program; (b) only if OC3 is needed for C2.
+Responsible: Integrator
+Status: G0 complete; G2 for OC3 = NOT_PASSED; program still BLOCKED_AT_G1
+Next action: investigator decision on D7/D8 (G1) and on the OC3 M3 alternatives.
