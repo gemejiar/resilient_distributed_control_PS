@@ -235,6 +235,9 @@ def save_target(tag, T):
 
 
 def dispatch(oc, m):
+    if m == "M3OS":                                                  # DEC-059 R4 M3 with the overshoot term
+        s = json.loads((STATE / f"m3os_{oc}.json").read_text(encoding="utf-8"))
+        return np.array(s["z"]), m
     if m.endswith(".json"):
         s = json.loads(open(m, encoding="utf-8").read())
         return np.array(s["z"]), m

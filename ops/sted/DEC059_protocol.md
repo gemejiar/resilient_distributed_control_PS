@@ -136,3 +136,26 @@ Predefined comparison metrics (K7):
 | **Total** | **120** |
 
 Unassigned resources are kept as reserve and are used only with a ledger justification. No line may borrow from another without being recorded.
+
+## Addendum A (recorded before the R4 and R5 plans; append-only)
+
+Each item was decided before any TDS that it affects.
+
+1. **Rule E* (E2/E3 bands).** The ε_sel-interior bands are widened to contain the pre-event value. This was found in the first static test, before any TDS: SG31 in OC1 M0 is dispatched inside the 1 % margin, and the original rule moved the d = 0 target away from ξ(0). Targets are tagged `r2_`; the revision-1 file `target_OC1_M0_d0` is kept as superseded.
+2. **CLF constructibility.** The protocol builds H_r with K = K_nom. When A_r is not Hurwitz (OC3: +0.0198 / +0.0207 s⁻¹, Qset SG30), H_r is indefinite. The CLF row is then dropped and the target is labelled CLF_NOT_CONSTRUCTIBLE.
+   - main.tex requires a stabilising auxiliary K for the certificate.
+   - The static analysis `DEC059_state/oc3_clf_stabilizability_proposal.json` shows that (A_r, G_r) is stabilizable and that an LQR K (Q = I, R = I) gives H ≻ 0, with ‖ΔK‖ ≈ 490.
+   - Adopting such a K is a **new methodological decision left to the investigator**; it is not implemented.
+3. **Smoke 4.** It is the OC3 M0 b8P_S2 event instead of the flat run. At an exact equilibrium the discrete residual is exactly zero, so a flat run cannot excite an unstable mode (R2: the 2000-s B3 run stayed at 1e-13).
+4. **R4 overshoot term (DD).**
+   - Excursion: E = max(E_grid, E_dense), with E_dense the exact-exponential response of the M3 affine post-jump predictor on [0, 50 ms] at step DT/64.
+   - Tightening: eps_E ← eps_E + eps_OS + eps_D8, with eps_OS = 3.9e-4 pu (up) / 6.1e-5 pu (down), the maximum underprediction over 18 DESIGN/TUNE cells (`IEEE39_DEC059_OS_calibration.json`), and eps_D8 = U_D8 = 0.0109 pu, so that the design aims at the SAFE class of rule M3V-1.
+   - Seed: the DEC-055 M3 dispatch.
+   - dec054_opf is unchanged; the term enters through the plant adapter.
+5. **R5 comparators.** They follow the main.tex benchmark list:
+   - B2 (original RDC);
+   - B1s (conventional separately saturated integral controller, defined in `dec059_b5.B1s`: total speed 160 as B2, sharing ∝ Pⁿ, Q/V toward the dispatch set-points, per-reference clamps, no communication);
+   - B4′ (barrier-only filter: B5′ without the CLF row).
+
+   B3 is not in the main.tex list and is dropped from the R5 comparison. The 18-TDS allocation is unchanged.
+6. **K4 illustration.** The 4 TDS stay reserved. The Lyapunov-function evolution is first read from the smoke and TUNE runs (𝒱 logged at every sample), which already start from perturbed post-event states. The K4 runs are used only if that is insufficient.

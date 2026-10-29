@@ -251,5 +251,62 @@ class Filter:
                        "clf_constructible": {"pre": self.cp["pd"], "post": None if self.cq is None else self.cq["pd"]}}}
 
 
+class FilterNoCLF(Filter):
+    """B4' (comparator, main.tex 'nominal controller with a barrier-only filter'): B5' with the CLF row (Q4) removed; everything else identical."""
+
+    def clf_row(self, c, sys_, u):
+        return None, np.nan
+
+
+class B1s:
+    """B1s (comparator, main.tex 'conventional separately saturated integral controller'; declared before the R5 plan):
+        v_P,i = k_i (1 - omega_i),  k_i = 160 Pn_i / sum Pn  (same total integral speed as B2, run_e8_ieee39.SPEED_TARGET; sharing proportional to Pn)
+        v_Q,i = K_IQ K_V (V_i(0) - V_i)  (E8 gains 0.3 x 1.0; target = the dispatch unit-bus voltage, the same target as B5')
+    no communication, no capability factors, no leakage; each reference clamped separately to its box (P in [pmin, pmax]; Q in [qmin, qmax] and, for SG,
+    inside the exciter clamp range) by clipping u + h v (anti-windup).  The apparent-power disc is NOT enforced (conventional separate saturation)."""
+
+    def __init__(self, r):
+        self.init = False
+        self.log = {k: [] for k in ("t", "clipped", "c_min", "cpu", "v")}
+        self.spec = {"fn": self.fn, "also_before_event": False}
+
+    def fn(self, t, sys_, ctx, st, vnom_p, vnom_q):
+        c0 = time.perf_counter()
+        y = sys_.dae.y
+        if not self.init:
+            import run_e8_ieee39 as e8
+            self.V0 = np.asarray(y[st["a_v"]], float).copy()
+            self.k = e8.SPEED_TARGET * st["pn"] / st["pn"].sum()
+            self.kq = e8.K_IQ * e8.K_V
+            lim, n_sg = ctx["lim"], ctx["n_sg"]
+            zq = e8.Z_CLAMP / e8.KAPPA_SG
+            qlo, qhi = lim["qmin"].copy(), lim["qmax"].copy()
+            qlo[:n_sg] = np.maximum(qlo[:n_sg], st["qn"][:n_sg] - zq)
+            qhi[:n_sg] = np.minimum(qhi[:n_sg], st["qn"][:n_sg] + zq)
+            self.lo, self.hi = np.concatenate([lim["pmin"], qlo]), np.concatenate([lim["pmax"], qhi])
+            self.rs = refset(lim, n_sg, st["qn"])
+            self.init = True
+        om, V = np.asarray(y[st["a_f"]], float), np.asarray(y[st["a_v"]], float)
+        v = np.concatenate([self.k * (1.0 - om), self.kq * (self.V0 - V)])
+        u = np.concatenate([st["pset"], st["qset"]])
+        h = float(ctx["h"])
+        un = np.clip(u + h * v, self.lo, self.hi)
+        vc = (un - u) / h
+        ca, cd = margins(self.rs, u)
+        for k, val in (("t", t), ("clipped", int((np.abs(vc - v) > 0).sum())), ("c_min", min(ca.min(), cd.min())), ("cpu", time.perf_counter() - c0)):
+            self.log[k].append(val)
+        self.log["v"].append(vc.astype(np.float32))
+        return vc[:10], vc[10:]
+
+    def log_arrays(self):
+        return {f"b1s_{k}": np.asarray(v) for k, v in self.log.items()}
+
+    def summary(self):
+        L = {k: np.asarray(v) for k, v in self.log.items() if k != "v"}
+        return {"b1s": {"calls": int(len(L["t"])), "clipped_calls": int((L["clipped"] > 0).sum()), "c_min_over_run": float(L["c_min"].min()) if len(L["c_min"]) else None,
+                        "cpu_mean_s": float(L["cpu"].mean()) if len(L["cpu"]) else None}}
+
+
 def make_filter(r):
-    return Filter(r)
+    kind = r.get("controller", "B5P")
+    return {"B5P": Filter, "B4P": FilterNoCLF, "B1S": B1s}[kind](r)

@@ -1,0 +1,355 @@
+{
+ "stage": "DEC-059 R3 smoke metrics (G-R3)",
+ "runs": {
+  "D59S1_B5P_flat_OC1_M0": {
+   "run_id": "D59S1_B5P_flat_OC1_M0",
+   "status": "TDS_SAFE_OBSERVED",
+   "t_end": 200.0,
+   "controller": "B5P",
+   "oc": "OC1",
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.0
+   },
+   "f_coi_nadir_hz": 59.99999999999865,
+   "rocof_100ms_hz_s": 1.3238856262512246e-11,
+   "f_err_120s_hz": -7.105427357601002e-15,
+   "f_err_200s_hz": 0.0,
+   "settle_0p01Hz_s": 0.0,
+   "unit_V_err_end_vs_setpoint": {
+    "mean": 8.832934383917746e-14,
+    "max": 2.9265478929119126e-13
+   },
+   "unit_V_err_end_vs_1pu": {
+    "mean": 0.021937464636333816,
+    "max": 0.04500000000029236
+   },
+   "V_bus_min": 0.980614939568863,
+   "V_bus_max": 1.045000000002048,
+   "P_end": [
+    4.359766045506498,
+    6.465557722293596,
+    6.527268653231495,
+    6.874579364132826,
+    7.652638445015386,
+    5.702976102318976,
+    7.258936042166182,
+    3.2154680071223667,
+    5.0847751267082,
+    5.805184646176827
+   ],
+   "pmax_margin_min": 0.034442277661848486,
+   "pmax_margin_min_50ms": 0.034442277721613124,
+   "pmax_margin_min_after_50ms": 0.034442277661848486,
+   "qmax_margin_min": 0.42902250356553795,
+   "qmin_margin_min": 1.6836174962862787,
+   "s_margin_min": 1.0143052000919814,
+   "pmax_50ms_class": "SAFE",
+   "b5": {
+    "calls": 49921,
+    "paths": [
+     49920,
+     1,
+     0
+    ],
+    "c_min": 0.03444227763603003,
+    "slack_max": 5.664643994288654e-10,
+    "slack_positive": 1,
+    "cpu_mean_ms": 0.07287873246487386,
+    "cpu_max_ms": 15.217200038023293,
+    "V_post_first": 2.692641681644938e-27,
+    "V_end": 5.50688871236954e-19,
+    "V_ratio_end_over_first_valid": 204516209.85846788
+   },
+   "target": {
+    "u_end_minus_ustar_max": 1.5161205624281138e-11,
+    "P_end_minus_Pstar_max": 1.510080949174153e-11,
+    "unitV_end_minus_Vstar_max": 2.935429677108914e-13
+   },
+   "sharing_std_free_units_end": 8.08998686006242e-13,
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   }
+  },
+  "D59S2_B5P_OC1_M0_b8P_S2": {
+   "run_id": "D59S2_B5P_OC1_M0_b8P_S2",
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "t_end": 200.0,
+   "controller": "B5P",
+   "oc": "OC1",
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "f_coi_nadir_hz": 59.97712947341372,
+   "rocof_100ms_hz_s": -0.021349086840386246,
+   "f_err_120s_hz": 2.0491097529884428e-07,
+   "f_err_200s_hz": 5.421931419391512e-07,
+   "settle_0p01Hz_s": 6.3515625,
+   "unit_V_err_end_vs_setpoint": {
+    "mean": 0.0001770417210281483,
+    "max": 0.0006502547494291466
+   },
+   "unit_V_err_end_vs_1pu": {
+    "mean": 0.021968466123649867,
+    "max": 0.044860247907569706
+   },
+   "V_bus_min": 0.973668683115485,
+   "V_bus_max": 1.0448617496019685,
+   "P_end": [
+    4.414645610669595,
+    6.465837581332394,
+    6.6094778051046985,
+    6.900542589111889,
+    7.74897673960252,
+    5.774767762151748,
+    7.350160738436051,
+    3.255946289726394,
+    5.148800429582692,
+    5.877627818880648
+   ],
+   "pmax_margin_min": -0.10236160257075078,
+   "pmax_margin_min_50ms": -0.10236160257075078,
+   "pmax_margin_min_after_50ms": -0.037516485698449564,
+   "qmax_margin_min": 0.3172934695901444,
+   "qmin_margin_min": 1.7082508724559498,
+   "s_margin_min": 0.9101927212642922,
+   "pmax_50ms_class": "UNSAFE",
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49330,
+     2511,
+     0
+    ],
+    "c_min": 0.030845935544842717,
+    "slack_max": 2.0396103334550808e-06,
+    "slack_positive": 336,
+    "cpu_mean_ms": 0.19812665048926886,
+    "cpu_max_ms": 14.380599954165518,
+    "V_post_first": 289.794310771185,
+    "V_end": 0.35982481480152156,
+    "V_ratio_end_over_first_valid": 0.0012416558967081692
+   },
+   "target": {
+    "u_end_minus_ustar_max": 0.02447814885825772,
+    "P_end_minus_Pstar_max": 0.0005945010669403672,
+    "unitV_end_minus_Vstar_max": 0.0006502547494288136
+   },
+   "sharing_std_free_units_end": 3.6450463073543187e-05,
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": [
+     "SG31",
+     "SG35"
+    ]
+   },
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   }
+  },
+  "D59S3_B5P_OC2_M0_b8P_S2": {
+   "run_id": "D59S3_B5P_OC2_M0_b8P_S2",
+   "status": "TDS_SAFE_OBSERVED",
+   "t_end": 200.0,
+   "controller": "B5P",
+   "oc": "OC2",
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "f_coi_nadir_hz": 59.97800463082903,
+   "rocof_100ms_hz_s": -0.021093747978429386,
+   "f_err_120s_hz": 8.087327927341903e-07,
+   "f_err_200s_hz": 3.841613960275936e-07,
+   "settle_0p01Hz_s": 5.6640625,
+   "unit_V_err_end_vs_setpoint": {
+    "mean": 0.0001178014125030602,
+    "max": 0.0004126198429389438
+   },
+   "unit_V_err_end_vs_1pu": {
+    "mean": 0.02223328991774749,
+    "max": 0.04494023501646027
+   },
+   "V_bus_min": 0.9631926722339079,
+   "V_bus_max": 1.0449414132506114,
+   "P_end": [
+    3.9678900650044966,
+    5.8856265229146,
+    5.9428242228064025,
+    6.25981344277311,
+    6.96848202173976,
+    5.13749675976288,
+    6.609064945100156,
+    2.926627211409134,
+    4.629330038932592,
+    5.287019502343937
+   ],
+   "pmax_margin_min": 0.5440109038525014,
+   "pmax_margin_min_50ms": 0.5440109038525014,
+   "pmax_margin_min_after_50ms": 0.6038741261955005,
+   "qmax_margin_min": 0.6214807102864527,
+   "qmin_margin_min": 1.3580979933435071,
+   "s_margin_min": 1.710184651372768,
+   "pmax_50ms_class": "SAFE",
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49435,
+     2406,
+     0
+    ],
+    "c_min": 0.611075663038358,
+    "slack_max": 1.2969661934199673e-06,
+    "slack_positive": 234,
+    "cpu_mean_ms": 0.19275817970351347,
+    "cpu_max_ms": 50.87069992441684,
+    "V_post_first": 229.32382521757796,
+    "V_end": 0.05338917195195539,
+    "V_ratio_end_over_first_valid": 0.00023281127419403887
+   },
+   "target": {
+    "u_end_minus_ustar_max": 0.011964731451960864,
+    "P_end_minus_Pstar_max": 7.678551367185094e-06,
+    "unitV_end_minus_Vstar_max": 0.00041261984293805565
+   },
+   "sharing_std_free_units_end": 1.3680650376734436e-07,
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   }
+  },
+  "D59S4_B5P_OC3_M0_b8P_S2": {
+   "run_id": "D59S4_B5P_OC3_M0_b8P_S2",
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "t_end": 200.0,
+   "controller": "B5P",
+   "oc": "OC3",
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "f_coi_nadir_hz": 59.97417471080635,
+   "rocof_100ms_hz_s": -0.02161377778067093,
+   "f_err_120s_hz": -1.037591397334836e-05,
+   "f_err_200s_hz": -1.4480080885448388e-05,
+   "settle_0p01Hz_s": 7.99609375,
+   "unit_V_err_end_vs_setpoint": {
+    "mean": 0.0017875593974479242,
+    "max": 0.011684384058489705
+   },
+   "unit_V_err_end_vs_1pu": {
+    "mean": 0.020720671500714282,
+    "max": 0.04559644893602832
+   },
+   "V_bus_min": 0.9797122477391965,
+   "V_bus_max": 1.0456148659324551,
+   "P_end": [
+    4.904238531927562,
+    6.483687446150096,
+    6.8124393626058,
+    6.959740710046253,
+    8.562702410727573,
+    9.223321390268117,
+    7.48927574033153,
+    3.616690449074602,
+    5.491602119335652,
+    5.941757699347829
+   ],
+   "pmax_margin_min": -0.12364598780665403,
+   "pmax_margin_min_50ms": -0.12364598780665403,
+   "pmax_margin_min_after_50ms": -0.0645337126881671,
+   "qmax_margin_min": -0.011400108363890382,
+   "qmin_margin_min": 1.6738411974830352,
+   "s_margin_min": 0.6225833823078526,
+   "pmax_50ms_class": "UNSAFE",
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49312,
+     2529,
+     0
+    ],
+    "c_min": 0.007508493142461603,
+    "slack_max": 0.0,
+    "slack_positive": 0,
+    "cpu_mean_ms": 0.13821376680466796,
+    "cpu_max_ms": 10.584300034679472,
+    "V_post_first": null,
+    "V_end": null
+   },
+   "target": {
+    "u_end_minus_ustar_max": 0.25573876870857437,
+    "P_end_minus_Pstar_max": 0.024260628730955247,
+    "unitV_end_minus_Vstar_max": 0.011684384058489705
+   },
+   "sharing_std_free_units_end": 6.764751208824426e-05,
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": false,
+    "H5_continuous": false,
+    "A_set": [
+     "SG31",
+     "SG33",
+     "SG35",
+     "GFM32",
+     "GFM34",
+     "GFM36",
+     "SG38"
+    ]
+   },
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": false,
+    "sharing_std_1e-3": true
+   }
+  }
+ }
+}

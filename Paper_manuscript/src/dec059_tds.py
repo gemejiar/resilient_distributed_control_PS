@@ -82,8 +82,14 @@ def _tgt(tag):
     return str(p), C54.sha_file(p), js
 
 
-def b5_run(oc, scenario, run_id, purpose, pre_tag, post_tag=None, tf=200.0, refine=True):
-    z = json.loads((C55.STATE / f"m0_{oc}.json").read_text(encoding="utf-8"))["z"]
+def dispatch_z(oc, m):
+    if m == "M3OS":
+        return json.loads((ST59 / f"m3os_{oc}.json").read_text(encoding="utf-8"))["z"]
+    return json.loads((C55.STATE / f"{m.lower()}_{oc}.json").read_text(encoding="utf-8"))["z"]
+
+
+def b5_run(oc, scenario, run_id, purpose, pre_tag, post_tag=None, tf=200.0, refine=True, m="M0"):
+    z = dispatch_z(oc, m)
     pre, pre_sha, pre_js = _tgt(pre_tag)
     b5 = {"pre_target": pre, "pre_sha256": pre_sha, "t_e": TE, "tau_info": 1.0, "event": post_tag is not None}
     if post_tag is not None:
@@ -106,8 +112,27 @@ def plan_r3():
             "protocol_sha256": C54.sha_file(C55.ROOT / "ops/sted/DEC059_protocol.md"), "code_sha256": {f: C54.sha_file(C55.SRC / f) for f in ("dec059_b5.py", "dec059_eq.py", "dec059_tds.py")}}
 
 
+def plan_r4():
+    """G1-P at the M3+OS dispatches (plant only, 20 s) and TUNE (buses 7, 20, 16, 24 x S2, S3) with B5' at the M3+OS dispatch, local dt/16."""
+    runs = []
+    for oc in ("OC1", "OC2"):
+        z = dispatch_z(oc, "M3OS")
+        runs.append({"oc": oc, "z": z, "scenario": FLAT, "pflow_tol": None, "method": "trapezoid", "tol": 1e-4, "time_step_s": None, "activation_s": 1.0e9, "tf": 20.0,
+                     "controller": "B2", "reset_tiny": 0, "run_id": f"D59G1P_plant_flat_{oc}_M3OS",
+                     "purpose": f"R4 G1-P: plant without secondary control at the {oc} M3+OS dispatch, 20 s; frozen drift criteria"})
+        for bus in C55.TUNE:
+            for sev in C55.TUNE_SEVERITIES:
+                amp = round(C55.oc_amp(sev), 5)
+                sc = {"bus": bus, "kind": "P", "amp": amp}
+                runs.append(b5_run(oc, sc, f"D59TUNE_B5P_{oc}_M3OS_b{bus}P_{sev}", f"R4 TUNE cell b{bus}P_{sev}, {oc} M3+OS, B5' (frozen parameters), local dt/16; gate G-TEST input",
+                                   f"r2_{oc}_M3OS_d0", f"r2_{oc}_M3OS_b{bus}P_{amp:.5f}", m="M3OS"))
+    return {"stage": "DEC-059 lot R4 plan: G1-P at M3+OS + TUNE (sealed before any TDS of the lot)", "block": "R4", "runs": runs,
+            "protocol_sha256": C54.sha_file(C55.ROOT / "ops/sted/DEC059_protocol.md"), "m3os_sha256": {oc: C54.sha_file(ST59 / f"m3os_{oc}.json") for oc in ("OC1", "OC2")},
+            "code_sha256": {f: C54.sha_file(C55.SRC / f) for f in ("dec059_b5.py", "dec059_eq.py", "dec059_tds.py", "dec059_os.py")}}
+
+
 def plan(lot, extra=None):
-    p = {"R2": plan_r2, "R3": plan_r3}[lot]() if extra is None else extra
+    p = {"R2": plan_r2, "R3": plan_r3, "R4": plan_r4}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -115,7 +140,7 @@ def plan(lot, extra=None):
 
 def execute(r):
     """dec057_tds.execute with the DEC-059 controller B5' (qp_filter) when requested; everything else unchanged."""
-    if r.get("controller") != "B5P":
+    if r.get("controller") not in ("B5P", "B4P", "B1S"):
         return T.execute(r)
     import dec059_b5 as B5
     import run_b3_ieee39 as b
@@ -133,7 +158,7 @@ def execute(r):
     if filt.log["t"]:                                  # the runner keeps a fixed series subset: the filter log is added here
         res["series"] = dict(res.get("series") or {}, **filt.log_arrays())
     res.setdefault("diag", {}).update(filt.summary())
-    res["diag"]["controller"] = "B5P"
+    res["diag"]["controller"] = r["controller"]
     return res
 
 
