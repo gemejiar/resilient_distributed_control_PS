@@ -159,3 +159,53 @@ Each item was decided before any TDS that it affects.
 
    B3 is not in the main.tex list and is dropped from the R5 comparison. The 18-TDS allocation is unchanged.
 6. **K4 illustration.** The 4 TDS stay reserved. The Lyapunov-function evolution is first read from the smoke and TUNE runs (𝒱 logged at every sample), which already start from perturbed post-event states. The K4 runs are used only if that is insufficient.
+
+## Addendum B (recorded before the G1-P and TUNE TDS of R4; append-only)
+
+**Ledger count at this point:** 14 of 120 TDS (R2 10, R3 4; D59T001–D59T014). An earlier progress message said 15; that was a miscount.
+
+**1. Cell classification (rule M3V-1, applied to every DEC-059 event run, DESIGN, TUNE and TEST alike).**
+- P peak margin m₅₀ = min over units of (Pmax − P) on [t_e, t_e + 50 ms] (the dt/16-refined window):
+  - SAFE if m₅₀ ≥ U_D8 = 0.0109 pu;
+  - UNSAFE if m₅₀ ≤ −U_D8;
+  - NUMERICALLY_INDETERMINATE otherwise.
+- After 50 ms, P margins use the stored samples, binary: a negative margin is UNSAFE.
+- Q, S, V margins use the stored samples, binary: a negative margin, or a bus voltage outside [0.95, 1.05], is UNSAFE.
+- The cell class is the worst class over these tests: UNSAFE > NUMERICALLY_INDETERMINATE > SAFE.
+- A TDS failure is TDS_NUMERICAL_FAILURE, reported separately and never counted as safe.
+- Cells whose pre-TDS T-A prediction is a_j < 0 (not `admissible_at_jump`) are labelled INADMISSIBLE_AT_EVENT. They are outside the safety claim whatever the controller (rate-bounded class), so they map to OUTSIDE_ASSUMPTIONS in the R5 reports, but their TDS class is still recorded.
+- `dec059_pred.py` fixes the predictions before the TDS; they are compared afterwards and never replace the TDS class.
+
+**2. Three distinct error sources, never merged.**
+- (a) **OS predictor error:** the TDS peak margin minus the dense-model peak margin, per cell. Tolerance for the TUNE check: |error| ≤ eps_floor_pu = 1e-3 pu (the declared floor of `PROPOSED`).
+- (b) **D8 numerical uncertainty:** U_D8 = 0.0109 pu, fixed from DEC-057. It is a band of the class, not an error of the model.
+- (c) **Physical margin:** the margin itself.
+- A cell with |m₅₀| < U_D8 is classified NUMERICALLY_INDETERMINATE, even if the model predicts a sign.
+
+**3. Design criteria of M3+OS (checked at the gate R4 → TUNE).**
+- Status FEASIBLE_PREDICTED or LOCAL_OPTIMUM_FOUND;
+- min predicted margin ≥ −τ_cut = −1e-4 pu over the DESIGN rows, with eps_E including eps_OS and U_D8;
+- pre-event initialisation valid (G1-P);
+- seed and cfg as declared in Addendum A item 4.
+
+**4. G3 (TUNE verification) for an OC.**
+- The eligible cells are the S2 cells, plus S3 cells promoted by the DEC-055 rule (T-C AC_FEASIBLE, M3 design set contains S3, and `admissible_at_jump` predicted true). Non-promoted S3 cells are STRESS_EXPLORATORY: they are run and reported, with no safety claim.
+- G3 PASS requires:
+  - (i) no eligible cell UNSAFE;
+  - (ii) no TDS failure;
+  - (iii) per-cell OS predictor error within the tolerance of item 2(a);
+  - (iv) B5′ gate G-R3 conditions in every run (hard QP feasibility, min c_j ≥ 0, no fallback, convergence to the target for the cells whose target satisfies T2).
+- NUMERICALLY_INDETERMINATE eligible cells do not fail G3, but they are reported as NOT_VERIFIED and are not counted as safe.
+- If G3 fails: **one** dynamic cut cycle for that OC (DEC-055 protocol G3).
+  - The violating eligible TUNE scenarios are added to the M3+OS design set;
+  - Algorithm 1 is rerun unchanged (same formulation, cfg, eps and seed = the current M3+OS dispatch);
+  - the changed dispatch is rechecked: G1-P plus a TDS of the cut cells only (ledger lines R4 remainder and RES).
+  - If the cut design is INFEASIBLE_NOT_DEMONSTRATED, or the rechecked cells are still UNSAFE, the OC has no TEST cohort (G3 stop) and is reported with the cause.
+
+**5. Parameters adjustable in TUNE.**
+- Only the M3 design quantities of the DEC-055 protocol: eps vectors (including eps_OS) and the cut set.
+- B5′ parameters (v̄, α, R, ρ_s, τ_info, ε_sel) and the E* rule are frozen as in the protocol; TUNE does not optimise them.
+- The theorem hypotheses (H1–H5), the criteria and the U_D8 band are not changed.
+- Every configuration evaluated is recorded in the TUNE report, failed ones included.
+
+**6. TEST intactness check.** No DEC-059 plan, ledger row, target or prediction file before the freeze contains a TEST bus (21, 31, 39). `dec059_gate.py` checks this mechanically and writes the record.
