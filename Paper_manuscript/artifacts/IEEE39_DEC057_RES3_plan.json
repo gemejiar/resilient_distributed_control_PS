@@ -1,0 +1,72 @@
+{
+ "stage": "DEC-057 reserve plan 3 (sealed before its TDS)",
+ "block": "RES",
+ "runs": [
+  {
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.0
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 1e-08,
+   "time_step_s": null,
+   "oc": "OC3",
+   "z": [
+    4.794189018463799,
+    6.480625784300054,
+    6.80261867032691,
+    6.95009540735048,
+    8.411374793547191,
+    7.4840143918377,
+    3.5350544469951837,
+    5.480364056872168,
+    5.930583389254651,
+    1.0284984158638324,
+    0.9931338496245659,
+    0.9966165531721546,
+    1.045000000000001,
+    1.0450000000000024,
+    1.0218934407184166,
+    1.0020347178470437,
+    1.0116595023374586,
+    1.0109430564414812,
+    1.0449999999999962
+   ],
+   "tf": 330.0,
+   "activation_s": 0.0,
+   "controller": "B2",
+   "snapshots": [
+    10.0,
+    20.0,
+    30.0,
+    40.0,
+    50.0,
+    60.0,
+    70.0,
+    80.0,
+    90.0,
+    100.0,
+    110.0,
+    120.0,
+    130.0,
+    140.0,
+    150.0,
+    160.0,
+    170.0,
+    180.0,
+    190.0,
+    200.0,
+    250.0,
+    300.0
+   ],
+   "flags_log": true,
+   "run_id": "D57RES_INS_OC3_honest_tol1e-8",
+   "purpose": "RESERVE (logged justification, H9c discrimination): the frozen-time linearisation of plant + B2 along the INS run is validated by an independent FD Jacobian (1e-7) and has a 1.30 Hz pair at +0.58 1/s from t = 200 s, but the default TDS (lazy chord-Newton Jacobian, convergence on |increment| <= 1e-4) shows no growth until ~312 s (dt) / ~334 s (dt/2). Same configuration with the Jacobian refreshed at every iteration and tol 1e-8. PREDICTION if the late onset is a solver artifact: growth of the 1.25-1.3 Hz component starts at the time the frozen-time pair crosses Re = 0 (from this run's own snapshots), well before 300 s; otherwise onset within +-5 s of the default run",
+   "honest": true,
+   "keep_partial": true
+  }
+ ],
+ "justification": "RESERVE (logged justification, H9c discrimination): the frozen-time linearisation of plant + B2 along the INS run is validated by an independent FD Jacobian (1e-7) and has a 1.30 Hz pair at +0.58 1/s from t = 200 s, but the default TDS (lazy chord-Newton Jacobian, convergence on |increment| <= 1e-4) shows no growth until ~312 s (dt) / ~334 s (dt/2). Same configuration with the Jacobian refreshed at every iteration and tol 1e-8. PREDICTION if the late onset is a solver artifact: growth of the 1.25-1.3 Hz component starts at the time the frozen-time pair crosses Re = 0 (from this run's own snapshots), well before 300 s; otherwise onset within +-5 s of the default run"
+}

@@ -125,8 +125,20 @@ def plan_res2():
     return {"stage": "DEC-057 reserve plan 2 (sealed before its TDS)", "block": "RES", "runs": [r], "justification": r["purpose"]}
 
 
+def plan_res3():
+    r = {k: v for k, v in json.loads(plan_path("INS").read_text(encoding="utf-8"))["runs"][0].items() if k not in ("tds_id",)}
+    r.update(run_id="D57RES_INS_OC3_honest_tol1e-8", honest=True, tol=1e-8, tf=330.0, keep_partial=True,
+             snapshots=[float(s) for s in range(10, 200, 10)] + [200.0, 250.0, 300.0],
+             purpose=("RESERVE (logged justification, H9c discrimination): the frozen-time linearisation of plant + B2 along the INS run is validated by an "
+                      "independent FD Jacobian (1e-7) and has a 1.30 Hz pair at +0.58 1/s from t = 200 s, but the default TDS (lazy chord-Newton Jacobian, "
+                      "convergence on |increment| <= 1e-4) shows no growth until ~312 s (dt) / ~334 s (dt/2). Same configuration with the Jacobian refreshed at "
+                      "every iteration and tol 1e-8. PREDICTION if the late onset is a solver artifact: growth of the 1.25-1.3 Hz component starts at the time "
+                      "the frozen-time pair crosses Re = 0 (from this run's own snapshots), well before 300 s; otherwise onset within +-5 s of the default run"))
+    return {"stage": "DEC-057 reserve plan 3 (sealed before its TDS)", "block": "RES", "runs": [r], "justification": r["purpose"]}
+
+
 def plan(lot, extra=None):
-    p = {"D8": plan_d8, "D7": plan_d7, "INS": plan_ins, "M3V": plan_m3v, "RES1": plan_res1, "RES2": plan_res2}[lot]() if extra is None else extra
+    p = {"D8": plan_d8, "D7": plan_d7, "INS": plan_ins, "M3V": plan_m3v, "RES1": plan_res1, "RES2": plan_res2, "RES3": plan_res3}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -184,6 +196,8 @@ def execute(r):
         system.TDS.config.tol = float(r["tol"])
         if r.get("save_every"):
             system.TDS.config.save_every = int(r["save_every"])
+        if r.get("honest"):
+            system.TDS.config.honest = 1                # Newton Jacobian refreshed at every iteration (ANDES default: lazy, chord iterations)
         tds = system.TDS
         run0 = tds.run
         ref = r.get("refine")
