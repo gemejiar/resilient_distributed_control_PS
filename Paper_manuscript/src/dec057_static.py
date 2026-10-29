@@ -229,17 +229,17 @@ def mode_near(ev, f0=1.25, band=(0.8, 1.8)):
     return j
 
 
-def stage_ins():
-    """Frozen-time linearisations of plant + B2 at the snapshots of D57INS_OC3_M0_B2_presettle_snap (state, flags and references as in the TDS):
+def stage_ins(run="D57INS_OC3_M0_B2_presettle_snap", tag="ins_snapshots"):
+    """Frozen-time linearisations of plant + B2 at the snapshots of an INS-type run (state, flags and references as in the TDS):
     rightmost mode, the 0.8-1.8 Hz pair with the largest real part, its participation factors, the discrete-time spectrum of the executed loop at
     h = dt, dt/2, dt/4, and first-order sensitivities of that pair to the B2 gains (linearisation only)."""
     import dec057_tds as T
     t0 = time.time()
-    s = np.load(T.RUNS / "D57INS_OC3_M0_B2_presettle_snap" / "series.npz", allow_pickle=False)
+    s = np.load(T.RUNS / run / "series.npz", allow_pickle=False)
     z = np.array(json.loads((C55.STATE / "m0_OC3.json").read_text(encoding="utf-8"))["z"])
     plant = OCM.make_plant("OC3")
     e8 = plant.e8
-    out = {"source": "D57INS_OC3_M0_B2_presettle_snap", "snapshots": []}
+    out = {"source": run, "snapshots": []}
     for i, ts in enumerate(s["snap_t"]):
         j = int(np.where(np.abs(s["cmd_t"] - ts) < 1e-9)[0][0])
         u = np.concatenate([s["cmd_pset"][j], s["cmd_qset"][j]])
@@ -284,7 +284,7 @@ def stage_ins():
         out["snapshots"].append(rec)
         print(round(float(ts), 3), rec["rightmost"], rec.get("mode_1p25Hz", {}).get("eig"), {k: v for k, v in rec.get("mode_1p25Hz", {}).items() if k.startswith("discrete")}, flush=True)
     out["seconds"] = round(time.time() - t0, 1)
-    save("ins_snapshots", out)
+    save(tag, out)
 
 
 def fd_jacobian(plant, system, ctx, st, u, cache, h=1e-7):

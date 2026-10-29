@@ -137,8 +137,20 @@ def plan_res3():
     return {"stage": "DEC-057 reserve plan 3 (sealed before its TDS)", "block": "RES", "runs": [r], "justification": r["purpose"]}
 
 
+def plan_res4():
+    r = {k: v for k, v in json.loads(plan_path("INS").read_text(encoding="utf-8"))["runs"][0].items() if k not in ("tds_id",)}
+    r.update(run_id="D57RES_INS_OC3_reset_tiny0", reset_tiny=0, tf=330.0, keep_partial=True, snapshots=[float(s) for s in range(10, 330, 10)],
+             purpose=("RESERVE (logged justification, H9e discrimination, last reserve run): RES3 (honest Jacobian, tol 1e-8) left the onset at ~315-320 s, so the "
+                      "lazy Jacobian and the Newton tolerance are not the cause. ANDES zeroes Newton increments below tol_zero = 1e-10 (reset_tiny = 1, default); "
+                      "a 1.3 Hz mode of amplitude ~1e-8 has per-step increments ~0.03 x amplitude, below that threshold. Same configuration as INS (i) with "
+                      "reset_tiny = 0 as the only change. PREDICTION if the dead zone masks the instability: growth of the 1.25-1.3 Hz component starts close to "
+                      "the frozen-time crossing (about 60-80 s, RES3 snapshots) at a rate consistent with the frozen-time real part, i.e. far earlier than 300 s; "
+                      "if the onset stays at ~315 s (+-10 s) the hypothesis is refuted"))
+    return {"stage": "DEC-057 reserve plan 4 (sealed before its TDS)", "block": "RES", "runs": [r], "justification": r["purpose"]}
+
+
 def plan(lot, extra=None):
-    p = {"D8": plan_d8, "D7": plan_d7, "INS": plan_ins, "M3V": plan_m3v, "RES1": plan_res1, "RES2": plan_res2, "RES3": plan_res3}[lot]() if extra is None else extra
+    p = {"D8": plan_d8, "D7": plan_d7, "INS": plan_ins, "M3V": plan_m3v, "RES1": plan_res1, "RES2": plan_res2, "RES3": plan_res3, "RES4": plan_res4}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -198,6 +210,8 @@ def execute(r):
             system.TDS.config.save_every = int(r["save_every"])
         if r.get("honest"):
             system.TDS.config.honest = 1                # Newton Jacobian refreshed at every iteration (ANDES default: lazy, chord iterations)
+        if r.get("reset_tiny") is not None:
+            system.TDS.config.reset_tiny = int(r["reset_tiny"])     # ANDES default 1: Newton increments below tol/1e6 (= 1e-10) are set to zero
         tds = system.TDS
         run0 = tds.run
         ref = r.get("refine")
