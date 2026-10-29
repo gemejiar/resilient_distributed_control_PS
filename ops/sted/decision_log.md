@@ -715,3 +715,15 @@ Alternatives for the investigator (not executed):
 Responsible: Integrator
 Status: G0 complete; G2 for OC3 = NOT_PASSED; program still BLOCKED_AT_G1
 Next action: investigator decision on D7/D8 (G1) and on the OC3 M3 alternatives.
+
+## DEC-056
+Date: 2026-10-29
+Gate: Investigator goal "DEC-056: Resolver D7, D8 y OC3 antes de continuar" (autonomous diagnosis on review/dec055-architecture-b; local commits only, no push). Protocol: ops/sted/DEC056_protocol.md (hypotheses H7, H8a-d; diagnostic TDS budget 18). Report: Paper_manuscript/artifacts/IEEE39_DEC056_report.md.
+Decision: diagnosis only. Topology, approved parameters, the B2 law and gains, acceptance criteria, DEC-050 to DEC-055 results and main were not modified; L2, L3 and L4 were not executed. 14 of 18 diagnostic TDS used (ledger IEEE39_DEC056_tds_ledger.csv); static OC3 work 0 TDS.
+Results:
+- D7: the OPF point is an exact plant equilibrium (|f|, |g| <= 2.5e-13) but not a B2 equilibrium; only the 10 Q-channel rates are non-zero (voltage term ~1e-2 pu/s, consensus 1.5-4.4e-3, leak ~0). From the OC1 M0 point the 20-s drift falls below 1e-3 pu after 187 s and 1e-4 pu after 561 s. A genuine self-consistent dispatch exists in OC2 and meets the frozen G1 criterion in TDS (drift <= 5.6e-4 pu); OC1/OC3 have only degenerate (gq = 0) self-consistent points. OC3 with B2 from M0: 1.27 Hz oscillatory instability after ~318 s, TDS failure at 343.4 s (reproduced; cause OPEN). The G1 voltage criterion was not relaxed.
+- D8: slow quantities (f_COI nadir, V_min, RoCoF) converged at dt; trapezoidal ringing at dt; the SG31 sub-cycle peak is not asymptotic in backward Euler (trapezoid extrapolated limit 6.5107 pu > Pmax 6.50); reference case NUMERICALLY_INDETERMINATE under the pre-registered rule; one-cycle-mean margin converges to ~0.0168 pu. jump_vs_first_sample replacement proposed (P+ by algebraic solve compared to a dt->0 limit), not applied retroactively.
+- OC3: the DEC-055 SOLVER_FAILED is caused by undefined M3 excursion rows (unstable post-jump linearisations, +0.018 to +0.32 1/s) encoded by the -1e3 sentinel, not by infeasibility. A min-norm LP gives jump admissibility in all 12 DESIGN scenarios (+0.0019 pu); with SG30 v0 -0.01 pu all post-jump linearisations are Hurwitz. Algorithm 1 with that seed and the unchanged formulation/cfg: FEASIBLE_PREDICTED, min margin -2.4e-5 pu (within tau_cut 1e-4), 207.5 MW redispatch, KKT 0.107 (not a local optimum). M0 kept as reference only.
+Responsible: Integrator
+Status: DIAGNOSED; program still BLOCKED_AT_G1 pending investigator decisions
+Next action: investigator decisions: D7 option (a) or (d); D8 criterion (one-cycle mean or locally refined step) declared before TEST; OC3 seeding rule (i) or a formulation change; authorization of L4-type characterisation of the OC3 oscillatory instability; authorization to push.
