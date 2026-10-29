@@ -58,8 +58,23 @@ def plan_d8():
             "runs": runs, "protocol_sha256": C54.sha_file(C55.ROOT / "ops/sted/DEC056_protocol.md")}
 
 
+def plan_d7a():
+    """Closed-loop settling and self-consistent dispatch checks (no event: amplitude 0 at bus 8, as the L1 flat runs; protocol solver settings)."""
+    m0 = {oc: json.loads((C55.STATE / f"m0_{oc}.json").read_text(encoding="utf-8"))["z"] for oc in ("OC1", "OC3")}
+    sc2 = json.loads((RUNS.parent / "DEC056_state" / "d7_selfc2_OC2_M0_v0.json").read_text(encoding="utf-8"))
+    flat = {"bus": 8, "kind": "P", "amp": 0.0}
+    base = {"scenario": flat, "pflow_tol": None, "method": "trapezoid", "tol": 1e-4, "time_step_s": None}
+    runs = [dict(base, run_id=f"D56D7_presettle_{oc}_M0", oc=oc, z=m0[oc], tf=600.0, activation_s=0.0,
+                 purpose=f"D7 settling of B2 activated at t = 0 at the {oc} M0 dispatch (no event): time to 20-s drift <= 1e-3 / 1e-4 pu; start point for xi*(z)")
+            for oc in ("OC1", "OC3")]
+    runs.append(dict(base, run_id="D56D7_flat_OC2_SCv0", oc="OC2", z=sc2["z"], tf=200.0, activation_s=None,
+                     purpose="D7 flat run (G1 settings) at the OC2 self-consistent dispatch (v0 free, max|v_Q| 7.2e-4 at activation): frozen G1 drift criterion test"))
+    return {"stage": "DEC-056 lot D7 plan A (sealed before any TDS of the plan)", "block": "D7", "runs": runs,
+            "selfc2_OC2_sha256": C54.sha_file(RUNS.parent / "DEC056_state" / "d7_selfc2_OC2_M0_v0.json"), "protocol_sha256": C54.sha_file(C55.ROOT / "ops/sted/DEC056_protocol.md")}
+
+
 def plan(lot, extra=None):
-    p = plan_d8() if lot == "D8" else extra
+    p = {"D8": plan_d8, "D7a": plan_d7a}[lot]() if extra is None else extra
     with open(plan_path(lot), "x", encoding="utf-8") as f:
         json.dump(p, f, indent=1)
     print("plan", lot, len(p["runs"]))
@@ -112,7 +127,8 @@ def run(lot, workers=6):
     p = json.loads(plan_path(lot).read_text(encoding="utf-8"))
     L = Ledger(LEDGER)
     for r in p["runs"]:
-        r["tds_id"] = L.request(lot, json.dumps(r["scenario"]), r["method"], r["run_id"], r["purpose"], solver=f"{r['method']} h={r['time_step_s']:.6g} tol={r['tol']:g}")
+        h = r["time_step_s"] if r["time_step_s"] is not None else DT
+        r["tds_id"] = L.request(p.get("block", lot), json.dumps(r["scenario"]), r["method"], r["run_id"], r["purpose"], solver=f"{r['method']} h={h:.6g} tol={r['tol']:g}")
     env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", PYTHONWARNINGS="ignore")
 
     def go(r):

@@ -11,6 +11,7 @@ State files: Paper_manuscript/backups/DEC056_state (exclusive)."""
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 
@@ -33,6 +34,9 @@ def save(name, obj):
 
 def dispatch(oc, m):
     """z of the M0 / M3 static design of DEC-055 (state files, read only); 'M3_D54' = the frozen DEC-054 M3 dispatch (OC1)."""
+    if m.startswith("SC_"):                         # self-consistent candidate of stage selfc2 (SC_v0 / SC_all, built from M0)
+        s = json.loads((STATE / f"d7_selfc2_{oc}_M0_{m[3:]}.json").read_text(encoding="utf-8"))
+        return np.array(s["z"]), f"selfc2 {m[3:]} (max|v_Q| {s['max_abs_v_Q']:.2e})"
     if m == "M3_D54":
         return np.array(json.loads((C54.RUNS_DIR / "P3B2_b7P_M3" / "config.json").read_text(encoding="utf-8"))["test"]["z"]), "DEC-054 frozen"
     s = json.loads((C55.STATE / f"{m.lower()}_{oc}.json").read_text(encoding="utf-8"))
@@ -204,6 +208,7 @@ def stage_selfc2(oc, m, free="v0"):
     plant = OCM.make_plant(oc)
     K = plant.K
     pb = OPF.Problem(plant, "M0", [], cfg=dict(C54.PROPOSED))
+    gq_floor = float(os.environ.get("DEC056_GQ_FLOOR", "0"))      # optional: excludes the degenerate boundary solutions (gQ -> 0 cancels v_Q trivially)
     cache = {}
 
     def ev(z):
@@ -214,9 +219,10 @@ def stage_selfc2(oc, m, free="v0"):
                 st = K.rdc_state(system, ctx)
                 u = np.concatenate([st["pn"], st["qn"]])
                 r = K.rdc_rates(st, ctx, u[:10], u[10:], *(np.asarray(system.dae.y[st[k]], float) for k in ("a_p", "a_q", "a_v", "a_f")))
-                cache[key] = (r, pb.base(z))
+                _, gq_raw = plant.e8.capability_factors(st["pn"], st["qn"], ctx["lim"])
+                cache[key] = (r, np.concatenate([pb.base(z), gq_raw - gq_floor]) if gq_floor > 0 else pb.base(z))
             except Exception:
-                cache[key] = (np.full(20, 1.0), -1e3 * np.ones(2 * 39 + 50))
+                cache[key] = (np.full(20, 1.0), -1e3 * np.ones(2 * 39 + 50 + (10 if gq_floor > 0 else 0)))
         return cache[key]
     idx = np.arange(9, 19) if free == "v0" else np.arange(19)
 
@@ -248,7 +254,8 @@ def stage_selfc2(oc, m, free="v0"):
         evs = np.linalg.eigvals(Mm)
         evs = evs[np.argsort(-evs.real)]
         out["closed_loop_eig_rightmost"] = [[float(a.real), float(a.imag)] for a in evs[:6]]
-    save(f"d7_selfc2_{oc}_{m}_{free}", out)
+    out["gq_floor"] = gq_floor
+    save(f"d7_selfc2_{oc}_{m}_{free}" + (f"_gq{gq_floor:g}" if gq_floor > 0 else ""), out)
     print(oc, m, free, {k: out[k] for k in ("max_abs_v_Q", "min_base_constraint", "gq_raw_min", "V_min", "V_max", "redispatch_MW_abs_sum_vs_dispatch", "seconds")}, out["solver"],
           out.get("closed_loop_eig_rightmost", [])[:3], flush=True)
 
