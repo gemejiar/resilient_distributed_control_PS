@@ -682,3 +682,13 @@ Gate handling: the investigator's subsequent instruction for an autonomous sessi
 Responsible: Integrator
 Status: PARTIALLY_VERIFIED
 Next action: L1 (5 TDS) under the frozen protocol; OC3 M3 attempt 2 result recorded as a G0 addendum before the L2 plan.
+
+## DEC-055 / G1
+Date: 2026-10-28
+Gate: G1 (Lot L1, 5 TDS, plan sealed and pushed before the runs: IEEE39_DEC055_L1_plan.json)
+Decision: G1 = FAIL against the frozen criteria; by the stop rule L2 and L3 are not executed. Investigator decision required on D7 and D8 (IEEE39_DEC055_G1_diagnosis.md).
+Results: 5/5 TDS completed, 0 numerical failures. Flat runs: frequency drift <= 1.3e-4 Hz (f_COI and mean BusFreq), voltages 0.969-1.0456 pu, no limit violation, but bus-voltage drift 6.3e-3 to 8.9e-3 pu in 20 s (criterion 1e-3). COI-recording regression bit-identical to the stored DEC-054 run. dt/2: V 2.1e-3 pu and nadir 2e-5 relative within AC-04, P difference 0.041 pu confined to the first 50 ms, SG31 stored-sample classification changes from +0.0045 to -0.0004 pu.
+Diagnosis: D7 the OPF dispatches are AC-feasible points but not closed-loop RDC equilibria (v_P = 0, max|v_Q| ~ 0.01 pu/s; unit voltages up to 0.045 pu from V_ref = 1.0); the RDC, activated at t = 5 s, relaxes the voltages (controller action, not numerical drift); applies retrospectively to DEC-054 voltage results. D8 the fast post-jump transient is not converged at dt = 2^-8 s; margins below ~0.01-0.02 pu occurring within ~50 ms of the event are not robust to the step (DEC-054 M3 minimum margin 0.0103 pu at 3.9 ms after the event: robustness NOT_ESTABLISHED); the T-A first-sample acceptance of 5e-3 pu is not attainable (first sample one implicit step after t_e+). D9 code defect in jump_vs_first_sample (first post-event sample is the one at t_e) corrected before any use.
+Responsible: Integrator
+Status: BLOCKED_AT_G1 (investigator decision)
+Next action: investigator chooses among the alternatives of IEEE39_DEC055_G1_diagnosis.md (recommended: D7 (a) or (b); D8 convergence study + uncertainty band + dt->0 jump comparison, declared before any TEST TDS).

@@ -181,7 +181,9 @@ def jump_vs_first_sample(t, P, P_plus_pred, one_step_P=None, t_event: float = EV
     only if a one-step replica (computed separately with the same integrator, from the same pre-event state) reproduces the stored sample to
     THR['one_step_attribution_pu']; otherwise the difference stays UNEXPLAINED.  Acceptance uses THR['jump_vs_first_sample_pu'] and is independent of attribution."""
     t, P = np.asarray(t, float), np.asarray(P, float)
-    k = int(np.searchsorted(t, t_event + 1e-12))
+    # D9 (fixed in L1 before any use): the disturbance enters in the callback before the step (t_e - dt) -> t_e, so the first stored post-event sample is the
+    # one AT t_e (model time tau = dt after the event), not the one after t_e.
+    k = int(np.searchsorted(t, t_event - 1e-12))
     sample = P[k]
     err = sample - np.asarray(P_plus_pred, float)
     out = {"t_sample": float(t[k]), "err": err.tolist(), "max_abs_err": float(np.abs(err).max()), "accepted": bool(np.abs(err).max() <= THR["jump_vs_first_sample_pu"])}

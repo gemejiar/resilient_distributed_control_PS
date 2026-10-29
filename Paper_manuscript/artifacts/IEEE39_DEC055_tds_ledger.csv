@@ -1,0 +1,11 @@
+tds_id,block,scenario,method,run_id,purpose,status,t_start,dt,solver,notes
+D55T001,L1,flat,OC1,D55L1_flat_OC1_M0,"G1 flat run of OC1 at its M0 dispatch (no event), COI recorded",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+D55T002,L1,flat,OC2,D55L1_flat_OC2_M0,"G1 flat run of OC2 at its M0 dispatch (no event), COI recorded",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+D55T003,L1,flat,OC3,D55L1_flat_OC3_M0,"G1 flat run of OC3 at its M0 dispatch (no event), COI recorded",REQUESTED,,0.00390625,trapezoid dt=2^-8,
+D55T004,L1,regression,OC1,D55L1_regress_P3B2_b7P_M3,COI-recording regression: re-run of the stored DEC-054 run with the DEC-055 runner (PFlow tol 1e-6 as stored),REQUESTED,,0.00390625,trapezoid dt=2^-8,
+D55T005,L1,dt_half,OC1,D55L1_dthalf_P3B2_b7P_M3,AC-04 step refinement of the same configuration (dt/2),REQUESTED,,0.00390625,trapezoid dt=2^-9,
+D55T001,L1,flat,OC1,D55L1_flat_OC1_M0,"G1 flat run of OC1 at its M0 dispatch (no event), COI recorded",TDS_SAFE_OBSERVED,,0.00390625,,
+D55T002,L1,flat,OC2,D55L1_flat_OC2_M0,"G1 flat run of OC2 at its M0 dispatch (no event), COI recorded",TDS_SAFE_OBSERVED,,0.00390625,,
+D55T003,L1,flat,OC3,D55L1_flat_OC3_M0,"G1 flat run of OC3 at its M0 dispatch (no event), COI recorded",TDS_SAFE_OBSERVED,,0.00390625,,
+D55T004,L1,regression,OC1,D55L1_regress_P3B2_b7P_M3,COI-recording regression: re-run of the stored DEC-054 run with the DEC-055 runner (PFlow tol 1e-6 as stored),TDS_SAFE_OBSERVED,,0.00390625,,
+D55T005,L1,dt_half,OC1,D55L1_dthalf_P3B2_b7P_M3,AC-04 step refinement of the same configuration (dt/2),TDS_PHYSICAL_VIOLATION,,0.00390625,,

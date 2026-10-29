@@ -132,11 +132,11 @@ class TestFrequency(unittest.TestCase):
 class TestJumpVsSample(unittest.TestCase):
     def setUp(self):
         self.t = np.array([4.99609375, 5.0, 5.00390625])
-        self.P = np.array([[1.0, 2.0], [1.0, 2.0], [1.3, 2.1]])
+        self.P = np.array([[1.0, 2.0], [1.3, 2.1], [1.35, 2.15]])      # the sample AT t_e already contains the event (callback before the step)
 
     def test_acceptance_without_attribution(self):
         r = C.jump_vs_first_sample(self.t, self.P, [1.299, 2.1])
-        self.assertEqual(r["t_sample"], 5.00390625)
+        self.assertEqual(r["t_sample"], 5.0)
         self.assertTrue(r["accepted"])
         self.assertEqual(r["attribution"], "NOT_ATTEMPTED")
 

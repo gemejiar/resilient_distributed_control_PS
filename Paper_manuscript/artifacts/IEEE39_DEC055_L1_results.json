@@ -1,0 +1,120 @@
+{
+ "stage": "DEC-055 L1 results (G1)",
+ "runs": {
+  "D55L1_flat_OC1_M0": {
+   "status": "TDS_SAFE_OBSERVED",
+   "tds_id": "D55T001",
+   "final_residual": 2.6331016966807397e-07,
+   "metrics": {
+    "f_coi_drift_20s_hz": 0.00010305788322995113,
+    "mean_busfreq_drift_20s_hz": 0.00011234448973596045,
+    "v_drift_20s_pu": 0.007513451474829402,
+    "f_coi_drift_200s_hz": 0.00012228228639799,
+    "v_drift_200s_pu": 0.03687906717661149,
+    "V_min": 0.9772152768117671,
+    "V_max": 1.045000007644271,
+    "f_coi_0_hz": 59.99999999999999,
+    "status": "TDS_SAFE_OBSERVED"
+   }
+  },
+  "D55L1_flat_OC2_M0": {
+   "status": "TDS_SAFE_OBSERVED",
+   "tds_id": "D55T002",
+   "final_residual": 2.3968782469907524e-07,
+   "metrics": {
+    "f_coi_drift_20s_hz": 5.797365193416226e-05,
+    "mean_busfreq_drift_20s_hz": 6.316589070110012e-05,
+    "v_drift_20s_pu": 0.006269979549806015,
+    "f_coi_drift_200s_hz": 7.875414266322878e-05,
+    "v_drift_200s_pu": 0.036420564119938215,
+    "V_min": 0.9692540354726493,
+    "V_max": 1.0455943826208796,
+    "f_coi_0_hz": 59.99999999999999,
+    "status": "TDS_SAFE_OBSERVED"
+   }
+  },
+  "D55L1_flat_OC3_M0": {
+   "status": "TDS_SAFE_OBSERVED",
+   "tds_id": "D55T003",
+   "final_residual": 2.3299492557526946e-07,
+   "metrics": {
+    "f_coi_drift_20s_hz": 0.00011633269348010344,
+    "mean_busfreq_drift_20s_hz": 0.00013384533686178202,
+    "v_drift_20s_pu": 0.008873986842933279,
+    "f_coi_drift_200s_hz": 0.00013330653887777544,
+    "v_drift_200s_pu": 0.0379946470523016,
+    "V_min": 0.9770061253479815,
+    "V_max": 1.0450000254928757,
+    "f_coi_0_hz": 59.99999999999999,
+    "status": "TDS_SAFE_OBSERVED"
+   }
+  },
+  "D55L1_regress_P3B2_b7P_M3": {
+   "status": "TDS_SAFE_OBSERVED",
+   "tds_id": "D55T004",
+   "final_residual": 2.8741625968109474e-08,
+   "metrics": {
+    "bit_identical": {
+     "t": true,
+     "P": true,
+     "Q": true,
+     "V": true
+    },
+    "max_abs_diff": {
+     "P": 0.0,
+     "Q": 0.0,
+     "V": 0.0
+    },
+    "coi_present": true
+   }
+  },
+  "D55L1_dthalf_P3B2_b7P_M3": {
+   "status": "TDS_PHYSICAL_VIOLATION",
+   "tds_id": "D55T005",
+   "final_residual": 2.3888550693129673e-08,
+   "metrics": {
+    "grid_aligned": true,
+    "P_max_abs_diff_20s": 0.04099098501282761,
+    "V_max_abs_diff_20s": 0.0021053584732058095,
+    "mean_busfreq_nadir_rel_diff": 1.987225047978669e-05
+   }
+  }
+ },
+ "criteria": {
+  "flat": {
+   "init_residual_max": 1e-08,
+   "drift_window_s": [
+    0.0,
+    20.0
+   ],
+   "f_coi_drift_max_hz": 0.005,
+   "mean_busfreq_drift_max_hz": 0.005,
+   "v_drift_max_pu": 0.001,
+   "v_band": [
+    0.95,
+    1.05
+   ],
+   "no_unit_limit_violation": true
+  },
+  "regression": {
+   "P_Q_V_bit_identical_to_stored": true
+  },
+  "dt_half": {
+   "window_s": [
+    0.0,
+    20.0
+   ],
+   "nadir_rel_diff_max": 0.01,
+   "v_max_abs_diff_pu": 0.005,
+   "p_max_abs_diff_pu": 0.005
+  }
+ },
+ "verdict": {
+  "D55L1_flat_OC1_M0": "FAIL",
+  "D55L1_flat_OC2_M0": "FAIL",
+  "D55L1_flat_OC3_M0": "FAIL",
+  "D55L1_regress_P3B2_b7P_M3": "PASS",
+  "D55L1_dthalf_P3B2_b7P_M3": "FAIL"
+ },
+ "G1": "FAIL"
+}
