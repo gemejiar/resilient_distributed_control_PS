@@ -283,13 +283,23 @@ def _child(run_json):
 
 
 def run(lot, workers=6, only=None):
-    p = json.loads(plan_path(lot).read_text(encoding="utf-8"))
+    run_many([lot], workers, only)
+
+
+def run_many(lots, workers=6, only=None):
+    """All ledger ids of the given lots are requested by ONE process before any TDS (the ledger counts ids from its own rows), then one worker pool;
+    the longest runs (by tf / h) are started first."""
     L = Ledger(LEDGER)
-    todo = [r for r in p["runs"] if only is None or r["run_id"] in only]
-    for r in todo:
-        h = r["time_step_s"] if r["time_step_s"] is not None else DT
-        r["tds_id"] = L.request(p.get("block", lot), json.dumps(r["scenario"]), r["method"], r["run_id"], r["purpose"],
-                                solver=f"{r['method']} h={h:.6g} tol={r['tol']:g} ctrl={r.get('controller', 'B2')} refine={r.get('refine')}")
+    todo = []
+    for lot in lots:
+        p = json.loads(plan_path(lot).read_text(encoding="utf-8"))
+        for r in p["runs"]:
+            if only is None or r["run_id"] in only:
+                h = r["time_step_s"] if r["time_step_s"] is not None else DT
+                r["tds_id"] = L.request(p.get("block", lot), json.dumps(r["scenario"]), r["method"], r["run_id"], r["purpose"],
+                                        solver=f"{r['method']} h={h:.6g} tol={r['tol']:g} ctrl={r.get('controller', 'B2')} refine={r.get('refine')}")
+                todo.append(r)
+    todo.sort(key=lambda r: -r["tf"] / (r["time_step_s"] or DT))
     env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", PYTHONWARNINGS="ignore")
 
     def go(r):
@@ -306,4 +316,4 @@ if __name__ == "__main__":
     if sys.argv[1] == "plan":
         plan(sys.argv[2])
     else:
-        run(sys.argv[2], int(os.environ.get("DEC057_WORKERS", "6")))
+        run_many(sys.argv[2:], int(os.environ.get("DEC057_WORKERS", "6")))
