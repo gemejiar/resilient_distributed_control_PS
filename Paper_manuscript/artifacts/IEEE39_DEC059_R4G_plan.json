@@ -1,0 +1,97 @@
+{
+ "stage": "DEC-059 lot R4G plan (G1-P at M3+OS; sealed before any TDS of the lot)",
+ "block": "R4",
+ "runs": [
+  {
+   "oc": "OC1",
+   "z": [
+    4.359032567013082,
+    6.280021487291235,
+    6.5110836550455,
+    6.619069431725083,
+    7.651690047835565,
+    7.2581962393690445,
+    3.2146871581238785,
+    5.083612027691465,
+    5.6459043217876665,
+    1.0248184618034404,
+    0.9801764542890262,
+    0.9923802311550162,
+    1.0450000000000355,
+    1.0388335825073138,
+    1.0171790332773212,
+    0.9966216365563086,
+    1.0097668786547356,
+    1.0088139951918653,
+    1.0450000000000068
+   ],
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.0
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": 1000000000.0,
+   "tf": 20.0,
+   "controller": "B2",
+   "reset_tiny": 0,
+   "run_id": "D59G1P_plant_flat_OC1_M3OS",
+   "purpose": "R4 G1-P: plant without secondary control at the OC1 M3+OS dispatch, 20 s; frozen drift criteria 0.005 Hz / 1e-3 pu, buses in band"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.0
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": 1000000000.0,
+   "tf": 20.0,
+   "controller": "B2",
+   "reset_tiny": 0,
+   "run_id": "D59G1P_plant_flat_OC2_M3OS",
+   "purpose": "R4 G1-P: plant without secondary control at the OC2 M3+OS dispatch, 20 s; frozen drift criteria 0.005 Hz / 1e-3 pu, buses in band"
+  }
+ ],
+ "protocol_sha256": "d59495f9c8a41ea428ea212af3e221d7ecac8a7a8a0d46a2fbfc7d5160870828",
+ "m3os_sha256": {
+  "OC1": "797f30c313f02037732c6d0d321c0240c6e609dfdcd096c11245609358bb0f4e",
+  "OC2": "e0dc42e126fac0efae8e13b7e908477a928cb4f3770a558ce395c4646430061e"
+ },
+ "code_sha256": {
+  "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+  "dec059_eq.py": "329a6904ed2042b49a935e57b724396341b1feaea8aa6659ea44b3d683920084",
+  "dec059_tds.py": "0723a15aa68388f7d1668c59af8bcbce036645a7c68a5656a07ea74527fbc180",
+  "dec059_os.py": "3390e1ee29a82bb897ce70f4d0bba482b1c376d3c08168b3a549f121cebc4176",
+  "dec059_pred.py": "39d26242422bf015a3dac5f73507db667c21a89d84cf70d7ed4cc16927a2ab70",
+  "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844"
+ }
+}
