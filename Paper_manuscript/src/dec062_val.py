@@ -115,8 +115,37 @@ def analyse(write=False):
     return out
 
 
+def gate():
+    """Access acta: records the modification of the TEST access rule, the integrity checks V1-V6 and the freeze hashes.  Written before any TEST file exists."""
+    import hashlib
+    import subprocess
+    v = json.loads((C55.ART / "IEEE39_DEC062_validation_results.json").read_text(encoding="utf-8"))
+    intact = G.tests_intact()
+    tg = {f.name: G.sha(f) for f in sorted(T.ST59.glob("target_*.json"))}
+    code = ("dec054_common.py", "dec054_opf.py", "dec054_predictor.py", "dec054_plant.py", "dec055_common.py", "dec055_oc.py", "dec055_l0.py", "dec057_tds.py", "dec059_b5.py", "dec059_eq.py", "dec059_tds.py",
+            "dec059_os.py", "dec059_pred.py", "dec059_metrics.py", "dec059_tune.py", "dec059_gate.py", "dec061_design.py", "dec061_rev3.py", "dec062_val.py", "dec062_r5.py", "dec062_test.py", "run_b3_ieee39.py")
+    acta = {"gate": "DEC-062 access to TEST as an independent evaluation", "label": "EVALUATION_UNDER_MODIFIED_ACCESS_RULE",
+            "preserved_verdicts": {"DEC-059 TUNE->TEST": "REJECTED", "DEC-060": "REJECTED_TEST_SEALED", "DEC-061 G-v2": "REJECTED_TEST_SEALED", "criterion_iv_failing_cells_DEC061": ["b7P_S3", "b16P_S3", "b24P_S3"],
+                                   "criterion_iii_H_failing_DEC061": ["b20P_S2", "b20P_S3"]},
+            "rule_modification": "Post-TUNE change of the TEST access rule (protocol DEC062 section 5): TEST opens as an independent evaluation if V1-V6 pass and the freeze is complete. It does not approve G3/G-v2 retroactively and does not "
+                                 "mean full compliance with the original protocol.",
+            "checks": v["checks"], "integrity_pass": v["integrity_pass"], "validation_reported_not_blocking": v["reported_not_blocking"], "TEST_intact_before_freeze": intact,
+            "ledger_used": T.Ledger(T.LEDGER).used(), "committed_total": 112, "registry": G.registry(),
+            "frozen_hashes": {"design_OC1_rev3": C54.sha_file(T.ST59 / "m3os_rev3_OC1.json"), "design_OC2_M3OS": C54.sha_file(T.ST59 / "m3os_OC2.json"), "protocols": {f: G.sha(C55.ROOT / "ops/sted" / f) for f in ("DEC059_protocol.md", "DEC061_protocol.md", "DEC062_protocol.md")},
+                              "criterion_iii_doc": G.sha(C55.ART / "IEEE39_DEC061_criterion_iii.md"), "theory": G.sha(C55.ART / "IEEE39_DEC059_theory.md"), "code": {f: G.sha(C55.SRC / f) for f in code},
+                              "n_targets": len(tg), "targets_sha256_of_hashes": hashlib.sha256(json.dumps(tg, sort_keys=True).encode()).hexdigest(), "git_head": G.git("rev-parse", "HEAD"), "git_dirty": G.git("status", "--porcelain")},
+            "classification_rules": "rule M3V-1 (Addendum B item 1), U_D8 = 0.0109 pu; eligibility S1/S2 confirmatory, S3 promoted if admissible_at_jump at the dispatch under test; criteria G3 (i)-(iv) reported per OC and dispatch, (iii-H) and (iii-U) separately",
+            "test_opened": False}
+    acta["verdict"] = "ACCESS_AUTHORIZED_FREEZE_COMPLETE" if (v["integrity_pass"] and intact["pass"]) else "ACCESS_BLOCKED"
+    with open(C55.ART / "IEEE39_DEC062_gate_TEST_access.json", "x", encoding="utf-8") as f:
+        json.dump(acta, f, indent=1, default=float)
+    print(acta["verdict"], acta["checks"], "intact", intact["pass"], "ledger", acta["ledger_used"], "dirty:", acta["frozen_hashes"]["git_dirty"][:200])
+
+
 if __name__ == "__main__":
-    if sys.argv[1] == "plan":
+    if sys.argv[1] == "gate":
+        gate()
+    elif sys.argv[1] == "plan":
         plan(sys.argv[2])
     elif sys.argv[1] == "analyse":
         analyse("write" in sys.argv)

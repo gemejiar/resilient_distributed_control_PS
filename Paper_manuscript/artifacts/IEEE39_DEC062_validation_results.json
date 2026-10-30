@@ -1,0 +1,518 @@
+{
+ "stage": "DEC-062 pre-TEST validation results",
+ "V1_G1P_OC1_rev3": {
+  "status": "TDS_SAFE_OBSERVED",
+  "t_end": 20.0,
+  "max_abs_df_hz": 1.4210854715202004e-14,
+  "max_abs_dV_pu": 1.0547118733938987e-14,
+  "V_min": 0.9803136833869629,
+  "V_max": 1.0450000000000348,
+  "pass": true
+ },
+ "V2_reproducibility": {
+  "b20P_S3": {
+   "max_abs_diff": {
+    "t": 0.0,
+    "P": 0.0,
+    "Q": 0.0,
+    "V": 0.0,
+    "f_bus_hz": 0.0
+   },
+   "bit_identical": true
+  },
+  "b7P_S3": {
+   "max_abs_diff": {
+    "t": 0.0,
+    "P": 0.0,
+    "Q": 0.0,
+    "V": 0.0,
+    "f_bus_hz": 0.0
+   },
+   "bit_identical": true
+  }
+ },
+ "cells": [
+  {
+   "cell": "b3P_S2",
+   "run_id": "D62V_B5P_OC2_M3OS_b3P_S2",
+   "eligible": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.6393821444286623,
+    "pred_pmax_margin_min": 0.6185913776104242,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.6186176016536473,
+    "m_after_50ms": 0.6085773211954688,
+    "class": "SAFE",
+    "reasons": [],
+    "V_min": 0.9634330557049907,
+    "V_max": 1.04492626689516
+   },
+   "e": 2.6224043223166404e-05,
+   "iii_H_two_sided": true,
+   "iii_U_one_sided": true,
+   "class_matches_prediction": true,
+   "false_SAFE": false,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "unit_V_err_200s": {
+    "mean": 0.00010924689680679167,
+    "max": 0.0003662226201492924
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.978019685242195,
+    "f_err_200s_hz": 4.161251752066164e-07,
+    "settle_0p01Hz_s": 5.625,
+    "rocof_100ms_hz_s": -0.021551658208294622
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49362,
+     2479,
+     0
+    ],
+    "c_min": 0.6111333893910151,
+    "slack_max": 1.929872037030794e-06,
+    "slack_positive": 304,
+    "cpu_mean_ms": 0.9341222838349381,
+    "cpu_max_ms": 105.1893001422286,
+    "V_post_first": 232.01993518293173,
+    "V_end": 0.037753709229493865,
+    "V_ratio_end_over_first_valid": 0.00016271752338749542
+   }
+  },
+  {
+   "cell": "b3P_S3",
+   "run_id": "D62V_B5P_OC2_M3OS_b3P_S3",
+   "eligible": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.6191413074991008,
+    "pred_pmax_margin_min": 0.5879994685466858,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.5880616501072975,
+    "m_after_50ms": 0.5730263809692282,
+    "class": "SAFE",
+    "reasons": [],
+    "V_min": 0.9600664753991612,
+    "V_max": 1.044887044027165
+   },
+   "e": 6.218156061166269e-05,
+   "iii_H_two_sided": true,
+   "iii_U_one_sided": true,
+   "class_matches_prediction": true,
+   "false_SAFE": false,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "unit_V_err_200s": {
+    "mean": 0.00016800064798442316,
+    "max": 0.0005640115574218063
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.96682507299334,
+    "f_err_200s_hz": 6.638479277398801e-07,
+    "settle_0p01Hz_s": 7.50390625,
+    "rocof_100ms_hz_s": -0.032333953996650344
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49047,
+     2794,
+     0
+    ],
+    "c_min": 0.5766790002716258,
+    "slack_max": 3.9063291522018785e-06,
+    "slack_positive": 619,
+    "cpu_mean_ms": 0.9838835761921223,
+    "cpu_max_ms": 141.3191999308765,
+    "V_post_first": 594.8608672866222,
+    "V_end": 0.09118076635554338,
+    "V_ratio_end_over_first_valid": 0.00015328082812280486
+   }
+  },
+  {
+   "cell": "b4P_S2",
+   "run_id": "D62V_B5P_OC2_M3OS_b4P_S2",
+   "eligible": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.5973432280370874,
+    "pred_pmax_margin_min": 0.5662802071316113,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.5664155710957726,
+    "m_after_50ms": 0.6091297872009056,
+    "class": "SAFE",
+    "reasons": [],
+    "V_min": 0.963328352800666,
+    "V_max": 1.0449332677269645
+   },
+   "e": 0.0001353639641612503,
+   "iii_H_two_sided": true,
+   "iii_U_one_sided": true,
+   "class_matches_prediction": true,
+   "false_SAFE": false,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "unit_V_err_200s": {
+    "mean": 0.000116189753089313,
+    "max": 0.0003908360451098103
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.977953437534836,
+    "f_err_200s_hz": 4.129059050228534e-07,
+    "settle_0p01Hz_s": 5.6875,
+    "rocof_100ms_hz_s": -0.02124345614927332
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49381,
+     2460,
+     0
+    ],
+    "c_min": 0.6111637219542736,
+    "slack_max": 1.7311485333157707e-06,
+    "slack_positive": 285,
+    "cpu_mean_ms": 0.906711232797391,
+    "cpu_max_ms": 171.36499984189868,
+    "V_post_first": 233.3257556505626,
+    "V_end": 0.054640539882558334,
+    "V_ratio_end_over_first_valid": 0.00023418134757651897
+   }
+  },
+  {
+   "cell": "b4P_S3",
+   "run_id": "D62V_B5P_OC2_M3OS_b4P_S3",
+   "eligible": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.556146194751526,
+    "pred_pmax_margin_min": 0.5096429578857089,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.5099022524378745,
+    "m_after_50ms": 0.5734611713646878,
+    "class": "SAFE",
+    "reasons": [],
+    "V_min": 0.9598975912234594,
+    "V_max": 1.0448975475738866
+   },
+   "e": 0.0002592945521655565,
+   "iii_H_two_sided": true,
+   "iii_U_one_sided": true,
+   "class_matches_prediction": true,
+   "false_SAFE": false,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "unit_V_err_200s": {
+    "mean": 0.0001789042634743887,
+    "max": 0.0006034764142155424
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.96674713245193,
+    "f_err_200s_hz": 6.579908173875992e-07,
+    "settle_0p01Hz_s": 7.64453125,
+    "rocof_100ms_hz_s": -0.03186513147519091
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49064,
+     2777,
+     0
+    ],
+    "c_min": 0.5767214828192921,
+    "slack_max": 3.626693715009788e-06,
+    "slack_positive": 602,
+    "cpu_mean_ms": 0.9732276188277452,
+    "cpu_max_ms": 188.34340013563633,
+    "V_post_first": 584.6631461807553,
+    "V_end": 0.1323077474894617,
+    "V_ratio_end_over_first_valid": 0.00022629739595140692
+   }
+  },
+  {
+   "cell": "b12P_S2",
+   "run_id": "D62V_B5P_OC2_M3OS_b12P_S2",
+   "eligible": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.5870638623809512,
+    "pred_pmax_margin_min": 0.5415804559405499,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.5417561491378518,
+    "m_after_50ms": 0.6025371383427824,
+    "class": "SAFE",
+    "reasons": [],
+    "V_min": 0.963681513056117,
+    "V_max": 1.0449423323971057
+   },
+   "e": 0.00017569319730181832,
+   "iii_H_two_sided": true,
+   "iii_U_one_sided": true,
+   "class_matches_prediction": true,
+   "false_SAFE": false,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "unit_V_err_200s": {
+    "mean": 0.00011175348813725616,
+    "max": 0.00040212226161573383
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.97811958045642,
+    "f_err_200s_hz": 3.6890635612962797e-07,
+    "settle_0p01Hz_s": 5.671875,
+    "rocof_100ms_hz_s": -0.02091198254956313
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49396,
+     2445,
+     0
+    ],
+    "c_min": 0.6117283755438985,
+    "slack_max": 1.672693444465188e-06,
+    "slack_positive": 274,
+    "cpu_mean_ms": 0.8919408613129031,
+    "cpu_max_ms": 183.34490014240146,
+    "V_post_first": 228.88928030292195,
+    "V_end": 0.06460154021230456,
+    "V_ratio_end_over_first_valid": 0.0002822392561451899
+   }
+  },
+  {
+   "cell": "b12P_S3",
+   "run_id": "D62V_B5P_OC2_M3OS_b12P_S3",
+   "eligible": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.5408409900350701,
+    "pred_pmax_margin_min": 0.4728451545015906,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.4731848083457839,
+    "m_after_50ms": 0.565231854542227,
+    "class": "SAFE",
+    "reasons": [],
+    "V_min": 0.9603650508053212,
+    "V_max": 1.0449108979810544
+   },
+   "e": 0.0003396538441933217,
+   "iii_H_two_sided": true,
+   "iii_U_one_sided": true,
+   "class_matches_prediction": true,
+   "false_SAFE": false,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "unit_V_err_200s": {
+    "mean": 0.00017554007771345415,
+    "max": 0.0006433615257148695
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.96695313190831,
+    "f_err_200s_hz": 5.988325852968046e-07,
+    "settle_0p01Hz_s": 7.6484375,
+    "rocof_100ms_hz_s": -0.03138968726943294
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49078,
+     2763,
+     0
+    ],
+    "c_min": 0.5775159083945143,
+    "slack_max": 3.535878253953833e-06,
+    "slack_positive": 590,
+    "cpu_mean_ms": 0.7416908858381936,
+    "cpu_max_ms": 63.40390001423657,
+    "V_post_first": 570.5535679947104,
+    "V_end": 0.17023130673614348,
+    "V_ratio_end_over_first_valid": 0.0002983616548651952
+   }
+  }
+ ],
+ "targets_fresh": {
+  "b12P_0.58564": {
+   "E4": true,
+   "T2": {
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true
+   }
+  },
+  "b12P_0.87846": {
+   "E4": true,
+   "T2": {
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true
+   }
+  },
+  "b3P_0.58564": {
+   "E4": true,
+   "T2": {
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true
+   }
+  },
+  "b3P_0.87846": {
+   "E4": true,
+   "T2": {
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true
+   }
+  },
+  "b4P_0.58564": {
+   "E4": true,
+   "T2": {
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true
+   }
+  },
+  "b4P_0.87846": {
+   "E4": true,
+   "T2": {
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true
+   }
+  }
+ },
+ "checks": {
+  "V1_G1P_OC1": true,
+  "V2_repeats_bit_identical": true,
+  "V3_targets_E4_H1H5": true,
+  "V3_QP_no_fallback_T1_nonneg": true,
+  "V4_no_TDS_failure": true,
+  "V5_no_false_SAFE": true,
+  "V6_T2_local_V_decays": true
+ },
+ "reported_not_blocking": {
+  "unsafe_eligible": [],
+  "indeterminate": [],
+  "iii_U_pass": true,
+  "iii_H_pass": true,
+  "iii_H_violating": [],
+  "iv_failing": []
+ },
+ "integrity_pass": true
+}
