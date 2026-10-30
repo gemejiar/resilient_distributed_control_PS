@@ -801,3 +801,15 @@ Blockers or limitations: QP, centering and information not separable; CLF benefi
 Responsible: Integrator
 Status: CLOSURE_ANALYSIS_COMPLETE; ABLATION_PROPOSAL_AWAITING_AUTHORIZATION
 Next action: investigator decision on the 6-TDS ablation, on title and the role of the QP, and on the literature search.
+
+## DEC-064
+Date: 2026-10-30
+Gate: Investigator authorization "DEC-064 - Consolidacion cientifica y revision del estado del arte" (campaign closed at 112/120 TDS; no ablation; no controller change; no TDS).
+Decision: literature review of 13 works (five at full-text level A, two A-, others lower, declared), originality and precedent matrix, audit of K6/K7, verification of T-A/OS/T1/T2/P3 against implementation and stored runs, eight claims C1-C8 proposed for approval, title evaluation and manuscript outline. main.tex, references.bib and historical results unchanged; claims presented for approval before any rewrite.
+Results: closest precedents (Kavvathas-Konstantopoulos reference-set invariance; Mo-Liu CBF corrector) remove novelty of T1 and of CLF-CBF-QP; Proposition OS as worded is not what was verified (B2 reaches 6.27 x T*vbar in 50 ms; margins still agree within 5.8e-5 pu), to be restated with the plant gain; the early nadir/reference difference of the centered controllers appears in the first second before the supervisory target is used (attributable by elimination to centering, not to A-INFO or the QP); T2 consistent (36/36 B5' runs on the fast path after at most 4.29 s). No priority claim justified.
+Disclosures: dec064_checks.py reads stored series and builds W with a power flow only; literature search not systematic (10 web searches, no IEEE Xplore); verification levels per work in the matrix; no push.
+Evidence reviewed: IEEE39_DEC064_report.md, _literature_matrix.csv, _checks.json, local full texts of L1, L3, L4, downloaded arXiv full texts of L5, L9, L10, IEEE39_DEC059_theory.md, DEC062/063 artifacts.
+Blockers or limitations: no systematic literature protocol; OS plant gain not computed; domain of T2 unquantified; whether centering preserves the original RDC invariance unresolved; centering/A-INFO/box not separable by a controlled contrast.
+Responsible: Integrator
+Status: CLAIMS_PROPOSED_AWAITING_APPROVAL
+Next action: investigator decision on C1-C8, the title, and the systematic literature protocol.
