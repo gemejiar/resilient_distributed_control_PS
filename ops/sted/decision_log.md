@@ -789,3 +789,15 @@ Blockers or limitations: bus 31 in OC1 is outside the preventive claim; false SA
 Responsible: Integrator
 Status: TEST_EVALUATION_COMPLETE
 Next action: investigator review of the matrix and of the manuscript claims (report section 7); 8 TDS remain unspent.
+
+## DEC-063
+Date: 2026-10-30
+Gate: Investigator authorization "DEC-063 - Cierre cientifico y preparacion del articulo" (no new TDS; no controller, dispatch or criterion change).
+Decision: contribution audit against main.tex, differential analysis of B5' vs B4', attribution of effects, integrity/chronology audit and manuscript preparation, all from existing DEC-062 runs. G-v2 stays REJECTED; the post-TUNE access-rule modification stays recorded. The 8 remaining TDS were not used; one 6-TDS ablation is proposed and awaits authorization.
+Results: QP acts only in the first <= 4.29 s after the event; 99.999 % of solver calls have the rate box saturated; box barrier rows cannot bind in 33 of 42 runs (OC1 rev3, OC2) and only in OC1 M0 could the SG31 Pmax row bind (not observed, no multipliers logged); CLF slack positive in 32 of 36 B5' runs; B5'-B4' differences <= 14.1 mpu (P command), 1.31 mHz, 0.20 mpu, none at 200 s. B2 and B1s never leave the reference set at M3 cells. T2's proof makes the QP inactive near the equilibrium. Dispatch effect is causal for B5' (and for the first 50 ms of any rate-bounded controller by Prop. OS); centering vs A-INFO vs rate limiting not separable. Audit: 54 runs, 0 hash mismatches, all written after the sealing commit f42fb9a, 38 sealed files and four frozen code files unchanged.
+Disclosures: three analysis scripts and a figure added after the TEST runs (dec063_*), read-only on stored runs; power flow only, no TDS; limits of git-clock chronology; literature comparison limited to the 11 entries of references.bib at abstract level; no push.
+Evidence reviewed: IEEE39_DEC063_report.md, _qp_analysis.json, _qp_binding.json, _audit.json, F12, DEC062 artifacts, IEEE39_DEC059_theory.md, main.tex, references.bib.
+Blockers or limitations: QP, centering and information not separable; CLF benefit untested; manuscript title and claims need rewriting to the reframed scope; systematic literature search pending.
+Responsible: Integrator
+Status: CLOSURE_ANALYSIS_COMPLETE; ABLATION_PROPOSAL_AWAITING_AUTHORIZATION
+Next action: investigator decision on the 6-TDS ablation, on title and the role of the QP, and on the literature search.

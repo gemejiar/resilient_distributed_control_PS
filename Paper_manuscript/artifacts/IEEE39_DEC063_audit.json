@@ -1,0 +1,27 @@
+{
+ "label": "DEC063_INTEGRITY_AUDIT_READ_ONLY",
+ "seal_commit": "f42fb9a",
+ "freeze_tag": "dec062-freeze",
+ "n_runs": {
+  "D62TEST": 36,
+  "D62CMP": 18
+ },
+ "hash_mismatches": [],
+ "runs_older_than_seal": [],
+ "sealed_files_checked": 38,
+ "sealed_files_changed_since_seal": [],
+ "frozen_code_changed_since_freeze": {
+  "Paper_manuscript/src/dec059_b5.py": false,
+  "Paper_manuscript/src/dec059_tds.py": false,
+  "Paper_manuscript/src/dec059_pred.py": false,
+  "Paper_manuscript/src/dec059_eq.py": false
+ },
+ "recent_commits": [
+  "4b0b738 1793371078 DEC-062: TEST cohorts A and B (54 TDS), analysis, hypotheses, figures F8-F11, contribution matrix, report, decision log, traceability; ledger 112/120",
+  "f42fb9a 1793367794 DEC-062: TEST predictions, targets, Addendum A (hypotheses and falsifiers), cohort plans A and B sealed before any TEST TDS",
+  "6d2d320 1793365406 DEC-062: access acta (TEST authorised as independent evaluation under a modified access rule; G-v2 stays REJECTED), freeze",
+  "d99d33c 1793365398 DEC-062: pre-TEST validation results (V1-V6 pass), TEST cohort builders and analysis, ledger 58/120",
+  "5beba5a 1793364425 DEC-062: protocol v3.0 (frozen objects, modified TEST access rule recorded, pre-TEST validation V1-V6), OC2 validation predictions and targets, plans D62A/D62B sealed before any TDS",
+  "b984183 1793362653 DEC-061: D61 lot (8 TDS), analysis, gate G-v2 REJECTED (criterion iv in S3 cells), report, decision log, traceability"
+ ]
+}
