@@ -1,0 +1,27 @@
+{
+ "label": "DEC065_GRONWALL_ESTIMATE_NO_TDS",
+ "cases": {
+  "OC1_M3REV3": {
+   "L_x_inf_norm_A": 29057.732202523097,
+   "L_u": 119.99999879012802,
+   "ell_x": 314.318272278785,
+   "ell_u": 3.3063304779463354e-16,
+   "W_two_box_controllers": 0.33681999999999995,
+   "gronwall_dx_bound": Infinity,
+   "gronwall_dy_bound": Infinity,
+   "n_dynamic": 208,
+   "spectral_abscissa": 1.9482589049667744e-13
+  },
+  "OC2_M3OS": {
+   "L_x_inf_norm_A": 28893.2977002095,
+   "L_u": 119.99999879012803,
+   "ell_x": 313.4344817384553,
+   "ell_u": 1.500918421217206e-16,
+   "W_two_box_controllers": 0.33681999999999995,
+   "gronwall_dx_bound": Infinity,
+   "gronwall_dy_bound": Infinity,
+   "n_dynamic": 208,
+   "spectral_abscissa": -8.467717497932807e-14
+  }
+ }
+}

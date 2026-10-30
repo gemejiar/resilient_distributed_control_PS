@@ -813,3 +813,15 @@ Blockers or limitations: no systematic literature protocol; OS plant gain not co
 Responsible: Integrator
 Status: CLAIMS_PROPOSED_AWAITING_APPROVAL
 Next action: investigator decision on C1-C8, the title, and the systematic literature protocol.
+
+## DEC-065
+Date: 2026-10-30
+Gate: Investigator authorization "DEC-065 - Consolidacion teorica, originalidad y reestructuracion del articulo" (C1-C8 decided; revision branch authorised; no TDS; ledger 112/120).
+Decision: C1, C3-C8 approved as bounded; C2 resolved as proved-for-the-linearised-plant plus numerical estimate and empirical (nonlinear bound not obtained, norm-based Gronwall bound vacuous); provisional title adopted; revised manuscript written as a separate file (main_revision_DEC065.tex) with the original main.tex preserved (blob afbaf8616444d8d416d051fe5f566af6527e8f3575); reproducible Crossref/arXiv search executed.
+Results: errors of the previous OS identified (common v-bar, undefined gain, margin-only independence, jump vs evolution); OS-L bound holds in 18/18 controller pairs (0.78-1.76 mpu vs U_D8 10.9 mpu) and the linear model reproduces observed differences; unit-output differences reach 5.0e-4 pu; Lemma C needs an exact-target hypothesis; T-A needs H-C; discrete barrier condition behind T1 is standard (Breeden et al.); IEEE/Elsevier full texts not accessible, so priority claims are not supported.
+Disclosures: scripts dec065_* read stored runs and build Jacobians with a power flow only; search not exhaustive (top 25 per query, no IEEE Xplore/Scopus/WoS, OpenAlex unused); candidates R16-R21 not read; manuscript contains REVIEW markers; no push.
+Evidence reviewed: IEEE39_DEC065_report.md, _proofs.md, _os_check.json, _os_gronwall.json, _search_log.json, _search_candidates.csv, _literature_matrix.csv, _originality_matrix.csv, main_revision_DEC065.tex, references_dec065.bib, DEC062-064 artifacts.
+Blockers or limitations: certified Lipschitz constants unavailable; literature full-text access; Algorithm 1 formal text pending; ten items listed in the report for the investigator.
+Responsible: Integrator
+Status: REVISION_DRAFT_COMPLETE; INVESTIGATOR_REVIEW_PENDING
+Next action: investigator review of the ten items; read R16-R19; decide OS status; then iterate the draft.
