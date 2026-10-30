@@ -235,6 +235,9 @@ def save_target(tag, T):
 
 
 def dispatch(oc, m):
+    if m == "M3REV3":                                                # DEC-061: OC1 design revision 3 (b20 S3 mandatory in the design set)
+        s = json.loads((STATE / f"m3os_rev3_{oc}.json").read_text(encoding="utf-8"))
+        return np.array(s["z"]), m
     if m == "M3CUT":                                                 # DEC-059 R4 single dynamic cut cycle (static design; TDS recheck pending)
         s = json.loads((STATE / f"m3os_cut_{oc}.json").read_text(encoding="utf-8"))
         return np.array(s["z"]), m

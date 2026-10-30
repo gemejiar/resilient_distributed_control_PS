@@ -1,0 +1,538 @@
+{
+ "stage": "DEC-061 lot D61 plan: OC1 design revision 3, TUNE cells (sealed before any TDS of the lot)",
+ "block": "D61",
+ "runs": [
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 7,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b7P_0.58564.npz",
+    "post_sha256": "033fced4a20e348ed72b84aeb8b4db340d6d4ae7718ef7fc3d4d665258887cf9",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b7P_S2",
+   "purpose": "DEC-061 rev3 cell b7P_S2, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 7,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b7P_0.87846.npz",
+    "post_sha256": "8995a24f2486de710067640fe92e6d5b58f584746ed28737f1f31df223df2fa9",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b7P_S3",
+   "purpose": "DEC-061 rev3 cell b7P_S3, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 20,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b20P_0.58564.npz",
+    "post_sha256": "3e7703f874e136de7faa91f79cdabd682598dbd8063f91773635675d477810ab",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b20P_S2",
+   "purpose": "DEC-061 rev3 cell b20P_S2, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 20,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b20P_0.87846.npz",
+    "post_sha256": "cbc47c68732aec276ee02ccfe9bd79de441876378198707819cfc86c2410605e",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b20P_S3",
+   "purpose": "DEC-061 rev3 cell b20P_S3, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 16,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b16P_0.58564.npz",
+    "post_sha256": "880e59a07e9f701bcaa7a3111cb7c9ebe1959f060640325740919d3f11f8e403",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b16P_S2",
+   "purpose": "DEC-061 rev3 cell b16P_S2, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 16,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b16P_0.87846.npz",
+    "post_sha256": "95de520da3afa3d3a71a720ac89d9711d5aa545499cc5e607011061730c60ed4",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b16P_S3",
+   "purpose": "DEC-061 rev3 cell b16P_S3, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 24,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b24P_0.58564.npz",
+    "post_sha256": "fcd8b4ca1af968d47a5c13a3cb0c05dff5b98d55f8e8702f13e45252b0c95704",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b24P_S2",
+   "purpose": "DEC-061 rev3 cell b24P_S2, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 24,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b24P_0.87846.npz",
+    "post_sha256": "ba7fb263f406c888a8d6e7c8d019c4bdff9dd8b174639d18501b6aa7b1a336f3",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D61RV3_B5P_OC1_M3REV3_b24P_S3",
+   "purpose": "DEC-061 rev3 cell b24P_S3, OC1, B5P (frozen parameters), local dt/16; pre-registered in DEC061_protocol.md"
+  }
+ ],
+ "protocol_sha256": "b637543bd49e2d7199412c1dcd0405765d1cd291bcaaa9b673e59db15627d2b5",
+ "rev3_sha256": "1f6d9ca87c18fe05c2c9eab139987c7a0b93557515c76751f43e7947fa50d25b",
+ "pred_sha256": {
+  "design": "863a887225449a21e277fbecc936aaf3753b461f5a67e8da66b47c178dea3f5d",
+  "tune": "f8e4aa217ef1b5976ba7779b0ac91cc288c3fa1a1d3ab16bcb6c8235070e643f"
+ },
+ "criterion_iii_sha256": "13ab87604f24a82d251bb06adddeed427f5a831b028affae5563e41f181fe87d",
+ "code_sha256": {
+  "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+  "dec059_eq.py": "50b38f620c5b4a094175d0abb0966f0078aaf3811f284d17ca8ca0706f92688a",
+  "dec059_tds.py": "411f7b4193d009a21c751f27db746ff637c25e8c478333c86f1717f1b551d8f8",
+  "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+  "dec059_pred.py": "39d26242422bf015a3dac5f73507db667c21a89d84cf70d7ed4cc16927a2ab70",
+  "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+  "dec059_tune.py": "eece85a2b146ba2e9ecd7fa4b9669161fb2da3d6c902426f267e1df055df952a",
+  "dec060_recheck.py": "a11fef505b61d9750f5ae0b762c564e40e53e513ad6b8f5aede201553f895623",
+  "dec061_design.py": "79534752a485417a123d6f1125434681fc9818fced479fb2b0846ab01dd30a6d",
+  "dec061_rev3.py": "fb68df6c6770d8fec89970b2f012400f33205d7f0c1a764e761ef197294f9ba7",
+  "dec061_settling.py": "cfa02fc4f5423b15dc1093e807c5fed5b8f902ebd434edd3e2112f4f0339cf8f"
+ }
+}

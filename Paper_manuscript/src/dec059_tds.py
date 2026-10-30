@@ -20,7 +20,7 @@ import dec057_tds as T
 
 RUNS = C54.RUNS_DIR.parent / "DEC059_runs"
 LEDGER = C55.ART / "IEEE39_DEC059_tds_ledger.csv"
-BUDGET = {"R2": 12, "R3": 6, "R4": 18, "R5": 62, "K4": 4, "R6": 8, "RES": 10}
+BUDGET = {"R2": 12, "R3": 6, "R4": 18, "R5": 62, "K4": 4, "R6": 0, "RES": 10, "D61": 8}      # DEC-061: R6 8 -> 0 (secondary), D61 +8 (sum stays 120)
 BUDGET_TOTAL = 120
 DT, TE = T.DT, T.TE
 ST59 = C54.RUNS_DIR.parent / "DEC059_state"
@@ -83,6 +83,8 @@ def _tgt(tag):
 
 
 def dispatch_z(oc, m):
+    if m == "M3REV3":                                                 # DEC-061: OC1 design revision 3
+        return json.loads((ST59 / f"m3os_rev3_{oc}.json").read_text(encoding="utf-8"))["z"]
     if m == "M3CUT":                                                  # DEC-060: single dynamic cut cycle (rev. 2 of the OC1 M3+OS dispatch)
         return json.loads((ST59 / f"m3os_cut_{oc}.json").read_text(encoding="utf-8"))["z"]
     if m == "M3OS":
