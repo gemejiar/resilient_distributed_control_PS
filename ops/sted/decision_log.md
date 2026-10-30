@@ -753,3 +753,15 @@ Blockers or limitations: no TEST evidence; M3 generalisation over buses open (OC
 Responsible: Integrator
 Status: TUNE_COMPLETE; GATE_TEST_REJECTED (investigator decision required)
 Next action: investigator decisions on criterion (iii), OC1 recheck, criterion (iv) for S3 cells and OC3 CLF (report section 8); then rerun the TEST gate.
+
+## DEC-060
+Date: 2026-10-29
+Gate: Investigator authorization "DEC-060 - Resolucion controlada de la puerta TUNE -> TEST" (D1-D5).
+Decision: TEST stays sealed. Criteria (iii) two-sided and (iv) 1e-3 pu at 200 s kept as primary; one-sided (iii) and long-horizon extrapolation evaluated only as post-TUNE alternatives. OC3 kept out of hypothesis, no LQR integrated. Budget cap 120 kept.
+Results: sign audit (no TDS): 16/16 TUNE and 8/8 recheck errors conservative; dense model conservative in 18/18 calibration cells, dt-grid optimistic in 18/18; the one-sided criterion rejects the dt-grid predictor and admits no false SAFE. OC1 cut recheck (9 TDS, block RES): G1-P pass; the three cut cells SAFE (b20 S2 +0.0166, b16 S3 +0.1297, b24 S3 +0.1339 pu); b20 S3 newly admissible and UNSAFE (-0.2084 pu), pre-registered; SG33 set-point -0.157 pu mechanism confirmed. Gate REJECTED (safety blocker; (i), (iii), (iv) fail). Ledger 41/120.
+Disclosures: recheck set wider than the protocol text; M3CUT added to dispatch_z; Addendum C committed before the first recheck TDS (50018f9).
+Evidence reviewed: IEEE39_DEC060_report.md, _sign_audit.json, _RCK_plan.json, _RCK_results.json, _gate_TEST.json.
+Blockers or limitations: no OC has a TEST cohort; b20 S3 unresolved; any further design is a new revision.
+Responsible: Integrator
+Status: RECHECK_COMPLETE; GATE_TEST_REJECTED
+Next action: investigator decision on a new revision (design or protocol) before any further gate.

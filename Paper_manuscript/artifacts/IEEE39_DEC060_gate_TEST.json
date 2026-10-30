@@ -1,0 +1,327 @@
+{
+ "gate": "TUNE -> TEST after the OC1 cut recheck (DEC-060)",
+ "ledger_used": 41,
+ "G1P_cut_dispatch": {
+  "status": "TDS_SAFE_OBSERVED",
+  "t_end": 20.0,
+  "max_abs_df_hz": 0.0,
+  "max_abs_dV_pu": 1.199040866595169e-14,
+  "V_min": 0.9801870581655049,
+  "V_max": 1.0449999999999837,
+  "pass": true
+ },
+ "mechanism_H_B": {
+  "unit_order": [
+   30,
+   31,
+   33,
+   35,
+   38,
+   39,
+   32,
+   37,
+   34,
+   36
+  ],
+  "dP_setpoint_by_unit_pu": [
+   -0.00016061749995888164,
+   1.928287384878047e-05,
+   -0.1569500642285293,
+   2.421727236523452e-06,
+   -0.0002266883494694838,
+   -7.035668782773286e-05,
+   -0.00017072144292695768,
+   -0.000584722023150519,
+   6.404535522364085e-06,
+   2.5953183597993146e-05
+  ],
+  "largest_change_unit_bus": 33,
+  "max_other_component_change": 0.000584722023150519,
+  "pmax_SG33_pu": 6.82,
+  "SG33_P_before_after": [
+   6.5110836550455,
+   6.3541335908169705
+  ],
+  "cells": [
+   {
+    "cell": "b7P_S2",
+    "binding_unit_bus": 31,
+    "predicted_unit": "SG31",
+    "m50": 0.07573438910133046,
+    "m_after_50ms": 0.1423618196199241,
+    "subcycle_is_binding": true
+   },
+   {
+    "cell": "b7P_S3",
+    "binding_unit_bus": 31,
+    "predicted_unit": "SG31",
+    "m50": 0.003978346281280132,
+    "m_after_50ms": 0.10481166852305002,
+    "subcycle_is_binding": true
+   },
+   {
+    "cell": "b20P_S2",
+    "binding_unit_bus": 33,
+    "predicted_unit": "SG33",
+    "m50": 0.01660545009604597,
+    "m_after_50ms": 0.15726758167170996,
+    "subcycle_is_binding": true
+   },
+   {
+    "cell": "b20P_S3",
+    "binding_unit_bus": 33,
+    "predicted_unit": "SG33",
+    "m50": -0.208439006217767,
+    "m_after_50ms": 0.12590714616209553,
+    "subcycle_is_binding": true
+   },
+   {
+    "cell": "b16P_S2",
+    "binding_unit_bus": 31,
+    "predicted_unit": "SG31",
+    "m50": 0.16730572347399963,
+    "m_after_50ms": 0.15659680263696618,
+    "subcycle_is_binding": false
+   },
+   {
+    "cell": "b16P_S3",
+    "binding_unit_bus": 33,
+    "predicted_unit": "SG33",
+    "m50": 0.129677144619321,
+    "m_after_50ms": 0.12494794056105185,
+    "subcycle_is_binding": false
+   },
+   {
+    "cell": "b24P_S2",
+    "binding_unit_bus": 31,
+    "predicted_unit": "SG31",
+    "m50": 0.16813177103629684,
+    "m_after_50ms": 0.15660155280649235,
+    "subcycle_is_binding": false
+   },
+   {
+    "cell": "b24P_S3",
+    "binding_unit_bus": 33,
+    "predicted_unit": "SG33",
+    "m50": 0.13389782705751596,
+    "m_after_50ms": 0.12494843541594847,
+    "subcycle_is_binding": false
+   }
+  ]
+ },
+ "1_original_protocol_compliance": {
+  "OC1_reading_A_literal": {
+   "G3_pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": false,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor": false,
+    "iv_GR3": false
+   },
+   "unsafe_eligible": [
+    "b20P_S3"
+   ],
+   "iv_failing_cells": [
+    "b7P_S3",
+    "b16P_S3",
+    "b24P_S3"
+   ],
+   "indeterminate": [
+    "b7P_S3"
+   ]
+  },
+  "OC2": {
+   "G3_pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": true,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor_within_1e-3": false,
+    "iv_B5_conditions_GR3": true
+   },
+   "cut_cycle": "none available (no UNSAFE cell); G3 fail on (iii) is final under the protocol"
+  },
+  "TEST_cohort_OCs": []
+ },
+ "2_alternative_results_not_used_for_the_verdict": {
+  "B_eligibility_fixed_at_TUNE": {
+   "pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": true,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor": false,
+    "iv_GR3": false
+   }
+  },
+  "cut_cells_only": {
+   "pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": true,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor": false,
+    "iv_GR3": false
+   }
+  },
+  "A_with_one_sided_iii": {
+   "pass": false,
+   "criteria": {
+    "i_no_eligible_UNSAFE": false,
+    "ii_no_TDS_failure": true,
+    "iii_OS_predictor": true,
+    "iv_GR3": false
+   }
+  },
+  "sign_audit": "IEEE39_DEC060_sign_audit.json",
+  "V_tail_diagnostic_per_cell": {
+   "b7P_S2": {
+    "err_200s": 0.0008290592714906472,
+    "decay_rate_1_per_s": -0.005848007449775163,
+    "t_reach_1e-3_s_extrapolated": 167.02360311866673,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b7P_S3": {
+    "err_200s": 0.0012884168074069817,
+    "decay_rate_1_per_s": -0.005606648598283141,
+    "t_reach_1e-3_s_extrapolated": 244.52145158759328,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b20P_S2": {
+    "err_200s": 0.0005810341742436146,
+    "decay_rate_1_per_s": -0.005875040842192918,
+    "t_reach_1e-3_s_extrapolated": 106.80196443525416,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b20P_S3": {
+    "err_200s": 0.0009007637925433608,
+    "decay_rate_1_per_s": -0.005609991474672832,
+    "t_reach_1e-3_s_extrapolated": 180.9648638829505,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b16P_S2": {
+    "err_200s": 0.0006552809972393506,
+    "decay_rate_1_per_s": -0.005912887436520265,
+    "t_reach_1e-3_s_extrapolated": 127.64820897058596,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b16P_S3": {
+    "err_200s": 0.0010126048015912687,
+    "decay_rate_1_per_s": -0.005652327466720107,
+    "t_reach_1e-3_s_extrapolated": 201.68250301732792,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b24P_S2": {
+    "err_200s": 0.0006520252703349197,
+    "decay_rate_1_per_s": -0.0059163820858382605,
+    "t_reach_1e-3_s_extrapolated": 126.8487448825771,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b24P_S3": {
+    "err_200s": 0.0010084736630692369,
+    "decay_rate_1_per_s": -0.005655818711779071,
+    "t_reach_1e-3_s_extrapolated": 200.95967222272571,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  }
+ },
+ "3_post_TUNE_changes": [
+  "dispatch_z accepts M3CUT",
+  "recheck set wider than the protocol text (8 cells, b20 S3 newly eligible)",
+  "one-sided criterion (iii) study (alternative only)",
+  "long-horizon voltage extrapolation (diagnostic only)",
+  "ledger block RES used"
+ ],
+ "mandatory_safety_blocker": {
+  "present": true,
+  "cells": [
+   "b20P_S3"
+  ],
+  "meaning": "an eligible cell is UNSAFE in TDS (pre-registered H-D)"
+ },
+ "registry": {
+  "git_head": "50018f9ce32230ac41ce3e3f3050911e22b0caa2",
+  "git_branch": "review/dec059-scientific-reorientation",
+  "python": "3.12.10",
+  "executable": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\venv\\Scripts\\python.exe",
+  "andes": "2.0.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "kvxopt": "v1.3.3.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tds_config": {
+   "method": "trapezoid",
+   "dt": 0.00390625,
+   "tol": 0.0001,
+   "reset_tiny": 0,
+   "honest": 0,
+   "max_iter": 15,
+   "refine": "dt/16 on [t_e - dt, t_e + 0.5 s]"
+  },
+  "protocol_sha256": "f5c0bfe5eeca4184150761d2c0c412350c231eaeda1f7080f615e9b9cd7c48b9",
+  "theory_sha256": "3f99e7aaf6aa6aebdfdc24ea371016844b576960a4ef68979b60b30915c4c459",
+  "code_sha256": {
+   "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+   "dec059_eq.py": "8869a4ce51ad17335faacb25389f1fecf260c6e7b28c42e1bdef15a6e33119da",
+   "dec059_tds.py": "aa95dbddfcaf105b03626996b35ce37660e7d235fb88300069cc0d85551c751c",
+   "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+   "dec059_pred.py": "39d26242422bf015a3dac5f73507db667c21a89d84cf70d7ed4cc16927a2ab70",
+   "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+   "dec059_gate.py": "228581eb30e2737f25447709f7aca12a1542eeeee830419270c6732bb8e9506b",
+   "test_dec059.py": "bb3dcc39ae7ddcce57378d637e9e51bc4dc503fbb523af80faf3310c4872e297"
+  },
+  "andes_source_modified": false,
+  "parameters": {
+   "v_bar_frac_of_rating_per_s": 0.01,
+   "alpha_per_s": 1.0,
+   "R": "diag(v_bar^-2)",
+   "rho_s": 1000000.0,
+   "tau_info_s": 1.0,
+   "eps_sel": 0.01,
+   "Q_L": "I",
+   "lambda": "1/(2 lmax(H_r))",
+   "U_D8_pu": 0.0109,
+   "eps_floor_pu": 0.001,
+   "tau_cut_pu": 0.0001,
+   "seeds": "none (deterministic; no random numbers in controller or targets)"
+  }
+ },
+ "recheck_code_sha256": {
+  "dec060_audit.py": "f5bdba4fd9872d088bcd5a641e76d5f9e4c470fb17271edbcb0389353cef54be",
+  "dec060_recheck.py": "a11fef505b61d9750f5ae0b762c564e40e53e513ad6b8f5aede201553f895623",
+  "dec060_gate.py": "d550be8ac2e4db7c20dad740d50a3ba4338a609a318e532d2e20c67cbc045e35"
+ },
+ "TEST_intact": {
+  "scanned": 238,
+  "test_buses": [
+   21,
+   31,
+   39
+  ],
+  "violations": [],
+  "pass": true
+ },
+ "test_opened": false,
+ "verdict": "REJECTED_TEST_SEALED"
+}

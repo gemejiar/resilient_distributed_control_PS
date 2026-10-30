@@ -1,0 +1,748 @@
+{
+ "stage": "DEC-060 recheck results (OC1 cut dispatch, TUNE cells)",
+ "cells": [
+  {
+   "cell": "b7P_S2",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b7P_S2",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": false,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.10620189881827269,
+    "pred_pmax_margin_min": 0.07559375023695125,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.07573438910133046,
+    "m_after_50ms": 0.1423618196199241,
+    "class": "SAFE",
+    "reasons": [],
+    "qmax_margin": 0.3323552389547517,
+    "s_margin": 0.9096924017220642,
+    "V_min": 0.9733281925663884,
+    "V_max": 1.044918469529932
+   },
+   "e_tds_minus_pred": 0.00014063886437920559,
+   "e_within_1e-3": true,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.97683635162004,
+    "f_err_200s_hz": 5.226825123827439e-07,
+    "settle_0p01Hz_s": 6.44140625,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.00021989912958347846,
+     "max": 0.0008290592714873535
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49362,
+     2479,
+     0
+    ],
+    "c_min": 0.1528199861495656,
+    "slack_max": 1.5043543191602806e-06,
+    "slack_positive": 307,
+    "cpu_mean_ms": 0.2513994948722873,
+    "cpu_max_ms": 13.756100088357925,
+    "V_post_first": 321.5127304071437,
+    "V_end": 0.23678442731962734,
+    "V_ratio_end_over_first_valid": 0.0007364698343974694
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0008290592714906472,
+    "decay_rate_1_per_s": -0.005848007449775163,
+    "t_reach_1e-3_s_extrapolated": 167.02360311866673,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b7P_S3",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b7P_S3",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": false,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.0494963131425088,
+    "pred_pmax_margin_min": 0.0037037063664557834,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "NUMERICALLY_INDETERMINATE"
+   },
+   "tds": {
+    "m50": 0.003978346281280132,
+    "m_after_50ms": 0.10481166852305002,
+    "class": "NUMERICALLY_INDETERMINATE",
+    "reasons": [
+     "|P peak margin within 50 ms| 0.0040 < U_D8"
+    ],
+    "qmax_margin": 0.27363999448842646,
+    "s_margin": 0.8556866754627706,
+    "V_min": 0.9695883146813827,
+    "V_max": 1.0448929444993422
+   },
+   "e_tds_minus_pred": 0.00027463991482434835,
+   "e_within_1e-3": true,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": false,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.96474087446851,
+    "f_err_200s_hz": 9.136808003518126e-07,
+    "settle_0p01Hz_s": 9.1015625,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.000340069689460043,
+     "max": 0.0012884168074041025
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49064,
+     2777,
+     0
+    ],
+    "c_min": 0.11922464867742999,
+    "slack_max": 3.45319174831969e-06,
+    "slack_positive": 602,
+    "cpu_mean_ms": 0.27777518578642174,
+    "cpu_max_ms": 53.000499960035086,
+    "V_post_first": 837.6310306912353,
+    "V_end": 0.5919229341550593,
+    "V_ratio_end_over_first_valid": 0.0007066630920616548
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0012884168074069817,
+    "decay_rate_1_per_s": -0.005606648598283141,
+    "t_reach_1e-3_s_extrapolated": 244.52145158759328,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b20P_S2",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b20P_S2",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": true,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.18136447282476809,
+    "pred_pmax_margin_min": 0.015029143249240207,
+    "pred_pmax_unit": "SG33",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.01660545009604597,
+    "m_after_50ms": 0.15726758167170996,
+    "class": "SAFE",
+    "reasons": [],
+    "qmax_margin": 0.36677259838070775,
+    "s_margin": 0.9429504669762068,
+    "V_min": 0.9751614331708985,
+    "V_max": 1.0464980575159306
+   },
+   "e_tds_minus_pred": 0.001576306846805764,
+   "e_within_1e-3": false,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.976992736853006,
+    "f_err_200s_hz": 3.5339508031029254e-07,
+    "settle_0p01Hz_s": 6.5546875,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.00015135846475312632,
+     "max": 0.0005810341742428227
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49738,
+     2103,
+     0
+    ],
+    "c_min": 0.15438550563111697,
+    "slack_max": 3.0516426095117002e-06,
+    "slack_positive": 313,
+    "cpu_mean_ms": 0.23350250714010962,
+    "cpu_max_ms": 14.339500106871128,
+    "V_post_first": 314.26304161377936,
+    "V_end": 0.06346745841912894,
+    "V_ratio_end_over_first_valid": 0.0002019564823569954
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0005810341742436146,
+    "decay_rate_1_per_s": -0.005875040842192918,
+    "t_reach_1e-3_s_extrapolated": 106.80196443525416,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b20P_S3",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b20P_S3",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": false,
+   "cut_cell": false,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.06363080880741556,
+    "pred_pmax_margin_min": -0.21103672714130184,
+    "pred_pmax_unit": "SG33",
+    "pred_class_all": "UNSAFE"
+   },
+   "tds": {
+    "m50": -0.208439006217767,
+    "m_after_50ms": 0.12590714616209553,
+    "class": "UNSAFE",
+    "reasons": [
+     "P peak margin within 50 ms -0.2084 <= -U_D8"
+    ],
+    "qmax_margin": 0.3313163654610136,
+    "s_margin": 0.905762589453329,
+    "V_min": 0.9722179730165247,
+    "V_max": 1.047211487986539
+   },
+   "e_tds_minus_pred": 0.0025977209235348298,
+   "e_within_1e-3": false,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.964399924066804,
+    "f_err_200s_hz": 6.297273387190216e-07,
+    "settle_0p01Hz_s": 9.8515625,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.00023598914722551269,
+     "max": 0.0009007637925393386
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49077,
+     2764,
+     0
+    ],
+    "c_min": 0.1215578062243523,
+    "slack_max": 4.6060082266845394e-06,
+    "slack_positive": 624,
+    "cpu_mean_ms": 0.2755099043922837,
+    "cpu_max_ms": 10.700799990445375,
+    "V_post_first": 877.3401323546011,
+    "V_end": 0.15815444600995165,
+    "V_ratio_end_over_first_valid": 0.0001802658286991814
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0009007637925433608,
+    "decay_rate_1_per_s": -0.005609991474672832,
+    "t_reach_1e-3_s_extrapolated": 180.9648638829505,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b16P_S2",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b16P_S2",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": false,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.18989774813989424,
+    "pred_pmax_margin_min": 0.16723583251468632,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.16730572347399963,
+    "m_after_50ms": 0.15659680263696618,
+    "class": "SAFE",
+    "reasons": [],
+    "qmax_margin": 0.33897588700962444,
+    "s_margin": 0.9406475701193342,
+    "V_min": 0.9748213970658329,
+    "V_max": 1.0452788092870184
+   },
+   "e_tds_minus_pred": 6.989095931331235e-05,
+   "e_within_1e-3": true,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.97680111365433,
+    "f_err_200s_hz": 4.952492673737652e-07,
+    "settle_0p01Hz_s": 6.54296875,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.00018386402573387084,
+     "max": 0.000655280997234664
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49354,
+     2487,
+     0
+    ],
+    "c_min": 0.15351602133906272,
+    "slack_max": 2.803994676488807e-06,
+    "slack_positive": 316,
+    "cpu_mean_ms": 0.2530853086216413,
+    "cpu_max_ms": 14.248199993744493,
+    "V_post_first": 318.0612052336492,
+    "V_end": 0.11177193547195809,
+    "V_ratio_end_over_first_valid": 0.00035141643693970757
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0006552809972393506,
+    "decay_rate_1_per_s": -0.005912887436520265,
+    "t_reach_1e-3_s_extrapolated": 127.64820897058596,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b16P_S3",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b16P_S3",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": true,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.17487178001646075,
+    "pred_pmax_margin_min": 0.12900697905887704,
+    "pred_pmax_unit": "SG33",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.129677144619321,
+    "m_after_50ms": 0.12494794056105185,
+    "class": "SAFE",
+    "reasons": [],
+    "qmax_margin": 0.28424271337841933,
+    "s_margin": 0.902424520286937,
+    "V_min": 0.971702535724357,
+    "V_max": 1.0454875930601906
+   },
+   "e_tds_minus_pred": 0.0006701655604439694,
+   "e_within_1e-3": true,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": false,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.96425780818507,
+    "f_err_200s_hz": 8.468763610380847e-07,
+    "settle_0p01Hz_s": 9.734375,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.00028310864641019063,
+     "max": 0.0010126048015904887
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49042,
+     2799,
+     0
+    ],
+    "c_min": 0.12030680833168095,
+    "slack_max": 4.44731752503535e-06,
+    "slack_positive": 624,
+    "cpu_mean_ms": 0.24419447686266302,
+    "cpu_max_ms": 26.387799996882677,
+    "V_post_first": 886.4057238616965,
+    "V_end": 0.27541305542265604,
+    "V_ratio_end_over_first_valid": 0.0003107076680673917
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0010126048015912687,
+    "decay_rate_1_per_s": -0.005652327466720107,
+    "t_reach_1e-3_s_extrapolated": 201.68250301732792,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b24P_S2",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b24P_S2",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": false,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.1915633089479254,
+    "pred_pmax_margin_min": 0.16807072305938675,
+    "pred_pmax_unit": "SG31",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.16813177103629684,
+    "m_after_50ms": 0.15660155280649235,
+    "class": "SAFE",
+    "reasons": [],
+    "qmax_margin": 0.33532155658769125,
+    "s_margin": 0.9407198899803619,
+    "V_min": 0.9748271901938512,
+    "V_max": 1.045266717705223
+   },
+   "e_tds_minus_pred": 6.104797691008912e-05,
+   "e_within_1e-3": true,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": true,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.97680546801171,
+    "f_err_200s_hz": 5.076463622799565e-07,
+    "settle_0p01Hz_s": 6.5390625,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.00018336726543135561,
+     "max": 0.0006520252703334783
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49355,
+     2486,
+     0
+    ],
+    "c_min": 0.1535283818332962,
+    "slack_max": 2.8578117916366186e-06,
+    "slack_positive": 315,
+    "cpu_mean_ms": 0.22525851491102344,
+    "cpu_max_ms": 28.058200143277645,
+    "V_post_first": 318.05220067560714,
+    "V_end": 0.1079761803711262,
+    "V_ratio_end_over_first_valid": 0.0003394920083614041
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0006520252703349197,
+    "decay_rate_1_per_s": -0.0059163820858382605,
+    "t_reach_1e-3_s_extrapolated": 126.8487448825771,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  {
+   "cell": "b24P_S3",
+   "run_id": "D60RCK_B5P_OC1_M3CUT_b24P_S3",
+   "eligible_reading_A_rule_at_cut_dispatch": true,
+   "eligible_reading_B_fixed_at_TUNE": true,
+   "cut_cell": true,
+   "admissible_at_jump_pred": true,
+   "pred": {
+    "jump_pmax_margin_min": 0.173295366209282,
+    "pred_pmax_margin_min": 0.1335011266499153,
+    "pred_pmax_unit": "SG33",
+    "pred_class_all": "SAFE"
+   },
+   "tds": {
+    "m50": 0.13389782705751596,
+    "m_after_50ms": 0.12494843541594847,
+    "class": "SAFE",
+    "reasons": [],
+    "qmax_margin": 0.27839080314229436,
+    "s_margin": 0.9025075325793779,
+    "V_min": 0.971706598795686,
+    "V_max": 1.045453530079339
+   },
+   "e_tds_minus_pred": 0.0003967004076006475,
+   "e_within_1e-3": true,
+   "e_one_sided_ok": true,
+   "pred_class_matches": true,
+   "G_R3": {
+    "no_tds_failure": true,
+    "T1_reference_margins_nonneg": true,
+    "QP_no_fallback": true,
+    "converged_f_AC05": true,
+    "converged_unitV_vs_target_1e-3": false,
+    "sharing_std_1e-3": true
+   },
+   "target_labels": {
+    "E4": true,
+    "H1_root": true,
+    "H2_smooth": true,
+    "H3_interior": true,
+    "H4_sampled": true,
+    "H5_continuous": true,
+    "A_set": []
+   },
+   "regulation": {
+    "f_coi_nadir_hz": 59.96424161022598,
+    "f_err_200s_hz": 8.685532577601407e-07,
+    "settle_0p01Hz_s": 9.75390625,
+    "unit_V_err_end_vs_setpoint": {
+     "mean": 0.0002829547563917956,
+     "max": 0.001008473663066889
+    }
+   },
+   "b5": {
+    "calls": 51841,
+    "paths": [
+     49044,
+     2797,
+     0
+    ],
+    "c_min": 0.12031648663610905,
+    "slack_max": 4.450063014137528e-06,
+    "slack_positive": 624,
+    "cpu_mean_ms": 0.24245449375104736,
+    "cpu_max_ms": 14.814699999988079,
+    "V_post_first": 887.0344755425236,
+    "V_end": 0.2673559643253948,
+    "V_ratio_end_over_first_valid": 0.00030140425394613427
+   },
+   "V_tail_diagnostic": {
+    "err_200s": 0.0010084736630692369,
+    "decay_rate_1_per_s": -0.005655818711779071,
+    "t_reach_1e-3_s_extrapolated": 200.95967222272571,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  }
+ ],
+ "A_primary_protocol_literal": {
+  "cells": [
+   "b7P_S2",
+   "b7P_S3",
+   "b20P_S2",
+   "b20P_S3",
+   "b16P_S2",
+   "b16P_S3",
+   "b24P_S2",
+   "b24P_S3"
+  ],
+  "criteria": {
+   "i_no_eligible_UNSAFE": false,
+   "ii_no_TDS_failure": true,
+   "iii_OS_predictor": false,
+   "iv_GR3": false
+  },
+  "pass": false,
+  "unsafe": [
+   "b20P_S3"
+  ],
+  "indeterminate": [
+   "b7P_S3"
+  ],
+  "iv_failing": [
+   "b7P_S3",
+   "b16P_S3",
+   "b24P_S3"
+  ]
+ },
+ "B_eligibility_fixed_at_TUNE": {
+  "cells": [
+   "b7P_S2",
+   "b7P_S3",
+   "b20P_S2",
+   "b16P_S2",
+   "b16P_S3",
+   "b24P_S2",
+   "b24P_S3"
+  ],
+  "criteria": {
+   "i_no_eligible_UNSAFE": true,
+   "ii_no_TDS_failure": true,
+   "iii_OS_predictor": false,
+   "iv_GR3": false
+  },
+  "pass": false,
+  "unsafe": [],
+  "indeterminate": [
+   "b7P_S3"
+  ],
+  "iv_failing": [
+   "b7P_S3",
+   "b16P_S3",
+   "b24P_S3"
+  ]
+ },
+ "cut_cells_only": {
+  "cells": [
+   "b20P_S2",
+   "b16P_S3",
+   "b24P_S3"
+  ],
+  "criteria": {
+   "i_no_eligible_UNSAFE": true,
+   "ii_no_TDS_failure": true,
+   "iii_OS_predictor": false,
+   "iv_GR3": false
+  },
+  "pass": false,
+  "unsafe": [],
+  "indeterminate": [],
+  "iv_failing": [
+   "b16P_S3",
+   "b24P_S3"
+  ]
+ },
+ "A_with_one_sided_iii_POST_TUNE_AMENDMENT": {
+  "cells": [
+   "b7P_S2",
+   "b7P_S3",
+   "b20P_S2",
+   "b20P_S3",
+   "b16P_S2",
+   "b16P_S3",
+   "b24P_S2",
+   "b24P_S3"
+  ],
+  "criteria": {
+   "i_no_eligible_UNSAFE": false,
+   "ii_no_TDS_failure": true,
+   "iii_OS_predictor": true,
+   "iv_GR3": false
+  },
+  "pass": false,
+  "unsafe": [
+   "b20P_S3"
+  ],
+  "indeterminate": [
+   "b7P_S3"
+  ],
+  "iv_failing": [
+   "b7P_S3",
+   "b16P_S3",
+   "b24P_S3"
+  ]
+ }
+}
