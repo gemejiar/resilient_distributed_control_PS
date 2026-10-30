@@ -20,7 +20,7 @@ import dec057_tds as T
 
 RUNS = C54.RUNS_DIR.parent / "DEC059_runs"
 LEDGER = C55.ART / "IEEE39_DEC059_tds_ledger.csv"
-BUDGET = {"R2": 12, "R3": 6, "R4": 18, "R5": 62, "K4": 4, "R6": 0, "RES": 10, "D61": 8}      # DEC-061: R6 8 -> 0 (secondary), D61 +8 (sum stays 120)
+BUDGET = {"R2": 12, "R3": 6, "R4": 18, "R5": 54, "K4": 0, "R6": 0, "RES": 10, "D61": 8, "D62V": 9}      # DEC-061: R6 8 -> 0, D61 +8; DEC-062: R5 62 -> 54 (TEST 36 + comparison 18), K4 4 -> 0, D62V +9 (committed total 112 of 120)
 BUDGET_TOTAL = 120
 DT, TE = T.DT, T.TE
 ST59 = C54.RUNS_DIR.parent / "DEC059_state"

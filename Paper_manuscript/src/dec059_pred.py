@@ -23,8 +23,10 @@ U_D8 = 0.0109
 def cells(which):
     if which == "tune":
         return [(b, s) for b in C55.TUNE for s in C55.TUNE_SEVERITIES]
+    if which == "val":                                              # DEC-062: fresh OC2 validation buses (never used in DESIGN, TUNE or TEST)
+        return [(b, s) for b in (3, 4, 12) for s in ("S2", "S3")]
     if which == "test":
-        return [(b, s) for b in C55.TEST for s in C55.CONFIRMATORY_SEVERITIES]
+        return [(b, s) for b in C55.TEST for s in tuple(C55.SEVERITY)]
     return [(b, s) for b in C55.DESIGN for s in C55.SEVERITY]
 
 

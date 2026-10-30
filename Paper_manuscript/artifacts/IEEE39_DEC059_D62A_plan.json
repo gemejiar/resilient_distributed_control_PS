@@ -1,0 +1,47 @@
+{
+ "stage": "DEC-062 lot D62A plan (G1-P OC1 rev3; sealed before any TDS of the lot)",
+ "block": "D62V",
+ "runs": [
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 8,
+    "kind": "P",
+    "amp": 0.0
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": 1000000000.0,
+   "tf": 20.0,
+   "controller": "B2",
+   "reset_tiny": 0,
+   "run_id": "D62G1P_plant_flat_OC1_M3REV3",
+   "purpose": "DEC-062 V1: complete G1-P of OC1 at the rev3 dispatch: plant without secondary control, 20 s; frozen drift criteria 0.005 Hz / 1e-3 pu, buses in band"
+  }
+ ],
+ "rev3_sha256": "1f6d9ca87c18fe05c2c9eab139987c7a0b93557515c76751f43e7947fa50d25b",
+ "protocol_sha256": "7699e0b473a54e7380f34a395ce748920fd12bc1b654c5783160452973168a5d"
+}
