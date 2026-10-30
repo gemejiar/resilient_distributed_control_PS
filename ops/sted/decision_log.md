@@ -846,3 +846,10 @@ Results: regeneration of 54 runs OK; OC1 M0 1/1/7 vs rev3 7/0/2; 101.07 MW vs M0
 Disclosures: errata to G0 inventory (bus usage; predictor forcing) recorded in DEC066_protocol Addendum A; horizon sweep is exploratory on the observed cells; npz of P1 trajectories (90 MB) excluded from Git (local exclude); no new TDS; backup exception not yet recorded.
 Status: ENTREGA_1_COMPLETE
 Next action: ablation designs, procedural exception for the backup, selected TDS (ceiling 40), final figures and LaTeX.
+
+## DEC-066 ablation phase 1 (2026-10-30)
+Decision: designs B, C, E (OC1) recovered, not re-run; common external diagnostic of A-E at 28 events (dense + grid, no eps) computed with the existing predictor; T4, T4b, T4b2, T4c (prediction register), T4d and F4 preliminary produced; no new TDS.
+Results: all five FEASIBLE_PREDICTED, KKT B 0.598 (others ~0.06), `iterations` field 0 in all; dispatch differences 2-7 MW; dense term +0.017 pu predicted at SG31 b8 S3 for 2.25 MW; eps_OS 0.17 MW / +0.0004 pu (null); U_D8 3.5-4.4 MW; E leaves -0.004 pu in the dense view, D +0.013 pu.
+Disclosures: predictions only; design events in-sample; initial candidate TDS events mostly non-discriminating, replaced by b8 S3, b21 S3, b15 S3, b23 S3, b31 S2, b21 S2 (17 TDS proposed, none executed); common-initialisation control open; backup exception not approved, so no TDS.
+Status: ABLATION_PHASE1_COMPLETE
+Next action: investigator approval of the procedural backup exception and of the E1 list.

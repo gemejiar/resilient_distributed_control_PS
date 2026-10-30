@@ -1,0 +1,7 @@
+contrast,component,sumdP_between_MW,dJ,d_ext_min_margin,d_sumdP_vs_case_MW,d_kkt
+B-A,dense,2.25,0.024,0.01705,1.464,0.536
+C-B,eps_OS,0.174,0.00178,0.00039,0.073,-0.5378
+D-C,U_D8 (given dense+eps_OS),4.435,0.05188,0.0109,3.961,-0.0025
+E-A,U_D8 alone,3.48,0.04937,0.01093,3.128,-0.0002
+D-E,dense+eps_OS given U_D8,3.353,0.02829,0.01741,2.37,-0.0041
+D-A,full OS,6.831,0.07766,0.02834,5.498,-0.0043
