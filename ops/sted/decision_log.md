@@ -765,3 +765,15 @@ Blockers or limitations: no OC has a TEST cohort; b20 S3 unresolved; any further
 Responsible: Integrator
 Status: RECHECK_COMPLETE; GATE_TEST_REJECTED
 Next action: investigator decision on a new revision (design or protocol) before any further gate.
+
+## DEC-061
+Date: 2026-10-30
+Gate: Investigator authorization "DEC-061 - Revision cientifica final antes de TEST" (D1-D7).
+Decision: limited OC1 revision (rev3, b20 S3 mandatory in the design set), prospective one-sided criterion (iii-U) registered as post-TUNE and unvalidated, criterion (iv) kept at 1e-3 pu at 200 s, protocol v2.0 with an independent gate G-v2, up to 8 TDS (block D61). TEST sealed.
+Results: feasibility scan (1-D, not a certificate) then Algorithm 1: FEASIBLE_PREDICTED, J 2.399, 99.4 MW redispatch. D61 (8 TDS): all eight classes as predicted; b20 S3 SAFE (+0.0176 pu); no cell degraded; E* targets 9/9 E4 and H1-H5; (iii-U) pass 8/8; historical (iii-H) fails in b20 S2 and b20 S3 (conservative); (iv) fails in b7 S3, b16 S3, b24 S3 (1.278e-3, 1.015e-3, 1.011e-3) as pre-registered. D4: QP off after ~9 s, no permitted parameter acts on the tail. Gate G-v2 REJECTED_TEST_SEALED. Ledger 49/120.
+Disclosures: G1-P in reduced form; invalid first scan file replaced; BUDGET R6 8 -> 0 and D61 8; M3REV3 in dispatch/dispatch_z; plan hashes the protocol before a pre-TDS note; no push.
+Evidence reviewed: IEEE39_DEC061_report.md, _criterion_iii.md, _feasibility_scan.json, _settling_analysis.json, _D61_results.json, _gate_TEST.json, DEC061_protocol.md.
+Blockers or limitations: criterion (iv) in S3 stress cells; OC1 has no TEST cohort; OC2 unchanged; (iii-U) unvalidated.
+Responsible: Integrator
+Status: REV3_COMPLETE; GATE_G-v2_REJECTED
+Next action: investigator decision on criterion (iv) for S3 cells (keep, prospective redefinition, or CLF-rate controller revision) and on an OC2 cohort.

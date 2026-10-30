@@ -1,0 +1,189 @@
+{
+ "gate": "G-v2 (DEC-061 protocol v2.0): OC1 revision 3, TUNE -> TEST",
+ "ledger_used": 49,
+ "1_protocol_v2_compliance": {
+  "criteria": {
+   "C1_design": true,
+   "C2_targets_E4_H1H5": true,
+   "C3_G1P_reduced": true,
+   "C4i_no_eligible_UNSAFE": true,
+   "C4ii_no_TDS_failure": true,
+   "C5_iii_U_one_sided": true,
+   "C6_iv_GR3_unitV_1e-3_at_200s": false
+  },
+  "pass": false,
+  "iv_failing_cells": [
+   "b7P_S3",
+   "b16P_S3",
+   "b24P_S3"
+  ],
+  "unsafe_eligible": [],
+  "indeterminate": [
+   "b7P_S3"
+  ]
+ },
+ "2_alternative_and_historical_results_not_in_the_verdict": {
+  "iii_H_two_sided_historical": {
+   "pass": false,
+   "violating": [
+    "b20P_S2",
+    "b20P_S3"
+   ]
+  },
+  "V_tail_diagnostic": {
+   "b7P_S2": {
+    "err_200s": 0.00082270262786815,
+    "decay_rate_1_per_s": -0.005850943063488705,
+    "t_reach_1e-3_s_extrapolated": 165.8919591002398,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b7P_S3": {
+    "err_200s": 0.0012780575648650865,
+    "decay_rate_1_per_s": -0.005582042849490571,
+    "t_reach_1e-3_s_extrapolated": 243.46906099512972,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b20P_S2": {
+    "err_200s": 0.0005876665910865044,
+    "decay_rate_1_per_s": -0.005864453355741255,
+    "t_reach_1e-3_s_extrapolated": 108.77198183855204,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b20P_S3": {
+    "err_200s": 0.0009107638588297901,
+    "decay_rate_1_per_s": -0.005563843769260354,
+    "t_reach_1e-3_s_extrapolated": 183.03282213267755,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b16P_S2": {
+    "err_200s": 0.0006571052506907406,
+    "decay_rate_1_per_s": -0.005916398208505412,
+    "t_reach_1e-3_s_extrapolated": 128.35544893793508,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b16P_S3": {
+    "err_200s": 0.001015240093250115,
+    "decay_rate_1_per_s": -0.005622303066346296,
+    "t_reach_1e-3_s_extrapolated": 202.38204928926746,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b24P_S2": {
+    "err_200s": 0.0006539146368768239,
+    "decay_rate_1_per_s": -0.00591933203461601,
+    "t_reach_1e-3_s_extrapolated": 127.56894031613055,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   },
+   "b24P_S3": {
+    "err_200s": 0.0010111859113463501,
+    "decay_rate_1_per_s": -0.0056252318986553425,
+    "t_reach_1e-3_s_extrapolated": 201.67124130511417,
+    "fit_window_s": [
+     100,
+     200
+    ]
+   }
+  },
+  "note": "(iii-U) applied to new TDS but proposed after TUNE; it is NOT validated (IEEE39_DEC061_criterion_iii.md)"
+ },
+ "3_post_TUNE_changes": [
+  "rev3 design set (b20 S3)",
+  "criterion (iii-U)",
+  "M3REV3 in dispatch/dispatch_z",
+  "ledger block D61, R6 -> 0",
+  "G1-P reduced form",
+  "scan artefact replaced after an indexing bug"
+ ],
+ "OC2": "no new design or TDS in this protocol; its DEC-059 verdict (G3 fail on (iii)) stands; no TEST cohort",
+ "mandatory_safety_blocker": {
+  "present": false,
+  "items": []
+ },
+ "registry": {
+  "git_head": "9cb89c57c31b3f0ece056b982c0b86771d4fb7f1",
+  "git_branch": "review/dec059-scientific-reorientation",
+  "python": "3.12.10",
+  "executable": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\venv\\Scripts\\python.exe",
+  "andes": "2.0.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "kvxopt": "v1.3.3.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tds_config": {
+   "method": "trapezoid",
+   "dt": 0.00390625,
+   "tol": 0.0001,
+   "reset_tiny": 0,
+   "honest": 0,
+   "max_iter": 15,
+   "refine": "dt/16 on [t_e - dt, t_e + 0.5 s]"
+  },
+  "protocol_sha256": "f5c0bfe5eeca4184150761d2c0c412350c231eaeda1f7080f615e9b9cd7c48b9",
+  "theory_sha256": "3f99e7aaf6aa6aebdfdc24ea371016844b576960a4ef68979b60b30915c4c459",
+  "code_sha256": {
+   "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+   "dec059_eq.py": "50b38f620c5b4a094175d0abb0966f0078aaf3811f284d17ca8ca0706f92688a",
+   "dec059_tds.py": "411f7b4193d009a21c751f27db746ff637c25e8c478333c86f1717f1b551d8f8",
+   "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+   "dec059_pred.py": "39d26242422bf015a3dac5f73507db667c21a89d84cf70d7ed4cc16927a2ab70",
+   "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+   "dec059_gate.py": "228581eb30e2737f25447709f7aca12a1542eeeee830419270c6732bb8e9506b",
+   "test_dec059.py": "bb3dcc39ae7ddcce57378d637e9e51bc4dc503fbb523af80faf3310c4872e297"
+  },
+  "andes_source_modified": false,
+  "parameters": {
+   "v_bar_frac_of_rating_per_s": 0.01,
+   "alpha_per_s": 1.0,
+   "R": "diag(v_bar^-2)",
+   "rho_s": 1000000.0,
+   "tau_info_s": 1.0,
+   "eps_sel": 0.01,
+   "Q_L": "I",
+   "lambda": "1/(2 lmax(H_r))",
+   "U_D8_pu": 0.0109,
+   "eps_floor_pu": 0.001,
+   "tau_cut_pu": 0.0001,
+   "seeds": "none (deterministic; no random numbers in controller or targets)"
+  }
+ },
+ "dec061_code_sha256": {
+  "dec061_design.py": "79534752a485417a123d6f1125434681fc9818fced479fb2b0846ab01dd30a6d",
+  "dec061_rev3.py": "fb68df6c6770d8fec89970b2f012400f33205d7f0c1a764e761ef197294f9ba7",
+  "dec061_settling.py": "cfa02fc4f5423b15dc1093e807c5fed5b8f902ebd434edd3e2112f4f0339cf8f"
+ },
+ "design_sha256": "1f6d9ca87c18fe05c2c9eab139987c7a0b93557515c76751f43e7947fa50d25b",
+ "protocol_v2_sha256": "3e6c75858ae1d3ef9a5704a381d7fa56fa2ec5eb897b894daf1c170f9d6d9d67",
+ "TEST_intact": {
+  "scanned": 290,
+  "test_buses": [
+   21,
+   31,
+   39
+  ],
+  "violations": [],
+  "pass": true
+ },
+ "test_opened": false,
+ "verdict": "REJECTED_TEST_SEALED",
+ "TEST_cohort_OCs": []
+}
