@@ -114,7 +114,7 @@ def run_many(lot, workers=5):
     for r in p["runs"]:
         if r.get("reset_tiny") != 0:
             raise C54.GateError(f"{r['run_id']}: reset_tiny must be 0")
-        r["tds_id"] = L.request(lot, json.dumps(r["scenario"]), r["method"], r["run_id"], r["purpose"], solver=f"{r['method']} tol={r['tol']:g} reset_tiny=0 ctrl=B5P refine={r.get('refine')}")
+        r["tds_id"] = L.request(lot[:2], json.dumps(r["scenario"]), r["method"], r["run_id"], r["purpose"], solver=f"{r['method']} tol={r['tol']:g} reset_tiny=0 ctrl=B5P refine={r.get('refine')}")
         todo.append(r)
     env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", PYTHONWARNINGS="ignore")
 
