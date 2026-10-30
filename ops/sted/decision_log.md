@@ -825,3 +825,15 @@ Blockers or limitations: certified Lipschitz constants unavailable; literature f
 Responsible: Integrator
 Status: REVISION_DRAFT_COMPLETE; INVESTIGATOR_REVIEW_PENDING
 Next action: investigator review of the ten items; read R16-R19; decide OS status; then iterate the draft.
+
+## DEC-066 G0
+Date: 2026-10-30
+Gate: Investigator instruction "DEC-066 M3+OS" (plan PLAN_MAESTRO_DEC066_M3OS_CIERRE); G0 integrity audit, inventory and reproduction; branch review/dec066-m3os-closure from 705919b.
+Decision: read-only audit; no TDS; DEC-062 evidence classified HISTORICAL_OBSERVED. G0 PASS for read-only work; new TDS blocked until the independent-backup state (BACKUP_BLOCKED since DEC-054) is resolved by the investigator.
+Results: 373 frozen files unmodified; 112 raw run directories (672 files) with 0 hash mismatches; 54 plan runs = 54 run directories; DEC-062 metrics recomputed from raw series with 0 mismatches over 3843 leaves; stored t=5.0 is the first post-jump sample; first-sample margin differs from the algebraic-jump margin by -2.80e-3..+4.87e-3 pu; redispatch 99.353 MW (vs case) and 101.068 MW (vs M0) reconciled; 119 historical unit tests run, 1 scope-limited failure explained.
+Disclosures: historical replay not executed; unit-test failure in test_dec054_core protected-file check (files added after DEC-054); GitHub fetch failed transiently.
+Evidence reviewed: IEEE39_DEC066_G0_inventory.md, _manifest.json, _regression.csv, _alignment.csv, DEC066_protocol.md, DEC054 backup manifest and preservation test, DEC054-062 protocols (headings and relevant sections), dec054_opf, dec054_predictor, dec054_plant, dec059_os, dec055_common.
+Blockers or limitations: independent backup; TDS cap undefined; five unused load buses only.
+Responsible: Integrator
+Status: G0_PASS_READ_ONLY; AWAITING_REVIEW
+Next action: REVISION HUMANA 0 decisions, then G1.
