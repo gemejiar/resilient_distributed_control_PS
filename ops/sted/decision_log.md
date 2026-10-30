@@ -853,3 +853,10 @@ Results: all five FEASIBLE_PREDICTED, KKT B 0.598 (others ~0.06), `iterations` f
 Disclosures: predictions only; design events in-sample; initial candidate TDS events mostly non-discriminating, replaced by b8 S3, b21 S3, b15 S3, b23 S3, b31 S2, b21 S2 (17 TDS proposed, none executed); common-initialisation control open; backup exception not approved, so no TDS.
 Status: ABLATION_PHASE1_COMPLETE
 Next action: investigator approval of the procedural backup exception and of the E1 list.
+
+## DEC-066 ablation phase 2: TDS (2026-10-30)
+Decision: investigator waived the independent backup; same-disk hash-verified copy, exception recorded in DEC066_protocol Addendum C (no independent backup declared). 20 TDS executed with the frozen controller B5' and executor (new ledger, new run directory), predictions registered and sealed before each lot: E1a (b8 S3 x A-E), E1b (12 cells), E2 (3 step-sensitivity runs).
+Results: A violates Pmax in 4/6 events, D (M3+OS) only in b31 S2 (inadmissible at the jump); at b8 S3 A -0.0148 pu and E (U_D8 only) -0.0038 pu violate, B +0.0023, C +0.0027, D +0.0136; eps_OS contribution +0.0004 pu (null), dense +0.017 pu; predictor error <= 2.4e-3 pu, conservative; step sensitivity <= 1.3e-4 pu.
+Disclosures: B not converged (KKT 0.60), A seeded differently, b8/b23 are design-set events, OC1 only, directed (non-factorial) design, violations inside the U_D8 band reported as INDETERMINATE, RMS not EMT; 20 of 40 TDS used.
+Status: ABLATION_PHASE2_COMPLETE
+Next action: common-initialisation control and a same-budget contrast (no TDS needed for the first), optional E3 on new buses, review before any push.
