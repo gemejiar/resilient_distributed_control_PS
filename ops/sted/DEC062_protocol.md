@@ -74,3 +74,66 @@ No physical invariance beyond the reference set (T1), no regional stability (T2)
 ## 11. Post-TUNE changes declared here
 
 (a) the TEST access rule of section 5; (b) `dec059_pred.py` accepts the `val` set and its `test` set now lists S1, S2, S3 (before: S1, S2); (c) BUDGET edit; (d) `dec062_*` modules.
+
+## Addendum A (recorded after the freeze and before any TEST TDS; append-only)
+
+Freeze: tag `dec062-freeze`, acta `IEEE39_DEC062_gate_TEST_access.json` (`ACCESS_AUTHORIZED_FREEZE_COMPLETE`, V1-V6 pass, TEST intact before the freeze). The 36 E* targets of cohort A (computed with the frozen rule) all satisfy E4 and H1-H5. Predictions `IEEE39_DEC059_pred_{OC1_M0,OC1_M3REV3,OC2_M0,OC2_M3OS}_test.json` are committed with this addendum. The plans `IEEE39_DEC059_R5A_plan.json` and `R5B_plan.json` are sealed in the same commit.
+
+**Predicted classes (pre-TDS, dense model without allowances; margin = min Pmax margin in the first 50 ms, pu).**
+
+| OC | Dispatch | Cell | Predicted margin | Unit | Class | Admissible at the jump |
+|---|---|---|---|---|---|---|
+| OC1 | M0 | b21P_S1 | +0.011 | SG31 | INDET | yes |
+| OC1 | M0 | b21P_S2 | -0.062 | SG35 | UNSAFE | NO (N2) |
+| OC1 | M0 | b21P_S3 | -0.140 | SG35 | UNSAFE | NO (N2) |
+| OC1 | M0 | b31P_S1 | -0.125 | SG31 | UNSAFE | NO (N2) |
+| OC1 | M0 | b31P_S2 | -0.285 | SG31 | UNSAFE | NO (N2) |
+| OC1 | M0 | b31P_S3 | -0.444 | SG31 | UNSAFE | NO (N2) |
+| OC1 | M0 | b39P_S1 | +0.031 | SG31 | SAFE | yes |
+| OC1 | M0 | b39P_S2 | +0.027 | SG31 | SAFE | yes |
+| OC1 | M0 | b39P_S3 | +0.024 | SG31 | SAFE | yes |
+| OC1 | M3REV3 | b21P_S1 | +0.196 | SG31 | SAFE | yes |
+| OC1 | M3REV3 | b21P_S2 | +0.172 | SG31 | SAFE | yes |
+| OC1 | M3REV3 | b21P_S3 | +0.113 | SG35 | SAFE | yes |
+| OC1 | M3REV3 | b31P_S1 | +0.060 | SG31 | SAFE | yes |
+| OC1 | M3REV3 | b31P_S2 | -0.099 | SG31 | UNSAFE | NO (N2) |
+| OC1 | M3REV3 | b31P_S3 | -0.259 | SG31 | UNSAFE | NO (N2) |
+| OC1 | M3REV3 | b39P_S1 | +0.216 | SG31 | SAFE | yes |
+| OC1 | M3REV3 | b39P_S2 | +0.213 | SG31 | SAFE | yes |
+| OC1 | M3REV3 | b39P_S3 | +0.209 | SG31 | SAFE | yes |
+| OC2 | M0 | b21P_S1 | +0.656 | SG31 | SAFE | yes |
+| OC2 | M0 | b21P_S2 | +0.612 | GFM36 | SAFE | yes |
+| OC2 | M0 | b21P_S3 | +0.540 | SG35 | SAFE | yes |
+| OC2 | M0 | b31P_S1 | +0.523 | SG31 | SAFE | yes |
+| OC2 | M0 | b31P_S2 | +0.365 | SG31 | SAFE | yes |
+| OC2 | M0 | b31P_S3 | +0.209 | SG31 | SAFE | yes |
+| OC2 | M0 | b39P_S1 | +0.676 | SG31 | SAFE | yes |
+| OC2 | M0 | b39P_S2 | +0.673 | SG31 | SAFE | yes |
+| OC2 | M0 | b39P_S3 | +0.669 | SG31 | SAFE | yes |
+| OC2 | M3OS | b21P_S1 | +0.656 | SG31 | SAFE | yes |
+| OC2 | M3OS | b21P_S2 | +0.612 | GFM36 | SAFE | yes |
+| OC2 | M3OS | b21P_S3 | +0.540 | SG35 | SAFE | yes |
+| OC2 | M3OS | b31P_S1 | +0.523 | SG31 | SAFE | yes |
+| OC2 | M3OS | b31P_S2 | +0.365 | SG31 | SAFE | yes |
+| OC2 | M3OS | b31P_S3 | +0.209 | SG31 | SAFE | yes |
+| OC2 | M3OS | b39P_S1 | +0.676 | SG31 | SAFE | yes |
+| OC2 | M3OS | b39P_S2 | +0.673 | SG31 | SAFE | yes |
+| OC2 | M3OS | b39P_S3 | +0.669 | SG31 | SAFE | yes |
+
+Notes fixed before the runs:
+- OC2: the M3+OS dispatch differs from M0 by at most 1.1e-4 in the design vector (0.06 MW in total), so the two OC2 dispatches give the same predictions. The OC2 M0 runs are near-duplicates and test sensitivity to a negligible dispatch change; they are kept because the cohort was committed that way.
+- OC1: at M0 the cells b21 S2, b21 S3 and b31 S1-S3 are predicted UNSAFE (b21 S1 INDETERMINATE); at rev3 the cells b31 S2 and b31 S3 stay inadmissible at the jump (predicted UNSAFE for any controller of the rate-bounded class, label INADMISSIBLE_AT_EVENT, outside the safety claim), and b31 S1 is SAFE at +0.060.
+
+**Hypotheses and falsifiers (all pre-registered).**
+- HA1: the TDS class equals the predicted class in all 36 cohort-A cells. Falsifier: any mismatch; a false SAFE (predicted SAFE, UNSAFE in TDS) refutes the predictor.
+- HA2: e = m_TDS - m_pred >= 0 in every cell with a prediction (the dense model is conservative). (iii-U) holds; falsifier: any e < -1e-3.
+- HA3 (T1): min_j c_j >= 0 and no QP fallback in all 36 B5' runs and in the B4' runs.
+- HA4 (T2): every target is VERIFIED_LOCAL and the Lyapunov value ends below its first valid value (ratio < 1) in all B5' runs. T2 makes no claim beyond the neighbourhood actually visited.
+- HA5 (P3, N2): a cell with a_j < 0 predicted is never SAFE in TDS, for any controller (cohort B included).
+- HA6: OC2 M0 vs M3+OS: |difference| <= 1e-3 pu in the 50-ms margin and the same class.
+- HA7 (iv): the unit-voltage error at 200 s exceeds 1e-3 pu in the OC1 S3 cells that are eligible (b21 S3, b39 S3 at rev3) as in the TUNE S3 cells, and stays below 1e-3 pu in OC2 and in S1/S2 cells. These failures are recorded, not corrected.
+- HB1 (Proposition OS, controller independence of the sub-cycle window): in cohort B, |m50(B2/B1s/B4') - m50(B5')| <= 1e-3 pu for each cell. Falsifier: any difference above 1e-3.
+- HB2: B5' and B4' differ by the CLF row only; their 200-s frequency errors are within 1e-3 Hz of each other.
+- HB3: the controller effect is separated from the dispatch effect by construction: cohort B uses the same dispatch for the four controllers; the dispatch effect is read from B5' at M0 vs M3+OS (cohort A). The B2/B1s/B4' arms at M0 do not exist (budget), so the dispatch effect for them is not measured.
+
+**Reporting rules.** All 36 + 18 results are reported, including failures, indeterminates and TDS failures. Original criteria (G3 (i)-(iv)) and the alternative (iii-U) are reported separately per OC and dispatch, always labelled `EVALUATION_UNDER_MODIFIED_ACCESS_RULE`. The label of the OC1 dispatch is M3+OS rev3. No parameter, cell, threshold or dispatch changes after this commit.

@@ -1,0 +1,2326 @@
+{
+ "stage": "DEC-062 cohort A plan: blind TEST (sealed after the freeze and the predictions, before any TEST TDS)",
+ "block": "R5",
+ "runs": [
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b21P_0.29282.npz",
+    "post_sha256": "007ee3c75c688baebaf8ddde86a04201b0422551e77f60001bb43ff2f4702107",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b21P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b21P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b21P_0.58564.npz",
+    "post_sha256": "80850e1f2d47222bce574f1be03ac74e86846244a76bd46404550e02f61641df",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b21P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b21P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b21P_0.87846.npz",
+    "post_sha256": "1a250bb64295bbfc68c71c7d4ca5a1cb04d4a259a8ecd117005d64f4205b1189",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b21P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b21P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b31P_0.29282.npz",
+    "post_sha256": "d8cd4b72082756f37fea38d0170896ed0ff81cb14e5a784a8a6d3908e7320ae7",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b31P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b31P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b31P_0.58564.npz",
+    "post_sha256": "867ec679ba8e1431362a1b76b2580a0e880aa3aaef10830f0f2bccd26ca7a843",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b31P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b31P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b31P_0.87846.npz",
+    "post_sha256": "72a3d5f925185295332430f000368c30e94760678c526a7fd2453c3b131f15c5",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b31P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b31P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b39P_0.29282.npz",
+    "post_sha256": "96811cf678bb942a61538febd8e5fd520af3a4348232661ddd344ba50b6a4926",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b39P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b39P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b39P_0.58564.npz",
+    "post_sha256": "189c46cda118e477442563fc2588811b094ca49a9fb7f5412139b32d304479fa",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b39P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b39P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.359766045507866,
+    6.465557722278502,
+    6.527268653234362,
+    6.874579364133077,
+    7.652638445015137,
+    7.258936042170098,
+    3.2154680071231234,
+    5.084775126709802,
+    5.80518464617978,
+    1.0250822771752324,
+    0.9806149395746583,
+    0.9927281239734483,
+    1.044999999999999,
+    1.0388126502060884,
+    1.0168957936799843,
+    0.9968251778076095,
+    1.0096687333735737,
+    1.009083433283801,
+    1.0449999999999997
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_d0.npz",
+    "pre_sha256": "32f2b08fd044524e10330d037c0a277408966e9f48551c4a047f5dd1576e4703",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M0_b39P_0.87846.npz",
+    "post_sha256": "cfe9c3ee91aacbffa2a7dfb2a6a35364dd42c54a67cd16bf52e279f212d7f237",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M0_b39P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M0 cell b39P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b21P_0.29282.npz",
+    "post_sha256": "904a23c4319ab949021895f882ca3068d5ea76056c6705e4f3d85af6ca64e83c",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b21P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b21P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b21P_0.58564.npz",
+    "post_sha256": "b7f446da23a6f69a0cd7c0a388060acbca2163e5b094d1238722c063578accc2",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b21P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b21P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b21P_0.87846.npz",
+    "post_sha256": "c06cfaf69b10949df66f7b7da4058dd15083d4be1f67751fc5b8f9676cb32e07",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b21P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b21P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b31P_0.29282.npz",
+    "post_sha256": "f941768dd6d7fc5a77900a17d3a5b4c356547f155358648daa291cdc37417f31",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b31P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b31P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b31P_0.58564.npz",
+    "post_sha256": "d19eeda789bcd8eb30c8f8831440cc6e2eb08495a50268aa0e0801a969fa3948",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b31P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b31P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b31P_0.87846.npz",
+    "post_sha256": "d59def142bf1027fe4bccaaa5f0be7a8c292192bfa56f3706b325bf3db61ecd3",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b31P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b31P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b39P_0.29282.npz",
+    "post_sha256": "9294163bfa698a431442b04b8e7474d39ca8d276bf8b2508f26f41502caf2f31",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b39P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b39P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b39P_0.58564.npz",
+    "post_sha256": "5d70840783491921d8e9e6bc0b4c23109ca2c08449331b4f1ceafe1a8e8e64f5",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b39P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b39P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC1",
+   "z": [
+    4.358376125282322,
+    6.279984811291583,
+    6.12702384788015,
+    6.6189780768511195,
+    7.6507664654449306,
+    7.257618773404274,
+    3.2138346737328267,
+    5.081004789451521,
+    5.645902250171112,
+    1.0230249846108619,
+    0.9803136833869712,
+    0.9908494119573154,
+    1.0450000000000312,
+    1.0389495232710921,
+    1.0174178342968316,
+    0.9966559623568003,
+    1.0102162673224693,
+    1.0101421097318275,
+    1.045000000000028
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_d0.npz",
+    "pre_sha256": "9beaafc166dd93ebdbad497bcb28ad8e31faecece8f6daf5297568cc45b2face",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC1_M3REV3_b39P_0.87846.npz",
+    "post_sha256": "d7c2784b828b019bb44f9baebabdf3276ce000c66e56c5791e8ff0b4ae060bac",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC1_M3REV3_b39P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC1 M3REV3 cell b39P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b21P_0.29282.npz",
+    "post_sha256": "242584b2e2b9507496245fd6179cb3c33dbcac9ebb0ef4d248909ed5d18450fc",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b21P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b21P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b21P_0.58564.npz",
+    "post_sha256": "0eade8d76f8136afe9cf2d5dafb73a65537120bfe81af5b52c171f78f1a80c3d",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b21P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b21P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b21P_0.87846.npz",
+    "post_sha256": "5570d1929a3fb3891c1c3be8b6e8f313f7d30edcb28a3ec076c889d86c0e6ca8",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b21P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b21P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b31P_0.29282.npz",
+    "post_sha256": "5855f0040201e4aa2e0abc77378729234f1441b70d7262025b1a385e8289a023",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b31P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b31P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b31P_0.58564.npz",
+    "post_sha256": "6decbcc2f92c37559aeae475f4b535b17ed3c1ef150e4836e6c810e278b26ea7",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b31P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b31P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b31P_0.87846.npz",
+    "post_sha256": "4fb5f1f0b72dbe94774c5fe5b53182ee3b3ab8207ec9d09dafcbcc307ac0438e",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b31P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b31P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b39P_0.29282.npz",
+    "post_sha256": "0d058982b2f77ddd0e332a6e958214aab56599dbe707aca189914a96901ae4d3",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b39P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b39P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b39P_0.58564.npz",
+    "post_sha256": "c3e1d0b8b6ad14a7a38f39d24fec141bf510d695488eafb31c92bff83deb2175",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b39P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b39P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923702814700332,
+    5.8200827534674024,
+    5.8766433047352,
+    6.190100071844964,
+    6.890879719968963,
+    6.535464845724887,
+    2.8940357898615874,
+    4.577776610563961,
+    5.228141759195564,
+    1.0210573003478416,
+    0.9694459189245729,
+    0.9875472992195019,
+    1.043421089485998,
+    1.032550527297999,
+    1.0120592700820554,
+    0.9889044297129376,
+    1.0069821440755198,
+    1.0065990670244584,
+    1.0449999999999988
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_d0.npz",
+    "pre_sha256": "5e488965c993e310ccc13140dd662df3d7818a78bf9c3728892c02c9c5c45929",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M0_b39P_0.87846.npz",
+    "post_sha256": "b708a231bc15a0e235fe0fb8132e7d70312d312a48a04085b37621b74385c0ea",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M0_b39P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M0 cell b39P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b21P_0.29282.npz",
+    "post_sha256": "13af01d02e7a3041ca0d9affba75d88313de1872eb2c17beba73f2054f66ab9b",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b21P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b21P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b21P_0.58564.npz",
+    "post_sha256": "5a30040d5d815a21c9570769dfb98243f5426d16851f8957bcb0e3cb3d974382",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b21P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b21P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b21P_0.87846.npz",
+    "post_sha256": "b85e47765906de391caedb1bdb86d02408cdf2394c41fcb1a19fdedbeaed7803",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b21P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b21P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b31P_0.29282.npz",
+    "post_sha256": "ad06fffb8b1d1992d11071f7788774613c7198f804e391ead1b5bb4a7d9f49be",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b31P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b31P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b31P_0.58564.npz",
+    "post_sha256": "ba17490ebb2776973c531cbb4101374ddd0eef1c2fe0176844eafff5d43a7cb1",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b31P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b31P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 31,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b31P_0.87846.npz",
+    "post_sha256": "5204e6aaa8e77a63f3c3d0a1ef23ec87b88d4ea1c74f1d30f9eb801df7d529b6",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b31P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b31P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.29282
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b39P_0.29282.npz",
+    "post_sha256": "2fc61b864c1d3358f72a6c5435e6121c97a0cb3e0eb2f639ae0920b511a49dbe",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b39P_S1",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b39P_S1 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.58564
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b39P_0.58564.npz",
+    "post_sha256": "dba9d9e56924463dde272eef55a5d6e588bf727e795c9b29f5752abc78021555",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b39P_S2",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b39P_S2 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  },
+  {
+   "oc": "OC2",
+   "z": [
+    3.923635355138001,
+    5.820076302754792,
+    5.876611375473502,
+    6.190030131429406,
+    6.890785722299518,
+    6.535389671340566,
+    2.893926340085256,
+    4.57772826177457,
+    5.228066278461379,
+    1.0210190468292242,
+    0.9694591183046848,
+    0.9875609429779552,
+    1.0434235818722493,
+    1.0325604832600817,
+    1.0120425550664824,
+    0.9889071680355677,
+    1.0069403746568508,
+    1.0065750576437469,
+    1.0449999999999897
+   ],
+   "scenario": {
+    "bus": 39,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": null,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_d0.npz",
+    "pre_sha256": "af5ef6add15a7578b5d6247691da2cd7f7200c23a15c84f207695fe853e44d5e",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "c:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC059_state\\target_r2_OC2_M3OS_b39P_0.87846.npz",
+    "post_sha256": "98e06dff58a3c5fb8ea33b91119d56c38a6bdde433cb6f9cd89f5b5d738aa24c",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D62TEST_B5P_OC2_M3OS_b39P_S3",
+   "purpose": "DEC-062 cohort A (blind TEST): OC2 M3OS cell b39P_S3 with B5P (frozen), local dt/16; no redesign after the first TEST TDS"
+  }
+ ],
+ "protocol_sha256": "6265ddd0a2c2d86abffaa9f437190ecabad19648f9f93fa7a81fa97b2cdfe2b0",
+ "access_acta_sha256": "d7b169d58da07b86920d2e29e3be55658ed50d9e7e9c08c1b1419c686021eb7a",
+ "design_sha256": {
+  "OC1": "1f6d9ca87c18fe05c2c9eab139987c7a0b93557515c76751f43e7947fa50d25b",
+  "OC2": "e0dc42e126fac0efae8e13b7e908477a928cb4f3770a558ce395c4646430061e"
+ },
+ "code_sha256": {
+  "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+  "dec059_eq.py": "50b38f620c5b4a094175d0abb0966f0078aaf3811f284d17ca8ca0706f92688a",
+  "dec059_tds.py": "ec41d3127ed31063ee340e27a22b840a04178b188c2aa0f664ea9d35a7fc9bb2",
+  "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+  "dec059_pred.py": "cd83b6cd9aae0d27a2768e48a9c4ddbd65c3fca79c1275aa7ff2eef91c16f1e1",
+  "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+  "dec062_r5.py": "d5c277e77dca2ce70c6e58506dc23279355292a0bf039580c75e8b937ba0628c",
+  "dec062_test.py": "86333d1262e529ec8a8bed70f708ec513425fe01ddf230b280344d542f152887"
+ }
+}
