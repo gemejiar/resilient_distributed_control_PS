@@ -29,3 +29,9 @@ G0 integrity and reproduction · G1 physical definition and scope · G2 temporal
 2. TDS cap and ledger rules for G2, G6, G7, G8.
 3. G1 scope default `SCOPE_P_ONLY` (P decided preventively; Q, S, V monitored).
 4. Policy for the lack of unseen buses in G8.
+
+## Addendum A (2026-10-30): PAPER-FIRST reorientation (investigator instruction; append-only)
+`DEC066_ADENDA_PAPER_FIRST_M3OS.md` prevails over the priorities and sequence of the master plan: priority is reproducible paper tables and figures on M3+OS; no requirement of certified nonlinear safety, global optimality, formal statistical coverage, ~100 independent blind cells, EMT/HIL or exhaustive Q/S/V; automatic advance between non-destructive tasks; at most 40 new TDS (ceiling, not quota); retrospective evidence is valid and labelled; DEC-054 `BACKUP_BLOCKED` verdict is not edited, and new TDS require a documented procedural exception (to be recorded before the first new TDS, with a same-disk copy of the essential raw files and its risk).
+Errata to the G0 inventory (found while building P0; the G0 files are not rewritten):
+1. "Only buses 15, 18, 26, 27, 29 were never used" is wrong: buses 3, 12, 15, 26, 27, 29 were simulated in the DEC-054 prospective cohort (`IEEE39_DEC054_prospective_tests.csv`) and 3, 4, 12 in the DEC-062 OC2 validation. Among the 19 load buses, the only one with no TDS found in the DEC-054…062 data is bus 18 (to be verified for earlier E-series runs).
+2. "The predictor freezes the references (no secondary controller)" is inexact: `AndesPlant.affine` adds the RDC reference rates at the post-jump point as a constant forcing term of the affine model (`f = [plant xdot; RDC rates]`). References therefore drift at a constant rate over the horizon; this is a candidate cause of the linear divergence of the 195 s prediction (not verified).

@@ -837,3 +837,12 @@ Blockers or limitations: independent backup; TDS cap undefined; five unused load
 Responsible: Integrator
 Status: G0_PASS_READ_ONLY; AWAITING_REVIEW
 Next action: REVISION HUMANA 0 decisions, then G1.
+
+## DEC-066 P0/P1 (paper-first, Entrega 1)
+Date: 2026-10-30
+Gate: Investigator instruction "DEC-066 Reorientacion PAPER-FIRST" (addendum prevails over the master plan; no TDS in this delivery).
+Decision: T1-T3 and F1, F2, F3, F5, F6 produced from historical data; window-resolved predictor (jump/50 ms/195 s) computed for the 36 blind cells with the existing predictor; results draft in LaTeX; OS ablation designs B, C, E launched (PF/linearisation only).
+Results: regeneration of 54 runs OK; OC1 M0 1/1/7 vs rev3 7/0/2; 101.07 MW vs M0 (99.35 vs case); 50 ms predictor RMSE 4.5e-4 pu but 2 false SAFE (violation at 3.40 and 3.54 s at SG31); 195 s predictor 35/36 agreement, 0 false SAFE, worst point wrong (SG35 at 195 s), RMSE 1.92 pu; retrospective horizon 1-60 s 35/36 with no false SAFE/UNSAFE; U_D8 is 28x eps_OS in M3+OS.
+Disclosures: errata to G0 inventory (bus usage; predictor forcing) recorded in DEC066_protocol Addendum A; horizon sweep is exploratory on the observed cells; npz of P1 trajectories (90 MB) excluded from Git (local exclude); no new TDS; backup exception not yet recorded.
+Status: ENTREGA_1_COMPLETE
+Next action: ablation designs, procedural exception for the backup, selected TDS (ceiling 40), final figures and LaTeX.
