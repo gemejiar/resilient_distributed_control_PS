@@ -1,0 +1,138 @@
+{
+ "gate": "DEC-062 access to TEST as an independent evaluation",
+ "label": "EVALUATION_UNDER_MODIFIED_ACCESS_RULE",
+ "preserved_verdicts": {
+  "DEC-059 TUNE->TEST": "REJECTED",
+  "DEC-060": "REJECTED_TEST_SEALED",
+  "DEC-061 G-v2": "REJECTED_TEST_SEALED",
+  "criterion_iv_failing_cells_DEC061": [
+   "b7P_S3",
+   "b16P_S3",
+   "b24P_S3"
+  ],
+  "criterion_iii_H_failing_DEC061": [
+   "b20P_S2",
+   "b20P_S3"
+  ]
+ },
+ "rule_modification": "Post-TUNE change of the TEST access rule (protocol DEC062 section 5): TEST opens as an independent evaluation if V1-V6 pass and the freeze is complete. It does not approve G3/G-v2 retroactively and does not mean full compliance with the original protocol.",
+ "checks": {
+  "V1_G1P_OC1": true,
+  "V2_repeats_bit_identical": true,
+  "V3_targets_E4_H1H5": true,
+  "V3_QP_no_fallback_T1_nonneg": true,
+  "V4_no_TDS_failure": true,
+  "V5_no_false_SAFE": true,
+  "V6_T2_local_V_decays": true
+ },
+ "integrity_pass": true,
+ "validation_reported_not_blocking": {
+  "unsafe_eligible": [],
+  "indeterminate": [],
+  "iii_U_pass": true,
+  "iii_H_pass": true,
+  "iii_H_violating": [],
+  "iv_failing": []
+ },
+ "TEST_intact_before_freeze": {
+  "scanned": 339,
+  "test_buses": [
+   21,
+   31,
+   39
+  ],
+  "violations": [],
+  "pass": true
+ },
+ "ledger_used": 58,
+ "committed_total": 112,
+ "registry": {
+  "git_head": "d99d33c35761816226c3650b1423d10763fe36a4",
+  "git_branch": "review/dec059-scientific-reorientation",
+  "python": "3.12.10",
+  "executable": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\venv\\Scripts\\python.exe",
+  "andes": "2.0.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "kvxopt": "v1.3.3.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "tds_config": {
+   "method": "trapezoid",
+   "dt": 0.00390625,
+   "tol": 0.0001,
+   "reset_tiny": 0,
+   "honest": 0,
+   "max_iter": 15,
+   "refine": "dt/16 on [t_e - dt, t_e + 0.5 s]"
+  },
+  "protocol_sha256": "f5c0bfe5eeca4184150761d2c0c412350c231eaeda1f7080f615e9b9cd7c48b9",
+  "theory_sha256": "3f99e7aaf6aa6aebdfdc24ea371016844b576960a4ef68979b60b30915c4c459",
+  "code_sha256": {
+   "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+   "dec059_eq.py": "50b38f620c5b4a094175d0abb0966f0078aaf3811f284d17ca8ca0706f92688a",
+   "dec059_tds.py": "ec41d3127ed31063ee340e27a22b840a04178b188c2aa0f664ea9d35a7fc9bb2",
+   "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+   "dec059_pred.py": "cd83b6cd9aae0d27a2768e48a9c4ddbd65c3fca79c1275aa7ff2eef91c16f1e1",
+   "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+   "dec059_gate.py": "228581eb30e2737f25447709f7aca12a1542eeeee830419270c6732bb8e9506b",
+   "test_dec059.py": "bb3dcc39ae7ddcce57378d637e9e51bc4dc503fbb523af80faf3310c4872e297"
+  },
+  "andes_source_modified": false,
+  "parameters": {
+   "v_bar_frac_of_rating_per_s": 0.01,
+   "alpha_per_s": 1.0,
+   "R": "diag(v_bar^-2)",
+   "rho_s": 1000000.0,
+   "tau_info_s": 1.0,
+   "eps_sel": 0.01,
+   "Q_L": "I",
+   "lambda": "1/(2 lmax(H_r))",
+   "U_D8_pu": 0.0109,
+   "eps_floor_pu": 0.001,
+   "tau_cut_pu": 0.0001,
+   "seeds": "none (deterministic; no random numbers in controller or targets)"
+  }
+ },
+ "frozen_hashes": {
+  "design_OC1_rev3": "1f6d9ca87c18fe05c2c9eab139987c7a0b93557515c76751f43e7947fa50d25b",
+  "design_OC2_M3OS": "e0dc42e126fac0efae8e13b7e908477a928cb4f3770a558ce395c4646430061e",
+  "protocols": {
+   "DEC059_protocol.md": "f5c0bfe5eeca4184150761d2c0c412350c231eaeda1f7080f615e9b9cd7c48b9",
+   "DEC061_protocol.md": "3e6c75858ae1d3ef9a5704a381d7fa56fa2ec5eb897b894daf1c170f9d6d9d67",
+   "DEC062_protocol.md": "7699e0b473a54e7380f34a395ce748920fd12bc1b654c5783160452973168a5d"
+  },
+  "criterion_iii_doc": "13ab87604f24a82d251bb06adddeed427f5a831b028affae5563e41f181fe87d",
+  "theory": "3f99e7aaf6aa6aebdfdc24ea371016844b576960a4ef68979b60b30915c4c459",
+  "code": {
+   "dec054_common.py": "da0ccf5a9db13c785f07a71ab206a00d5727b7f4e7ee24d2e601ef399fe90429",
+   "dec054_opf.py": "3a56c4e41445585580d24d37f8130b3f335b2adbf0723367f50ce46ee7b04f5f",
+   "dec054_predictor.py": "4435805313164f43de11dd422f75ec893199cb160854bc6631468326a035e1f3",
+   "dec054_plant.py": "93d6f5aa1daddfc85f564c662bf2320a226e19a66a8102df7c68a68253221306",
+   "dec055_common.py": "f62f87e18914fd15cb6bb765d0813b68dde4638a2a07b25ea7aaed5972f4dc2c",
+   "dec055_oc.py": "82c109f1fb792e2f8235a00f73f1f3c7630ed39a62607acd4d2b530ca70b7430",
+   "dec055_l0.py": "0c1719a534be2bd998fc57bf6dd54c7d912a403fcb0a9eaf35f9adf3b382df54",
+   "dec057_tds.py": "71d26304aad8157155230bddbb9413189a3e4e0e9c690d4466e992a1eb5ccc7a",
+   "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+   "dec059_eq.py": "50b38f620c5b4a094175d0abb0966f0078aaf3811f284d17ca8ca0706f92688a",
+   "dec059_tds.py": "ec41d3127ed31063ee340e27a22b840a04178b188c2aa0f664ea9d35a7fc9bb2",
+   "dec059_os.py": "a0f9d1a3963fa22ef4d53ac3f1771b2e5e6f9fe33eadf1c03705af110e98f71c",
+   "dec059_pred.py": "cd83b6cd9aae0d27a2768e48a9c4ddbd65c3fca79c1275aa7ff2eef91c16f1e1",
+   "dec059_metrics.py": "6b3bf39342aedf2e4ad6dc4759ec27760260de3374152ec276ef7221aeeca844",
+   "dec059_tune.py": "eece85a2b146ba2e9ecd7fa4b9669161fb2da3d6c902426f267e1df055df952a",
+   "dec059_gate.py": "228581eb30e2737f25447709f7aca12a1542eeeee830419270c6732bb8e9506b",
+   "dec061_design.py": "79534752a485417a123d6f1125434681fc9818fced479fb2b0846ab01dd30a6d",
+   "dec061_rev3.py": "fb68df6c6770d8fec89970b2f012400f33205d7f0c1a764e761ef197294f9ba7",
+   "dec062_val.py": "2a0645ce544537f45a336ac0f8b03a5ff131462373fa624d5901b893e971d143",
+   "dec062_r5.py": "d5c277e77dca2ce70c6e58506dc23279355292a0bf039580c75e8b937ba0628c",
+   "dec062_test.py": "86333d1262e529ec8a8bed70f708ec513425fe01ddf230b280344d542f152887",
+   "run_b3_ieee39.py": "11350e40fdea6ab91ef9fbce90ca0359b4814421abb0814e74b70c8ab1dace3b"
+  },
+  "n_targets": 49,
+  "targets_sha256_of_hashes": "636063a1e74e5c1b9aaedc38db7e5c5aaa85c26f361bc5c672e01120be215758",
+  "git_head": "d99d33c35761816226c3650b1423d10763fe36a4",
+  "git_dirty": ""
+ },
+ "classification_rules": "rule M3V-1 (Addendum B item 1), U_D8 = 0.0109 pu; eligibility S1/S2 confirmatory, S3 promoted if admissible_at_jump at the dispatch under test; criteria G3 (i)-(iv) reported per OC and dispatch, (iii-H) and (iii-U) separately",
+ "test_opened": false,
+ "verdict": "ACCESS_AUTHORIZED_FREEZE_COMPLETE"
+}
