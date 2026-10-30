@@ -67,13 +67,17 @@ def target(v, bus, sev):
     print(p.name, {"E4": Tg["E4"]["pass"], "T2": {k: x["pass"] for k, x in Tg["T2"].items()}, "root": Tg["root_residual"]}, flush=True)
 
 
-def build(v, bus, sev, lot):
+def build(v, bus, sev, lot, div=1):
     T.ST59 = STATE
     sc = {"bus": int(bus), "kind": "P", "amp": amp(sev)}
     rid = f"D66{lot}_B5P_{OC}_{v}_b{bus}P_{sev}"
     r = T.b5_run(OC, sc, rid, f"DEC-066 {lot}: B5' on b{bus}P_{sev} at design {v} ({NAME[v]}), OC1, local dt/16, frozen controller parameters", tag(v), tag(v, bus, sev), m="M0")
     r["z"] = z_of(v).tolist()
     r["dispatch_label"] = v
+    if div != 1:                                  # E2: step sensitivity (dt/div; the local refinement k = 16 is kept, so the finest step is dt/(16 div))
+        r["time_step_s"] = C54.DT / div
+        r["run_id"] += f"_dt{div}"
+        r["purpose"] += f"; time step dt/{div}"
     return r
 
 
@@ -82,7 +86,10 @@ def plan(lot, spec, preds=None):
     for item in spec.split(";"):
         b, s, vs = item.split(":")
         for v in vs.split(","):
-            runs.append(build(v, b, s, lot))
+            div = 1
+            if "/" in v:
+                v, div = v.split("/")
+            runs.append(build(v, b, s, lot, int(div)))
     p = {"stage": f"DEC-066 ablation lot {lot} (sealed with the predictions before any TDS of the lot)", "block": lot, "runs": runs, "predictions": preds,
          "designs_sha256": {v: C54.sha_file(AA.SRC[v]) for v in "ABCDE"},
          "code_sha256": {f: C54.sha_file(C55.SRC / f) for f in ("dec059_b5.py", "dec059_tds.py", "dec059_eq.py", "dec066_tds.py", "dec066_abl_analysis.py")},
