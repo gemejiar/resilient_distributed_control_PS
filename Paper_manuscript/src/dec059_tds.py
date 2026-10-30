@@ -83,6 +83,8 @@ def _tgt(tag):
 
 
 def dispatch_z(oc, m):
+    if m == "M3CUT":                                                  # DEC-060: single dynamic cut cycle (rev. 2 of the OC1 M3+OS dispatch)
+        return json.loads((ST59 / f"m3os_cut_{oc}.json").read_text(encoding="utf-8"))["z"]
     if m == "M3OS":
         return json.loads((ST59 / f"m3os_{oc}.json").read_text(encoding="utf-8"))["z"]
     return json.loads((C55.STATE / f"{m.lower()}_{oc}.json").read_text(encoding="utf-8"))["z"]

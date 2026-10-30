@@ -209,3 +209,47 @@ Each item was decided before any TDS that it affects.
 - Every configuration evaluated is recorded in the TUNE report, failed ones included.
 
 **6. TEST intactness check.** No DEC-059 plan, ledger row, target or prediction file before the freeze contains a TEST bus (21, 31, 39). `dec059_gate.py` checks this mechanically and writes the record.
+
+## Addendum C (DEC-060; recorded before the recheck TDS; append-only)
+
+**Authority.** DEC-060 (investigator): TEST stays sealed; original criteria and historical evidence unchanged; up to 9 TDS for the OC1 cut recheck, DESIGN/TUNE only; cumulative cap 120 TDS.
+
+**1. Status of the criteria.** The TUNE verdict stands as recorded: G3 FAIL in OC1 [(i), (iii), (iv)] and OC2 [(iii)]. Criterion (iii) stays two-sided |e| ≤ 1e-3 pu and criterion (iv) stays 1e-3 pu at 200 s. Nothing below is used to declare either met retroactively.
+
+**2. Recheck set (9 TDS, ledger block RES; the R4 block is exhausted, 18/18).** G1-P at the cut dispatch (1) + the eight OC1 TUNE cells b7, b20, b16, b24 × {S2, S3} with B5′ (frozen), local dt/16 (8). Targets E* at the cut dispatch (rule unchanged, tags `r2_OC1_M3CUT_*`) are computed before the TDS. The cut dispatch is the single dynamic cut cycle allowed by item 4 of Addendum B; any further redesign is a **new revision** with its own gate.
+- Cut cells (protocol "cut cells only"): b20 S2, b16 S3, b24 S3.
+- b20 S3 is added because the pre-TDS prediction at the cut dispatch flips its `admissible_at_jump` from false to true (a_j ≥ 0), so the DEC-055 promotion rule makes it eligible.
+- b7 S2, b7 S3, b16 S2, b24 S2 are supplementary regression cells (does the cut damage cells that were fine?).
+- This set is wider than the protocol text ("cut cells only"); the extension is conservative and declared.
+
+**3. Hypotheses and predictions (static, committed before any recheck TDS; files `IEEE39_DEC059_pred_OC1_M3CUT_{design,tune}.json`, committed in b37fb7a).**
+
+| Cell | Predicted min Pmax margin (pu) | Predicted class | Binding unit | Eligible (rule at the cut dispatch) |
+|---|---|---|---|---|
+| b7 S2 | +0.0756 | SAFE | SG31 | yes |
+| b7 S3 | +0.0037 | NUMERICALLY_INDETERMINATE | SG31 | yes (admissible) |
+| b20 S2 | +0.0150 | SAFE | SG33 | yes (cut cell) |
+| b20 S3 | −0.2110 | UNSAFE | SG33 | **yes, newly admissible** |
+| b16 S2 | +0.1672 | SAFE | SG31 | yes |
+| b16 S3 | +0.1290 | SAFE | SG33 | yes (cut cell) |
+| b24 S2 | +0.1681 | SAFE | SG31 | yes |
+| b24 S3 | +0.1335 | SAFE | SG33 | yes (cut cell) |
+
+- H-A: G1-P passes at the cut dispatch.
+- H-B (mechanism): the cut moves the pre-event SG33 set-point by −0.157 pu (6.511 → 6.354 pu, Pmax 6.82 pu); every other component of the dispatch vector changes by ≤ 6e-4; the binding unit of the cut cells stays SG33 and its post-event peak margin becomes positive.
+- H-C: the three cut cells are SAFE (b20 S2 only +0.015 pu above the band U_D8 = 0.0109).
+- H-D: b20 S3 is UNSAFE. This is a **pre-registered expected failure of G3 (i) under reading A below**; it is not a choice.
+- H-E: the supplementary cells keep their predicted classes.
+- H-F (predictor sign): e = m_TDS − m_pred ≥ 0 in every cell, as in 34/34 earlier cells (16 TUNE, 18 calibration); |e| > 1e-3 expected in the b20 cells and S3 cells, so (iii) two-sided is expected to fail again.
+- H-G: unit-voltage error at 200 s of the S3 cells is expected at about 1e-3 pu again, so (iv) is expected to fail again.
+
+**4. Decision rule for the new gate (fixed now).**
+- Reading A (primary, protocol-literal): eligibility by the rule at the dispatch under test; criteria (i)–(iv) literal over all eligible cells of the recheck set.
+- Mandatory safety blocker: any eligible cell UNSAFE, or any TDS failure, keeps TEST sealed under every reading.
+- Reading B (reported, not primary): eligibility fixed at the TUNE plan (b20 S3 not eligible).
+- Cut-cells-only view and the one-sided criterion (iii) are reported separately and labelled alternative; the latter is a post-TUNE amendment (`dec060_audit.py`) that could only apply to a new revision.
+- Longer-horizon voltage convergence (D3) is a diagnostic from the stored 200-s series (exponential fit on 100–200 s, extrapolated), with no extra TDS.
+- OC2 has no UNSAFE cell, so no cut cycle exists for it; its G3 verdict from TUNE is final under this protocol and no OC2 TDS is run.
+- If the gate passes under reading A: freeze design, code, parameters, metrics and hashes (git tag and acta) before any TEST TDS. Otherwise TEST stays sealed.
+
+**5. Post-TUNE changes (all declared).** (a) `dispatch_z` accepts `M3CUT`; (b) the recheck set is wider than the protocol text; (c) one-sided criterion (iii) study and long-horizon extrapolation, both alternative; (d) ledger block RES used for the recheck.
