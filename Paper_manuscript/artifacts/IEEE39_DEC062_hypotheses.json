@@ -1,0 +1,136 @@
+{
+ "label": "EVALUATION_UNDER_MODIFIED_ACCESS_RULE",
+ "hypotheses": {
+  "HA1_classes_equal_predictions": {
+   "holds": false,
+   "n_match": 34,
+   "n": 36,
+   "mismatches": [
+    "D62TEST_B5P_OC1_M0_b39P_S2",
+    "D62TEST_B5P_OC1_M0_b39P_S3"
+   ],
+   "false_SAFE": [
+    "D62TEST_B5P_OC1_M0_b39P_S2",
+    "D62TEST_B5P_OC1_M0_b39P_S3"
+   ],
+   "mismatch_detail": {
+    "D62TEST_B5P_OC1_M0_b39P_S2": {
+     "pred": "SAFE",
+     "tds": "UNSAFE",
+     "m50": 0.02730610224194674,
+     "m_after_50ms": -0.015566388461914826,
+     "reasons": [
+      "Pmax after 50 ms margin -0.0156 < 0"
+     ]
+    },
+    "D62TEST_B5P_OC1_M0_b39P_S3": {
+     "pred": "SAFE",
+     "tds": "UNSAFE",
+     "m50": 0.023736378392739788,
+     "m_after_50ms": -0.04508017189845592,
+     "reasons": [
+      "Pmax after 50 ms margin -0.0451 < 0"
+     ]
+    }
+   }
+  },
+  "HA2_e_nonneg_and_iii_U": {
+   "e_nonneg_holds": false,
+   "n_negative": 9,
+   "e_min": -4.024963224491529e-05,
+   "e_max": 0.0018445390547565665,
+   "iii_U_holds": true,
+   "n_abs_gt_1e-3": 2,
+   "falsifier_e_below_minus_1e-3": false
+  },
+  "HA3_T1": {
+   "holds": true,
+   "n_runs": 42,
+   "min_c": 0.023944106603496884
+  },
+  "HA4_T2": {
+   "holds": true,
+   "n_runs_targets": 42,
+   "n_B5P_runs_with_V": 36,
+   "V_ratio_max_B5P": 0.0004184103814271446,
+   "note": "B4' has no CLF row, hence no Lyapunov value; only its target label is checked"
+  },
+  "HA5_N2": {
+   "holds": true,
+   "n_inadmissible_cohortA": 7,
+   "classes_cohortA": {
+    "D62TEST_B5P_OC1_M0_b21P_S2": "UNSAFE",
+    "D62TEST_B5P_OC1_M0_b21P_S3": "UNSAFE",
+    "D62TEST_B5P_OC1_M0_b31P_S1": "UNSAFE",
+    "D62TEST_B5P_OC1_M0_b31P_S2": "UNSAFE",
+    "D62TEST_B5P_OC1_M0_b31P_S3": "UNSAFE",
+    "D62TEST_B5P_OC1_M3REV3_b31P_S2": "UNSAFE",
+    "D62TEST_B5P_OC1_M3REV3_b31P_S3": "UNSAFE"
+   },
+   "cohortB_inadmissible_cells": {
+    "OC1_b31P_S2": {
+     "B2": "UNSAFE",
+     "B1S": "UNSAFE",
+     "B4P": "UNSAFE"
+    }
+   }
+  },
+  "HA6_OC2_dispatch_effect_null": {
+   "holds": true,
+   "max_dm50": 7.498115067239297e-05
+  },
+  "HA7_iv": {
+   "holds": false,
+   "OC1_rev3_eligible_S3_unitV_err_at_200s": {
+    "D62TEST_B5P_OC1_M3REV3_b21P_S3": 0.000950806875930521,
+    "D62TEST_B5P_OC1_M3REV3_b39P_S3": 0.0008990892313670562
+   },
+   "max_other_eligible": 0.0006145218479701731,
+   "note": "predicted: OC1 S3 cells fail (iv); observed: they pass narrowly, so the hypothesis is falsified in the favourable direction"
+  },
+  "HB1_OS_controller_independence": {
+   "holds": true,
+   "max_abs_diff_m50": 5.7768767528720844e-05
+  },
+  "HB2_B5_vs_B4_frequency": {
+   "holds": true,
+   "max_abs_diff_f_err_200s_hz": 6.227551807569398e-10
+  }
+ },
+ "P3_levels": {
+  "N2_violations": [],
+  "observed_classes_cohortA": {
+   "OC1_M0": {
+    "SAFE": 1,
+    "INDETERMINATE": 1,
+    "UNSAFE": 7
+   },
+   "OC1_M3REV3": {
+    "SAFE": 7,
+    "INDETERMINATE": 0,
+    "UNSAFE": 2
+   },
+   "OC2_M0": {
+    "SAFE": 9,
+    "INDETERMINATE": 0,
+    "UNSAFE": 0
+   },
+   "OC2_M3OS": {
+    "SAFE": 9,
+    "INDETERMINATE": 0,
+    "UNSAFE": 0
+   }
+  }
+ },
+ "summary": {
+  "HA1_classes_equal_predictions": false,
+  "HA2_e_nonneg_and_iii_U": false,
+  "HA3_T1": true,
+  "HA4_T2": true,
+  "HA5_N2": true,
+  "HA6_OC2_dispatch_effect_null": true,
+  "HA7_iv": false,
+  "HB1_OS_controller_independence": true,
+  "HB2_B5_vs_B4_frequency": true
+ }
+}

@@ -777,3 +777,15 @@ Blockers or limitations: criterion (iv) in S3 stress cells; OC1 has no TEST coho
 Responsible: Integrator
 Status: REV3_COMPLETE; GATE_G-v2_REJECTED
 Next action: investigator decision on criterion (iv) for S3 cells (keep, prospective redefinition, or CLF-rate controller revision) and on an OC2 cohort.
+
+## DEC-062
+Date: 2026-10-30
+Gate: Investigator authorization "DEC-062 - Validacion independiente de las contribuciones cientificas".
+Decision: design frozen (tag dec062-freeze); G-v2 stays REJECTED with its failures preserved; pre-TEST validation (9 TDS) passed; TEST opened as an independent evaluation under a post-TUNE MODIFIED ACCESS RULE (not a retroactive approval); cohort A 36 + cohort B 18 TDS; results labelled EVALUATION_UNDER_MODIFIED_ACCESS_RULE.
+Results: V1-V6 pass (G1-P OC1 rev3, bit-identical repeats, 6 fresh OC2 cells SAFE). TEST: OC1 rev3 7 SAFE / 2 UNSAFE (b31 S2, S3, inadmissible at the jump, N2); OC1 M0 1 SAFE, 1 INDET, 7 UNSAFE incl. 2 false SAFE (b39 S2, S3, Pmax after 50 ms); OC2 9/9 SAFE at both dispatches. Predictor error e in [-4.0e-5, +1.84e-3] pu, (iii-U) not falsified, strict e>=0 falsified. T1 42/42, T2 targets 42/42, P3 N2 7/7. Comparison: Proposition OS holds (5.8e-5), B5p = B4p, B2 voltage offset 36-37 mpu, B1s lowest effort, no dominance. Pre-registered HA1, strict HA2, HA7 falsified. Ledger 112/120.
+Disclosures: access rule changed post-TUNE; OC1 dispatch is rev3; dec059_pred test set now S1-S3 and val set added; BUDGET edits; dec062_hyp.py and dec062_figs.py added after the TEST runs; buses 3 and 12 observed in DEC-054; no push.
+Evidence reviewed: IEEE39_DEC062_report.md, _validation_results.json, _gate_TEST_access.json, _TEST_results.json, _hypotheses.json, _contribution_status.csv, figures F8-F11, DEC062_protocol.md (with Addendum A).
+Blockers or limitations: bus 31 in OC1 is outside the preventive claim; false SAFE at M0 after 50 ms; (iii-U) not validated beyond 42 cells; IEEE-39 C2 only; OC3 limit.
+Responsible: Integrator
+Status: TEST_EVALUATION_COMPLETE
+Next action: investigator review of the matrix and of the manuscript claims (report section 7); 8 TDS remain unspent.
