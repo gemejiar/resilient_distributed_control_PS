@@ -2,7 +2,7 @@
 dec059_tds.execute / b5_run unchanged; nothing of the electrical models, ANDES or controller B5' is modified.  Differences with dec066_tds:
   * designs EQ1 and DQ1 (backups/DEC066_state/bud_*_OC1.json) are added to the design table;
   * new lots F2/F3/F4 are charged to the same ledger IEEE39_DEC066_tds_ledger.csv; the DEC-066 total of 40 TDS is unchanged (budget reassignment: the unused quota of E1 (3), E3 (12) and E4 (4) is
-    reassigned to F2 (4), F3 (5) and F4 (4); the ledger refuses any request beyond 40 in total);
+    reassigned to F2 (4), F3 (5), F4 (4) and F5 (1); the ledger refuses any request beyond 40 in total);
   * spec items accept a suffix  "/fix<n>"  for a fixed step dt/n over the whole run (refine = None, tf = FIXTF), and the existing "/n" for dt/n with the local refinement kept.
 Commands:  target <V> <bus> <SEV|d0>  |  plan <LOT> <spec>  (reads predictions from artifacts/IEEE39_DEC066_<LOT>_pred.json)  |  run <LOT>"""
 from __future__ import annotations
@@ -17,7 +17,7 @@ import dec059_tds as T
 import dec066_abl_analysis as AA
 import dec066_tds as D66
 
-D66.BUDGET.update({"F2": 4, "F3": 5, "F4": 4})
+D66.BUDGET.update({"F2": 4, "F3": 5, "F4": 4, "F5": 1})
 AA.SRC.update({"EQ1": C54.RUNS_DIR.parent / "DEC066_state" / "bud_EQ1_OC1.json", "DQ1": C54.RUNS_DIR.parent / "DEC066_state" / "bud_DQ1_OC1.json"})
 D66.NAME.update({"EQ1": "U only at the effort of D", "DQ1": "dense+eps_OS at the effort of E"})
 FIXTF = 20.0

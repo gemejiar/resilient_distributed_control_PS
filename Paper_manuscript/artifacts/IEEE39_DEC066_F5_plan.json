@@ -1,0 +1,99 @@
+{
+ "stage": "DEC-066 closure lot F5 (sealed with hypotheses and predictions before any TDS of the lot)",
+ "block": "F5",
+ "runs": [
+  {
+   "oc": "OC1",
+   "z": [
+    4.359072874871956,
+    6.308605702455062,
+    6.526198391633807,
+    6.630468849591107,
+    7.651744415004425,
+    7.258538239076299,
+    3.214710070173854,
+    5.083681852233034,
+    5.658585316993492,
+    1.0244848392770443,
+    0.9802416382842014,
+    0.9924498140224697,
+    1.0449999998112671,
+    1.0388450779827465,
+    1.0171913295174628,
+    0.9966567513112368,
+    1.009829518848656,
+    1.008832967887562,
+    1.0449999999746933
+   ],
+   "scenario": {
+    "bus": 21,
+    "kind": "P",
+    "amp": 0.87846
+   },
+   "pflow_tol": null,
+   "method": "trapezoid",
+   "tol": 0.0001,
+   "time_step_s": 0.001953125,
+   "activation_s": null,
+   "tf": 200.0,
+   "controller": "B5P",
+   "reset_tiny": 0,
+   "refine": {
+    "k": 16,
+    "t_on": 5.0,
+    "t_off": 5.5
+   },
+   "dump_end": true,
+   "b5": {
+    "pre_target": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC066_state\\target_ablA_OC1_d0.npz",
+    "pre_sha256": "3cd35e3c6da129bb5d50ee9fa427cb3d65c3d13c31e55b2952b9b273ab2072f9",
+    "t_e": 5.0,
+    "tau_info": 1.0,
+    "event": true,
+    "post_target": "C:\\onedrive\\OneDrive - Universidad del Valle\\05_Univalle_Investigacion\\02_Publicaciones\\En_Preparacion\\Proyectos_Latex\\Resilient_distributed_control_PS\\Paper_manuscript\\backups\\DEC066_state\\target_ablA_OC1_b21P_0.87846.npz",
+    "post_sha256": "7906dcfe25593236b6bbab8583e4dc075801052c534326dc150cf05a4ef39b89",
+    "post_labels": {
+     "E4": true,
+     "T2": {
+      "H1_root": true,
+      "H2_smooth": true,
+      "H3_interior": true,
+      "H4_sampled": true,
+      "H5_continuous": true
+     }
+    }
+   },
+   "run_id": "D66F5_B5P_OC1_A_b21P_S3_dt2",
+   "purpose": "DEC-066 F5: B5' on b21P_S3 at design A (M3), OC1, local dt/16, frozen controller parameters; time step dt/2",
+   "dispatch_label": "A"
+  }
+ ],
+ "predictions": {
+  "lot": "F5",
+  "registered_before_any_TDS": true,
+  "purpose": "Robustness of the UNSAFE class of design A at b21 S3 (historical margin -0.01097 pu, 7e-5 pu beyond the band U_D8 = 0.0109). F4 showed that a global fixed step dt/16 reproduces the historical value (identical in 0-0.5 s by construction); a step finer than dt/16 is tested here as in lot E2 (dt/2 with the local refinement kept, finest step dt/32).",
+  "hypotheses": {
+   "R1": "The 0-50 ms margin changes by <= 1.3e-4 pu (range of the three E2 runs) and stays negative (physical violation robust); registered expectation: margin in [-0.01110, -0.01084].",
+   "R2": "The class UNSAFE (margin <= -0.0109) is retained only if the margin is <= -0.0109; if the margin falls in (-0.0109, 0) the class is reported as NUMERICALLY_INDETERMINATE with a physical violation, and the paper states that the UNSAFE class of A at b21 S3 is not robust to the step."
+  },
+  "decision_rule": "The outcome is reported whatever its value; the UNSAFE label of b21 S3 in the paper follows R2."
+ },
+ "designs_sha256": {
+  "A": "ca035daa10a9a3c2df04a9aad0cdffa8823c1e4b95793f3b95852f3245a4c4b6",
+  "B": "b5ae027274c4df2dec251cd5f1b03f9da48ecb0773380df19bfea838278fa81b",
+  "C": "f39cd744a996826beab2751cd3e2d0ee9f16734227fce912c8271c88023aac4d",
+  "D": "797f30c313f02037732c6d0d321c0240c6e609dfdcd096c11245609358bb0f4e",
+  "E": "63e30172f72bddb4660a226e0db1b86bb09681b9b26cd53d047a7fbe2dd7442f",
+  "EQ1": "d4fd6b899de1cabcfc52de0c1df62316981040f4fb22af05096fab0ec98d5c4e",
+  "DQ1": "8d12eca5e33f4b20ac3623a14c211691072335bff2a34737175d3ef617d2f95e"
+ },
+ "code_sha256": {
+  "dec059_b5.py": "702ca76ff9c0065374f1dfdf450d9b7edda5aaa319829ac81e068bae1434b63c",
+  "dec059_tds.py": "ec41d3127ed31063ee340e27a22b840a04178b188c2aa0f664ea9d35a7fc9bb2",
+  "dec059_eq.py": "50b38f620c5b4a094175d0abb0966f0078aaf3811f284d17ca8ca0706f92688a",
+  "dec066_tds.py": "03f0f4da73a966bc142c6f44ecffe60f297d0d02942664dd1dc01e189b3dcd56",
+  "dec066_tds2.py": "a1174f2b3d38810296ce492ac5d572889f197b28ed955bafe06476c68d23b286",
+  "dec066_abl_analysis.py": "f6e4c6bed5aa2c21aad4b30dc4dac4ff361be038a70155c90a4ce4b9030379c6"
+ },
+ "backup": "DEC-066 procedural exception: independent backup waived by the investigator (same-disk copy only); see ops/sted/DEC066_protocol.md Addendum C"
+}

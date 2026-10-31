@@ -1,0 +1,10 @@
+{
+ "lot": "F5",
+ "registered_before_any_TDS": true,
+ "purpose": "Robustness of the UNSAFE class of design A at b21 S3 (historical margin -0.01097 pu, 7e-5 pu beyond the band U_D8 = 0.0109). F4 showed that a global fixed step dt/16 reproduces the historical value (identical in 0-0.5 s by construction); a step finer than dt/16 is tested here as in lot E2 (dt/2 with the local refinement kept, finest step dt/32).",
+ "hypotheses": {
+  "R1": "The 0-50 ms margin changes by <= 1.3e-4 pu (range of the three E2 runs) and stays negative (physical violation robust); registered expectation: margin in [-0.01110, -0.01084].",
+  "R2": "The class UNSAFE (margin <= -0.0109) is retained only if the margin is <= -0.0109; if the margin falls in (-0.0109, 0) the class is reported as NUMERICALLY_INDETERMINATE with a physical violation, and the paper states that the UNSAFE class of A at b21 S3 is not robust to the step."
+ },
+ "decision_rule": "The outcome is reported whatever its value; the UNSAFE label of b21 S3 in the paper follows R2."
+}
