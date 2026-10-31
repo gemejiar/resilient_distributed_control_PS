@@ -1,0 +1,17 @@
+{
+ "lot": "F4",
+ "registered_before_any_TDS": true,
+ "purpose": "Numerical check of the sub-cycle peak with a fixed fine step set through the native ANDES TDS configuration (time_step_s = dt/16 over the whole run, no local refinement, tf = 20 s instead of 200 s); same equilibrium targets, dispatches and controller B5'; the historical executor uses dt = 2^-8 with a local dt/16 on [t_e - dt, t_e + 0.5 s].",
+ "historical_reference_margin_0_50ms": {
+  "A_b8S3": -0.01477,
+  "D_b8S3": 0.01357,
+  "E_b8S3": -0.00384,
+  "A_b21S3": -0.01097
+ },
+ "hypotheses": {
+  "N1": "The minimum Pmax margin in 0-50 ms of each run differs from the historical value by <= 0.0005 pu (the dt/2, dt/4 tests moved it by <= 1.3e-4 pu), with the same limiting unit and the peak instant within one local step (0.24 ms).",
+  "N2": "The class of A at b21 S3 (historical -0.01097, 7e-5 pu beyond the band U_D8) may change with the step: this run decides whether the UNSAFE class is robust; the physical violation (m < 0) is expected to persist whatever the step.",
+  "N3": "Differences in the event synchronisation (the event is applied at t_e = 5 s on the step grid; with a fixed step dt/16 the event falls on a grid point in both cases) are documented, not corrected."
+ },
+ "decision_rule": "|margin_fixed - margin_historical| <= 0.0005 pu confirms step insensitivity; larger changes are reported as a limitation of the historical executor and the affected classifications are downgraded."
+}

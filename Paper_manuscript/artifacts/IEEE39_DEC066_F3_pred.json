@@ -1,0 +1,57 @@
+{
+ "lot": "F3",
+ "registered_before_any_TDS": true,
+ "out_of_design_check": "bus 18 is not in DESIGN [8,23,28,25], TUNE [7,20,16,24] or TEST [21,31,39] of DEC-055, nor in the DEC-054 cohort, nor in the eps_OS calibration cells (buses 7,8,12,23,25,28); no TDS of buses 18 in DEC-054..066. Bus 39: TEST bus of DEC-055 (previously observed, access modified after TUNE), not in the design or in the eps_OS calibration; used here as a predicted counter-condition and NOT as independent validation.",
+ "predictions": {
+  "A_b18P_S3": {
+   "pred_min_margin_0_10s": 0.06052,
+   "unit": "SG33"
+  },
+  "D_b18P_S3": {
+   "pred_min_margin_0_10s": 0.07553,
+   "unit": "SG33"
+  },
+  "D_b18P_S2": {
+   "pred_min_margin_0_10s": 0.15023,
+   "unit": "SG31"
+  },
+  "A_b39P_S2": {
+   "pred_min_margin_0_10s": 0.12803,
+   "unit": "SG31"
+  },
+  "D_b39P_S2": {
+   "pred_min_margin_0_10s": 0.15553,
+   "unit": "SG31"
+  }
+ },
+ "hypotheses": {
+  "G1": "b18 S3: both A and D remain SAFE (margin >= U_D8 = 0.0109 pu) and D has the larger margin (predicted +0.0150 pu); this is a generalisation/no-harm check, it cannot show an avoided violation because no violation is predicted.",
+  "G2": "b18 S2 (D only): SAFE with a large margin (0.150 pu predicted).",
+  "G3": "b39 S2: the 0-10 s register predicts D above A (0.1555 vs 0.1280 pu); the long-horizon (10-195 s) predictor, whose accuracy is limited, predicts the opposite order (see predictions_slow_window_10_195s). Hypothesis: the observed 0-10 s margins keep the order D > A (>= 0.0025 pu); the observed 10-195 s margin is compared with its prediction and any disagreement is reported as a long-horizon predictor error. This cell is a previously observed TEST bus, not an independent validation.",
+  "G4": "Observed minus predicted margin in [0, +0.0025] pu for the five cells (conservative predictor)."
+ },
+ "decision_rule": "As in F2: a difference is CONFIRMED if it has the predicted sign and |difference| >= 0.0025 pu; smaller differences are NOT DISTINGUISHABLE; opposite sign REFUTES. All five cells are reported.",
+ "predictions_slow_window_10_195s": {
+  "A_b18P_S3": {
+   "pred_min_margin": 0.10579,
+   "unit": "SG31"
+  },
+  "D_b18P_S3": {
+   "pred_min_margin": 0.12179,
+   "unit": "GFM32"
+  },
+  "D_b18P_S2": {
+   "pred_min_margin": 0.15448,
+   "unit": "SG31"
+  },
+  "A_b39P_S2": {
+   "pred_min_margin": 0.01371,
+   "unit": "GFM36"
+  },
+  "D_b39P_S2": {
+   "pred_min_margin": 0.00483,
+   "unit": "SG35"
+  }
+ },
+ "correction_before_run": "G3 was first drafted from the full-horizon margin (including 10-195 s) and corrected here to separate the 0-10 s and 10-195 s windows before any TDS of the lot."
+}
