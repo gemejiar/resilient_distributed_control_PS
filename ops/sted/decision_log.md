@@ -860,3 +860,11 @@ Results: A violates Pmax in 4/6 events, D (M3+OS) only in b31 S2 (inadmissible a
 Disclosures: B not converged (KKT 0.60), A seeded differently, b8/b23 are design-set events, OC1 only, directed (non-factorial) design, violations inside the U_D8 band reported as INDETERMINATE, RMS not EMT; 20 of 40 TDS used.
 Status: ABLATION_PHASE2_COMPLETE
 Next action: common-initialisation control and a same-budget contrast (no TDS needed for the first), optional E3 on new buses, review before any push.
+
+## DEC-066 experimental closure (2026-10-30)
+Decision: close the ablation with (i) optimisation controls (A2, A3, B2, B3, B4, EQ1, EQ2, DQ1, DQ2; 0 TDS), (ii) equal-effort designs EQ1 (uniform band tuned to the effort of D) and DQ1 (dense+eps_OS tuned to the effort of E), (iii) 14 new TDS in lots F2 (4), F3 (5), F4 (4), F5 (1) with hypotheses, predictions and hashes sealed and committed before each lot; budget reassignment E1/E3/E4 -> F2-F5, total 34 of 40 TDS.
+Results: at equal effort D > EQ1 by +0.0090 (b8 S3) and +0.0050 pu (b21 S3), DQ1 > E by +0.0109 and +0.0069 pu; observed excursion identical across designs (benefit = preventive headroom); bus 18 safe for A and D (non-discriminating); 10-195 s predictor refuted at b39 S2; 0-10 s predictor conservative (24 cells, mean +9.4e-4 pu); step sensitivity <= 1.7e-4 pu; UNSAFE of A at b21 S3 marginal (2.4e-4 pu beyond the band at dt/2); no design reaches the local-optimum test, KKT residual of B is not informative; EQ2 solver failure.
+Corrections to the draft: A-E do NOT share the same active constraints; A was not seeded differently (algorithm1 starts from z_ref); the 55.3/62.1 MW sentence replaced by 55.7/61.2 MW.
+Disclosures: deviations in the closure report section 1 (plan document not found; b39 S2 replaces b18 S2 of A; F4 trivial by construction); backup still waived and same-disk only, OneDrive copy unverified.
+Status: DEC066_CLOSURE_COMPLETE (local; not pushed)
+Next action: investigator review; push only on authorisation; no PR or merge.

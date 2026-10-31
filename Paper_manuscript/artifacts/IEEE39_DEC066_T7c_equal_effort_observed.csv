@@ -1,0 +1,9 @@
+event,contrast,meaning,d_obs_margin,d_pre_headroom,d_excursion,margin_diff_explained_by_headroom,verdict_0.0025,class_a,class_b,viol_a,viol_b
+b8P_S3,D - EQ1,dense+eps_OS+U vs uniform U (effort of D),0.00899,0.00907,8e-05,True,CONFIRMED a>b,SAFE,NUMERICALLY_INDETERMINATE,False,False
+b8P_S3,DQ1 - E,dense+eps_OS (small U) vs uniform U (effort of E),0.01091,0.011,0.0001,True,CONFIRMED a>b,NUMERICALLY_INDETERMINATE,NUMERICALLY_INDETERMINATE,False,True
+b8P_S3,D - E,full OS vs uniform U (OS +2.4 MW),0.01741,0.01756,0.00015,True,CONFIRMED a>b,SAFE,NUMERICALLY_INDETERMINATE,False,True
+b8P_S3,EQ1 - DQ1,uniform U (large) vs dense+eps_OS (small),-0.00249,-0.00251,-3e-05,True,NOT DISTINGUISHABLE,NUMERICALLY_INDETERMINATE,NUMERICALLY_INDETERMINATE,False,False
+b21P_S3,D - EQ1,dense+eps_OS+U vs uniform U (effort of D),0.00503,0.00506,3e-05,True,CONFIRMED a>b,NUMERICALLY_INDETERMINATE,NUMERICALLY_INDETERMINATE,False,True
+b21P_S3,DQ1 - E,dense+eps_OS (small U) vs uniform U (effort of E),0.00694,0.00698,4e-05,True,CONFIRMED a>b,NUMERICALLY_INDETERMINATE,NUMERICALLY_INDETERMINATE,True,True
+b21P_S3,D - E,full OS vs uniform U (OS +2.4 MW),0.01344,0.01353,9e-05,True,CONFIRMED a>b,NUMERICALLY_INDETERMINATE,NUMERICALLY_INDETERMINATE,False,True
+b21P_S3,EQ1 - DQ1,uniform U (large) vs dense+eps_OS (small),0.00147,0.00149,2e-05,True,NOT DISTINGUISHABLE,NUMERICALLY_INDETERMINATE,NUMERICALLY_INDETERMINATE,True,True

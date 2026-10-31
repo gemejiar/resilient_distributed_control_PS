@@ -1,0 +1,15 @@
+design,group,start,status,J,kkt_residual,sum_abs_dP_vs_case_MW,max_abs_dz_vs_group_first,dJ_vs_group_first,min_internal_margin_final_iter,plant_evals
+A,A,case dispatch (z_ref) [+ M0/M3 fallback seeds],FEASIBLE_PREDICTED,1.6814858,0.0619,55.696,0.0,0.0,-5.52e-10,440
+B,B,z_ref (M3 seed on failure),FEASIBLE_PREDICTED,1.7054933,0.5979,57.16,0.0,0.0,-2.06e-08,516
+C,C,z_ref (M3 seed on failure),FEASIBLE_PREDICTED,1.7072721,0.0601,57.233,0.0,0.0,-7.71e-08,438
+D,D,z_ref (M3 seed on failure),FEASIBLE_PREDICTED,1.7591528,0.0576,61.194,0.0,0.0,-8.06e-09,394
+E,E,z_ref (M3 seed on failure),FEASIBLE_PREDICTED,1.730864,0.0617,58.824,0.0,0.0,-2.76e-07,395
+A2,A,z_ref (seed A only on failure),FEASIBLE_PREDICTED,1.6814858,0.0619,55.696,0.0,0.0,-5.52e-10,440
+A3,A,replaced by D,FEASIBLE_PREDICTED,1.6814858,0.0614,55.695,1.8e-05,-2.52e-09,-2.08e-12,270
+B2,B,z_ref (seed B on failure),FEASIBLE_PREDICTED,1.7054933,0.5979,57.16,0.0,0.0,-2.06e-08,516
+B3,B,replaced by C,FEASIBLE_PREDICTED,1.705492,0.0267,57.16,9.19e-05,-1.26e-06,-2.38e-05,760
+B4,B,replaced by D,FEASIBLE_PREDICTED,1.7054944,0.5972,57.161,0.000145,1.14e-06,-7.89e-11,190
+EQ1,EQ,z_ref,FEASIBLE_PREDICTED,1.7712642,0.0627,61.293,0.0,0.0,-2.86e-08,415
+EQ2,EQ,replaced by D,SOLVER_FAILED,,,61.28,0.000166,,,710
+DQ1,DQ,z_ref,FEASIBLE_PREDICTED,1.727751,0.0599,58.59,0.0,0.0,-1.85e-06,526
+DQ2,DQ,replaced by E,FEASIBLE_PREDICTED,1.7277521,0.6118,58.581,7.25e-05,1.14e-06,-7.42e-11,198
