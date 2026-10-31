@@ -1,0 +1,6 @@
+design,label,status,J,kkt,sumdP_vs_case_MW,dJ_vs_A,ext_min_margin_design,ext_unit,ext_event,n_events_margin_lt_0,n_events_margin_lt_minUD8,n_events_margin_lt_UD8,n_events
+A,A  M3,FEASIBLE_PREDICTED,1.68149,0.0619,55.696,0.0,-0.01505,SG31,b8P_S3,6,5,7,27
+D,D  M3+OS (U=0.0109),FEASIBLE_PREDICTED,1.75915,0.0576,61.194,0.07767,0.01329,GFM36,b23P_S3,3,3,6,27
+E,"E  U only, U=0.0109",FEASIBLE_PREDICTED,1.73086,0.0617,58.824,0.04938,-0.00412,SG31,b8P_S3,6,3,7,27
+EQ1,"EQ1  U only, U=0.0193 (effort of D)",FEASIBLE_PREDICTED,1.77126,0.0627,61.293,0.08978,0.0043,SG31,b8P_S3,4,3,7,27
+DQ1,"DQ1  dense+eps_OS, U=0.0044 (effort of E)",FEASIBLE_PREDICTED,1.72775,0.0599,58.59,0.04627,0.00679,SG31,b23P_S3,5,3,8,27

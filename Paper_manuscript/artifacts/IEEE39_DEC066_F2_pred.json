@@ -1,0 +1,63 @@
+{
+ "lot": "F2",
+ "registered_before_any_TDS": true,
+ "predictions": {
+  "EQ1_b8P_S3": {
+   "pred_min_margin_0_10s": 0.0043,
+   "unit": "SG31",
+   "jump_margin": 0.04836
+  },
+  "EQ1_b21P_S3": {
+   "pred_min_margin_0_10s": -0.00134,
+   "unit": "SG33",
+   "jump_margin": 0.12307
+  },
+  "DQ1_b8P_S3": {
+   "pred_min_margin_0_10s": 0.00679,
+   "unit": "SG31",
+   "jump_margin": 0.05086
+  },
+  "DQ1_b21P_S3": {
+   "pred_min_margin_0_10s": -0.00281,
+   "unit": "SG33",
+   "jump_margin": 0.12158
+  }
+ },
+ "reference_predictions_D_E": {
+  "D_b8P_S3": {
+   "pred_min_margin_0_10s": 0.01329,
+   "unit": "SG31",
+   "jump_margin": 0.05739
+  },
+  "D_b21P_S3": {
+   "pred_min_margin_0_10s": 0.0037,
+   "unit": "SG33",
+   "jump_margin": 0.12812
+  },
+  "E_b8P_S3": {
+   "pred_min_margin_0_10s": -0.00412,
+   "unit": "SG31",
+   "jump_margin": 0.0399
+  },
+  "E_b21P_S3": {
+   "pred_min_margin_0_10s": -0.00975,
+   "unit": "SG33",
+   "jump_margin": 0.11461
+  }
+ },
+ "observed_reference_ALREADY_SIMULATED": {
+  "D_b8S3": 0.01357,
+  "E_b8S3": -0.00384,
+  "D_b21S3": 0.00405,
+  "E_b21S3": -0.00939,
+  "source": "IEEE39_DEC066_T5b_pred_vs_obs.csv"
+ },
+ "hypotheses": {
+  "H1": "At equal redispatch effort, adding the dense 0-50 ms evaluation (DQ1) increases the observed minimum Pmax margin at b8 S3 relative to the uniform band E by >= 0.0025 pu (registered prediction: +0.0109 pu on the predicted margin, 0.0068 vs -0.0041).",
+  "H2": "At equal redispatch effort, M3+OS (D) keeps a larger observed margin than a uniform band tuned to its effort (EQ1) at b8 S3 by >= 0.0025 pu (registered: 0.0133 vs 0.0043).",
+  "H3": "At b21 S3 the ordering D > EQ1 > DQ1 > E is predicted (0.0037, -0.0013, -0.0028, -0.0098); only differences >= 0.0025 pu are claimed as confirmed.",
+  "H4": "Observed minus predicted margin stays within [0, +0.0025] pu as in the 17 earlier runs (conservative predictor)."
+ },
+ "decision_rule": "A difference is CONFIRMED if the observed difference has the predicted sign and magnitude >= 0.0025 pu (the largest registered prediction error of the ablation); |difference| < 0.0025 pu is reported as NOT DISTINGUISHABLE; opposite sign REFUTES. All four cells are reported, none dropped.",
+ "attribution_rule": "Benefit attributed to preventive headroom if the predicted pre-event headroom (pmax - P_pre) explains the observed margin difference to within 0.0025 pu; otherwise to a change in the excursion (observed peak minus the pre-event headroom is compared between designs)."
+}
